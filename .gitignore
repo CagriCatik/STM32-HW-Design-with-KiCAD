@@ -1,29 +1,60 @@
-# For PCBs designed using KiCad: https://www.kicad.org/
-# Format documentation: https://kicad.org/help/file-formats/
+# pdf and mdbooks
 
-# Temporary files
-*.000
+book
+KiCad_LikeAPro.pdf
+KiCad_Fundamentals_Projects.pdf
+
+# Ignore the output directories
+build/
+dist/
+output/
+
+# Ignore the backup files
 *.bak
+*.b#*
 *.bck
-*.kicad_pcb-bak
-*.kicad_sch-bak
-*-backups
-*.kicad_prl
-*.sch-bak
 *~
-_autosave-*
-*.tmp
-*-save.pro
-*-save.kicad_pcb
-fp-info-cache
 
-# Netlist files (exported from Eeschema)
-*.net
+# Ignore autosave files
+*.kicad_pcb-bak
+*.sch-bak
+*.kicad_sch-bak
+*.bak
 
-# Autorouter files (exported from Pcbnew)
-*.dsn
-*.ses
-
-# Exported BOM files
+# Ignore generated BOM files
 *.xml
 *.csv
+*.html
+*.pos
+*.wrl
+*.step
+
+# Ignore simulation files
+*.net
+*.spice
+*.raw
+*.log
+
+# Ignore compiled library files
+sym-lib-table
+fp-lib-table
+
+# Ignore Gerber and other fabrication output files
+*.gbr
+*.drl
+*.ger
+*.gbl
+*.gtl
+*.gbs
+*.gts
+*.gbo
+*.gto
+*.gbp
+*.gtp
+*.gm1
+*.gko
+*.zip
+
+# Ignore temporary files
+*.tmp
+*.lock

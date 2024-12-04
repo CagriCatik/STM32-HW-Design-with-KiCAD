@@ -4,6 +4,7 @@ book
 KiCad_LikeAPro.pdf
 KiCad_Fundamentals_Projects.pdf
 .DS_Store
+info.md
 
 # Ignore the output directories
 build/

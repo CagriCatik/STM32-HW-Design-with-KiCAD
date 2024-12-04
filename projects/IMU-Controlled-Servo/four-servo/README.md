@@ -1,4 +1,4 @@
-Here is a seamless explanation of the refactored Arduino code. I'll walk you through each part to provide a clear understanding of its structure and how it works, step by step.
+
 
 ### 1. **Libraries and Objects Initialization**:
 

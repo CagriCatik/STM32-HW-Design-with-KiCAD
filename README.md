@@ -1,23 +1,23 @@
 # [KiCad & STM32 Hardware Design 🔧](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
 
 1. Schematic 🖥️
-   - [ ] 1.1. STM32 Microcontroller and Decoupling
-   - [ ] 1.2. STM32 Configuration Pins
-   - [ ] 1.3. Pin-Out and STM32CubeIDE
-   - [ ] 1.4. Crystal Circuitry
-   - [ ] 1.5. USB
-   - [ ] 1.6. Power Supply and Connectors
-   - [ ] 1.7. Electrical Rules Check (ERC) and Annotation
-   - [ ] 1.8. Footprint Assignment
+   - [x] 1.1. STM32 Microcontroller and Decoupling
+   - [x] 1.2. STM32 Configuration Pins
+   - [x] 1.3. Pin-Out and STM32CubeIDE
+   - [x] 1.4. Crystal Circuitry
+   - [x] 1.5. USB
+   - [x] 1.6. Power Supply and Connectors
+   - [x] 1.7. Electrical Rules Check (ERC) and Annotation
+   - [x] 1.8. Footprint Assignment
 
 2. PCB Layout 🛠️
-   - [ ] 2.1. KiCad PCB Set-Up
-   - [ ] 2.2. MCU, Decoupling Capacitors, and Crystal Layout
-   - [ ] 2.3. USB and SWD Layout
-   - [ ] 2.4. Changing Footprints and Adding 3D Models
-   - [ ] 2.5. Switch and Connector Placement
-   - [ ] 2.6. Power Supply Layout
-   - [ ] 2.7. Mounting Holes and Board Outline
+   - [x] 2.1. KiCad PCB Set-Up
+   - [x] 2.2. MCU, Decoupling Capacitors, and Crystal Layout
+   - [x] 2.3. USB and SWD Layout
+   - [x] 2.4. Changing Footprints and Adding 3D Models
+   - [x] 2.5. Switch and Connector Placement
+   - [x] 2.6. Power Supply Layout
+   - [x] 2.7. Mounting Holes and Board Outline
 
 3. PCB Routing 🚀
    - [ ] 3.1. Decoupling Capacitors and Crystal Routing

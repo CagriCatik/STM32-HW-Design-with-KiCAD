@@ -2,9 +2,8 @@
 
 This guide offers a step-by-step approach to mastering PCB design using **KiCad V6** and implementing **STM32 microcontrollers** for hardware design. Whether you're a beginner or experienced, this tutorial will help you create professional-grade PCBs.
 
-[![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml)
-
-Explore the complete guide: [**GitHub Repository**](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD)  
+![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)
+[**Explore the complete guide**](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)  
 
 ---
 

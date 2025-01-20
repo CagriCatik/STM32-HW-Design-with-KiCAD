@@ -1,4 +1,4 @@
-### 6. **Scripting Plugins**
+#  **Scripting Plugins**
 
 KiCad’s Python scripting environment allows users to create custom plugins that can significantly enhance the functionality of the software. These plugins enable users to extend KiCad's native capabilities by adding new tools and automating complex workflows. With Python scripting plugins, PCB designers can implement specific features or integrate external tools into their design environment, providing a high level of customization to match the needs of a particular project or workflow.
 

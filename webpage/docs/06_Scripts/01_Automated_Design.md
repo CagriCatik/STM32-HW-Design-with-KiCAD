@@ -1,4 +1,4 @@
-## Key Applications of Python Scripting in KiCad
+# Key Applications of Python Scripting in KiCad
 
 Python scripting in KiCad provides designers with a powerful toolset for automating complex and repetitive tasks, increasing both productivity and accuracy. These scripting capabilities offer flexibility and efficiency, especially in designs that involve intricate rules, batch processing, or highly customized workflows. Below are the key applications of Python scripting in KiCad:
 

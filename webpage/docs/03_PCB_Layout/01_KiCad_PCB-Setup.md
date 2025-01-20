@@ -1,4 +1,4 @@
-# PCB Layout and Routing Setup in KiCad
+# PCB Layout and Routing Setup
 
 Creating a reliable and manufacturable Printed Circuit Board (PCB) is a critical step in bringing your electronic designs to life. This documentation provides a comprehensive guide to setting up PCB layout and routing in KiCad, specifically tailored for an STM32-based design. By following these detailed instructions, you will ensure that your PCB design adheres to best practices, maintains signal integrity, and meets manufacturing requirements.
 

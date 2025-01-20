@@ -1,4 +1,4 @@
-# KiCad Installation Guide for STM32 Hardware Design Projects
+# Installation Guide
 
 This comprehensive guide provides step-by-step instructions for installing KiCad, a powerful open-source PCB design tool, tailored for STM32 hardware design projects. Whether you are using a Linux-based system or Windows, this documentation ensures a smooth installation process, complete with practical examples and best practices.
 

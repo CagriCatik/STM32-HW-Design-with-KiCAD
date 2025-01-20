@@ -1,4 +1,4 @@
-# Fixing 3D Models and Adjusting Footprints in KiCad
+# Fixing 3D Models and Adjusting Footprints
 
 Ensuring that your PCB design accurately represents real-world components is crucial for successful enclosure design, assembly checks, and manufacturing. This section provides a comprehensive guide on addressing **missing or incorrect 3D models** and **oversized footprints** using KiCad. By following these steps, you can enhance the mechanical accuracy and overall quality of your PCB design.
 

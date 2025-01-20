@@ -1,4 +1,4 @@
-### 3. **Design Rule Checking (DRC) Customization**
+# **Design Rule Checking (DRC) Customization**
 
 Design Rule Checking (DRC) is a critical aspect of PCB design, ensuring that the layout adheres to both electrical and manufacturing constraints. While KiCad provides robust built-in DRC rules, there are times when custom design rules are needed for specific projects or when dealing with particular manufacturing requirements. Python scripting in KiCad allows you to extend and customize these DRC checks, enabling you to enforce unique constraints and enhance the reliability of your design.
 

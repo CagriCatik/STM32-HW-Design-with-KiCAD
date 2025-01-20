@@ -1,4 +1,4 @@
-### 4. **Netlist Manipulation**
+# **Netlist Manipulation**
 
 Netlist manipulation is a powerful feature that allows designers to dynamically adjust, merge, and analyze the connectivity between components in a PCB design. Python scripting in KiCad enables more advanced control over the netlist, allowing you to optimize routing, improve signal integrity, and handle complex hierarchical designs.
 

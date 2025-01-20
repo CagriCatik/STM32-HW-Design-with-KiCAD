@@ -1,4 +1,4 @@
-# Assigning Footprints to Schematic Symbols in KiCad
+# Assigning Footprints to Schematic Symbols
 
 Assigning footprints to schematic symbols is a crucial step in the PCB design process. This ensures that each component in your schematic is accurately represented on the physical board, facilitating seamless manufacturing and assembly. This guide provides a comprehensive walkthrough for assigning footprints in KiCad version 6, incorporating practical examples and best practices to optimize your PCB design workflow.
 

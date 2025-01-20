@@ -1,4 +1,4 @@
-# Connecting USB Circuitry to STM32 in KiCad
+# Connecting USB Circuitry to STM32
 
 Integrating USB circuitry into an STM32 microcontroller design using KiCad is a critical step for enabling reliable USB communication in your projects. This documentation provides a comprehensive guide covering the addition of a USB connector, configuration of differential pairs, power management, USB detection mechanisms, and adherence to best practices. By following these detailed instructions, you will ensure that your design complies with USB standards and functions effectively in real-world applications.
 

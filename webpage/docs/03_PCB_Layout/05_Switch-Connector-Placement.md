@@ -1,4 +1,4 @@
-# Finalizing the Rough Layout and Preparing for Power Circuitry in KiCad
+# Finalizing the Rough Layout and Preparing for Power Circuitry
 
 Finalizing the rough layout of your Printed Circuit Board (PCB) is a crucial step in ensuring the functionality, reliability, and manufacturability of your design. This documentation provides a comprehensive guide to refining your STM32-based PCB layout using KiCad, focusing on the placement of remaining components and preparing the power supply circuitry. By following these detailed steps, incorporating best practices, and utilizing practical examples, you will achieve a professional and efficient PCB design.
 

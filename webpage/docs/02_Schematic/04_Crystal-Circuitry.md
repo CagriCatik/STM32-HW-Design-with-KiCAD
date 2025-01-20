@@ -1,4 +1,4 @@
-# Connecting the Crystal Oscillator in STM32 Microcontroller Circuits Using KiCad
+# Connecting the Crystal Oscillator in STM32 Microcontroller Circuits
 
 Integrating a crystal oscillator into your STM32 microcontroller circuit is a pivotal step in ensuring accurate timing, especially for high-speed communication protocols such as USB, CAN, and UART. This document provides a comprehensive guide on designing and implementing a crystal oscillator circuit using KiCad, covering fundamental principles, component selection, schematic design, and best practices.
 

@@ -1,4 +1,4 @@
-### 7. **Integration with External Tools**
+# **Integration with External Tools**
 
 One of the most powerful aspects of KiCad’s Python scripting capabilities is its ability to interface with external tools. By integrating KiCad with other software applications, databases, and simulation environments, designers can streamline their workflows, improve collaboration, and ensure consistency across different phases of the design and verification process. Whether you need to sync your PCB layout with a mechanical design tool, manage version control, or run simulations based on the PCB layout, Python scripting in KiCad can make these tasks more efficient and reliable.
 

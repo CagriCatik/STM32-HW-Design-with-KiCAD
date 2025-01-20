@@ -1,4 +1,4 @@
-### 9. **Design Automation**
+# **Design Automation**
 
 Python scripting in KiCad allows for the automation of the entire design process, from schematic capture through PCB layout, validation, and even documentation generation. This powerful feature enables users to manage complex workflows, streamline batch processes, and optimize designs iteratively for performance or manufacturability. Automating these tasks not only saves time but also helps reduce human errors, particularly when dealing with repetitive tasks or multiple designs.
 

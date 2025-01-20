@@ -1,4 +1,4 @@
-# Sectioning, Annotating, and Finalizing the Schematic in KiCad
+# Sectioning, Annotating, and Finalizing the Schematic
 
 Creating a well-organized, annotated, and finalized schematic is crucial for ensuring readability, facilitating future modifications, and streamlining the transition to PCB layout. This documentation provides a comprehensive guide on how to effectively section, annotate, and finalize your schematic in KiCad, incorporating best practices and practical examples to enhance your PCB design process.
 

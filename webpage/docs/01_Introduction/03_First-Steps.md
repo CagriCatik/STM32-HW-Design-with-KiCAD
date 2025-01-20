@@ -1,4 +1,4 @@
-# First Steps in PCB Design Using KiCad
+# First Steps in PCB Design Using
 
 This comprehensive guide will walk you through the process of creating your first Printed Circuit Board (PCB) design using KiCad version 6. Whether you're new to hardware design or an experienced engineer, this document provides detailed instructions on navigating the software, creating your first schematic, and designing a PCB for your STM32-based project. By the end of this guide, you will confidently use KiCad to create and finalize your PCB designs, complementing your knowledge from the STM32 hardware design course.
 

@@ -49,7 +49,7 @@ const config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'PCB Design with KiCad',
+      title: 'STM32 Hardware Design with KiCAD',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.png',
@@ -152,7 +152,7 @@ const config = {
           ],
         },
       ],
-      copyright: `PCB Design with KiCad`,
+      copyright: `STM32 Hardware Design with KiCAD`,
     },
     prism: {
       theme: prismThemes.github,

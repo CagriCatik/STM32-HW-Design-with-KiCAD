@@ -1,4 +1,4 @@
-### 5. **Bill of Materials (BOM) Generation**
+# **Bill of Materials (BOM) Generation**
 
 Generating a Bill of Materials (BOM) is a critical part of the PCB design process. The BOM lists all the components required to manufacture the PCB, along with quantities, part numbers, and additional information necessary for procurement and assembly. Python scripting in KiCad offers powerful tools to automate BOM generation, ensuring that the BOM is accurate, well-formatted, and tailored to meet the needs of your specific project, assembly house, or procurement system.
 

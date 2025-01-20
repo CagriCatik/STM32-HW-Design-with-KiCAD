@@ -1,4 +1,4 @@
-### 2. **Customized Footprint Generation**
+#  **Customized Footprint Generation**
 
 Python scripting in KiCad offers an efficient and flexible way to generate custom footprints for components, especially in cases where non-standard footprints are required or when working with a large number of components that need consistent layout properties. Custom footprints can be critical for designs that have special mounting requirements, mechanical constraints, or non-typical geometries. Automating footprint creation through scripting also ensures accuracy and consistency across multiple components, which can be particularly useful for large or modular designs.
 

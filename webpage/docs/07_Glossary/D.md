@@ -1,3 +1,17 @@
+# D
+
+## DRC
+
+## Decoupling
+
+Decoupling refers to the practice of using capacitors (called decoupling capacitors) to filter out noise in power supply lines and provide instantaneous current when needed by a component. In electronic circuits, particularly for microcontrollers like STM32, the power supply can experience fluctuations and noise caused by various components switching on and off or due to interference from other parts of the circuit. Decoupling capacitors serve to "decouple" these unwanted fluctuations from sensitive devices.
+
+When a component, such as a microcontroller, switches states or processes data, it demands a quick surge of current that the power supply may not be able to deliver instantly due to inductance or resistance in the supply lines. A decoupling capacitor, placed close to the device, acts as a local energy reservoir. It stores charge and releases it as needed, ensuring that the component gets the required current without causing dips or spikes in the power rail.
+
+- Placement: Decoupling capacitors must be placed as close as possible to the power pins of the component. The typical value for these capacitors is 100nF (0.1µF).
+- Types: For microcontrollers like STM32, it's common to use ceramic capacitors with low Equivalent Series Resistance **(ESR)** for decoupling.
+
+
 # STM32 uC Decoupling
 
 ## Introduction

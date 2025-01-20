@@ -1,3 +1,5 @@
+# Z
+
 # Basics - Elements
 
 1. Resistor:

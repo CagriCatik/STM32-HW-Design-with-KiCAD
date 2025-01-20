@@ -1,3 +1,18 @@
+# E
+
+## ERC
+
+## ESR
+
+Equivalent Series Resistance (ESR) is the measure of the resistive losses in a capacitor when subjected to an alternating current (AC) voltage. It is the sum of all resistive components within the capacitor and is expressed in ohms (Ω).
+
+- Voltage Stability: Low ESR minimizes voltage drops during current surges, ensuring stable voltage supply to components.
+- Noise Filtering: A lower ESR allows capacitors to respond quickly to rapid changes in current, effectively filtering high-frequency noise.
+- Power Dissipation: High ESR can lead to increased power loss in the form of heat, affecting capacitor and circuit reliability.
+- Resonance Effects: ESR, in conjunction with Equivalent Series Inductance (ESL), can create resonant circuits that impact decoupling performance.
+
+
+
 # STM32 uC Decoupling
 
 ## Introduction

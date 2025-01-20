@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkPCB_Design=self.webpackChunkPCB_Design||[]).push([[1903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/STM32-HW-Design-with-KiCAD/blog","blogTitle":"Blog","authorsListPath":"/STM32-HW-Design-with-KiCAD/blog/authors"}')}}]);

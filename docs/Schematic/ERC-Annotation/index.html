@@ -9,7 +9,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.a479dc71.css">
-<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.616171fb.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.a8dbf2b1.js" defer="defer"></script>
 <script src="/STM32-HW-Design-with-KiCAD/assets/js/main.2a63344e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -19,29 +19,29 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-sectioning-the-schematic-into-readable-parts">1. Sectioning the Schematic into Readable Parts<a href="#1-sectioning-the-schematic-into-readable-parts" class="hash-link" aria-label="Direct link to 1. Sectioning the Schematic into Readable Parts" title="Direct link to 1. Sectioning the Schematic into Readable Parts">​</a></h2>
 <p>A structured schematic enhances comprehension, especially for complex designs. Dividing the schematic into distinct functional blocks not only aids in readability but also simplifies debugging and future revisions.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-draw-bounding-boxes-around-sections">Step 1: Draw Bounding Boxes Around Sections<a href="#step-1-draw-bounding-boxes-around-sections" class="hash-link" aria-label="Direct link to Step 1: Draw Bounding Boxes Around Sections" title="Direct link to Step 1: Draw Bounding Boxes Around Sections">​</a></h3>
-<p><strong>Objective:</strong> Visually separate different functional areas of the schematic to enhance clarity.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Visually separate different functional areas of the schematic to enhance clarity.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Access the Connected Graphic Lines Tool:</strong>
+<li>Access the Connected Graphic Lines Tool:<!-- -->
 <ul>
-<li>Locate the <strong>&quot;Connected Graphic Lines Tool&quot;</strong> in the right-hand toolbar of KiCad.</li>
+<li>Locate the &quot;Connected Graphic Lines Tool&quot; in the right-hand toolbar of KiCad.</li>
 </ul>
 </li>
-<li><strong>Create Bounding Boxes:</strong>
+<li>Create Bounding Boxes:<!-- -->
 <ul>
-<li>Draw <strong>bounding boxes</strong> around each functional section of your schematic. Common sections include:<!-- -->
+<li>Draw bounding boxes around each functional section of your schematic. Common sections include:<!-- -->
 <ul>
-<li><strong>Power Supply Section:</strong>
+<li>Power Supply Section:<!-- -->
 <ul>
 <li>Components: Voltage regulators (e.g., AMS1117), input/output capacitors, and related circuitry.</li>
 </ul>
 </li>
-<li><strong>Microcontroller Section:</strong>
+<li>Microcontroller Section:<!-- -->
 <ul>
 <li>Components: STM32 microcontroller, decoupling capacitors, crystal oscillator, USB circuitry.</li>
 </ul>
 </li>
-<li><strong>Communication Interfaces:</strong>
+<li>Communication Interfaces:<!-- -->
 <ul>
 <li>Components: UART, I²C, SWD debug connectors.</li>
 </ul>
@@ -51,88 +51,88 @@
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Consistent Styling:</strong> Use uniform line styles and colors for bounding boxes to maintain a cohesive look.</li>
-<li><strong>Adequate Spacing:</strong> Ensure there is sufficient space between bounding boxes to prevent overlapping and maintain readability.</li>
+<li>Consistent Styling: Use uniform line styles and colors for bounding boxes to maintain a cohesive look.</li>
+<li>Adequate Spacing: Ensure there is sufficient space between bounding boxes to prevent overlapping and maintain readability.</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Power Supply      |     | Microcontroller    |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - AMS1117         |     | - STM32            |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - Capacitors      |     | - Decoupling Caps  |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-add-text-annotations">Step 2: Add Text Annotations<a href="#step-2-add-text-annotations" class="hash-link" aria-label="Direct link to Step 2: Add Text Annotations" title="Direct link to Step 2: Add Text Annotations">​</a></h3>
-<p><strong>Objective:</strong> Label each section clearly to facilitate quick identification and navigation.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Label each section clearly to facilitate quick identification and navigation.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Select the Add Text Tool:</strong>
+<li>Select the Add Text Tool:<!-- -->
 <ul>
-<li>Click on the <strong>&quot;Add Text&quot; tool</strong> in the toolbar.</li>
+<li>Click on the &quot;Add Text&quot; tool in the toolbar.</li>
 </ul>
 </li>
-<li><strong>Insert Section Titles:</strong>
+<li>Insert Section Titles:<!-- -->
 <ul>
-<li>Add descriptive titles to each bounded section, such as <strong>&quot;Power Supply&quot;</strong>, <strong>&quot;Microcontroller&quot;</strong>, and <strong>&quot;USB Circuitry&quot;</strong>.</li>
+<li>Add descriptive titles to each bounded section, such as &quot;Power Supply&quot;, &quot;Microcontroller&quot;, and &quot;USB Circuitry&quot;.</li>
 <li>Utilize larger, bold fonts to make titles prominent.</li>
 </ul>
 </li>
-<li><strong>Adjust Text Size:</strong>
+<li>Adjust Text Size:<!-- -->
 <ul>
 <li>Double-click the inserted text to open the properties dialog.</li>
 <li>Increase the font size to enhance visibility.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Descriptive Labels:</strong> Use clear and specific titles that accurately describe the section&#x27;s purpose.</li>
-<li><strong>Consistent Formatting:</strong> Maintain uniform font styles and sizes across all section titles.</li>
+<li>Descriptive Labels: Use clear and specific titles that accurately describe the section&#x27;s purpose.</li>
+<li>Consistent Formatting: Maintain uniform font styles and sizes across all section titles.</li>
 </ul>
-<p><strong>Example:</strong></p>
-<div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| **Power Supply**  |     | **Microcontroller**|</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - AMS1117         |     | - STM32            |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - Capacitors      |     | - Decoupling Caps  |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Example:</p>
+<div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Power Supply  |     | Microcontroller|</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - AMS1117         |     | - STM32            |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| - Capacitors      |     | - Decoupling Caps  |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+     +--------------------+</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-adding-a-title-block">2. Adding a Title Block<a href="#2-adding-a-title-block" class="hash-link" aria-label="Direct link to 2. Adding a Title Block" title="Direct link to 2. Adding a Title Block">​</a></h2>
 <p>A title block standardizes your schematic by providing essential project information, enhancing professionalism, and aiding in project management.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-editing-the-title-block">Step 1: Editing the Title Block<a href="#step-1-editing-the-title-block" class="hash-link" aria-label="Direct link to Step 1: Editing the Title Block" title="Direct link to Step 1: Editing the Title Block">​</a></h3>
-<p><strong>Objective:</strong> Populate the title block with relevant metadata to document your schematic effectively.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Populate the title block with relevant metadata to document your schematic effectively.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Access Page Settings:</strong>
+<li>Access Page Settings:<!-- -->
 <ul>
-<li>Click the <strong>Page Settings</strong> button, represented by a sheet of paper icon, located on the toolbar.</li>
+<li>Click the Page Settings button, represented by a sheet of paper icon, located on the toolbar.</li>
 </ul>
 </li>
-<li><strong>Fill in the Title Block Fields:</strong>
+<li>Fill in the Title Block Fields:<!-- -->
 <ul>
-<li><strong>Title:</strong> Enter the project name (e.g., &quot;STM32 Demo PCB&quot;).</li>
-<li><strong>Revision:</strong> Assign a meaningful revision number (e.g., &quot;v0.1&quot;) to track changes.</li>
-<li><strong>Company Name:</strong> Input your company or project name, if applicable.</li>
-<li><strong>Date:</strong> The field auto-fills with the current date, but it can be edited manually if needed.</li>
+<li>Title: Enter the project name (e.g., &quot;STM32 Demo PCB&quot;).</li>
+<li>Revision: Assign a meaningful revision number (e.g., &quot;v0.1&quot;) to track changes.</li>
+<li>Company Name: Input your company or project name, if applicable.</li>
+<li>Date: The field auto-fills with the current date, but it can be edited manually if needed.</li>
 </ul>
 </li>
-<li><strong>Apply Changes:</strong>
+<li>Apply Changes:<!-- -->
 <ul>
-<li>Click <strong>OK</strong> to update the title block on your schematic.</li>
+<li>Click OK to update the title block on your schematic.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Accurate Information:</strong> Ensure all fields are correctly filled to avoid confusion during project handovers or reviews.</li>
-<li><strong>Version Control:</strong> Use a systematic revision numbering scheme to track schematic iterations effectively.</li>
+<li>Accurate Information: Ensure all fields are correctly filled to avoid confusion during project handovers or reviews.</li>
+<li>Version Control: Use a systematic revision numbering scheme to track schematic iterations effectively.</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">-------------------------------------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Title      : STM32 Demo PCB                   |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Revision   : v0.1                             |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Company    : Your Company Name                |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| Date       : 2024-04-27                       |</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">-------------------------------------------------</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-adding-comments-and-notes">3. Adding Comments and Notes<a href="#3-adding-comments-and-notes" class="hash-link" aria-label="Direct link to 3. Adding Comments and Notes" title="Direct link to 3. Adding Comments and Notes">​</a></h2>
 <p>Annotations provide context and explanations within your schematic, aiding in understanding design decisions and facilitating future modifications.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-add-design-explanations">Step 1: Add Design Explanations<a href="#step-1-add-design-explanations" class="hash-link" aria-label="Direct link to Step 1: Add Design Explanations" title="Direct link to Step 1: Add Design Explanations">​</a></h3>
-<p><strong>Objective:</strong> Document the rationale behind component selections and design choices.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Document the rationale behind component selections and design choices.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Select the Add Text Tool:</strong>
+<li>Select the Add Text Tool:<!-- -->
 <ul>
-<li>Use the <strong>&quot;Add Text&quot; tool</strong> to insert explanatory notes near relevant components.</li>
+<li>Use the &quot;Add Text&quot; tool to insert explanatory notes near relevant components.</li>
 </ul>
 </li>
-<li><strong>Insert Explanations:</strong>
+<li>Insert Explanations:<!-- -->
 <ul>
 <li>Example 1: Near a crystal oscillator, add:<!-- -->
 <ul>
@@ -147,197 +147,197 @@
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Clarity:</strong> Ensure comments are concise and directly related to the component or section they describe.</li>
-<li><strong>Relevance:</strong> Include only necessary explanations to avoid cluttering the schematic.</li>
+<li>Clarity: Ensure comments are concise and directly related to the component or section they describe.</li>
+<li>Relevance: Include only necessary explanations to avoid cluttering the schematic.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-highlight-critical-areas">Step 2: Highlight Critical Areas<a href="#step-2-highlight-critical-areas" class="hash-link" aria-label="Direct link to Step 2: Highlight Critical Areas" title="Direct link to Step 2: Highlight Critical Areas">​</a></h3>
-<p><strong>Objective:</strong> Emphasize vital connections and components to guide reviewers and future developers.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Emphasize vital connections and components to guide reviewers and future developers.</p>
+<p>Procedure:</p>
 <ul>
-<li><strong>Add Short Comments:</strong>
+<li>Add Short Comments:<!-- -->
 <ul>
-<li>For critical connections like <strong>VBUS power input</strong> or <strong>SWD connections</strong>, insert brief explanations detailing their purpose and behavior.</li>
+<li>For critical connections like VBUS power input or SWD connections, insert brief explanations detailing their purpose and behavior.</li>
 </ul>
 </li>
-<li><strong>Label Important Pins:</strong>
+<li>Label Important Pins:<!-- -->
 <ul>
-<li>Clearly label significant pins such as <strong>VCC</strong>, <strong>GND</strong>, <strong>UART_TX</strong>, <strong>I2C_SCL</strong>, etc., to streamline the PCB layout phase.</li>
+<li>Clearly label significant pins such as VCC, GND, UART_TX, I2C_SCL, etc., to streamline the PCB layout phase.</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Consistent Labeling:</strong> Use a uniform style for all labels to maintain readability.</li>
-<li><strong>Avoid Overcrowding:</strong> Distribute comments evenly to prevent overlapping and maintain a clean schematic.</li>
+<li>Consistent Labeling: Use a uniform style for all labels to maintain readability.</li>
+<li>Avoid Overcrowding: Distribute comments evenly to prevent overlapping and maintain a clean schematic.</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| VBUS Power Input  | &lt;-- &quot;Defines the main power source for the PCB.&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">| SWD Connections   | &lt;-- &quot;Used for programming and debugging the microcontroller.&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">+-------------------+</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-annotating-designators">4. Annotating Designators<a href="#4-annotating-designators" class="hash-link" aria-label="Direct link to 4. Annotating Designators" title="Direct link to 4. Annotating Designators">​</a></h2>
 <p>Designators uniquely identify each component in the schematic, ensuring accurate component placement and assembly during PCB manufacturing.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-automatic-annotation">Step 1: Automatic Annotation<a href="#step-1-automatic-annotation" class="hash-link" aria-label="Direct link to Step 1: Automatic Annotation" title="Direct link to Step 1: Automatic Annotation">​</a></h3>
-<p><strong>Objective:</strong> Efficiently assign unique designators to all components in the schematic.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Efficiently assign unique designators to all components in the schematic.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Initiate Annotation:</strong>
+<li>Initiate Annotation:<!-- -->
 <ul>
-<li>Click the <strong>Annotate Schematic Symbols</strong> button, identifiable by an &quot;A&quot; icon, in the toolbar.</li>
+<li>Click the Annotate Schematic Symbols button, identifiable by an &quot;A&quot; icon, in the toolbar.</li>
 </ul>
 </li>
-<li><strong>Configure Annotation Settings:</strong>
+<li>Configure Annotation Settings:<!-- -->
 <ul>
-<li>In the <strong>Annotate Schematic</strong> dialog, select the schematic sheets to annotate.</li>
-<li>Choose the annotation order, such as by <strong>X/Y position</strong>, to maintain logical sequencing (e.g., top-to-bottom, left-to-right).</li>
+<li>In the Annotate Schematic dialog, select the schematic sheets to annotate.</li>
+<li>Choose the annotation order, such as by X/Y position, to maintain logical sequencing (e.g., top-to-bottom, left-to-right).</li>
 </ul>
 </li>
-<li><strong>Execute Annotation:</strong>
+<li>Execute Annotation:<!-- -->
 <ul>
-<li>Click <strong>Annotate</strong> to allow KiCad to automatically assign designators (e.g., C1, R2, U1) based on the selected settings.</li>
+<li>Click Annotate to allow KiCad to automatically assign designators (e.g., C1, R2, U1) based on the selected settings.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Logical Sequencing:</strong> Opt for annotation by position to reflect the physical layout, aiding in intuitive PCB placement.</li>
-<li><strong>Review Assignments:</strong> After annotation, review designators to ensure consistency and logical grouping.</li>
+<li>Logical Sequencing: Opt for annotation by position to reflect the physical layout, aiding in intuitive PCB placement.</li>
+<li>Review Assignments: After annotation, review designators to ensure consistency and logical grouping.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-manual-annotation-if-needed">Step 2: Manual Annotation (If Needed)<a href="#step-2-manual-annotation-if-needed" class="hash-link" aria-label="Direct link to Step 2: Manual Annotation (If Needed)" title="Direct link to Step 2: Manual Annotation (If Needed)">​</a></h3>
-<p><strong>Objective:</strong> Gain granular control over designator assignments for specific organizational needs.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Gain granular control over designator assignments for specific organizational needs.</p>
+<p>Procedure:</p>
 <ul>
-<li><strong>Manual Assignment:</strong>
+<li>Manual Assignment:<!-- -->
 <ul>
 <li>Double-click on a component&#x27;s designator (e.g., &quot;C?&quot;) to edit.</li>
 <li>Input the desired designator manually (e.g., &quot;C1&quot;, &quot;R1&quot;).</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Consistency:</strong> Maintain a consistent naming convention to facilitate easy identification and troubleshooting.</li>
-<li><strong>Grouping:</strong> Assign designators in a manner that groups related components logically (e.g., all decoupling capacitors as C1, C2, etc.).</li>
+<li>Consistency: Maintain a consistent naming convention to facilitate easy identification and troubleshooting.</li>
+<li>Grouping: Assign designators in a manner that groups related components logically (e.g., all decoupling capacitors as C1, C2, etc.).</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">C1: 10 µF Decoupling Capacitor</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">R1: 1kΩ Pull-up Resistor</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">U1: STM32 Microcontroller</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="5-running-electrical-rules-check-erc">5. Running Electrical Rules Check (ERC)<a href="#5-running-electrical-rules-check-erc" class="hash-link" aria-label="Direct link to 5. Running Electrical Rules Check (ERC)" title="Direct link to 5. Running Electrical Rules Check (ERC)">​</a></h2>
 <p>Conducting an Electrical Rules Check ensures the schematic is free from electrical errors, enhancing the reliability of the design before proceeding to PCB layout.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-run-erc">Step 1: Run ERC<a href="#step-1-run-erc" class="hash-link" aria-label="Direct link to Step 1: Run ERC" title="Direct link to Step 1: Run ERC">​</a></h3>
-<p><strong>Objective:</strong> Identify and rectify electrical issues within the schematic.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Identify and rectify electrical issues within the schematic.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Access ERC Tool:</strong>
+<li>Access ERC Tool:<!-- -->
 <ul>
-<li>Click the <strong>Electrical Rules Check (ERC)</strong> button, represented by a checkmark icon, in the toolbar.</li>
+<li>Click the Electrical Rules Check (ERC) button, represented by a checkmark icon, in the toolbar.</li>
 </ul>
 </li>
-<li><strong>Execute ERC:</strong>
+<li>Execute ERC:<!-- -->
 <ul>
 <li>Initiate the ERC process to scan the schematic for potential electrical issues, such as:<!-- -->
 <ul>
-<li><strong>Unconnected Pins:</strong> Pins that are not connected to any other component.</li>
-<li><strong>Power Inputs Without Sources:</strong> Power lines that lack defined power sources.</li>
-<li><strong>Incorrect Connections:</strong> Inappropriate connections between pins of differing types (e.g., output to output).</li>
+<li>Unconnected Pins: Pins that are not connected to any other component.</li>
+<li>Power Inputs Without Sources: Power lines that lack defined power sources.</li>
+<li>Incorrect Connections: Inappropriate connections between pins of differing types (e.g., output to output).</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Regular Checks:</strong> Perform ERC frequently during schematic development to catch errors early.</li>
-<li><strong>Detailed Review:</strong> Carefully examine ERC reports to understand and address each identified issue.</li>
+<li>Regular Checks: Perform ERC frequently during schematic development to catch errors early.</li>
+<li>Detailed Review: Carefully examine ERC reports to understand and address each identified issue.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-fix-errors-and-warnings">Step 2: Fix Errors and Warnings<a href="#step-2-fix-errors-and-warnings" class="hash-link" aria-label="Direct link to Step 2: Fix Errors and Warnings" title="Direct link to Step 2: Fix Errors and Warnings">​</a></h3>
-<p><strong>Objective:</strong> Resolve identified electrical issues to ensure schematic integrity.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Resolve identified electrical issues to ensure schematic integrity.</p>
+<p>Procedure:</p>
 <ul>
-<li><strong>Addressing Errors:</strong>
+<li>Addressing Errors:<!-- -->
 <ul>
-<li><strong>Power Flags:</strong> If power flags are missing, add a <strong>Power Flag</strong> symbol from the <strong>Power Ports</strong> section to define power sources like VBUS.</li>
+<li>Power Flags: If power flags are missing, add a Power Flag symbol from the Power Ports section to define power sources like VBUS.</li>
 </ul>
 </li>
-<li><strong>Handling Warnings:</strong>
+<li>Handling Warnings:<!-- -->
 <ul>
-<li><strong>Floating Pins:</strong> For intentional floating pins, add <strong>No-Connect (DNC)</strong> flags to suppress warnings.</li>
+<li>Floating Pins: For intentional floating pins, add No-Connect (DNC) flags to suppress warnings.</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Understand Warnings:</strong> Distinguish between critical errors and non-critical warnings to prioritize fixes.</li>
-<li><strong>Iterative Checking:</strong> After making corrections, rerun ERC to confirm that all issues have been resolved.</li>
+<li>Understand Warnings: Distinguish between critical errors and non-critical warnings to prioritize fixes.</li>
+<li>Iterative Checking: After making corrections, rerun ERC to confirm that all issues have been resolved.</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Error: Unconnected pin on U1 (VCC)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Solution: Add Power Flag to VCC line.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Warning: Floating pin on connector J1 (USB D-)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Solution: Add DNC flag to indicate intentional disconnection.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-assigning-footprints-to-components">6. Assigning Footprints to Components<a href="#6-assigning-footprints-to-components" class="hash-link" aria-label="Direct link to 6. Assigning Footprints to Components" title="Direct link to 6. Assigning Footprints to Components">​</a></h2>
 <p>Footprints define the physical representation of components on the PCB, including dimensions and pin configurations. Assigning accurate footprints is essential for correct component placement and PCB fabrication.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-assign-footprints">Step 1: Assign Footprints<a href="#step-1-assign-footprints" class="hash-link" aria-label="Direct link to Step 1: Assign Footprints" title="Direct link to Step 1: Assign Footprints">​</a></h3>
-<p><strong>Objective:</strong> Link each schematic symbol to its corresponding PCB footprint.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Link each schematic symbol to its corresponding PCB footprint.</p>
+<p>Procedure:</p>
 <ol>
-<li><strong>Access Footprint Assignment Tool:</strong>
+<li>Access Footprint Assignment Tool:<!-- -->
 <ul>
-<li>Click the <strong>Assign Footprints to Symbols</strong> button, depicted by a footprint icon, in the toolbar.</li>
+<li>Click the Assign Footprints to Symbols button, depicted by a footprint icon, in the toolbar.</li>
 </ul>
 </li>
-<li><strong>Assign Appropriate Footprints:</strong>
+<li>Assign Appropriate Footprints:<!-- -->
 <ul>
-<li>In the <strong>Footprint Assignment</strong> window, select and assign footprints based on each component&#x27;s physical characteristics. Examples include:<!-- -->
+<li>In the Footprint Assignment window, select and assign footprints based on each component&#x27;s physical characteristics. Examples include:<!-- -->
 <ul>
-<li><strong>AMS1117-3.3 Regulator:</strong> Choose a <strong>SOT-223 footprint</strong> suitable for surface-mount applications.</li>
-<li><strong>Decoupling Capacitors:</strong> Select <strong>0805</strong> or <strong>0603</strong> package footprints based on design specifications.</li>
-<li><strong>Microcontroller:</strong> Assign a <strong>TQFP</strong> or <strong>DIP</strong> package footprint, depending on the specific STM32 variant used.</li>
+<li>AMS1117-3.3 Regulator: Choose a SOT-223 footprint suitable for surface-mount applications.</li>
+<li>Decoupling Capacitors: Select 0805 or 0603 package footprints based on design specifications.</li>
+<li>Microcontroller: Assign a TQFP or DIP package footprint, depending on the specific STM32 variant used.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Manufacturer Datasheets:</strong> Refer to component datasheets to ensure correct footprint selection.</li>
-<li><strong>Standard Packages:</strong> Utilize standard footprint libraries to maintain consistency and ease of sourcing.</li>
-<li><strong>Footprint Libraries:</strong> Keep footprint libraries up-to-date to include the latest component packages.</li>
+<li>Manufacturer Datasheets: Refer to component datasheets to ensure correct footprint selection.</li>
+<li>Standard Packages: Utilize standard footprint libraries to maintain consistency and ease of sourcing.</li>
+<li>Footprint Libraries: Keep footprint libraries up-to-date to include the latest component packages.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-verify-footprint-assignments">Step 2: Verify Footprint Assignments<a href="#step-2-verify-footprint-assignments" class="hash-link" aria-label="Direct link to Step 2: Verify Footprint Assignments" title="Direct link to Step 2: Verify Footprint Assignments">​</a></h3>
-<p><strong>Objective:</strong> Ensure all components have been assigned correct and compatible footprints.</p>
-<p><strong>Procedure:</strong></p>
+<p>Objective: Ensure all components have been assigned correct and compatible footprints.</p>
+<p>Procedure:</p>
 <ul>
-<li><strong>Review Assignments:</strong>
+<li>Review Assignments:<!-- -->
 <ul>
 <li>Confirm that each component has an assigned footprint, paying special attention to critical components like the microcontroller, connectors, and voltage regulators.</li>
 </ul>
 </li>
-<li><strong>Check Package Sizes:</strong>
+<li>Check Package Sizes:<!-- -->
 <ul>
 <li>Ensure the selected package sizes align with the available PCB space and meet design requirements.</li>
 </ul>
 </li>
-<li><strong>Adjust if Necessary:</strong>
+<li>Adjust if Necessary:<!-- -->
 <ul>
 <li>Modify footprint assignments if discrepancies are found, ensuring optimal fit and functionality on the PCB.</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Double-Check Critical Components:</strong> Prioritize verification for components that are sensitive to footprint inaccuracies.</li>
-<li><strong>Utilize KiCad’s Preview Feature:</strong> Use the footprint preview to visualize component placement and identify potential issues.</li>
+<li>Double-Check Critical Components: Prioritize verification for components that are sensitive to footprint inaccuracies.</li>
+<li>Utilize KiCad’s Preview Feature: Use the footprint preview to visualize component placement and identify potential issues.</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p>Example:</p>
 <div class="language-plaintext codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-plaintext codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Component: AMS1117-3.3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Assigned Footprint: SOT-223-3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Component: STM32F103C8</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Assigned Footprint: TQFP-48</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="7-conclusion">7. Conclusion<a href="#7-conclusion" class="hash-link" aria-label="Direct link to 7. Conclusion" title="Direct link to 7. Conclusion">​</a></h2>
 <p>Organizing, annotating, and finalizing your schematic in KiCad are pivotal steps in creating a clear, professional, and error-free PCB design. By meticulously sectioning the schematic, adding meaningful annotations, assigning unique designators and appropriate footprints, and conducting thorough electrical checks, you lay a solid foundation for the subsequent PCB layout phase.</p>
-<p><strong>Key Takeaways:</strong></p>
+<p>Key Takeaways:</p>
 <ul>
-<li><strong>Sectioning:</strong> Enhances readability and facilitates maintenance by logically grouping related components.</li>
-<li><strong>Annotations:</strong> Provide essential context and explanations, aiding in understanding and future modifications.</li>
-<li><strong>Designators and Footprints:</strong> Ensure accurate component identification and physical placement, critical for manufacturing and assembly.</li>
-<li><strong>Electrical Rules Check (ERC):</strong> Validates the schematic’s electrical integrity, preventing potential issues in the PCB design.</li>
+<li>Sectioning: Enhances readability and facilitates maintenance by logically grouping related components.</li>
+<li>Annotations: Provide essential context and explanations, aiding in understanding and future modifications.</li>
+<li>Designators and Footprints: Ensure accurate component identification and physical placement, critical for manufacturing and assembly.</li>
+<li>Electrical Rules Check (ERC): Validates the schematic’s electrical integrity, preventing potential issues in the PCB design.</li>
 </ul>
 <p>With these practices in place, you are well-equipped to transition smoothly from schematic design to PCB layout, ensuring an organized and efficient design process that leads to successful PCB fabrication and assembly.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/02_Schematic/07_ERC-Annotation.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Adding Serial Debug Connectors, Power Supply, and Finalizing</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Footprint-Assignment"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Assigning Footprints to Schematic Symbols</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-sectioning-the-schematic-into-readable-parts" class="table-of-contents__link toc-highlight">1. Sectioning the Schematic into Readable Parts</a><ul><li><a href="#step-1-draw-bounding-boxes-around-sections" class="table-of-contents__link toc-highlight">Step 1: Draw Bounding Boxes Around Sections</a></li><li><a href="#step-2-add-text-annotations" class="table-of-contents__link toc-highlight">Step 2: Add Text Annotations</a></li></ul></li><li><a href="#2-adding-a-title-block" class="table-of-contents__link toc-highlight">2. Adding a Title Block</a><ul><li><a href="#step-1-editing-the-title-block" class="table-of-contents__link toc-highlight">Step 1: Editing the Title Block</a></li></ul></li><li><a href="#3-adding-comments-and-notes" class="table-of-contents__link toc-highlight">3. Adding Comments and Notes</a><ul><li><a href="#step-1-add-design-explanations" class="table-of-contents__link toc-highlight">Step 1: Add Design Explanations</a></li><li><a href="#step-2-highlight-critical-areas" class="table-of-contents__link toc-highlight">Step 2: Highlight Critical Areas</a></li></ul></li><li><a href="#4-annotating-designators" class="table-of-contents__link toc-highlight">4. Annotating Designators</a><ul><li><a href="#step-1-automatic-annotation" class="table-of-contents__link toc-highlight">Step 1: Automatic Annotation</a></li><li><a href="#step-2-manual-annotation-if-needed" class="table-of-contents__link toc-highlight">Step 2: Manual Annotation (If Needed)</a></li></ul></li><li><a href="#5-running-electrical-rules-check-erc" class="table-of-contents__link toc-highlight">5. Running Electrical Rules Check (ERC)</a><ul><li><a href="#step-1-run-erc" class="table-of-contents__link toc-highlight">Step 1: Run ERC</a></li><li><a href="#step-2-fix-errors-and-warnings" class="table-of-contents__link toc-highlight">Step 2: Fix Errors and Warnings</a></li></ul></li><li><a href="#6-assigning-footprints-to-components" class="table-of-contents__link toc-highlight">6. Assigning Footprints to Components</a><ul><li><a href="#step-1-assign-footprints" class="table-of-contents__link toc-highlight">Step 1: Assign Footprints</a></li><li><a href="#step-2-verify-footprint-assignments" class="table-of-contents__link toc-highlight">Step 2: Verify Footprint Assignments</a></li></ul></li><li><a href="#7-conclusion" class="table-of-contents__link toc-highlight">7. Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
 </body>

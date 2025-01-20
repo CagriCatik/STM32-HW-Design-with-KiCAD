@@ -9,7 +9,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.a479dc71.css">
-<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.616171fb.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.a8dbf2b1.js" defer="defer"></script>
 <script src="/STM32-HW-Design-with-KiCAD/assets/js/main.2a63344e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,29 +21,29 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-adding-silkscreen-text-for-connectors-and-components">Step 1: Adding Silkscreen Text for Connectors and Components<a href="#step-1-adding-silkscreen-text-for-connectors-and-components" class="hash-link" aria-label="Direct link to Step 1: Adding Silkscreen Text for Connectors and Components" title="Direct link to Step 1: Adding Silkscreen Text for Connectors and Components">​</a></h3>
 <ol>
 <li>
-<p><strong>Select the Silkscreen Layer:</strong></p>
+<p>Select the Silkscreen Layer:</p>
 <ul>
-<li>Open your PCB layout in KiCad&#x27;s <strong>PCB Layout Editor</strong>.</li>
-<li>In the <strong>Layer Manager</strong>, select the <strong>Top Silkscreen (F.SilkS)</strong> layer.</li>
+<li>Open your PCB layout in KiCad&#x27;s PCB Layout Editor.</li>
+<li>In the Layer Manager, select the Top Silkscreen (F.SilkS) layer.</li>
 </ul>
 </li>
 <li>
-<p><strong>Insert Text Annotations:</strong></p>
+<p>Insert Text Annotations:</p>
 <ul>
-<li>Choose the <strong>Add Text</strong> tool from the toolbar.</li>
-<li>Enter the desired text, such as <strong>SW1 Boot Select</strong> or <strong>UART</strong>.</li>
+<li>Choose the Add Text tool from the toolbar.</li>
+<li>Enter the desired text, such as SW1 Boot Select or UART.</li>
 <li>Position the text adjacent to the corresponding connector or switch, ensuring clarity and avoiding overlap with other elements.</li>
 </ul>
 </li>
 <li>
-<p><strong>Adjust Font Size and Style:</strong></p>
+<p>Adjust Font Size and Style:</p>
 <ul>
-<li><strong>Font Height:</strong> Maintain a minimum height of <strong>1mm</strong> for readability.</li>
-<li><strong>Recommended Settings:</strong> Use a font height of <strong>1.25mm</strong> with a stroke width of <strong>0.2mm</strong>. This balance ensures visibility without making the text appear bulky.</li>
+<li>Font Height: Maintain a minimum height of 1mm for readability.</li>
+<li>Recommended Settings: Use a font height of 1.25mm with a stroke width of 0.2mm. This balance ensures visibility without making the text appear bulky.</li>
 </ul>
 </li>
 <li>
-<p><strong>Prevent Overlaps with Pads and Vias:</strong></p>
+<p>Prevent Overlaps with Pads and Vias:</p>
 <ul>
 <li>Carefully inspect that silkscreen annotations do not overlap with any pads or vias.</li>
 <li>Overlapping can cause soldering issues. Adjust the text position by double-clicking the text and moving it as necessary.</li>
@@ -53,21 +53,21 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-labeling-key-components">Step 2: Labeling Key Components<a href="#step-2-labeling-key-components" class="hash-link" aria-label="Direct link to Step 2: Labeling Key Components" title="Direct link to Step 2: Labeling Key Components">​</a></h3>
 <ul>
 <li>
-<p><strong>Connectors:</strong></p>
+<p>Connectors:</p>
 <ul>
-<li>Label major connectors such as <strong>UART</strong>, <strong>SWD (Serial Wire Debug)</strong>, <strong>Power</strong>, and <strong>USB</strong> to clearly indicate their functions.</li>
+<li>Label major connectors such as UART, SWD (Serial Wire Debug), Power, and USB to clearly indicate their functions.</li>
 </ul>
 </li>
 <li>
-<p><strong>Switches:</strong></p>
+<p>Switches:</p>
 <ul>
-<li>Annotate switches with their respective positions, for example, <strong>Bootloader Mode</strong> or <strong>Normal Operation</strong> for a boot select switch.</li>
+<li>Annotate switches with their respective positions, for example, Bootloader Mode or Normal Operation for a boot select switch.</li>
 </ul>
 </li>
 <li>
-<p><strong>Revision and Board Information:</strong></p>
+<p>Revision and Board Information:</p>
 <ul>
-<li>Include revision numbers like <strong>Rev 1.0</strong> or <strong>Version 1</strong> to track design iterations.</li>
+<li>Include revision numbers like Rev 1.0 or Version 1 to track design iterations.</li>
 <li>Adding the board name helps in identifying different versions or variants.</li>
 </ul>
 </li>
@@ -75,19 +75,19 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-adding-silkscreen-to-the-bottom-side">Step 3: Adding Silkscreen to the Bottom Side<a href="#step-3-adding-silkscreen-to-the-bottom-side" class="hash-link" aria-label="Direct link to Step 3: Adding Silkscreen to the Bottom Side" title="Direct link to Step 3: Adding Silkscreen to the Bottom Side">​</a></h3>
 <ul>
 <li>
-<p><strong>Utilize Available Space:</strong></p>
+<p>Utilize Available Space:</p>
 <ul>
-<li>If the bottom layer has sufficient space, add additional information such as <strong>Board Revision</strong>, <strong>Project Name</strong>, or the <strong>Manufacturer&#x27;s Name</strong>.</li>
+<li>If the bottom layer has sufficient space, add additional information such as Board Revision, Project Name, or the Manufacturer&#x27;s Name.</li>
 </ul>
 </li>
 <li>
-<p><strong>Mounting Information:</strong></p>
+<p>Mounting Information:</p>
 <ul>
-<li>Indicate <strong>mounting hole locations</strong> and reference designators (e.g., <strong>R1</strong>, <strong>C2</strong>) to assist during assembly.</li>
+<li>Indicate mounting hole locations and reference designators (e.g., R1, C2) to assist during assembly.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
 <li>Ensure that the bottom silkscreen does not clutter the PCB. Prioritize essential information to maintain a clean appearance.</li>
 </ul>
@@ -99,37 +99,37 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-executing-the-drc-in-kicad">Step 1: Executing the DRC in KiCad<a href="#step-1-executing-the-drc-in-kicad" class="hash-link" aria-label="Direct link to Step 1: Executing the DRC in KiCad" title="Direct link to Step 1: Executing the DRC in KiCad">​</a></h3>
 <ol>
 <li>
-<p><strong>Access the DRC Tool:</strong></p>
+<p>Access the DRC Tool:</p>
 <ul>
-<li>In the <strong>PCB Layout Editor</strong>, navigate to <strong>Tools &gt; Design Rules Checker</strong> from the top menu.</li>
+<li>In the PCB Layout Editor, navigate to Tools &gt; Design Rules Checker from the top menu.</li>
 </ul>
 </li>
 <li>
-<p><strong>Initiate the DRC:</strong></p>
+<p>Initiate the DRC:</p>
 <ul>
-<li>Click on <strong>Run DRC</strong>.</li>
+<li>Click on Run DRC.</li>
 <li>The tool will evaluate your PCB layout for various violations, including:<!-- -->
 <ul>
-<li><strong>Clearance Issues:</strong> Traces or components too close to each other.</li>
-<li><strong>Unrouted Nets:</strong> Electrical connections that haven&#x27;t been fully routed.</li>
-<li><strong>Overlapping Objects:</strong> Elements that interfere with each other.</li>
-<li><strong>Manufacturer Specifications:</strong> Compliance with minimum track widths, via sizes, and other fabrication constraints.</li>
+<li>Clearance Issues: Traces or components too close to each other.</li>
+<li>Unrouted Nets: Electrical connections that haven&#x27;t been fully routed.</li>
+<li>Overlapping Objects: Elements that interfere with each other.</li>
+<li>Manufacturer Specifications: Compliance with minimum track widths, via sizes, and other fabrication constraints.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Analyze the Results:</strong></p>
+<p>Analyze the Results:</p>
 <ul>
-<li><strong>Errors Detected:</strong>
+<li>Errors Detected:<!-- -->
 <ul>
 <li>Highlighted in red on the PCB layout.</li>
 <li>Click on each error to navigate directly to its location for correction.</li>
 </ul>
 </li>
-<li><strong>No Errors:</strong>
+<li>No Errors:<!-- -->
 <ul>
-<li>A message indicating <strong>&#x27;0 Errors, 0 Warnings&#x27;</strong> confirms readiness for production.</li>
+<li>A message indicating &#x27;0 Errors, 0 Warnings&#x27; confirms readiness for production.</li>
 </ul>
 </li>
 </ul>
@@ -138,21 +138,21 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-addressing-drc-warnings">Step 2: Addressing DRC Warnings<a href="#step-2-addressing-drc-warnings" class="hash-link" aria-label="Direct link to Step 2: Addressing DRC Warnings" title="Direct link to Step 2: Addressing DRC Warnings">​</a></h3>
 <ul>
 <li>
-<p><strong>Unrouted Nets:</strong></p>
+<p>Unrouted Nets:</p>
 <ul>
 <li>Ensure all electrical signals are fully routed.</li>
-<li>For any intentionally unconnected pins, mark them with <strong>No-Connect (NC) flags</strong> to inform manufacturers.</li>
+<li>For any intentionally unconnected pins, mark them with No-Connect (NC) flags to inform manufacturers.</li>
 </ul>
 </li>
 <li>
-<p><strong>Clearance Violations:</strong></p>
+<p>Clearance Violations:</p>
 <ul>
 <li>Adjust trace routing to increase the distance between closely placed traces or components.</li>
 <li>Reposition components to alleviate crowded areas, maintaining adherence to design specifications.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
 <li>Regularly run DRC during the design process to catch issues early.</li>
 <li>Customize DRC rules based on the specific requirements of your PCB and manufacturing capabilities.</li>
@@ -165,29 +165,29 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-using-kicads-bitmap-image-converter">Step 1: Using KiCad’s Bitmap Image Converter<a href="#step-1-using-kicads-bitmap-image-converter" class="hash-link" aria-label="Direct link to Step 1: Using KiCad’s Bitmap Image Converter" title="Direct link to Step 1: Using KiCad’s Bitmap Image Converter">​</a></h3>
 <ol>
 <li>
-<p><strong>Open the Bitmap2Component Tool:</strong></p>
+<p>Open the Bitmap2Component Tool:</p>
 <ul>
-<li>In KiCad, navigate to <strong>Tools &gt; Bitmap2Component</strong>. This utility converts bitmap images into PCB footprints suitable for the silkscreen layer.</li>
+<li>In KiCad, navigate to Tools &gt; Bitmap2Component. This utility converts bitmap images into PCB footprints suitable for the silkscreen layer.</li>
 </ul>
 </li>
 <li>
-<p><strong>Load and Configure Your Logo:</strong></p>
+<p>Load and Configure Your Logo:</p>
 <ul>
-<li><strong>Select Image File:</strong> Use a <strong>monochrome bitmap</strong> for optimal results.</li>
-<li><strong>Adjust Size:</strong> Scale the logo to fit within the available space, typically around <strong>6mm</strong> to maintain clarity without overwhelming the PCB.</li>
+<li>Select Image File: Use a monochrome bitmap for optimal results.</li>
+<li>Adjust Size: Scale the logo to fit within the available space, typically around 6mm to maintain clarity without overwhelming the PCB.</li>
 </ul>
 </li>
 <li>
-<p><strong>Generate the Logo Footprint:</strong></p>
+<p>Generate the Logo Footprint:</p>
 <ul>
-<li><strong>Target Layer:</strong> Choose <strong>Front Silkscreen</strong> to place the logo on the top layer.</li>
-<li><strong>Export:</strong> Save the generated footprint for use in your PCB layout.</li>
+<li>Target Layer: Choose Front Silkscreen to place the logo on the top layer.</li>
+<li>Export: Save the generated footprint for use in your PCB layout.</li>
 </ul>
 </li>
 <li>
-<p><strong>Place the Logo in the PCB Layout Editor:</strong></p>
+<p>Place the Logo in the PCB Layout Editor:</p>
 <ul>
-<li>Open the <strong>PCB Layout Editor</strong> and import the newly created logo footprint.</li>
+<li>Open the PCB Layout Editor and import the newly created logo footprint.</li>
 <li>Position the logo in an appropriate location, ensuring it does not interfere with critical components or routing.</li>
 </ul>
 </li>
@@ -195,26 +195,26 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-positioning-the-logo">Step 2: Positioning the Logo<a href="#step-2-positioning-the-logo" class="hash-link" aria-label="Direct link to Step 2: Positioning the Logo" title="Direct link to Step 2: Positioning the Logo">​</a></h3>
 <ul>
 <li>
-<p><strong>Select Free Space:</strong></p>
+<p>Select Free Space:</p>
 <ul>
 <li>Identify an area on the PCB with ample space, away from connectors, mounting holes, and dense component clusters.</li>
 </ul>
 </li>
 <li>
-<p><strong>Utilize the 3D Viewer:</strong></p>
+<p>Utilize the 3D Viewer:</p>
 <ul>
-<li>Press <code>ALT + 3</code> to open the <strong>3D Viewer</strong>.</li>
+<li>Press <code>ALT + 3</code> to open the 3D Viewer.</li>
 <li>Inspect the placement of the logo to ensure it does not overlap with any vital features and maintains aesthetic balance.</li>
 </ul>
 </li>
 <li>
-<p><strong>Final Adjustments:</strong></p>
+<p>Final Adjustments:</p>
 <ul>
 <li>Fine-tune the logo&#x27;s position and size as needed, ensuring it enhances the board&#x27;s appearance without compromising functionality.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
 <li>Keep logos simple and high-contrast to ensure they are easily visible.</li>
 <li>Avoid overly intricate designs that may complicate the silkscreen process.</li>
@@ -226,20 +226,20 @@
 <p>Before generating the final manufacturing files, it&#x27;s essential to document the board&#x27;s identity and revision status accurately.</p>
 <ul>
 <li>
-<p><strong>Add Board Name and Revision:</strong></p>
+<p>Add Board Name and Revision:</p>
 <ul>
-<li>Use the silkscreen layer to include the board&#x27;s name and its revision number (e.g., <strong>Rev 1.0</strong>).</li>
+<li>Use the silkscreen layer to include the board&#x27;s name and its revision number (e.g., Rev 1.0).</li>
 </ul>
 </li>
 <li>
-<p><strong>Include Additional Information:</strong></p>
+<p>Include Additional Information:</p>
 <ul>
-<li><strong>Date of Revision:</strong> Helps in tracking changes over time.</li>
-<li><strong>Project Documentation URL:</strong> Provide a short URL linking to detailed project documentation or version control repositories.</li>
+<li>Date of Revision: Helps in tracking changes over time.</li>
+<li>Project Documentation URL: Provide a short URL linking to detailed project documentation or version control repositories.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
 <li>Maintain consistency in naming conventions across different revisions.</li>
 <li>Ensure that revision indicators are clearly visible and do not interfere with other PCB elements.</li>
@@ -252,82 +252,82 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-generating-gerber-files">Step 1: Generating Gerber Files<a href="#step-1-generating-gerber-files" class="hash-link" aria-label="Direct link to Step 1: Generating Gerber Files" title="Direct link to Step 1: Generating Gerber Files">​</a></h3>
 <ol>
 <li>
-<p><strong>Access the Plot Tool:</strong></p>
+<p>Access the Plot Tool:</p>
 <ul>
-<li>In the <strong>PCB Layout Editor</strong>, go to <strong>File &gt; Plot</strong>.</li>
+<li>In the PCB Layout Editor, go to File &gt; Plot.</li>
 </ul>
 </li>
 <li>
-<p><strong>Select Layers to Export:</strong></p>
+<p>Select Layers to Export:</p>
 <ul>
 <li>Choose all necessary layers for manufacturing, typically including:<!-- -->
 <ul>
-<li><strong>F.Cu</strong> (Front Copper)</li>
-<li><strong>B.Cu</strong> (Back Copper)</li>
-<li><strong>F.SilkS</strong> (Front Silkscreen)</li>
-<li><strong>B.SilkS</strong> (Back Silkscreen)</li>
-<li><strong>F.Mask</strong> (Front Solder Mask)</li>
-<li><strong>B.Mask</strong> (Back Solder Mask)</li>
-<li><strong>Edge.Cuts</strong> (Board Outline)</li>
+<li>F.Cu (Front Copper)</li>
+<li>B.Cu (Back Copper)</li>
+<li>F.SilkS (Front Silkscreen)</li>
+<li>B.SilkS (Back Silkscreen)</li>
+<li>F.Mask (Front Solder Mask)</li>
+<li>B.Mask (Back Solder Mask)</li>
+<li>Edge.Cuts (Board Outline)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Configure Plot Settings:</strong></p>
+<p>Configure Plot Settings:</p>
 <ul>
-<li>Ensure that <strong>Gerber format</strong> is selected.</li>
-<li>Set appropriate <strong>precision</strong> and <strong>units</strong> based on manufacturer requirements.</li>
+<li>Ensure that Gerber format is selected.</li>
+<li>Set appropriate precision and units based on manufacturer requirements.</li>
 </ul>
 </li>
 <li>
-<p><strong>Export Gerber Files:</strong></p>
+<p>Export Gerber Files:</p>
 <ul>
-<li>Click <strong>Plot</strong> to generate the Gerber files for each selected layer.</li>
+<li>Click Plot to generate the Gerber files for each selected layer.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-generating-drill-files">Step 2: Generating Drill Files<a href="#step-2-generating-drill-files" class="hash-link" aria-label="Direct link to Step 2: Generating Drill Files" title="Direct link to Step 2: Generating Drill Files">​</a></h3>
 <ol>
 <li>
-<p><strong>Initiate Drill File Generation:</strong></p>
+<p>Initiate Drill File Generation:</p>
 <ul>
-<li>In the <strong>Plot window</strong>, click on <strong>Generate Drill Files</strong>.</li>
+<li>In the Plot window, click on Generate Drill Files.</li>
 </ul>
 </li>
 <li>
-<p><strong>Configure Drill Settings:</strong></p>
+<p>Configure Drill Settings:</p>
 <ul>
-<li>Select the correct <strong>drill format</strong> as per manufacturer specifications (commonly Excellon format).</li>
+<li>Select the correct drill format as per manufacturer specifications (commonly Excellon format).</li>
 <li>Verify hole sizes and types (e.g., plated vs. non-plated vias).</li>
 </ul>
 </li>
 <li>
-<p><strong>Export Drill Files:</strong></p>
+<p>Export Drill Files:</p>
 <ul>
-<li>Click <strong>Generate Drill File</strong> to create the necessary files for drilling component and via holes.</li>
+<li>Click Generate Drill File to create the necessary files for drilling component and via holes.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-reviewing-the-gerber-files">Step 3: Reviewing the Gerber Files<a href="#step-3-reviewing-the-gerber-files" class="hash-link" aria-label="Direct link to Step 3: Reviewing the Gerber Files" title="Direct link to Step 3: Reviewing the Gerber Files">​</a></h3>
 <ul>
 <li>
-<p><strong>Use a Gerber Viewer:</strong></p>
+<p>Use a Gerber Viewer:</p>
 <ul>
-<li>Employ a <strong>Gerber viewer</strong> tool (such as KiCad&#x27;s built-in viewer or an external application) to inspect the generated files.</li>
+<li>Employ a Gerber viewer tool (such as KiCad&#x27;s built-in viewer or an external application) to inspect the generated files.</li>
 </ul>
 </li>
 <li>
-<p><strong>Verification Steps:</strong></p>
+<p>Verification Steps:</p>
 <ul>
-<li><strong>Layer Alignment:</strong> Ensure all layers align correctly and match the intended design.</li>
-<li><strong>Trace Integrity:</strong> Check for complete and accurate trace routing.</li>
-<li><strong>Silkscreen Clarity:</strong> Confirm that all text and logos are legible and properly positioned.</li>
-<li><strong>Drill Accuracy:</strong> Verify that all holes are correctly placed and sized.</li>
+<li>Layer Alignment: Ensure all layers align correctly and match the intended design.</li>
+<li>Trace Integrity: Check for complete and accurate trace routing.</li>
+<li>Silkscreen Clarity: Confirm that all text and logos are legible and properly positioned.</li>
+<li>Drill Accuracy: Verify that all holes are correctly placed and sized.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
 <li>Perform a thorough review to catch any discrepancies before submitting files to the manufacturer.</li>
 <li>Compare the Gerber files with the original design to ensure consistency.</li>
@@ -337,15 +337,15 @@
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-final-touches-for-a-professional-pcb">Conclusion: Final Touches for a Professional PCB<a href="#conclusion-final-touches-for-a-professional-pcb" class="hash-link" aria-label="Direct link to Conclusion: Final Touches for a Professional PCB" title="Direct link to Conclusion: Final Touches for a Professional PCB">​</a></h2>
 <p>Completing your PCB design with well-executed silkscreen labels, thorough Design Rule Checks, and personalized branding elements like logos ensures a professional and manufacturable board. By meticulously preparing your Gerber and drill files, you pave the way for a smooth transition to production. These final touches not only enhance the functionality and appearance of your PCB but also streamline the manufacturing process, resulting in a high-quality product ready for deployment.</p>
-<p>With your design now complete and all final steps addressed, you&#x27;re ready to submit your <strong>Gerber</strong> and <strong>drill files</strong> to your chosen PCB manufacturer and move forward to fabrication.</p>
+<p>With your design now complete and all final steps addressed, you&#x27;re ready to submit your Gerber and drill files to your chosen PCB manufacturer and move forward to fabrication.</p>
 <hr>
 <h1>Best Practices Summary</h1>
 <ul>
-<li><strong>Silkscreen Clarity:</strong> Use readable fonts and avoid overlapping with critical PCB features.</li>
-<li><strong>Regular DRC:</strong> Conduct Design Rule Checks frequently to identify and resolve issues early.</li>
-<li><strong>Efficient Logo Integration:</strong> Keep logos simple and appropriately sized to maintain PCB functionality.</li>
-<li><strong>Accurate Documentation:</strong> Clearly label board revisions and maintain consistent naming conventions.</li>
-<li><strong>Thorough File Review:</strong> Always inspect Gerber and drill files to ensure they accurately represent your design.</li>
+<li>Silkscreen Clarity: Use readable fonts and avoid overlapping with critical PCB features.</li>
+<li>Regular DRC: Conduct Design Rule Checks frequently to identify and resolve issues early.</li>
+<li>Efficient Logo Integration: Keep logos simple and appropriately sized to maintain PCB functionality.</li>
+<li>Accurate Documentation: Clearly label board revisions and maintain consistent naming conventions.</li>
+<li>Thorough File Review: Always inspect Gerber and drill files to ensure they accurately represent your design.</li>
 </ul>
 <p>By adhering to these best practices, your PCB designs will not only meet technical standards but also exhibit professionalism and attention to detail, crucial for successful manufacturing and deployment.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/04_PCB_Routing/04_Finishing-Touches-DRC.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Finalizing Power and Ground Routing on a Two-Layer PCB</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-adding-silkscreen-text-and-labels" class="table-of-contents__link toc-highlight">1. Adding Silkscreen Text and Labels</a><ul><li><a href="#step-1-adding-silkscreen-text-for-connectors-and-components" class="table-of-contents__link toc-highlight">Step 1: Adding Silkscreen Text for Connectors and Components</a></li><li><a href="#step-2-labeling-key-components" class="table-of-contents__link toc-highlight">Step 2: Labeling Key Components</a></li><li><a href="#step-3-adding-silkscreen-to-the-bottom-side" class="table-of-contents__link toc-highlight">Step 3: Adding Silkscreen to the Bottom Side</a></li></ul></li><li><a href="#2-running-a-design-rule-check-drc" class="table-of-contents__link toc-highlight">2. Running a Design Rule Check (DRC)</a><ul><li><a href="#step-1-executing-the-drc-in-kicad" class="table-of-contents__link toc-highlight">Step 1: Executing the DRC in KiCad</a></li><li><a href="#step-2-addressing-drc-warnings" class="table-of-contents__link toc-highlight">Step 2: Addressing DRC Warnings</a></li></ul></li><li><a href="#3-adding-a-custom-logo-to-the-pcb" class="table-of-contents__link toc-highlight">3. Adding a Custom Logo to the PCB</a><ul><li><a href="#step-1-using-kicads-bitmap-image-converter" class="table-of-contents__link toc-highlight">Step 1: Using KiCad’s Bitmap Image Converter</a></li><li><a href="#step-2-positioning-the-logo" class="table-of-contents__link toc-highlight">Step 2: Positioning the Logo</a></li></ul></li><li><a href="#4-finalizing-the-board-naming-and-revisioning" class="table-of-contents__link toc-highlight">4. Finalizing the Board: Naming and Revisioning</a></li><li><a href="#5-preparing-manufacturing-files-gerbers-and-drill-files" class="table-of-contents__link toc-highlight">5. Preparing Manufacturing Files: Gerbers and Drill Files</a><ul><li><a href="#step-1-generating-gerber-files" class="table-of-contents__link toc-highlight">Step 1: Generating Gerber Files</a></li><li><a href="#step-2-generating-drill-files" class="table-of-contents__link toc-highlight">Step 2: Generating Drill Files</a></li><li><a href="#step-3-reviewing-the-gerber-files" class="table-of-contents__link toc-highlight">Step 3: Reviewing the Gerber Files</a></li></ul></li><li><a href="#conclusion-final-touches-for-a-professional-pcb" class="table-of-contents__link toc-highlight">Conclusion: Final Touches for a Professional PCB</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
 </body>

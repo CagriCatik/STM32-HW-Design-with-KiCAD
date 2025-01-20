@@ -9,7 +9,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.a479dc71.css">
-<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.616171fb.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.a8dbf2b1.js" defer="defer"></script>
 <script src="/STM32-HW-Design-with-KiCAD/assets/js/main.2a63344e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -20,34 +20,34 @@
 <p>Embarking on PCB design begins with schematic capture, a fundamental step where the circuit is diagrammatically represented. KiCad offers a powerful schematic editor that facilitates this process, allowing designers to layout their designs before transitioning to the PCB layout phase.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="opening-the-schematic-editor">Opening the Schematic Editor<a href="#opening-the-schematic-editor" class="hash-link" aria-label="Direct link to Opening the Schematic Editor" title="Direct link to Opening the Schematic Editor">​</a></h3>
 <ol>
-<li><strong>Launch KiCad Project Window:</strong>
+<li>Launch KiCad Project Window:<!-- -->
 <ul>
 <li>Open KiCad and navigate to your project directory.</li>
 </ul>
 </li>
-<li><strong>Access the Schematic Editor:</strong>
+<li>Access the Schematic Editor:<!-- -->
 <ul>
-<li>Click on the <strong>Schematic Editor</strong> icon within the project window.</li>
+<li>Click on the Schematic Editor icon within the project window.</li>
 </ul>
 </li>
-<li><strong>Navigate the Canvas:</strong>
+<li>Navigate the Canvas:<!-- -->
 <ul>
 <li>A blank schematic canvas will appear.</li>
-<li><strong>Pan:</strong> Use the <strong>middle mouse button</strong> to move around the canvas.</li>
-<li><strong>Zoom:</strong> Scroll the mouse wheel to zoom in and out for detailed or broader views.</li>
+<li>Pan: Use the middle mouse button to move around the canvas.</li>
+<li>Zoom: Scroll the mouse wheel to zoom in and out for detailed or broader views.</li>
 </ul>
 </li>
-<li><strong>Utilize Toolbars:</strong>
+<li>Utilize Toolbars:<!-- -->
 <ul>
-<li><strong>Top Toolbar:</strong> Provides access to global functions and settings.</li>
-<li><strong>Right Toolbar:</strong> Primarily used for component placement and symbol selection.</li>
+<li>Top Toolbar: Provides access to global functions and settings.</li>
+<li>Right Toolbar: Primarily used for component placement and symbol selection.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Organize Workspace:</strong> Keep the toolbars visible and arrange them based on your workflow preferences.</li>
-<li><strong>Frequent Saving:</strong> Regularly save your work to prevent data loss.</li>
+<li>Organize Workspace: Keep the toolbars visible and arrange them based on your workflow preferences.</li>
+<li>Frequent Saving: Regularly save your work to prevent data loss.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-placing-components-symbols-on-the-schematic">2. Placing Components (Symbols) on the Schematic<a href="#2-placing-components-symbols-on-the-schematic" class="hash-link" aria-label="Direct link to 2. Placing Components (Symbols) on the Schematic" title="Direct link to 2. Placing Components (Symbols) on the Schematic">​</a></h2>
@@ -56,371 +56,371 @@
 <p>The STM32F103 series is a popular choice for microcontroller-based designs, offering a balance of performance and versatility.</p>
 <ol>
 <li>
-<p><strong>Add the Microcontroller Symbol:</strong></p>
+<p>Add the Microcontroller Symbol:</p>
 <ul>
-<li>Click on <strong>Add Symbol</strong> in the right toolbar.</li>
-<li>In the symbol library search bar, type <strong>STM32F103</strong>.</li>
-<li>Select the appropriate variant, such as <strong>STM32F103C8T6</strong>, commonly used in Blue Pill boards.</li>
-<li><strong>Placement:</strong> Position the microcontroller at the center of your schematic for optimal routing.</li>
+<li>Click on Add Symbol in the right toolbar.</li>
+<li>In the symbol library search bar, type STM32F103.</li>
+<li>Select the appropriate variant, such as STM32F103C8T6, commonly used in Blue Pill boards.</li>
+<li>Placement: Position the microcontroller at the center of your schematic for optimal routing.</li>
 </ul>
 </li>
 <li>
-<p><strong>Consider Package Variants:</strong></p>
+<p>Consider Package Variants:</p>
 <ul>
 <li>STM32 microcontrollers come in various packages (e.g., LQFP, BGA).</li>
 <li>Verify that the selected package matches your design requirements, including pin count and footprint.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Datasheet Reference:</strong> Always refer to the STM32 datasheet to understand pin configurations and functionalities.</li>
-<li><strong>Symbol Accuracy:</strong> Ensure that the symbol accurately reflects the physical microcontroller&#x27;s pinout and features.</li>
+<li>Datasheet Reference: Always refer to the STM32 datasheet to understand pin configurations and functionalities.</li>
+<li>Symbol Accuracy: Ensure that the symbol accurately reflects the physical microcontroller&#x27;s pinout and features.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="understanding-stm32-pinout">Understanding STM32 Pinout<a href="#understanding-stm32-pinout" class="hash-link" aria-label="Direct link to Understanding STM32 Pinout" title="Direct link to Understanding STM32 Pinout">​</a></h3>
 <p>STM32 microcontrollers feature a versatile pin configuration, divided into various pin banks serving distinct functions:</p>
 <ul>
-<li><strong>Power Pins:</strong>
+<li>Power Pins:<!-- -->
 <ul>
-<li><strong>VDD:</strong> Main power supply.</li>
-<li><strong>VBAT:</strong> Battery backup for the Real-Time Clock (RTC).</li>
+<li>VDD: Main power supply.</li>
+<li>VBAT: Battery backup for the Real-Time Clock (RTC).</li>
 </ul>
 </li>
-<li><strong>Ground Pins:</strong>
+<li>Ground Pins:<!-- -->
 <ul>
-<li><strong>VSS:</strong> Digital ground.</li>
-<li><strong>VSSA:</strong> Analog ground for sensitive circuits.</li>
+<li>VSS: Digital ground.</li>
+<li>VSSA: Analog ground for sensitive circuits.</li>
 </ul>
 </li>
-<li><strong>GPIO Pins:</strong>
+<li>GPIO Pins:<!-- -->
 <ul>
-<li>Organized into banks (e.g., <strong>PAx</strong>, <strong>PBx</strong>), each serving general-purpose input/output functions.</li>
+<li>Organized into banks (e.g., PAx, PBx), each serving general-purpose input/output functions.</li>
 </ul>
 </li>
-<li><strong>Configuration Pins:</strong>
+<li>Configuration Pins:<!-- -->
 <ul>
-<li><strong>NRST:</strong> Reset pin.</li>
-<li><strong>BOOT0/BOOT1:</strong> Pins for configuring the microcontroller&#x27;s boot mode.</li>
+<li>NRST: Reset pin.</li>
+<li>BOOT0/BOOT1: Pins for configuring the microcontroller&#x27;s boot mode.</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Pin Grouping:</strong> Group similar pins together in the schematic for clarity.</li>
-<li><strong>Labeling:</strong> Clearly label each pin based on its function to avoid confusion during routing.</li>
+<li>Pin Grouping: Group similar pins together in the schematic for clarity.</li>
+<li>Labeling: Clearly label each pin based on its function to avoid confusion during routing.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-configuring-power-and-ground-connections">3. Configuring Power and Ground Connections<a href="#3-configuring-power-and-ground-connections" class="hash-link" aria-label="Direct link to 3. Configuring Power and Ground Connections" title="Direct link to 3. Configuring Power and Ground Connections">​</a></h2>
 <p>Stable power and ground connections are paramount for the reliable operation of microcontrollers, especially in sensitive digital circuits.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="adding-ground-gnd">Adding Ground (GND)<a href="#adding-ground-gnd" class="hash-link" aria-label="Direct link to Adding Ground (GND)" title="Direct link to Adding Ground (GND)">​</a></h3>
 <ol>
-<li><strong>Insert Ground Symbol:</strong>
+<li>Insert Ground Symbol:<!-- -->
 <ul>
-<li>Click on <strong>Add Power Port</strong> in the toolbar.</li>
-<li>Select the <strong>GND</strong> symbol from the library.</li>
+<li>Click on Add Power Port in the toolbar.</li>
+<li>Select the GND symbol from the library.</li>
 </ul>
 </li>
-<li><strong>Placement:</strong>
+<li>Placement:<!-- -->
 <ul>
 <li>Position the GND symbol near the microcontroller to minimize trace lengths.</li>
 </ul>
 </li>
-<li><strong>Clean Up Schematic:</strong>
+<li>Clean Up Schematic:<!-- -->
 <ul>
 <li>Hide unnecessary ground labels to declutter the schematic.</li>
-<li>Press the <strong>E</strong> key to edit the ground label and check <strong>Hide Value</strong>.</li>
+<li>Press the E key to edit the ground label and check Hide Value.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Single Ground Point:</strong> Use a single ground symbol connected to all ground pins to ensure a common reference point.</li>
-<li><strong>Consistent Grounding:</strong> Maintain consistent ground connections across all components to prevent ground loops.</li>
+<li>Single Ground Point: Use a single ground symbol connected to all ground pins to ensure a common reference point.</li>
+<li>Consistent Grounding: Maintain consistent ground connections across all components to prevent ground loops.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="connecting-ground-pins">Connecting Ground Pins<a href="#connecting-ground-pins" class="hash-link" aria-label="Direct link to Connecting Ground Pins" title="Direct link to Connecting Ground Pins">​</a></h3>
 <ol>
-<li><strong>Wire Ground Pins:</strong>
+<li>Wire Ground Pins:<!-- -->
 <ul>
-<li>Hover over each ground pin (e.g., <strong>VSS</strong>, <strong>VSSA</strong>) on the STM32.</li>
-<li>Press <strong>W</strong> to activate the wiring tool and draw a connection to the GND symbol.</li>
+<li>Hover over each ground pin (e.g., VSS, VSSA) on the STM32.</li>
+<li>Press W to activate the wiring tool and draw a connection to the GND symbol.</li>
 </ul>
 </li>
-<li><strong>Digital and Analog Grounds:</strong>
+<li>Digital and Analog Grounds:<!-- -->
 <ul>
 <li>Typically, digital (VSS) and analog (VSSA) grounds are tied together unless specific noise isolation is required.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Short Connections:</strong> Keep ground connections as short as possible to reduce inductance and resistance.</li>
-<li><strong>Star Grounding:</strong> Consider a star grounding scheme where all ground connections converge at a single point to minimize interference.</li>
+<li>Short Connections: Keep ground connections as short as possible to reduce inductance and resistance.</li>
+<li>Star Grounding: Consider a star grounding scheme where all ground connections converge at a single point to minimize interference.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="adding-power-vdd">Adding Power (VDD)<a href="#adding-power-vdd" class="hash-link" aria-label="Direct link to Adding Power (VDD)" title="Direct link to Adding Power (VDD)">​</a></h3>
 <ol>
-<li><strong>Insert Power Symbol:</strong>
+<li>Insert Power Symbol:<!-- -->
 <ul>
-<li>Use <strong>Add Power Port</strong> to place the <strong>+3.3V</strong> symbol.</li>
+<li>Use Add Power Port to place the +3.3V symbol.</li>
 </ul>
 </li>
-<li><strong>Placement:</strong>
+<li>Placement:<!-- -->
 <ul>
 <li>Position the 3.3V symbol adjacent to the VDD pin of the microcontroller.</li>
 </ul>
 </li>
-<li><strong>Connect Power:</strong>
+<li>Connect Power:<!-- -->
 <ul>
-<li>Use the wiring tool (<strong>W</strong>) to draw a connection from the 3.3V symbol to the VDD pin.</li>
+<li>Use the wiring tool (W) to draw a connection from the 3.3V symbol to the VDD pin.</li>
 </ul>
 </li>
-<li><strong>Handling VBAT:</strong>
+<li>Handling VBAT:<!-- -->
 <ul>
 <li>If utilizing the RTC feature without an external battery, connect VBAT to the 3.3V rail.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Decoupling Proximity:</strong> Place power symbols close to their respective power pins to facilitate effective decoupling.</li>
-<li><strong>Power Integrity:</strong> Ensure that power connections are robust and can handle the required current without significant voltage drops.</li>
+<li>Decoupling Proximity: Place power symbols close to their respective power pins to facilitate effective decoupling.</li>
+<li>Power Integrity: Ensure that power connections are robust and can handle the required current without significant voltage drops.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-decoupling-capacitors">4. Decoupling Capacitors<a href="#4-decoupling-capacitors" class="hash-link" aria-label="Direct link to 4. Decoupling Capacitors" title="Direct link to 4. Decoupling Capacitors">​</a></h2>
 <p>Decoupling capacitors play a vital role in maintaining stable power delivery to the microcontroller by mitigating noise and providing local energy storage for rapid current changes.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="placing-decoupling-capacitors">Placing Decoupling Capacitors<a href="#placing-decoupling-capacitors" class="hash-link" aria-label="Direct link to Placing Decoupling Capacitors" title="Direct link to Placing Decoupling Capacitors">​</a></h3>
 <ol>
-<li><strong>Individual Decoupling:</strong>
+<li>Individual Decoupling:<!-- -->
 <ul>
-<li>Place a <strong>100nF (0.1µF)</strong> capacitor for each VDD and VBAT pin.</li>
+<li>Place a 100nF (0.1µF) capacitor for each VDD and VBAT pin.</li>
 </ul>
 </li>
-<li><strong>Component Selection:</strong>
+<li>Component Selection:<!-- -->
 <ul>
-<li>Click <strong>Add Symbol</strong>, search for a generic capacitor symbol, and place it near each power pin.</li>
+<li>Click Add Symbol, search for a generic capacitor symbol, and place it near each power pin.</li>
 </ul>
 </li>
-<li><strong>Connection:</strong>
+<li>Connection:<!-- -->
 <ul>
 <li>Connect one terminal of the capacitor to the power rail (VDD) and the other to ground (GND).</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Proximity:</strong> Position decoupling capacitors as close as possible to the power pins to minimize inductance.</li>
-<li><strong>Parasitic Inductance:</strong> Use short, wide traces for capacitor connections to reduce parasitic inductance.</li>
+<li>Proximity: Position decoupling capacitors as close as possible to the power pins to minimize inductance.</li>
+<li>Parasitic Inductance: Use short, wide traces for capacitor connections to reduce parasitic inductance.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="bulk-decoupling">Bulk Decoupling<a href="#bulk-decoupling" class="hash-link" aria-label="Direct link to Bulk Decoupling" title="Direct link to Bulk Decoupling">​</a></h3>
 <p>In addition to individual capacitors, a bulk decoupling capacitor is essential to handle larger current fluctuations and provide overall power stability.</p>
 <ol>
-<li><strong>Select Bulk Capacitor:</strong>
+<li>Select Bulk Capacitor:<!-- -->
 <ul>
-<li>Use a <strong>10µF</strong> capacitor for bulk decoupling.</li>
+<li>Use a 10µF capacitor for bulk decoupling.</li>
 </ul>
 </li>
-<li><strong>Placement:</strong>
+<li>Placement:<!-- -->
 <ul>
 <li>Place the bulk capacitor near the microcontroller, between VDD and GND.</li>
 </ul>
 </li>
-<li><strong>Connection:</strong>
+<li>Connection:<!-- -->
 <ul>
 <li>Ensure that the capacitor is firmly connected to both the power and ground rails.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Type Selection:</strong> Choose capacitors with low Equivalent Series Resistance (ESR) for better performance.</li>
-<li><strong>Multiple Capacitors:</strong> In high-current designs, consider using multiple bulk capacitors of varying values to cover a broader frequency range.</li>
+<li>Type Selection: Choose capacitors with low Equivalent Series Resistance (ESR) for better performance.</li>
+<li>Multiple Capacitors: In high-current designs, consider using multiple bulk capacitors of varying values to cover a broader frequency range.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="5-filtering-for-analog-power">5. Filtering for Analog Power<a href="#5-filtering-for-analog-power" class="hash-link" aria-label="Direct link to 5. Filtering for Analog Power" title="Direct link to 5. Filtering for Analog Power">​</a></h2>
 <p>Analog circuits demand meticulous power supply filtering to minimize noise, ensuring the integrity of sensitive signals. The STM32 microcontroller often interfaces with analog components that require additional filtering measures.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="designing-the-filter">Designing the Filter<a href="#designing-the-filter" class="hash-link" aria-label="Direct link to Designing the Filter" title="Direct link to Designing the Filter">​</a></h3>
 <ol>
-<li><strong>Capacitor Selection:</strong>
+<li>Capacitor Selection:<!-- -->
 <ul>
-<li>Use a combination of <strong>10nF</strong> and <strong>1µF</strong> capacitors in parallel for effective filtering.</li>
+<li>Use a combination of 10nF and 1µF capacitors in parallel for effective filtering.</li>
 </ul>
 </li>
-<li><strong>Ferrite Bead Integration:</strong>
+<li>Ferrite Bead Integration:<!-- -->
 <ul>
-<li>Insert a <strong>ferrite bead</strong> between the main 3.3V rail and the filtered analog 3.3V rail (<strong>+3.3VA</strong>).</li>
-<li>Select a ferrite bead with approximately <strong>120 ohms</strong> at 100 MHz to attenuate high-frequency noise.</li>
+<li>Insert a ferrite bead between the main 3.3V rail and the filtered analog 3.3V rail (+3.3VA).</li>
+<li>Select a ferrite bead with approximately 120 ohms at 100 MHz to attenuate high-frequency noise.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Component Quality:</strong> Use high-quality capacitors with stable characteristics across temperature ranges.</li>
-<li><strong>Ferrite Bead Placement:</strong> Position ferrite beads close to the power input to maximize noise suppression.</li>
+<li>Component Quality: Use high-quality capacitors with stable characteristics across temperature ranges.</li>
+<li>Ferrite Bead Placement: Position ferrite beads close to the power input to maximize noise suppression.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="connecting-analog-power">Connecting Analog Power<a href="#connecting-analog-power" class="hash-link" aria-label="Direct link to Connecting Analog Power" title="Direct link to Connecting Analog Power">​</a></h3>
 <ol>
-<li><strong>Filtered Power Rail:</strong>
+<li>Filtered Power Rail:<!-- -->
 <ul>
-<li>Connect the filtered <strong>+3.3VA</strong> rail to the <strong>VDA</strong> pin on the STM32.</li>
+<li>Connect the filtered +3.3VA rail to the VDA pin on the STM32.</li>
 </ul>
 </li>
-<li><strong>Analog Ground:</strong>
+<li>Analog Ground:<!-- -->
 <ul>
-<li>Tie the <strong>VSSA</strong> (analog ground) pin to the main ground (GND) to maintain a common reference.</li>
+<li>Tie the VSSA (analog ground) pin to the main ground (GND) to maintain a common reference.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Isolation:</strong> If analog and digital circuits are highly sensitive, consider separate ground planes with a single point of connection.</li>
-<li><strong>Trace Routing:</strong> Route analog power and ground traces away from noisy digital lines to prevent interference.</li>
+<li>Isolation: If analog and digital circuits are highly sensitive, consider separate ground planes with a single point of connection.</li>
+<li>Trace Routing: Route analog power and ground traces away from noisy digital lines to prevent interference.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-reset-and-boot-configuration">6. Reset and Boot Configuration<a href="#6-reset-and-boot-configuration" class="hash-link" aria-label="Direct link to 6. Reset and Boot Configuration" title="Direct link to 6. Reset and Boot Configuration">​</a></h2>
 <p>Proper configuration of reset and boot pins ensures reliable startup behavior and facilitates firmware updates or debugging.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="connecting-reset-circuit">Connecting Reset Circuit<a href="#connecting-reset-circuit" class="hash-link" aria-label="Direct link to Connecting Reset Circuit" title="Direct link to Connecting Reset Circuit">​</a></h3>
 <ol>
-<li><strong>Pull-Up Resistor:</strong>
+<li>Pull-Up Resistor:<!-- -->
 <ul>
-<li>Add a <strong>10kΩ</strong> resistor between the <strong>NRST</strong> pin and the 3.3V supply to ensure the microcontroller starts in a known state.</li>
+<li>Add a 10kΩ resistor between the NRST pin and the 3.3V supply to ensure the microcontroller starts in a known state.</li>
 </ul>
 </li>
-<li><strong>Reset Button:</strong>
+<li>Reset Button:<!-- -->
 <ul>
-<li>Optionally, connect a reset button between the <strong>NRST</strong> pin and GND to allow manual resets.</li>
+<li>Optionally, connect a reset button between the NRST pin and GND to allow manual resets.</li>
 </ul>
 </li>
-<li><strong>Debouncing (Optional):</strong>
+<li>Debouncing (Optional):<!-- -->
 <ul>
-<li>Incorporate a small capacitor (e.g., <strong>100nF</strong>) between <strong>NRST</strong> and GND to debounce the reset signal.</li>
+<li>Incorporate a small capacitor (e.g., 100nF) between NRST and GND to debounce the reset signal.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Debounce Mechanism:</strong> Prevent unintended resets due to noise by using debounce components.</li>
-<li><strong>Accessibility:</strong> Position the reset button for easy access on the final PCB layout.</li>
+<li>Debounce Mechanism: Prevent unintended resets due to noise by using debounce components.</li>
+<li>Accessibility: Position the reset button for easy access on the final PCB layout.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="boot-mode-selection">Boot Mode Selection<a href="#boot-mode-selection" class="hash-link" aria-label="Direct link to Boot Mode Selection" title="Direct link to Boot Mode Selection">​</a></h3>
 <p>Configuring the boot mode determines how the microcontroller initializes at power-up, affecting firmware loading and debugging capabilities.</p>
 <ol>
-<li><strong>BOOT0 Pin:</strong>
+<li>BOOT0 Pin:<!-- -->
 <ul>
-<li>Connect the <strong>BOOT0</strong> pin to GND through a resistor (commonly <strong>10kΩ</strong>) to ensure booting from Flash memory.</li>
+<li>Connect the BOOT0 pin to GND through a resistor (commonly 10kΩ) to ensure booting from Flash memory.</li>
 </ul>
 </li>
-<li><strong>BOOT1 Pin:</strong>
+<li>BOOT1 Pin:<!-- -->
 <ul>
-<li>Similarly, connect the <strong>BOOT1</strong> pin to GND unless alternative boot configurations are required.</li>
+<li>Similarly, connect the BOOT1 pin to GND unless alternative boot configurations are required.</li>
 </ul>
 </li>
-<li><strong>Alternative Configurations:</strong>
+<li>Alternative Configurations:<!-- -->
 <ul>
 <li>For firmware updates or bootloader access, BOOT0 can be connected to VDD through a resistor or a switch.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Default Configuration:</strong> Ensure that BOOT0 is defaulted to GND for normal operation to prevent accidental bootloader activation.</li>
-<li><strong>Flexibility:</strong> Design the boot pin connections to allow easy modification for debugging or firmware updates without extensive hardware changes.</li>
+<li>Default Configuration: Ensure that BOOT0 is defaulted to GND for normal operation to prevent accidental bootloader activation.</li>
+<li>Flexibility: Design the boot pin connections to allow easy modification for debugging or firmware updates without extensive hardware changes.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="7-power-regulation">7. Power Regulation<a href="#7-power-regulation" class="hash-link" aria-label="Direct link to 7. Power Regulation" title="Direct link to 7. Power Regulation">​</a></h2>
 <p>When interfacing with external power sources, such as a 5V input, a voltage regulator is essential to step down the voltage to the required 3.3V for the STM32 microcontroller.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="adding-a-voltage-regulator">Adding a Voltage Regulator<a href="#adding-a-voltage-regulator" class="hash-link" aria-label="Direct link to Adding a Voltage Regulator" title="Direct link to Adding a Voltage Regulator">​</a></h3>
 <ol>
-<li><strong>Select a Regulator:</strong>
+<li>Select a Regulator:<!-- -->
 <ul>
-<li>Use a <strong>3.3V linear regulator</strong>, such as the <strong>AMS1117-3.3</strong>, known for its reliability and ease of use.</li>
+<li>Use a 3.3V linear regulator, such as the AMS1117-3.3, known for its reliability and ease of use.</li>
 </ul>
 </li>
-<li><strong>Place the Regulator Symbol:</strong>
+<li>Place the Regulator Symbol:<!-- -->
 <ul>
-<li>Click <strong>Add Symbol</strong>, search for the AMS1117-3.3 or a generic linear regulator symbol, and place it on the schematic.</li>
+<li>Click Add Symbol, search for the AMS1117-3.3 or a generic linear regulator symbol, and place it on the schematic.</li>
 </ul>
 </li>
-<li><strong>Connect Inputs and Outputs:</strong>
+<li>Connect Inputs and Outputs:<!-- -->
 <ul>
-<li><strong>Input:</strong> Connect the regulator&#x27;s input pin to your power source (e.g., 5V).</li>
-<li><strong>Output:</strong> Connect the output pin to the 3.3V power rail.</li>
+<li>Input: Connect the regulator&#x27;s input pin to your power source (e.g., 5V).</li>
+<li>Output: Connect the output pin to the 3.3V power rail.</li>
 </ul>
 </li>
-<li><strong>Decoupling Capacitors:</strong>
+<li>Decoupling Capacitors:<!-- -->
 <ul>
-<li>Add a <strong>10µF</strong> capacitor between the input pin and ground.</li>
-<li>Add another <strong>10µF</strong> capacitor between the output pin and ground to stabilize the regulator.</li>
+<li>Add a 10µF capacitor between the input pin and ground.</li>
+<li>Add another 10µF capacitor between the output pin and ground to stabilize the regulator.</li>
 </ul>
 </li>
 </ol>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Heat Dissipation:</strong> Ensure adequate thermal management for linear regulators, especially under high current loads.</li>
-<li><strong>Capacitor Selection:</strong> Use capacitors with appropriate voltage ratings and low ESR for regulator stability.</li>
+<li>Heat Dissipation: Ensure adequate thermal management for linear regulators, especially under high current loads.</li>
+<li>Capacitor Selection: Use capacitors with appropriate voltage ratings and low ESR for regulator stability.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="8-finalizing-the-schematic">8. Finalizing the Schematic<a href="#8-finalizing-the-schematic" class="hash-link" aria-label="Direct link to 8. Finalizing the Schematic" title="Direct link to 8. Finalizing the Schematic">​</a></h2>
 <p>Before transitioning to the PCB layout phase, it&#x27;s crucial to meticulously review the schematic to ensure all connections and components are correctly implemented.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="schematic-review-checklist">Schematic Review Checklist<a href="#schematic-review-checklist" class="hash-link" aria-label="Direct link to Schematic Review Checklist" title="Direct link to Schematic Review Checklist">​</a></h3>
 <ul>
-<li><strong>Power Connections:</strong>
+<li>Power Connections:<!-- -->
 <ul>
 <li>Verify that all power (VDD, VBAT) and ground (VSS, VSSA) connections are complete and correctly linked.</li>
 </ul>
 </li>
-<li><strong>Decoupling Capacitors:</strong>
+<li>Decoupling Capacitors:<!-- -->
 <ul>
 <li>Ensure that decoupling capacitors are placed close to each microcontroller power pin.</li>
 </ul>
 </li>
-<li><strong>Boot and Reset Circuits:</strong>
+<li>Boot and Reset Circuits:<!-- -->
 <ul>
 <li>Check that the reset and boot configurations are correctly implemented with appropriate resistors and connections.</li>
 </ul>
 </li>
-<li><strong>Component Verification:</strong>
+<li>Component Verification:<!-- -->
 <ul>
 <li>Confirm that all components, especially the microcontroller and voltage regulator, are correctly selected and match the intended specifications.</li>
 </ul>
 </li>
-<li><strong>Net Labels:</strong>
+<li>Net Labels:<!-- -->
 <ul>
 <li>Use consistent net labeling to facilitate easier PCB routing and reduce errors.</li>
 </ul>
 </li>
 </ul>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Electrical Rules Check (ERC):</strong> Utilize KiCad’s ERC tool to identify and rectify any schematic errors or warnings.</li>
-<li><strong>Peer Review:</strong> Have another designer review the schematic to catch overlooked issues.</li>
-<li><strong>Documentation:</strong> Annotate critical components and connections for future reference and maintenance.</li>
+<li>Electrical Rules Check (ERC): Utilize KiCad’s ERC tool to identify and rectify any schematic errors or warnings.</li>
+<li>Peer Review: Have another designer review the schematic to catch overlooked issues.</li>
+<li>Documentation: Annotate critical components and connections for future reference and maintenance.</li>
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-and-next-steps">Conclusion and Next Steps<a href="#conclusion-and-next-steps" class="hash-link" aria-label="Direct link to Conclusion and Next Steps" title="Direct link to Conclusion and Next Steps">​</a></h2>
 <p>This guide has thoroughly explored the critical steps involved in creating a schematic for an STM32-based PCB using KiCad. Key areas covered include:</p>
 <ul>
-<li><strong>Component Placement:</strong> Strategically placing the STM32 microcontroller and essential components.</li>
-<li><strong>Power and Ground Routing:</strong> Ensuring stable and noise-free power delivery.</li>
-<li><strong>Decoupling and Filtering:</strong> Implementing capacitors and ferrite beads to mitigate noise and stabilize power.</li>
-<li><strong>Reset and Boot Configuration:</strong> Setting up reliable reset mechanisms and boot modes.</li>
-<li><strong>Power Regulation:</strong> Integrating voltage regulators for proper power management.</li>
+<li>Component Placement: Strategically placing the STM32 microcontroller and essential components.</li>
+<li>Power and Ground Routing: Ensuring stable and noise-free power delivery.</li>
+<li>Decoupling and Filtering: Implementing capacitors and ferrite beads to mitigate noise and stabilize power.</li>
+<li>Reset and Boot Configuration: Setting up reliable reset mechanisms and boot modes.</li>
+<li>Power Regulation: Integrating voltage regulators for proper power management.</li>
 </ul>
-<p>With the schematic finalized, the next phase involves transitioning to the <strong>PCB Layout</strong> stage. This will encompass:</p>
+<p>With the schematic finalized, the next phase involves transitioning to the PCB Layout stage. This will encompass:</p>
 <ul>
-<li><strong>Component Placement:</strong> Positioning components on the PCB for optimal performance and manufacturability.</li>
-<li><strong>Trace Routing:</strong> Designing efficient and noise-minimized connections between components.</li>
-<li><strong>Ground Planes:</strong> Implementing ground planes to enhance signal integrity and reduce electromagnetic interference (EMI).</li>
-<li><strong>Design for Manufacturability (DFM):</strong> Ensuring the PCB design adheres to manufacturing constraints and standards.</li>
+<li>Component Placement: Positioning components on the PCB for optimal performance and manufacturability.</li>
+<li>Trace Routing: Designing efficient and noise-minimized connections between components.</li>
+<li>Ground Planes: Implementing ground planes to enhance signal integrity and reduce electromagnetic interference (EMI).</li>
+<li>Design for Manufacturability (DFM): Ensuring the PCB design adheres to manufacturing constraints and standards.</li>
 </ul>
 <p>Stay tuned for the next part of this guide, which will delve into best practices for PCB layout, including trace routing strategies, ground plane implementation, and considerations for producing a manufacturable and reliable PCB.</p>
 <hr>
 <h1>Best Practices for PCB Layout (Next Steps)</h1>
 <p>While the current guide concludes with the schematic phase, effective PCB layout is equally crucial. Here are some best practices to anticipate:</p>
 <ul>
-<li><strong>Component Orientation:</strong> Align components logically to facilitate easier routing and minimize trace lengths.</li>
-<li><strong>Trace Widths:</strong> Use appropriate trace widths based on current requirements to prevent overheating and voltage drops.</li>
-<li><strong>Layer Management:</strong> Utilize multiple layers for complex designs, separating power, ground, and signal layers to enhance performance.</li>
-<li><strong>Thermal Management:</strong> Incorporate thermal vias and heat sinks where necessary to dissipate heat effectively.</li>
-<li><strong>Design Rule Checks (DRC):</strong> Regularly perform DRCs to ensure the layout adheres to design specifications and manufacturing capabilities.</li>
+<li>Component Orientation: Align components logically to facilitate easier routing and minimize trace lengths.</li>
+<li>Trace Widths: Use appropriate trace widths based on current requirements to prevent overheating and voltage drops.</li>
+<li>Layer Management: Utilize multiple layers for complex designs, separating power, ground, and signal layers to enhance performance.</li>
+<li>Thermal Management: Incorporate thermal vias and heat sinks where necessary to dissipate heat effectively.</li>
+<li>Design Rule Checks (DRC): Regularly perform DRCs to ensure the layout adheres to design specifications and manufacturing capabilities.</li>
 </ul>
 <p>By adhering to these practices, you will ensure that your PCB design not only functions correctly but is also optimized for manufacturing and long-term reliability.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/02_Schematic/01_STM32_uC_Decoupling.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Boot Configuration, Reset Circuit, and Power Source Setup</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-getting-started-with-kicad" class="table-of-contents__link toc-highlight">1. Getting Started with KiCad</a><ul><li><a href="#opening-the-schematic-editor" class="table-of-contents__link toc-highlight">Opening the Schematic Editor</a></li></ul></li><li><a href="#2-placing-components-symbols-on-the-schematic" class="table-of-contents__link toc-highlight">2. Placing Components (Symbols) on the Schematic</a><ul><li><a href="#stm32-microcontroller" class="table-of-contents__link toc-highlight">STM32 Microcontroller</a></li><li><a href="#understanding-stm32-pinout" class="table-of-contents__link toc-highlight">Understanding STM32 Pinout</a></li></ul></li><li><a href="#3-configuring-power-and-ground-connections" class="table-of-contents__link toc-highlight">3. Configuring Power and Ground Connections</a><ul><li><a href="#adding-ground-gnd" class="table-of-contents__link toc-highlight">Adding Ground (GND)</a></li><li><a href="#connecting-ground-pins" class="table-of-contents__link toc-highlight">Connecting Ground Pins</a></li><li><a href="#adding-power-vdd" class="table-of-contents__link toc-highlight">Adding Power (VDD)</a></li></ul></li><li><a href="#4-decoupling-capacitors" class="table-of-contents__link toc-highlight">4. Decoupling Capacitors</a><ul><li><a href="#placing-decoupling-capacitors" class="table-of-contents__link toc-highlight">Placing Decoupling Capacitors</a></li><li><a href="#bulk-decoupling" class="table-of-contents__link toc-highlight">Bulk Decoupling</a></li></ul></li><li><a href="#5-filtering-for-analog-power" class="table-of-contents__link toc-highlight">5. Filtering for Analog Power</a><ul><li><a href="#designing-the-filter" class="table-of-contents__link toc-highlight">Designing the Filter</a></li><li><a href="#connecting-analog-power" class="table-of-contents__link toc-highlight">Connecting Analog Power</a></li></ul></li><li><a href="#6-reset-and-boot-configuration" class="table-of-contents__link toc-highlight">6. Reset and Boot Configuration</a><ul><li><a href="#connecting-reset-circuit" class="table-of-contents__link toc-highlight">Connecting Reset Circuit</a></li><li><a href="#boot-mode-selection" class="table-of-contents__link toc-highlight">Boot Mode Selection</a></li></ul></li><li><a href="#7-power-regulation" class="table-of-contents__link toc-highlight">7. Power Regulation</a><ul><li><a href="#adding-a-voltage-regulator" class="table-of-contents__link toc-highlight">Adding a Voltage Regulator</a></li></ul></li><li><a href="#8-finalizing-the-schematic" class="table-of-contents__link toc-highlight">8. Finalizing the Schematic</a><ul><li><a href="#schematic-review-checklist" class="table-of-contents__link toc-highlight">Schematic Review Checklist</a></li></ul></li><li><a href="#conclusion-and-next-steps" class="table-of-contents__link toc-highlight">Conclusion and Next Steps</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
 </body>

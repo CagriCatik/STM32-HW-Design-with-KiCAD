@@ -9,7 +9,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.a479dc71.css">
-<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.616171fb.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.a8dbf2b1.js" defer="defer"></script>
 <script src="/STM32-HW-Design-with-KiCAD/assets/js/main.2a63344e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,64 +21,64 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-update-pcb-from-schematic">Step 1: Update PCB from Schematic<a href="#step-1-update-pcb-from-schematic" class="hash-link" aria-label="Direct link to Step 1: Update PCB from Schematic" title="Direct link to Step 1: Update PCB from Schematic">​</a></h3>
 <ol>
 <li>
-<p><strong>Access the PCB Editor:</strong></p>
+<p>Access the PCB Editor:</p>
 <ul>
 <li>Launch KiCad and open your project.</li>
 <li>Navigate to the PCB Editor (Pcbnew).</li>
 </ul>
 </li>
 <li>
-<p><strong>Initiate Schematic Update:</strong></p>
+<p>Initiate Schematic Update:</p>
 <ul>
-<li>Click the <strong>&quot;Update PCB from Schematic&quot;</strong> button, identifiable by an icon depicting a wire connecting to a PCB.</li>
-<li>Alternatively, navigate through the menu: <strong>Tools &gt; Update PCB from Schematic</strong>.</li>
+<li>Click the &quot;Update PCB from Schematic&quot; button, identifiable by an icon depicting a wire connecting to a PCB.</li>
+<li>Alternatively, navigate through the menu: Tools &gt; Update PCB from Schematic.</li>
 </ul>
 </li>
 <li>
-<p><strong>Review Components:</strong></p>
+<p>Review Components:</p>
 <ul>
 <li>A dialog box will appear, listing all components and their associated footprints.</li>
-<li><strong>Verify Inclusion:</strong> Ensure that all intended components are listed. Missing components may indicate unresolved footprint assignments in the schematic.</li>
+<li>Verify Inclusion: Ensure that all intended components are listed. Missing components may indicate unresolved footprint assignments in the schematic.</li>
 </ul>
 </li>
 <li>
-<p><strong>Execute Update:</strong></p>
+<p>Execute Update:</p>
 <ul>
-<li>Click <strong>&quot;Update PCB&quot;</strong> to import the footprints.</li>
+<li>Click &quot;Update PCB&quot; to import the footprints.</li>
 <li>Upon completion, close the dialog. The imported footprints will appear clustered in the PCB layout workspace.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Footprint Verification:</strong> Before updating, confirm that each schematic component has a correctly assigned footprint to prevent layout inconsistencies.</li>
-<li><strong>Library Management:</strong> Maintain organized footprint libraries to facilitate easy retrieval and assignment during schematic design.</li>
+<li>Footprint Verification: Before updating, confirm that each schematic component has a correctly assigned footprint to prevent layout inconsistencies.</li>
+<li>Library Management: Maintain organized footprint libraries to facilitate easy retrieval and assignment during schematic design.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-initial-placement">Step 2: Initial Placement<a href="#step-2-initial-placement" class="hash-link" aria-label="Direct link to Step 2: Initial Placement" title="Direct link to Step 2: Initial Placement">​</a></h3>
 <ol>
 <li>
-<p><strong>Centralize Footprints:</strong></p>
+<p>Centralize Footprints:</p>
 <ul>
 <li>Select the grouped footprints in the work area.</li>
-<li>Press <strong>M</strong> to move the entire group to a more central and accessible location within the workspace.</li>
+<li>Press M to move the entire group to a more central and accessible location within the workspace.</li>
 </ul>
 </li>
 <li>
-<p><strong>Organize into Logical Groups:</strong></p>
+<p>Organize into Logical Groups:</p>
 <ul>
-<li><strong>Microcontroller Section:</strong>
+<li>Microcontroller Section:<!-- -->
 <ul>
 <li>Includes the microcontroller, decoupling capacitors, oscillators, and any related peripherals.</li>
 </ul>
 </li>
-<li><strong>Power Regulation Section:</strong>
+<li>Power Regulation Section:<!-- -->
 <ul>
 <li>Encompasses voltage regulators, power filtering components, and related capacitors.</li>
 </ul>
 </li>
-<li><strong>Connectors:</strong>
+<li>Connectors:<!-- -->
 <ul>
 <li>Such as USB ports, SWD headers, and other interface connectors.</li>
 </ul>
@@ -86,11 +86,11 @@
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Functional Grouping:</strong> Grouping related components minimizes trace lengths, reduces noise, and simplifies routing.</li>
-<li><strong>Thermal Considerations:</strong> Place heat-generating components away from sensitive areas to prevent thermal interference.</li>
-<li><strong>Accessibility:</strong> Ensure that connectors are easily accessible for external interfacing and testing.</li>
+<li>Functional Grouping: Grouping related components minimizes trace lengths, reduces noise, and simplifies routing.</li>
+<li>Thermal Considerations: Place heat-generating components away from sensitive areas to prevent thermal interference.</li>
+<li>Accessibility: Ensure that connectors are easily accessible for external interfacing and testing.</li>
 </ul>
 </li>
 </ol>
@@ -100,31 +100,31 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-rough-layout-of-components">Step 1: Rough Layout of Components<a href="#step-1-rough-layout-of-components" class="hash-link" aria-label="Direct link to Step 1: Rough Layout of Components" title="Direct link to Step 1: Rough Layout of Components">​</a></h3>
 <ol>
 <li>
-<p><strong>Utilize a Larger Grid Size:</strong></p>
+<p>Utilize a Larger Grid Size:</p>
 <ul>
-<li>Set the grid size to a larger increment (e.g., <strong>1mm</strong> or <strong>0.5mm</strong>) for rapid placement.</li>
-<li><strong>Procedure:</strong>
+<li>Set the grid size to a larger increment (e.g., 1mm or 0.5mm) for rapid placement.</li>
+<li>Procedure:<!-- -->
 <ul>
 <li>Right-click on the grid in the PCB Editor and select the desired grid size.</li>
 </ul>
 </li>
-<li><strong>Advantage:</strong> Facilitates swift movement and alignment of components without getting bogged down by fine adjustments.</li>
+<li>Advantage: Facilitates swift movement and alignment of components without getting bogged down by fine adjustments.</li>
 </ul>
 </li>
 <li>
-<p><strong>Group Related Components:</strong></p>
+<p>Group Related Components:</p>
 <ul>
-<li><strong>Microcontroller and Decoupling Capacitors:</strong>
+<li>Microcontroller and Decoupling Capacitors:<!-- -->
 <ul>
-<li>Place decoupling capacitors within <strong>2-3mm</strong> of the microcontroller&#x27;s power pins to ensure effective noise suppression.</li>
+<li>Place decoupling capacitors within 2-3mm of the microcontroller&#x27;s power pins to ensure effective noise suppression.</li>
 </ul>
 </li>
-<li><strong>Power Regulation:</strong>
+<li>Power Regulation:<!-- -->
 <ul>
 <li>Position voltage regulators near power input sources (e.g., VBUS) to streamline power distribution.</li>
 </ul>
 </li>
-<li><strong>Connectors:</strong>
+<li>Connectors:<!-- -->
 <ul>
 <li>Align connectors on board edges to match enclosure cutouts and simplify cable management.</li>
 </ul>
@@ -132,66 +132,66 @@
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Signal Flow Consideration:</strong> Arrange components to reflect the logical signal flow, reducing the need for complex trace routing.</li>
-<li><strong>Symmetry and Balance:</strong> Maintain a balanced layout to distribute thermal loads evenly and enhance the board&#x27;s aesthetic appeal.</li>
-<li><strong>Future Expansion:</strong> Allocate space for potential component additions or modifications.</li>
+<li>Signal Flow Consideration: Arrange components to reflect the logical signal flow, reducing the need for complex trace routing.</li>
+<li>Symmetry and Balance: Maintain a balanced layout to distribute thermal loads evenly and enhance the board&#x27;s aesthetic appeal.</li>
+<li>Future Expansion: Allocate space for potential component additions or modifications.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-visualizing-the-layout-in-3d">Step 2: Visualizing the Layout in 3D<a href="#step-2-visualizing-the-layout-in-3d" class="hash-link" aria-label="Direct link to Step 2: Visualizing the Layout in 3D" title="Direct link to Step 2: Visualizing the Layout in 3D">​</a></h3>
 <ol>
 <li>
-<p><strong>Open 3D Viewer:</strong></p>
+<p>Open 3D Viewer:</p>
 <ul>
-<li>Press <strong>ALT + 3</strong> or navigate to <strong>View &gt; 3D Viewer</strong> within the PCB Editor.</li>
+<li>Press ALT + 3 or navigate to View &gt; 3D Viewer within the PCB Editor.</li>
 </ul>
 </li>
 <li>
-<p><strong>Inspect Component Placement:</strong></p>
+<p>Inspect Component Placement:</p>
 <ul>
-<li><strong>3D Representation:</strong> Provides a tangible view of component heights, orientations, and spatial relationships.</li>
-<li><strong>Identify Overlaps:</strong> Detect any overlapping components or potential clearance issues.</li>
+<li>3D Representation: Provides a tangible view of component heights, orientations, and spatial relationships.</li>
+<li>Identify Overlaps: Detect any overlapping components or potential clearance issues.</li>
 </ul>
 </li>
 <li>
-<p><strong>Handle Missing Elements:</strong></p>
+<p>Handle Missing Elements:</p>
 <ul>
-<li><strong>Board Outline Absence:</strong> If the board outline isn&#x27;t visible, proceed to place components first; the outline can be defined subsequently.</li>
+<li>Board Outline Absence: If the board outline isn&#x27;t visible, proceed to place components first; the outline can be defined subsequently.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Iterative Inspection:</strong> Regularly switch between 2D and 3D views to ensure comprehensive layout validation.</li>
-<li><strong>Physical Constraints:</strong> Consider enclosure dimensions and mounting requirements reflected in the 3D view.</li>
+<li>Iterative Inspection: Regularly switch between 2D and 3D views to ensure comprehensive layout validation.</li>
+<li>Physical Constraints: Consider enclosure dimensions and mounting requirements reflected in the 3D view.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-component-prioritization">Step 3: Component Prioritization<a href="#step-3-component-prioritization" class="hash-link" aria-label="Direct link to Step 3: Component Prioritization" title="Direct link to Step 3: Component Prioritization">​</a></h3>
 <ol>
 <li>
-<p><strong>Identify Critical Components:</strong></p>
+<p>Identify Critical Components:</p>
 <ul>
-<li><strong>Decoupling Capacitors:</strong> Essential for power stability and noise reduction.</li>
-<li><strong>Oscillators:</strong> Crucial for timing and signal generation.</li>
-<li><strong>Microcontroller:</strong> The central processing unit of the PCB.</li>
+<li>Decoupling Capacitors: Essential for power stability and noise reduction.</li>
+<li>Oscillators: Crucial for timing and signal generation.</li>
+<li>Microcontroller: The central processing unit of the PCB.</li>
 </ul>
 </li>
 <li>
-<p><strong>Sequential Placement:</strong></p>
+<p>Sequential Placement:</p>
 <ul>
-<li><strong>First:</strong> Place critical components to establish the primary functional areas.</li>
-<li><strong>Next:</strong> Position connectors and power supplies to support the critical sections.</li>
-<li><strong>Last:</strong> Arrange less critical components like bulk capacitors and indicator LEDs.</li>
+<li>First: Place critical components to establish the primary functional areas.</li>
+<li>Next: Position connectors and power supplies to support the critical sections.</li>
+<li>Last: Arrange less critical components like bulk capacitors and indicator LEDs.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Hierarchy:</strong> Establish a component placement hierarchy to streamline the design process.</li>
-<li><strong>Interdependency Awareness:</strong> Recognize dependencies between components to avoid placement conflicts.</li>
+<li>Hierarchy: Establish a component placement hierarchy to streamline the design process.</li>
+<li>Interdependency Awareness: Recognize dependencies between components to avoid placement conflicts.</li>
 </ul>
 </li>
 </ol>
@@ -201,48 +201,48 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-positioning-decoupling-capacitors">Step 1: Positioning Decoupling Capacitors<a href="#step-1-positioning-decoupling-capacitors" class="hash-link" aria-label="Direct link to Step 1: Positioning Decoupling Capacitors" title="Direct link to Step 1: Positioning Decoupling Capacitors">​</a></h3>
 <ol>
 <li>
-<p><strong>Identify Decoupling Capacitors:</strong></p>
+<p>Identify Decoupling Capacitors:</p>
 <ul>
-<li>Locate capacitors (e.g., <strong>C4</strong>, <strong>C5</strong>) connected to the <strong>3.3V</strong> and <strong>GND</strong> pins of the microcontroller in the schematic.</li>
+<li>Locate capacitors (e.g., C4, C5) connected to the 3.3V and GND pins of the microcontroller in the schematic.</li>
 </ul>
 </li>
 <li>
-<p><strong>Proximity to Power Pins:</strong></p>
+<p>Proximity to Power Pins:</p>
 <ul>
-<li>In the PCB Editor, select a decoupling capacitor and press <strong>M</strong> to move it.</li>
-<li>Position the capacitor within <strong>2-3mm</strong> of the corresponding power pin (<strong>VCC</strong> or <strong>GND</strong>) on the microcontroller.</li>
-<li><strong>Rationale:</strong> Minimizes trace length, reducing inductance and enhancing decoupling effectiveness.</li>
+<li>In the PCB Editor, select a decoupling capacitor and press M to move it.</li>
+<li>Position the capacitor within 2-3mm of the corresponding power pin (VCC or GND) on the microcontroller.</li>
+<li>Rationale: Minimizes trace length, reducing inductance and enhancing decoupling effectiveness.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Multiple Capacitors:</strong> Use a combination of bulk (e.g., 10µF) and high-frequency (e.g., 0.1µF) capacitors for comprehensive noise filtering.</li>
-<li><strong>Symmetrical Placement:</strong> Distribute capacitors evenly around the microcontroller to balance power distribution.</li>
+<li>Multiple Capacitors: Use a combination of bulk (e.g., 10µF) and high-frequency (e.g., 0.1µF) capacitors for comprehensive noise filtering.</li>
+<li>Symmetrical Placement: Distribute capacitors evenly around the microcontroller to balance power distribution.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-proper-orientation">Step 2: Proper Orientation<a href="#step-2-proper-orientation" class="hash-link" aria-label="Direct link to Step 2: Proper Orientation" title="Direct link to Step 2: Proper Orientation">​</a></h3>
 <ol>
 <li>
-<p><strong>Power and Ground Alignment:</strong></p>
+<p>Power and Ground Alignment:</p>
 <ul>
-<li>Ensure the <strong>3.3V</strong> side of the capacitor connects directly to the microcontroller’s power pin.</li>
-<li>The <strong>GND</strong> side should connect to the ground plane with minimal trace length.</li>
+<li>Ensure the 3.3V side of the capacitor connects directly to the microcontroller’s power pin.</li>
+<li>The GND side should connect to the ground plane with minimal trace length.</li>
 </ul>
 </li>
 <li>
-<p><strong>Silkscreen Adjustments:</strong></p>
+<p>Silkscreen Adjustments:</p>
 <ul>
-<li>Use the <strong>Move (M)</strong> tool to adjust the silkscreen layer, enhancing the visibility of reference designators.</li>
-<li><strong>Clarity:</strong> Clear silkscreen markings aid in component identification during assembly and troubleshooting.</li>
+<li>Use the Move (M) tool to adjust the silkscreen layer, enhancing the visibility of reference designators.</li>
+<li>Clarity: Clear silkscreen markings aid in component identification during assembly and troubleshooting.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Consistent Orientation:</strong> Maintain a uniform orientation for capacitors to streamline placement and routing.</li>
-<li><strong>Avoiding Overlaps:</strong> Ensure capacitors do not obstruct other components or critical traces.</li>
+<li>Consistent Orientation: Maintain a uniform orientation for capacitors to streamline placement and routing.</li>
+<li>Avoiding Overlaps: Ensure capacitors do not obstruct other components or critical traces.</li>
 </ul>
 </li>
 </ol>
@@ -252,76 +252,76 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-positioning-the-crystal">Step 1: Positioning the Crystal<a href="#step-1-positioning-the-crystal" class="hash-link" aria-label="Direct link to Step 1: Positioning the Crystal" title="Direct link to Step 1: Positioning the Crystal">​</a></h3>
 <ol>
 <li>
-<p><strong>Locate Crystal and Load Capacitors:</strong></p>
+<p>Locate Crystal and Load Capacitors:</p>
 <ul>
-<li>Identify the crystal oscillator and its associated load capacitors in the schematic (e.g., <strong>C1</strong>, <strong>C2</strong>).</li>
+<li>Identify the crystal oscillator and its associated load capacitors in the schematic (e.g., C1, C2).</li>
 </ul>
 </li>
 <li>
-<p><strong>Proximity to Oscillator Pins:</strong></p>
+<p>Proximity to Oscillator Pins:</p>
 <ul>
-<li>Place the crystal oscillator adjacent to the <strong>OSC_IN</strong> and <strong>OSC_OUT</strong> pins of the microcontroller.</li>
-<li><strong>Trace Length Minimization:</strong> Keep traces between the crystal and microcontroller as short as possible to reduce parasitic capacitance and inductance.</li>
+<li>Place the crystal oscillator adjacent to the OSC_IN and OSC_OUT pins of the microcontroller.</li>
+<li>Trace Length Minimization: Keep traces between the crystal and microcontroller as short as possible to reduce parasitic capacitance and inductance.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Isolation from Noise Sources:</strong> Position the oscillator away from high-frequency or switching components to prevent electromagnetic interference (EMI).</li>
-<li><strong>Thermal Stability:</strong> Ensure the crystal is not near heat-generating components to maintain frequency stability.</li>
+<li>Isolation from Noise Sources: Position the oscillator away from high-frequency or switching components to prevent electromagnetic interference (EMI).</li>
+<li>Thermal Stability: Ensure the crystal is not near heat-generating components to maintain frequency stability.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-load-capacitor-placement">Step 2: Load Capacitor Placement<a href="#step-2-load-capacitor-placement" class="hash-link" aria-label="Direct link to Step 2: Load Capacitor Placement" title="Direct link to Step 2: Load Capacitor Placement">​</a></h3>
 <ol>
 <li>
-<p><strong>Aligning Load Capacitors:</strong></p>
+<p>Aligning Load Capacitors:</p>
 <ul>
 <li>Position load capacitors directly in line with the traces connecting the crystal to the microcontroller.</li>
-<li><strong>Purpose:</strong> Stabilizes the oscillation frequency and reduces signal noise.</li>
+<li>Purpose: Stabilizes the oscillation frequency and reduces signal noise.</li>
 </ul>
 </li>
 <li>
-<p><strong>Trace Optimization:</strong></p>
+<p>Trace Optimization:</p>
 <ul>
 <li>Ensure that the traces between the crystal, load capacitors, and microcontroller are short and direct.</li>
-<li><strong>Impedance Control:</strong> Maintain consistent trace widths and spacing to preserve signal integrity.</li>
+<li>Impedance Control: Maintain consistent trace widths and spacing to preserve signal integrity.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Shielding:</strong> Consider shielding the oscillator circuit if operating in high-noise environments.</li>
-<li><strong>Component Grouping:</strong> Keep related oscillator components tightly grouped to simplify routing and enhance performance.</li>
+<li>Shielding: Consider shielding the oscillator circuit if operating in high-noise environments.</li>
+<li>Component Grouping: Keep related oscillator components tightly grouped to simplify routing and enhance performance.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-fine-tuning-crystal-placement">Step 3: Fine-Tuning Crystal Placement<a href="#step-3-fine-tuning-crystal-placement" class="hash-link" aria-label="Direct link to Step 3: Fine-Tuning Crystal Placement" title="Direct link to Step 3: Fine-Tuning Crystal Placement">​</a></h3>
 <ol>
 <li>
-<p><strong>Component Rotation:</strong></p>
+<p>Component Rotation:</p>
 <ul>
-<li>Use the <strong>Rotate (R)</strong> tool to align the crystal oscillator with the microcontroller’s oscillator pins for optimal layout symmetry.</li>
+<li>Use the Rotate (R) tool to align the crystal oscillator with the microcontroller’s oscillator pins for optimal layout symmetry.</li>
 </ul>
 </li>
 <li>
-<p><strong>Distance Measurement:</strong></p>
+<p>Distance Measurement:</p>
 <ul>
-<li>Activate the <strong>Measurement Tool</strong> by pressing <strong>Ctrl + Shift + M</strong>.</li>
+<li>Activate the Measurement Tool by pressing Ctrl + Shift + M.</li>
 <li>Verify that all critical components are appropriately spaced, adhering to design guidelines.</li>
 </ul>
 </li>
 <li>
-<p><strong>Space Allocation:</strong></p>
+<p>Space Allocation:</p>
 <ul>
 <li>Reserve adequate space around the crystal and load capacitors to prevent interference with other components and facilitate routing.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Symmetrical Layout:</strong> A symmetrical placement aids in balanced signal distribution.</li>
-<li><strong>Mechanical Stability:</strong> Ensure the crystal is securely placed to avoid mechanical stress that could affect oscillation.</li>
+<li>Symmetrical Layout: A symmetrical placement aids in balanced signal distribution.</li>
+<li>Mechanical Stability: Ensure the crystal is securely placed to avoid mechanical stress that could affect oscillation.</li>
 </ul>
 </li>
 </ol>
@@ -331,81 +331,81 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-positioning-the-voltage-regulator">Step 1: Positioning the Voltage Regulator<a href="#step-1-positioning-the-voltage-regulator" class="hash-link" aria-label="Direct link to Step 1: Positioning the Voltage Regulator" title="Direct link to Step 1: Positioning the Voltage Regulator">​</a></h3>
 <ol>
 <li>
-<p><strong>Locate the Voltage Regulator:</strong></p>
+<p>Locate the Voltage Regulator:</p>
 <ul>
-<li>Identify the <strong>AMS1117-3.3V</strong> voltage regulator in the schematic.</li>
+<li>Identify the AMS1117-3.3V voltage regulator in the schematic.</li>
 </ul>
 </li>
 <li>
-<p><strong>Proximity to Power Input:</strong></p>
+<p>Proximity to Power Input:</p>
 <ul>
-<li>Place the regulator near the <strong>VBUS</strong> input to minimize the distance between the power source and regulation point.</li>
-<li><strong>Heat Dissipation:</strong> Ensure sufficient spacing around the regulator for heat dissipation, possibly incorporating thermal vias or heatsinks if necessary.</li>
+<li>Place the regulator near the VBUS input to minimize the distance between the power source and regulation point.</li>
+<li>Heat Dissipation: Ensure sufficient spacing around the regulator for heat dissipation, possibly incorporating thermal vias or heatsinks if necessary.</li>
 </ul>
 </li>
 <li>
-<p><strong>Routing Considerations:</strong></p>
+<p>Routing Considerations:</p>
 <ul>
-<li>Plan the path from the regulator’s <strong>3.3V output</strong> to the microcontroller’s power pins, aiming for direct and short traces.</li>
+<li>Plan the path from the regulator’s 3.3V output to the microcontroller’s power pins, aiming for direct and short traces.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Thermal Management:</strong> Incorporate thermal reliefs and adequate copper pours to manage heat generated by the regulator.</li>
-<li><strong>Component Orientation:</strong> Align the regulator in a manner that facilitates easy routing and reduces trace crossings.</li>
+<li>Thermal Management: Incorporate thermal reliefs and adequate copper pours to manage heat generated by the regulator.</li>
+<li>Component Orientation: Align the regulator in a manner that facilitates easy routing and reduces trace crossings.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-positioning-decoupling-and-bulk-capacitors">Step 2: Positioning Decoupling and Bulk Capacitors<a href="#step-2-positioning-decoupling-and-bulk-capacitors" class="hash-link" aria-label="Direct link to Step 2: Positioning Decoupling and Bulk Capacitors" title="Direct link to Step 2: Positioning Decoupling and Bulk Capacitors">​</a></h3>
 <ol>
 <li>
-<p><strong>Proximity to Voltage Regulator:</strong></p>
+<p>Proximity to Voltage Regulator:</p>
 <ul>
-<li>Place <strong>input and output capacitors</strong> (e.g., <strong>C6</strong>, <strong>C7</strong>) close to the voltage regulator to ensure effective power filtering and stability.</li>
+<li>Place input and output capacitors (e.g., C6, C7) close to the voltage regulator to ensure effective power filtering and stability.</li>
 </ul>
 </li>
 <li>
-<p><strong>Bulk Capacitors Placement:</strong></p>
+<p>Bulk Capacitors Placement:</p>
 <ul>
-<li>Position bulk capacitors (e.g., <strong>C8</strong>, <strong>C9</strong>) slightly further from the microcontroller but still aligned with the power traces.</li>
-<li><strong>Purpose:</strong> Bulk capacitors provide energy storage for transient loads and help maintain voltage stability.</li>
+<li>Position bulk capacitors (e.g., C8, C9) slightly further from the microcontroller but still aligned with the power traces.</li>
+<li>Purpose: Bulk capacitors provide energy storage for transient loads and help maintain voltage stability.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Layer Management:</strong> Utilize dedicated power and ground planes to facilitate efficient power distribution and reduce noise.</li>
-<li><strong>Trace Widths:</strong> Use appropriately wide traces for power lines to handle higher current loads without significant voltage drops.</li>
+<li>Layer Management: Utilize dedicated power and ground planes to facilitate efficient power distribution and reduce noise.</li>
+<li>Trace Widths: Use appropriately wide traces for power lines to handle higher current loads without significant voltage drops.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-fine-tuning-the-power-layout">Step 3: Fine-Tuning the Power Layout<a href="#step-3-fine-tuning-the-power-layout" class="hash-link" aria-label="Direct link to Step 3: Fine-Tuning the Power Layout" title="Direct link to Step 3: Fine-Tuning the Power Layout">​</a></h3>
 <ol>
 <li>
-<p><strong>Component Ordering:</strong></p>
+<p>Component Ordering:</p>
 <ul>
 <li>Arrange capacitors and filtering components in a logical sequence aligned with the power flow.</li>
-<li><strong>Example:</strong> Input capacitor → Voltage regulator → Output capacitor → Bulk capacitors.</li>
+<li>Example: Input capacitor → Voltage regulator → Output capacitor → Bulk capacitors.</li>
 </ul>
 </li>
 <li>
-<p><strong>Trace Alignment:</strong></p>
+<p>Trace Alignment:</p>
 <ul>
 <li>Align power traces with component placements to ensure minimal trace lengths and reduced inductance.</li>
 </ul>
 </li>
 <li>
-<p><strong>Spacing Verification:</strong></p>
+<p>Spacing Verification:</p>
 <ul>
 <li>Ensure adequate spacing between power supply components to prevent heat accumulation and allow for future modifications.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Decoupling Strategy:</strong> Implement a multi-tiered decoupling strategy combining bulk and high-frequency capacitors for comprehensive power stability.</li>
-<li><strong>EMI Considerations:</strong> Keep power traces away from sensitive signal lines to minimize electromagnetic interference.</li>
+<li>Decoupling Strategy: Implement a multi-tiered decoupling strategy combining bulk and high-frequency capacitors for comprehensive power stability.</li>
+<li>EMI Considerations: Keep power traces away from sensitive signal lines to minimize electromagnetic interference.</li>
 </ul>
 </li>
 </ol>
@@ -415,64 +415,64 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-check-component-spacing">Step 1: Check Component Spacing<a href="#step-1-check-component-spacing" class="hash-link" aria-label="Direct link to Step 1: Check Component Spacing" title="Direct link to Step 1: Check Component Spacing">​</a></h3>
 <ol>
 <li>
-<p><strong>Adequate Clearance:</strong></p>
+<p>Adequate Clearance:</p>
 <ul>
 <li>Verify that sufficient space exists between components to facilitate routing and prevent short circuits.</li>
-<li><strong>Signal-Critical Components:</strong> Pay special attention to components involved in high-speed or sensitive signals, ensuring they have ample spacing to reduce crosstalk.</li>
+<li>Signal-Critical Components: Pay special attention to components involved in high-speed or sensitive signals, ensuring they have ample spacing to reduce crosstalk.</li>
 </ul>
 </li>
 <li>
-<p><strong>Parallel Trace Planning:</strong></p>
+<p>Parallel Trace Planning:</p>
 <ul>
 <li>For differential pairs (e.g., USB data lines), ensure parallel routing with controlled spacing to maintain signal integrity.</li>
 </ul>
 </li>
 <li>
-<p><strong>3D Inspection:</strong></p>
+<p>3D Inspection:</p>
 <ul>
-<li>Reopen the <strong>3D Viewer</strong> by pressing <strong>ALT + 3</strong>.</li>
-<li><strong>Visual Check:</strong> Confirm that components are not overlapping and that there is enough vertical clearance for connectors and mounting hardware.</li>
+<li>Reopen the 3D Viewer by pressing ALT + 3.</li>
+<li>Visual Check: Confirm that components are not overlapping and that there is enough vertical clearance for connectors and mounting hardware.</li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Design Rules Check (DRC):</strong> Regularly perform DRC to identify and rectify spacing violations.</li>
-<li><strong>Accessibility:</strong> Ensure components that require frequent access, such as headers and connectors, are easily reachable.</li>
+<li>Design Rules Check (DRC): Regularly perform DRC to identify and rectify spacing violations.</li>
+<li>Accessibility: Ensure components that require frequent access, such as headers and connectors, are easily reachable.</li>
 </ul>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-board-outline">Step 2: Board Outline<a href="#step-2-board-outline" class="hash-link" aria-label="Direct link to Step 2: Board Outline" title="Direct link to Step 2: Board Outline">​</a></h3>
 <ol>
 <li>
-<p><strong>Define Board Dimensions:</strong></p>
+<p>Define Board Dimensions:</p>
 <ul>
-<li>Use the <strong>Edge.Cuts</strong> layer to draw the board outline, matching the intended enclosure dimensions.</li>
-<li><strong>Procedure:</strong>
+<li>Use the Edge.Cuts layer to draw the board outline, matching the intended enclosure dimensions.</li>
+<li>Procedure:<!-- -->
 <ul>
-<li>Select the <strong>Edge.Cuts</strong> layer.</li>
-<li>Utilize the <strong>Add Graphic Line or Polygon</strong> tool to outline the board shape.</li>
+<li>Select the Edge.Cuts layer.</li>
+<li>Utilize the Add Graphic Line or Polygon tool to outline the board shape.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Add Mounting Holes:</strong></p>
+<p>Add Mounting Holes:</p>
 <ul>
 <li>Insert mounting holes at designated positions to secure the PCB within its enclosure.</li>
-<li><strong>Procedure:</strong>
+<li>Procedure:<!-- -->
 <ul>
-<li>Place via footprints (e.g., <strong>VIA</strong>) or dedicated mounting hole components.</li>
+<li>Place via footprints (e.g., VIA) or dedicated mounting hole components.</li>
 <li>Ensure alignment with mechanical design specifications.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>Best Practices:</strong></p>
+<p>Best Practices:</p>
 <ul>
-<li><strong>Tolerance Consideration:</strong> Allow for manufacturing tolerances in the board outline to ensure proper fit within enclosures.</li>
-<li><strong>Hole Placement:</strong> Position mounting holes to distribute mechanical stress evenly and avoid interfering with signal traces.</li>
+<li>Tolerance Consideration: Allow for manufacturing tolerances in the board outline to ensure proper fit within enclosures.</li>
+<li>Hole Placement: Position mounting holes to distribute mechanical stress evenly and avoid interfering with signal traces.</li>
 </ul>
 </li>
 </ol>
@@ -482,27 +482,27 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="next-steps">Next Steps:<a href="#next-steps" class="hash-link" aria-label="Direct link to Next Steps:" title="Direct link to Next Steps:">​</a></h3>
 <ol>
 <li>
-<p><strong>Layout Refinement:</strong></p>
+<p>Layout Refinement:</p>
 <ul>
 <li>Adjust component positions for optimal routing and signal integrity.</li>
 <li>Fine-tune spacing and orientation to accommodate additional components and routing paths.</li>
 </ul>
 </li>
 <li>
-<p><strong>Board Outline Finalization:</strong></p>
+<p>Board Outline Finalization:</p>
 <ul>
 <li>Complete the board outline and ensure compatibility with mechanical designs and enclosures.</li>
 </ul>
 </li>
 <li>
-<p><strong>PCB Routing:</strong></p>
+<p>PCB Routing:</p>
 <ul>
 <li>Begin connecting electrical nets with copper traces, adhering to design rules and signal integrity guidelines.</li>
 <li>Utilize layer management and routing strategies to handle complex connections and minimize interference.</li>
 </ul>
 </li>
 <li>
-<p><strong>Design Verification:</strong></p>
+<p>Design Verification:</p>
 <ul>
 <li>Perform comprehensive design rule checks (DRC) and electrical rule checks (ERC) to identify and resolve potential issues.</li>
 <li>Utilize simulation tools if necessary to validate signal integrity and power distribution.</li>

@@ -56,9 +56,11 @@ The power supply is a critical part of the PCB that ensures stable voltage deliv
 
 **Practical Example:**
 - **Resistor Calculation:** For a typical red LED with a forward voltage of 2V and desired current of 10mA, the resistor value can be calculated using Ohm's Law:
-  \[
+
+  $$
   R = \frac{V_{source} - V_{LED}}{I} = \frac{3.3V - 2V}{0.01A} = 130\Omega
-  \]
+  $$
+  
   Choose the nearest standard resistor value, such as **150Ω**, to ensure safe operation.
 
 ### **Step 4: Adjusting for Layout Compactness**

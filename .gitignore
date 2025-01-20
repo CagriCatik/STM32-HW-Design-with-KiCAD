@@ -1,62 +1,97 @@
-# pdf and mdbooks
+# Project Files
+projects
+pdf
+sort
+information
 
-book
-KiCad_LikeAPro.pdf
-KiCad_Fundamentals_Projects.pdf
+# Dependencies
+node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
 .DS_Store
-info.md
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Ignore the output directories
-build/
-dist/
-output/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Ignore the backup files
-*.bak
-*.b#*
-*.bck
-*~
+# mdBook
+book
 
-# Ignore autosave files
-*.kicad_pcb-bak
-*.sch-bak
-*.kicad_sch-bak
-*.bak
+# Ignore zip files
 
-# Ignore generated BOM files
-*.xml
-*.csv
-*.html
-*.pos
-*.wrl
-*.step
-
-# Ignore simulation files
-*.net
-*.spice
-*.raw
-*.log
-
-# Ignore compiled library files
-sym-lib-table
-fp-lib-table
-
-# Ignore Gerber and other fabrication output files
-*.gbr
-*.drl
-*.ger
-*.gbl
-*.gtl
-*.gbs
-*.gts
-*.gbo
-*.gto
-*.gbp
-*.gtp
-*.gm1
-*.gko
 *.zip
 
-# Ignore temporary files
+# pdf
+KiCadLikeaPro3e.pdf
+
+
+# Ignore backup files
+*.bak
+*.bck
+
+# Ignore autosave files
+*.KiCad_pcb-bak
+*.sch-bak
+*-rescue.lib
+
+# Ignore build and output files
+fp-info-cache
+fp-lib-table
+sym-lib-table
+sym-lib-table-bak
+cache
+*.net
+*.xml
+*.dsn
+*.ses
+*.cmp
+*.KiCad_prl
+
+# Ignore the backup of PCB layout
+*-bak.KiCad_pcb
+
+# Ignore simulation files
+*.cir
+*.spice
+
+# Ignore Gerber and output files
+*.gbr
+*.gtl
+*.gbl
+*.gts
+*.gbs
+*.gto
+*.gbo
+*.gml
+*.gtp
+*.gbp
+*.drl
+*.map
+*.svg
+*.pdf
+
+# Ignore autoroute files
+*.rpt
+*.cmp
+*.drd
+
+# Ignore temporary files and editor backups
 *.tmp
-*.lock
+*.log
+*.swp
+*~
+
+# Ignore KiCad autosaves
+*.KiCad_pcb-bak
+*.sch-bak

@@ -140,9 +140,9 @@ Accurate calculation of load capacitors is essential for ensuring the crystal os
 
 ### Load Capacitor Calculation Formula
 
-\[
+$$
 C_{load} = \frac{C_{crystal} - C_{stray}}{2}
-\]
+$$
 
 - **C_crystal:** Load capacitance specified in the crystal's datasheet (typically **10-20 pF**).
 - **C_stray:** Estimated stray capacitance from the PCB (typically **3-5 pF**).
@@ -155,9 +155,9 @@ C_{load} = \frac{C_{crystal} - C_{stray}}{2}
 
 **Calculation:**
 
-\[
+$$
 C_{load} = \frac{10 \, \text{pF} - 5 \, \text{pF}}{2} = 2.5 \, \text{pF}
-\]
+$$
 
 **Implementation:**
 - Use **two 2.5 pF capacitors** connected from each crystal pin to ground.

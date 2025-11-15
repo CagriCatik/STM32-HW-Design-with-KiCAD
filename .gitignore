@@ -9,6 +9,8 @@ node_modules
 
 # Production
 /build
+webpage/build/
+webpage/build/*
 
 # Generated files
 .docusaurus

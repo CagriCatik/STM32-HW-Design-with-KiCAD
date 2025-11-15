@@ -1,6 +1,6 @@
 <div align="center">
 
-<h2>KiCad and STM32 Hardware Design</h2>
+<h1>KiCad and STM32 Hardware Design</h1>
 
 [![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml)
 ![KiCad 9](https://img.shields.io/badge/KiCad-9.0-blue)

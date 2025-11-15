@@ -12,20 +12,21 @@ Embarking on PCB design begins with schematic capture, a fundamental step where 
 
 1. Launch KiCad Project Window:
    - Open KiCad and navigate to your project directory.
-   
+
 2. Access the Schematic Editor:
    - Click on the Schematic Editor icon within the project window.
-   
+
 3. Navigate the Canvas:
    - A blank schematic canvas will appear.
    - Pan: Use the middle mouse button to move around the canvas.
    - Zoom: Scroll the mouse wheel to zoom in and out for detailed or broader views.
-   
+
 4. Utilize Toolbars:
    - Top Toolbar: Provides access to global functions and settings.
    - Right Toolbar: Primarily used for component placement and symbol selection.
 
 Best Practices:
+
 - Organize Workspace: Keep the toolbars visible and arrange them based on your workflow preferences.
 - Frequent Saving: Regularly save your work to prevent data loss.
 
@@ -50,6 +51,7 @@ The STM32F103 series is a popular choice for microcontroller-based designs, offe
    - Verify that the selected package matches your design requirements, including pin count and footprint.
 
 Best Practices:
+
 - Datasheet Reference: Always refer to the STM32 datasheet to understand pin configurations and functionalities.
 - Symbol Accuracy: Ensure that the symbol accurately reflects the physical microcontroller's pinout and features.
 
@@ -73,6 +75,7 @@ STM32 microcontrollers feature a versatile pin configuration, divided into vario
   - BOOT0/BOOT1: Pins for configuring the microcontroller's boot mode.
 
 Best Practices:
+
 - Pin Grouping: Group similar pins together in the schematic for clarity.
 - Labeling: Clearly label each pin based on its function to avoid confusion during routing.
 
@@ -87,15 +90,16 @@ Stable power and ground connections are paramount for the reliable operation of 
 1. Insert Ground Symbol:
    - Click on Add Power Port in the toolbar.
    - Select the GND symbol from the library.
-   
+
 2. Placement:
    - Position the GND symbol near the microcontroller to minimize trace lengths.
-   
+
 3. Clean Up Schematic:
    - Hide unnecessary ground labels to declutter the schematic.
    - Press the E key to edit the ground label and check Hide Value.
 
 Best Practices:
+
 - Single Ground Point: Use a single ground symbol connected to all ground pins to ensure a common reference point.
 - Consistent Grounding: Maintain consistent ground connections across all components to prevent ground loops.
 
@@ -104,11 +108,12 @@ Best Practices:
 1. Wire Ground Pins:
    - Hover over each ground pin (e.g., VSS, VSSA) on the STM32.
    - Press W to activate the wiring tool and draw a connection to the GND symbol.
-   
+
 2. Digital and Analog Grounds:
    - Typically, digital (VSS) and analog (VSSA) grounds are tied together unless specific noise isolation is required.
-   
+
 Best Practices:
+
 - Short Connections: Keep ground connections as short as possible to reduce inductance and resistance.
 - Star Grounding: Consider a star grounding scheme where all ground connections converge at a single point to minimize interference.
 
@@ -116,17 +121,18 @@ Best Practices:
 
 1. Insert Power Symbol:
    - Use Add Power Port to place the +3.3V symbol.
-   
+
 2. Placement:
    - Position the 3.3V symbol adjacent to the VDD pin of the microcontroller.
-   
+
 3. Connect Power:
    - Use the wiring tool (W) to draw a connection from the 3.3V symbol to the VDD pin.
-   
+
 4. Handling VBAT:
    - If utilizing the RTC feature without an external battery, connect VBAT to the 3.3V rail.
 
 Best Practices:
+
 - Decoupling Proximity: Place power symbols close to their respective power pins to facilitate effective decoupling.
 - Power Integrity: Ensure that power connections are robust and can handle the required current without significant voltage drops.
 
@@ -140,14 +146,15 @@ Decoupling capacitors play a vital role in maintaining stable power delivery to 
 
 1. Individual Decoupling:
    - Place a 100nF (0.1µF) capacitor for each VDD and VBAT pin.
-   
+
 2. Component Selection:
    - Click Add Symbol, search for a generic capacitor symbol, and place it near each power pin.
-   
+
 3. Connection:
    - Connect one terminal of the capacitor to the power rail (VDD) and the other to ground (GND).
 
 Best Practices:
+
 - Proximity: Position decoupling capacitors as close as possible to the power pins to minimize inductance.
 - Parasitic Inductance: Use short, wide traces for capacitor connections to reduce parasitic inductance.
 
@@ -157,14 +164,15 @@ In addition to individual capacitors, a bulk decoupling capacitor is essential t
 
 1. Select Bulk Capacitor:
    - Use a 10µF capacitor for bulk decoupling.
-   
+
 2. Placement:
    - Place the bulk capacitor near the microcontroller, between VDD and GND.
-   
+
 3. Connection:
    - Ensure that the capacitor is firmly connected to both the power and ground rails.
 
 Best Practices:
+
 - Type Selection: Choose capacitors with low Equivalent Series Resistance (ESR) for better performance.
 - Multiple Capacitors: In high-current designs, consider using multiple bulk capacitors of varying values to cover a broader frequency range.
 
@@ -178,12 +186,13 @@ Analog circuits demand meticulous power supply filtering to minimize noise, ensu
 
 1. Capacitor Selection:
    - Use a combination of 10nF and 1µF capacitors in parallel for effective filtering.
-   
+
 2. Ferrite Bead Integration:
    - Insert a ferrite bead between the main 3.3V rail and the filtered analog 3.3V rail (+3.3VA).
    - Select a ferrite bead with approximately 120 ohms at 100 MHz to attenuate high-frequency noise.
 
 Best Practices:
+
 - Component Quality: Use high-quality capacitors with stable characteristics across temperature ranges.
 - Ferrite Bead Placement: Position ferrite beads close to the power input to maximize noise suppression.
 
@@ -191,11 +200,12 @@ Best Practices:
 
 1. Filtered Power Rail:
    - Connect the filtered +3.3VA rail to the VDA pin on the STM32.
-   
+
 2. Analog Ground:
    - Tie the VSSA (analog ground) pin to the main ground (GND) to maintain a common reference.
 
 Best Practices:
+
 - Isolation: If analog and digital circuits are highly sensitive, consider separate ground planes with a single point of connection.
 - Trace Routing: Route analog power and ground traces away from noisy digital lines to prevent interference.
 
@@ -209,14 +219,15 @@ Proper configuration of reset and boot pins ensures reliable startup behavior an
 
 1. Pull-Up Resistor:
    - Add a 10kΩ resistor between the NRST pin and the 3.3V supply to ensure the microcontroller starts in a known state.
-   
+
 2. Reset Button:
    - Optionally, connect a reset button between the NRST pin and GND to allow manual resets.
-   
+
 3. Debouncing (Optional):
    - Incorporate a small capacitor (e.g., 100nF) between NRST and GND to debounce the reset signal.
 
 Best Practices:
+
 - Debounce Mechanism: Prevent unintended resets due to noise by using debounce components.
 - Accessibility: Position the reset button for easy access on the final PCB layout.
 
@@ -226,14 +237,15 @@ Configuring the boot mode determines how the microcontroller initializes at powe
 
 1. BOOT0 Pin:
    - Connect the BOOT0 pin to GND through a resistor (commonly 10kΩ) to ensure booting from Flash memory.
-   
+
 2. BOOT1 Pin:
    - Similarly, connect the BOOT1 pin to GND unless alternative boot configurations are required.
-   
+
 3. Alternative Configurations:
    - For firmware updates or bootloader access, BOOT0 can be connected to VDD through a resistor or a switch.
 
 Best Practices:
+
 - Default Configuration: Ensure that BOOT0 is defaulted to GND for normal operation to prevent accidental bootloader activation.
 - Flexibility: Design the boot pin connections to allow easy modification for debugging or firmware updates without extensive hardware changes.
 
@@ -247,19 +259,20 @@ When interfacing with external power sources, such as a 5V input, a voltage regu
 
 1. Select a Regulator:
    - Use a 3.3V linear regulator, such as the AMS1117-3.3, known for its reliability and ease of use.
-   
+
 2. Place the Regulator Symbol:
    - Click Add Symbol, search for the AMS1117-3.3 or a generic linear regulator symbol, and place it on the schematic.
-   
+
 3. Connect Inputs and Outputs:
    - Input: Connect the regulator's input pin to your power source (e.g., 5V).
    - Output: Connect the output pin to the 3.3V power rail.
-   
+
 4. Decoupling Capacitors:
    - Add a 10µF capacitor between the input pin and ground.
    - Add another 10µF capacitor between the output pin and ground to stabilize the regulator.
 
 Best Practices:
+
 - Heat Dissipation: Ensure adequate thermal management for linear regulators, especially under high current loads.
 - Capacitor Selection: Use capacitors with appropriate voltage ratings and low ESR for regulator stability.
 
@@ -287,6 +300,7 @@ Before transitioning to the PCB layout phase, it's crucial to meticulously revie
   - Use consistent net labeling to facilitate easier PCB routing and reduce errors.
 
 Best Practices:
+
 - Electrical Rules Check (ERC): Utilize KiCad’s ERC tool to identify and rectify any schematic errors or warnings.
 - Peer Review: Have another designer review the schematic to catch overlooked issues.
 - Documentation: Annotate critical components and connections for future reference and maintenance.
@@ -314,7 +328,7 @@ Stay tuned for the next part of this guide, which will delve into best practices
 
 ---
 
-# Best Practices for PCB Layout (Next Steps)
+## Best Practices for PCB Layout (Next Steps)
 
 While the current guide concludes with the schematic phase, effective PCB layout is equally crucial. Here are some best practices to anticipate:
 

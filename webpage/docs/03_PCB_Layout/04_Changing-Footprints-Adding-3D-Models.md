@@ -13,7 +13,7 @@ The 3D Viewer in KiCad is an invaluable tool for visualizing your PCB layout and
 1. Access the 3D Viewer:
    - Press ALT + 3 on your keyboard.
    - Alternatively, navigate through the menu: View > 3D Viewer.
-   
+
 2. Examine the Layout:
    - Rotate and zoom into different areas of your PCB to inspect each component.
    - Look for components that:
@@ -21,10 +21,12 @@ The 3D Viewer in KiCad is an invaluable tool for visualizing your PCB layout and
      - Appear incorrectly sized, indicating discrepancies between the footprint and the actual component size.
 
 Common Example Problems:
+
 - Missing 3D Model: A USB connector without a detailed 3D representation.
 - Oversized Footprint: A switch footprint that is significantly larger than necessary, potentially causing layout issues.
 
 Best Practices:
+
 - Regularly use the 3D Viewer during the design process to catch and address issues early.
 - Compare component sizes against manufacturer datasheets to ensure accuracy.
 
@@ -53,18 +55,19 @@ An oversized footprint can lead to unnecessary space consumption on your PCB, co
 
 1. Search for an Appropriate Footprint:
    - Use keywords related to your component, such as "tactile switch" or "surface-mount switch".
-   
+
 2. Evaluate Footprint Options:
    - Review available footprints and select one that matches the component’s size and mounting style.
    - Example: Choose a smaller tactile switch footprint to better fit the PCB layout.
 
 3. Preview the 3D Model:
    - Before finalizing, preview the selected footprint’s 3D model to ensure compatibility.
-   
+
 4. Assign the New Footprint:
    - Double-click the desired footprint to assign it to the component.
 
 Best Practices:
+
 - Always refer to the component’s datasheet to select the most accurate footprint.
 - Utilize KiCad’s footprint libraries or create custom footprints if necessary.
 
@@ -83,6 +86,7 @@ Best Practices:
    - Open the 3D Viewer to confirm that the switch now fits correctly within the PCB layout.
 
 Best Practices:
+
 - After footprint changes, always perform a thorough review in both 2D and 3D views.
 - Check for any new spacing issues or component overlaps introduced by the footprint modification.
 
@@ -109,6 +113,7 @@ Missing 3D models can hinder accurate enclosure design and mechanical verificati
    - Store the downloaded STEP file in your project’s designated folder for 3D models.
 
 Best Practices:
+
 - Always use official 3D models from the manufacturer to ensure accuracy.
 - Maintain a well-organized project directory structure for easy model retrieval.
 
@@ -135,6 +140,7 @@ Best Practices:
    - Click OK to assign the new 3D model to the USB connector.
 
 Best Practices:
+
 - Ensure that the 3D model’s units match the PCB design’s units to avoid scaling issues.
 - Keep a backup of original component properties before making changes.
 
@@ -159,6 +165,7 @@ Proper alignment of the 3D model ensures that the component fits seamlessly with
    - Use a trial-and-error approach, making small adjustments and reviewing changes in the 3D Viewer until the model aligns perfectly.
 
 Best Practices:
+
 - Refer to the component’s mechanical drawings to determine correct alignment.
 - Document any custom adjustments for future reference or team collaboration.
 
@@ -176,6 +183,7 @@ Best Practices:
    - Confirm that the model accurately represents the physical USB connector.
 
 Best Practices:
+
 - Perform a final inspection after all adjustments to catch any overlooked issues.
 - Use lighting and rendering options in the 3D Viewer to enhance visibility of component details.
 
@@ -194,12 +202,13 @@ With 3D models and footprints accurately configured, it’s essential to refine 
    - Critical Components:
      - Connectors and Switches: Position near PCB edges for easy access.
      - Heat-Sensitive Components: Ensure adequate spacing for heat dissipation.
-   
+
 3. Verify Adequate Spacing:
    - Maintain sufficient distance between components to facilitate soldering and assembly processes.
    - Avoid overcrowding, which can lead to manufacturing challenges and potential short circuits.
 
 Best Practices:
+
 - Utilize design guidelines specific to your PCB’s intended application.
 - Consider future modifications or expansions when positioning components.
 
@@ -216,6 +225,7 @@ Best Practices:
    - Identify overlapping components or traces that could cause assembly problems or functional issues.
 
 Best Practices:
+
 - Perform 3D checks after significant layout changes to maintain design integrity.
 - Collaborate with mechanical engineers to ensure enclosure compatibility.
 
@@ -235,6 +245,7 @@ Best Practices:
    - Adhere to manufacturing standards regarding trace widths, clearances, and via usage.
 
 Best Practices:
+
 - Use KiCad’s design rule checks (DRC) to enforce routing constraints.
 - Implement proper layer stacking and signal shielding where necessary.
 
@@ -245,6 +256,7 @@ Best Practices:
 Addressing missing 3D models and oversized footprints is pivotal in achieving a mechanically accurate and manufacturable PCB design. By meticulously configuring 3D models, refining footprints, and optimizing component placement, you ensure that your design is not only functional but also ready for seamless integration into its intended enclosure.
 
 Key Takeaways:
+
 - 3D Models: Enhance design accuracy and facilitate enclosure integration.
 - Footprints: Accurate footprints prevent layout issues and ensure component compatibility.
 - Component Placement: Strategic placement optimizes PCB performance and manufacturability.

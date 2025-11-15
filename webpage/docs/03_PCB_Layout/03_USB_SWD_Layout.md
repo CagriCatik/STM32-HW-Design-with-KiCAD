@@ -21,10 +21,12 @@ Effective PCB layout begins with the prioritization of components that significa
 ### Step 2: USB Differential Pair Considerations
 
 For USB 2.0 full-speed applications:
+
 - Trace Length: Controlled impedance is not critical for short traces (less than 10mm), but maintaining short trace lengths is essential.
 - Trace Proximity: Keeping D+ and D- traces close together ensures balanced signal transmission and reduces susceptibility to noise.
 
 Best Practices:
+
 - Trace Matching: Ensure that both D+ and D- traces are matched in length to prevent timing discrepancies.
 - Minimal Bends: Avoid unnecessary bends in the differential pair to maintain signal quality.
 
@@ -49,6 +51,7 @@ The USB connector serves as the primary interface between the microcontroller an
    - Proximity: Position the connector close enough to the microcontroller to minimize trace lengths, yet provide sufficient space for manual soldering if required.
 
 Practical Example:
+
 - If the microcontroller is located centrally, position the USB connector towards one edge to balance trace routing across the board.
 
 ### Step 2: Optimizing Differential Pair Routing
@@ -63,6 +66,7 @@ Practical Example:
    - Crossovers: Prevent the differential pair from crossing other high-speed or sensitive signals.
 
 Best Practices:
+
 - Consistent Trace Width: Maintain consistent trace widths for both D+ and D- to ensure balanced impedance.
 - Clear Layer Routing: If multi-layer routing is necessary, utilize dedicated signal layers to prevent interference.
 
@@ -77,9 +81,11 @@ Best Practices:
    - Trace Path Efficiency: Ensure the trace does not detour unnecessarily around the resistor to maintain signal integrity.
 
 Practical Example:
+
 - Place the resistor near the microcontroller to centralize component layout and simplify the trace path.
 
 Best Practices:
+
 - Component Orientation: Orient the resistor to align with the D+ trace direction, facilitating straightforward routing.
 - Thermal Considerations: Ensure adequate spacing around the resistor to allow for heat dissipation if necessary.
 
@@ -99,6 +105,7 @@ The SWD connector is essential for programming and debugging the STM32 microcont
    - Clear Routing Path: Ensure the connector's placement allows for unobstructed signal paths.
 
 Best Practices:
+
 - Accessibility: Place the SWD connector in an area that is easily reachable for debugging tools without interfering with other components.
 - Space Management: Avoid placing the connector near high-density component areas to reduce routing complexity.
 
@@ -115,6 +122,7 @@ Best Practices:
    - Ensure the connector is close enough to the microcontroller to keep trace lengths short while allowing easy access during assembly.
 
 Practical Example:
+
 - If the microcontroller's SWD pins are on the left side, rotate the SWD connector so that it aligns horizontally or vertically based on board layout constraints.
 
 ### Step 3: Making Debug Connections Simple
@@ -123,6 +131,7 @@ Practical Example:
 - Accessibility for Tools: Allocate sufficient space between the connector and the board edge to accommodate debugging tools like ST-Link or J-Link programmers.
 
 Best Practices:
+
 - Labeling: Clearly label the SWD connector on the silkscreen to facilitate easy identification during debugging.
 - Isolation from Noise Sources: Position the SWD connector away from high-frequency or high-noise components to prevent signal interference.
 
@@ -141,6 +150,7 @@ With critical components in place, attention turns to power and auxiliary connec
   - Cluster related connectors (e.g., UART and I²C connectors) in proximity to simplify routing and enhance board organization.
   
 Best Practices:
+
 - Consistent Orientation: Align connectors in a uniform direction to standardize external connections.
 - Spacing: Maintain adequate spacing between connectors to prevent accidental short circuits and ease of access.
 
@@ -156,9 +166,11 @@ Best Practices:
   - If a specific enclosure is used, ensure the PCB outline matches the enclosure's dimensions and mounting points.
 
 Practical Example:
+
 - For a rectangular enclosure, design the PCB with a rectangular outline, placing mounting holes at each corner for easy attachment.
 
 Best Practices:
+
 - Edge Clearances: Ensure components are not placed too close to the PCB edges to avoid mechanical stress and facilitate manufacturing.
 - Thermal Management: Consider heat dissipation requirements when planning the board outline and component placement.
 
@@ -180,6 +192,7 @@ Before advancing to the routing phase, it's crucial to review the initial compon
   - Use the move tool (M) to reposition silkscreen text as needed for optimal visibility and clarity.
 
 Best Practices:
+
 - Font Size: Maintain a readable font size for all silkscreen labels.
 - Color Contrast: Use contrasting colors for silkscreen text to enhance legibility against the PCB substrate.
 
@@ -192,9 +205,11 @@ Best Practices:
   - Ensure that all measurements fall within acceptable ranges for manufacturing processes, such as minimum trace widths and spacing.
 
 Practical Example:
+
 - Verify that the USB D+ and D- trace lengths are both under 10mm and that there is consistent spacing between differential pair traces.
 
 Best Practices:
+
 - Design Rule Checks (DRC): Run DRCs within KiCad to automatically identify and rectify potential measurement issues.
 - Peer Review: Conduct a thorough review with team members to catch any overlooked measurement discrepancies.
 
@@ -210,6 +225,7 @@ Best Practices:
   - Confirm that components are appropriately spaced to facilitate manual or automated assembly processes.
 
 Best Practices:
+
 - Interference Check: Look for potential mechanical interference between components and the PCB outline.
 - Component Orientation: Verify that polarized components (e.g., capacitors, diodes) are correctly oriented.
 

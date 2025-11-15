@@ -68,6 +68,7 @@ Creating a schematic is a crucial step that defines how the components of your c
   - Continue adding all necessary components for your STM32-based project.
 
 > Tip: If a required component isn't available in the default libraries, consider:
+
   - Installing Additional Libraries: Use KiCad’s library manager to add more component libraries.
   - Creating Custom Symbols: Design custom symbols for unique or proprietary components.
 

@@ -1,58 +1,57 @@
-# [KiCad & STM32 Hardware Design 🔧](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
+<div align="center">
 
-This guide offers a step-by-step approach to mastering PCB design using **KiCad V6** and implementing **STM32 microcontrollers** for hardware design. Whether you're a beginner or experienced, this tutorial will help you create professional-grade PCBs.
+<h2>KiCad and STM32 Hardware Design</h2>
 
-![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)
+[![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml)
+![KiCad 9](https://img.shields.io/badge/KiCad-9.0-blue)
+[![Documentation](https://img.shields.io/badge/Docs-Available-green)](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)
 
-[**Explore the complete guide**](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)  
+</div>
 
----
+This project documents my first complete PCB design journey using KiCad and an STM32 microcontroller. It represents a hands-on, end-to-end dive into schematic design, PCB layout, routing, manufacturing files, and the practical considerations required to make a real, manufacturable embedded board.
 
-## 🌟 Key Topics Covered
-
-### 1. Schematic Design 🖥️
-- ✅ **1.1. STM32 Microcontroller and Decoupling:** Learn the essentials of microcontroller connections and decoupling techniques.
-- ✅ **1.2. STM32 Configuration Pins:** Configure pins for optimal performance.
-- ✅ **1.3. Pin-Out and STM32CubeIDE:** Map the STM32 pinout using STM32CubeIDE.
-- ✅ **1.4. Crystal Circuitry:** Design accurate clock circuits.
-- ✅ **1.5. USB:** Implement USB connections for STM32 applications.
-- ✅ **1.6. Power Supply and Connectors:** Design robust power supply circuits.
-- ✅ **1.7. Electrical Rules Check (ERC) and Annotation:** Validate schematics with ERC and proper annotation.
-- ✅ **1.8. Footprint Assignment:** Assign footprints for all components.
+The goal was not only to learn KiCad as a professional tool, but to understand what makes a microcontroller board electrically reliable, layout-aware, and production-ready. Every stage reflects actual engineering constraints encountered during the design of a small STM32-based board.
 
 ---
 
-### 2. PCB Layout 🛠️
-- ✅ **2.1. KiCad PCB Set-Up:** Prepare your project with essential settings.
-- ✅ **2.2. MCU, Decoupling Capacitors, and Crystal Layout:** Optimize placement for key components.
-- ✅ **2.3. USB and SWD Layout:** Arrange USB and SWD components for clear routing.
-- ✅ **2.4. Changing Footprints and Adding 3D Models:** Enhance your design with custom footprints and 3D models.
-- ✅ **2.5. Switch and Connector Placement:** Position switches and connectors for accessibility.
-- ✅ **2.6. Power Supply Layout:** Design an efficient power distribution network.
-- ✅ **2.7. Mounting Holes and Board Outline:** Define mechanical constraints and board boundaries.
+## Key Topics
+
+### 1. Schematic Design
+
+- [ ] STM32 microcontroller fundamentals and decoupling guidance.
+- [ ] STM32 configuration pin requirements and best practices.
+- [ ] Pin-out management using STM32CubeIDE.
+- [ ] Crystal oscillator circuit design.
+- [ ] USB interface design for STM32 systems.
+- [ ] Power supply design and connector selection.
+- [ ] Electrical Rules Check (ERC), annotation workflow, and validation.
+- [ ] Component footprint assignment.
+
+### 2. PCB Layout
+
+- [ ] KiCad PCB project setup and configuration.
+- [ ] Placement strategy for MCU, decoupling capacitors, and crystal components.
+- [ ] USB and SWD interface layout considerations.
+- [ ] Updating footprints and integrating 3D models.
+- [ ] Connector and switch placement.
+- [ ] Power distribution layout and grounding practices.
+- [ ] Defining board outline and mechanical mounting features.
+
+### 3. PCB Routing
+
+- [ ] Routing guidelines for decoupling and crystal signals.
+- [ ] Digital and analog signal routing strategies.
+- [ ] Power trace routing and current handling considerations.
+- [ ] Refinement procedures and thorough DRC validation.
+
+### 4. Manufacturing
+
+- [ ] Generating manufacturing deliverables, including BOM, CPL, Gerber, and Drill files.
 
 ---
 
-### 3. PCB Routing 🚀
-- ⬜ **3.1. Decoupling Capacitors and Crystal Routing:** Ensure effective routing for decoupling and clock signals.
-- ⬜ **3.2. Signal Routing:** Route signal traces for optimal performance.
-- ⬜ **3.3. Power Routing:** Design robust power delivery traces.
-- ⬜ **3.4. Finishing Touches and Design Rule Check (DRC):** Refine and validate the PCB layout.
+## Additional Resources
 
----
+This content is aligned with the Udemy course: [Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
 
-### 4. Manufacturing and Outro 🏭
-- ⬜ **4.1. Producing Manufacturing Files:** Generate files for production, including BOM, CPL, Gerber, and Drill.
 
----
-
-## 📚 Learn More
-This project is part of the Udemy course:  
-**[Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)**  
-Dive into the detailed lectures and gain hands-on experience with hardware design. 🎓
-
----
-
-## 🔗 Useful Links
-- [KiCad V6 Documentation](https://docs.kicad.org/)
-- [STM32CubeIDE Overview](https://www.st.com/en/development-tools/stm32cubeide.html)

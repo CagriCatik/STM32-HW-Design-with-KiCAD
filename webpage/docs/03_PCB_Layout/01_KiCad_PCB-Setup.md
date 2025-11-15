@@ -45,7 +45,7 @@ The board stack defines the physical structure of your PCB, including the number
 
 1. Configure Bottom Copper Layer
    - Assign the Bottom Copper Layer as a solid ground plane. This serves as a reference for all ground connections and provides a low-impedance path for return currents.
-   
+
 2. Utilize Vias for Connectivity
    - To connect signal traces to the ground plane, use vias—small plated-through holes that bridge the top and bottom layers.
    - Best Practice: Strategically place vias near critical components to minimize loop areas and reduce noise.
@@ -54,7 +54,7 @@ The board stack defines the physical structure of your PCB, including the number
 
 1. Access Physical Stack-Up View
    - Switch to the Physical Stack-Up tab to visualize the layer arrangement of your PCB.
-   
+
 2. Verify Layer Details
    - Ensure the stack-up includes:
      - Top Copper Layer
@@ -128,7 +128,7 @@ For designs incorporating high-speed signals such as USB, differential pairs are
 1. Define Differential Pair Parameters
    - Trace Width: 0.3mm
    - Trace Gap: 0.3mm
-   
+
 2. Routing Differential Pairs
    - Ensure that differential pairs are routed in parallel with consistent spacing.
    - Best Practice: Keep differential pair traces as short and matched in length as possible to maintain timing and reduce signal degradation.
@@ -148,7 +148,7 @@ Importing and correctly placing component footprints from your schematic is esse
 
 1. Update PCB from Schematic
    - In the PCB Editor, click the "Update PCB from Schematic" button (represented by an icon of a wire connecting to a PCB).
-   
+
 2. Footprint Importation
    - KiCad will automatically import all component footprints defined in your schematic, placing them on the PCB layout canvas outside the designated board area.
 
@@ -156,7 +156,7 @@ Importing and correctly placing component footprints from your schematic is esse
 
 1. Manual Component Placement
    - Begin by dragging and dropping components from outside the board area onto the PCB canvas.
-   
+
 2. Organize Components Logically
    - Grouping: Place related components, such as decoupling capacitors near the microcontroller pins, to minimize trace lengths and enhance performance.
    - Edge Placement: Position connectors (e.g., USB, power, SWD) along the board edges to facilitate easy access and interfacing.
@@ -170,7 +170,7 @@ Importing and correctly placing component footprints from your schematic is esse
 
 1. Verify Footprint Orientation and Alignment
    - For each component, confirm that the footprint has been correctly imported and oriented as per the schematic.
-   
+
 2. Utilize 3D View for Visualization
    - Right-click on a footprint and select "View Footprint 3D" to visualize the component placement in three dimensions.
    - Best Practice: Regularly use the 3D view to identify potential placement issues and ensure components do not interfere with each other.
@@ -210,7 +210,7 @@ Routing involves connecting component pads with copper traces based on the netli
 
 1. Review Component Placement
    - Double-check that all components are placed logically and do not obstruct each other.
-   
+
 2. Layer Configuration
    - Ensure that the top layer is designated for signal routing and the bottom layer for the ground plane.
 

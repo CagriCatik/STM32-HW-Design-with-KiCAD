@@ -211,7 +211,7 @@ With your design now complete and all final steps addressed, you're ready to sub
 
 ---
 
-# Best Practices Summary
+## Best Practices Summary
 
 - Silkscreen Clarity: Use readable fonts and avoid overlapping with critical PCB features.
 - Regular DRC: Conduct Design Rule Checks frequently to identify and resolve issues early.

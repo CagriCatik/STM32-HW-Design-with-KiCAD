@@ -16,10 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Match your Node.js version from package.json
-
-      - name: Navigate to Docusaurus project
-        run: cd webpage
+          node-version: '18'
 
       - name: Install dependencies
         working-directory: ./webpage
@@ -34,3 +31,5 @@ jobs:
         with:
           github_token: ${{ secrets.Docusaurus_TOKEN }}
           publish_dir: ./webpage/build
+          clean: true
+          force_orphan: true

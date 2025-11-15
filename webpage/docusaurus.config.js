@@ -25,8 +25,8 @@ const config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
-          remarkPlugins: [require('remark-math')], // Add remark-math
-          rehypePlugins: [require('rehype-katex')], // Add rehype-katex
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
@@ -42,6 +42,19 @@ const config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+      },
+    ],
+  ],
+
+  // ADD THIS BLOCK
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: true,
+        language: ['en'],
       },
     ],
   ],

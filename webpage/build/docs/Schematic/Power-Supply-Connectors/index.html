@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Schematic/Power-Supply-Connectors" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.6.3">
+<title data-rh="true">Adding Serial Debug Connectors, Power Supply, and Finalizing | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Adding Serial Debug Connectors, Power Supply, and Finalizing | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="This section provides a comprehensive guide to enhancing your STM32-based PCB design in KiCad. It covers the addition of Serial Debug Connectors, the setup of a power supply using a linear regulator, the integration of a status LED, and the finalization of the schematic. The objective is to develop a simple, functional, and robust design that incorporates UART and I²C connections, proper decoupling, and clean power regulation."><meta data-rh="true" property="og:description" content="This section provides a comprehensive guide to enhancing your STM32-based PCB design in KiCad. It covers the addition of Serial Debug Connectors, the setup of a power supply using a linear regulator, the integration of a status LED, and the finalization of the schematic. The objective is to develop a simple, functional, and robust design that incorporates UART and I²C connections, proper decoupling, and clean power regulation."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.7aa4f678.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.bdf553f8.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.1e04f7b0.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">STM32 Hardware Design with KiCAD</b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/BOM-Gerber-Drill">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">STM32 Microcontroller PCB Design and Decoupling</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins">Boot Configuration, Reset Circuit, and Power Source Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE">STM32 CubeIDE for Pinout Configuration and Peripheral Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Crystal-Circuitry">Connecting the Crystal Oscillator in STM32 Microcontroller Circuits</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/USB">Connecting USB Circuitry to STM32</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors">Adding Serial Debug Connectors, Power Supply, and Finalizing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/ERC-Annotation">Sectioning, Annotating, and Finalizing the Schematic</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Footprint-Assignment">Assigning Footprints to Schematic Symbols</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Adding Serial Debug Connectors, Power Supply, and Finalizing</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Adding Serial Debug Connectors, Power Supply, and Finalizing</h1></header>
+<p>This section provides a comprehensive guide to enhancing your STM32-based PCB design in KiCad. It covers the addition of Serial Debug Connectors, the setup of a power supply using a linear regulator, the integration of a status LED, and the finalization of the schematic. The objective is to develop a simple, functional, and robust design that incorporates UART and I²C connections, proper decoupling, and clean power regulation.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-adding-serial-debug-swd-and-communication-headers">1. Adding Serial Debug (SWD) and Communication Headers<a href="#1-adding-serial-debug-swd-and-communication-headers" class="hash-link" aria-label="Direct link to 1. Adding Serial Debug (SWD) and Communication Headers" title="Direct link to 1. Adding Serial Debug (SWD) and Communication Headers">​</a></h2>
+<p>Serial Wire Debug (SWD) is a crucial feature for programming and debugging STM32 microcontrollers. Additionally, providing UART and I²C communication interfaces facilitates external communication with other devices. This section outlines the steps to add these headers effectively.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-adding-the-swd-header">Step 1: Adding the SWD Header<a href="#step-1-adding-the-swd-header" class="hash-link" aria-label="Direct link to Step 1: Adding the SWD Header" title="Direct link to Step 1: Adding the SWD Header">​</a></h3>
+<ol>
+<li>
+<p>Add the Connector Symbol</p>
+<ul>
+<li>Search and Select: In KiCad&#x27;s schematic editor, search for the connector library.</li>
+<li>Choose: Select a 1x4 male header (4-pin connector) suitable for SWD connections.</li>
+</ul>
+</li>
+<li>
+<p>Place and Align the Header</p>
+<ul>
+<li>Positioning: Place the header on the schematic, ensuring it aligns with the SWD signal lines.</li>
+<li>Pin Connections:<!-- -->
+<ul>
+<li>SWDIO (PA13): Connect to the microcontroller&#x27;s PA13 pin.</li>
+<li>SWCLK (PA14): Connect to PA14.</li>
+<li>VCC: Link to the 3.3V power rail.</li>
+<li>GND: Connect to the ground.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Label the Pins</p>
+<ul>
+<li>Net Labels: Assign clear net labels to each pin for easy identification:<!-- -->
+<ul>
+<li>SWDIO</li>
+<li>SWCLK</li>
+<li>VCC</li>
+<li>GND</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Documentation Note</p>
+<ul>
+<li>Usage: SWD connections facilitate debugging via an ST-Link or similar device.</li>
+<li>Tools: Compatible with STM32CubeProgrammer and OpenOCD for firmware flashing.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-adding-uart-and-ic-headers">Step 2: Adding UART and I²C Headers<a href="#step-2-adding-uart-and-ic-headers" class="hash-link" aria-label="Direct link to Step 2: Adding UART and I²C Headers" title="Direct link to Step 2: Adding UART and I²C Headers">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="adding-the-uart-header">Adding the UART Header<a href="#adding-the-uart-header" class="hash-link" aria-label="Direct link to Adding the UART Header" title="Direct link to Adding the UART Header">​</a></h4>
+<ol>
+<li>
+<p>Select the Connector</p>
+<ul>
+<li>Connector Type: Choose another 1x4 male header for UART connections.</li>
+</ul>
+</li>
+<li>
+<p>Establish Connections</p>
+<ul>
+<li>TX (Transmit): Connect to PA9.</li>
+<li>RX (Receive): Connect to PA10.</li>
+<li>VCC and GND: Provide power and ground connections to the header.</li>
+</ul>
+</li>
+<li>
+<p>Label the Pins</p>
+<ul>
+<li>Pin Labels: Clearly label each pin as:<!-- -->
+<ul>
+<li>TX</li>
+<li>RX</li>
+<li>VCC</li>
+<li>GND</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="adding-the-ic-header">Adding the I²C Header<a href="#adding-the-ic-header" class="hash-link" aria-label="Direct link to Adding the I²C Header" title="Direct link to Adding the I²C Header">​</a></h4>
+<ol>
+<li>
+<p>Select the Connector</p>
+<ul>
+<li>Connector Type: Use another 1x4 male header for I²C connections.</li>
+</ul>
+</li>
+<li>
+<p>Establish Connections</p>
+<ul>
+<li>SCL (Clock): Connect to PB6.</li>
+<li>SDA (Data): Connect to PB7.</li>
+<li>VCC and GND: Ensure power and ground connections are made.</li>
+</ul>
+</li>
+<li>
+<p>Add Pull-Up Resistors</p>
+<ul>
+<li>Purpose: I²C communication requires pull-up resistors to maintain proper signal levels.</li>
+<li>Resistor Value: Use 1.5kΩ resistors for simplicity (alternative standard is 2.2kΩ).</li>
+<li>Placement: Connect resistors between SCL/SDA and the 3.3V rail.</li>
+</ul>
+</li>
+<li>
+<p>Label the Pins</p>
+<ul>
+<li>Pin Labels: Assign clear labels:<!-- -->
+<ul>
+<li>SCL</li>
+<li>SDA</li>
+<li>VCC</li>
+<li>GND</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h3>
+<ul>
+<li>Consistent Labeling: Use consistent and clear labels for all headers to avoid confusion during debugging and testing.</li>
+<li>Spacing and Alignment: Ensure that headers are spaced adequately to prevent signal interference and to facilitate easy access on the PCB.</li>
+<li>Decoupling Considerations: Incorporate decoupling capacitors near communication headers to minimize noise and ensure signal integrity.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-adding-the-power-supply-linear-regulator">2. Adding the Power Supply (Linear Regulator)<a href="#2-adding-the-power-supply-linear-regulator" class="hash-link" aria-label="Direct link to 2. Adding the Power Supply (Linear Regulator)" title="Direct link to 2. Adding the Power Supply (Linear Regulator)">​</a></h2>
+<p>The STM32 microcontroller operates at 3.3V, whereas USB provides 5V (VBUS). To convert the 5V to 3.3V, a linear voltage regulator such as the AMS1117-3.3 is employed. This section details the addition of the regulator and necessary decoupling capacitors to ensure stable power delivery.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-add-the-ams1117-33-regulator">Step 1: Add the AMS1117-3.3 Regulator<a href="#step-1-add-the-ams1117-33-regulator" class="hash-link" aria-label="Direct link to Step 1: Add the AMS1117-3.3 Regulator" title="Direct link to Step 1: Add the AMS1117-3.3 Regulator">​</a></h3>
+<ol>
+<li>
+<p>Add the Regulator Symbol</p>
+<ul>
+<li>Search and Select: In KiCad, search for the AMS1117-3.3 symbol within the component library.</li>
+<li>Placement: Place the regulator on the schematic, ensuring it is easily accessible for connections.</li>
+</ul>
+</li>
+<li>
+<p>Connect the Pins</p>
+<ul>
+<li>Input (VIN): Connect to VBUS (the 5V USB power rail).</li>
+<li>Output (VOUT): Link to the 3.3V power rail that supplies the STM32.</li>
+<li>GND: Connect to the main ground.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-add-decoupling-capacitors">Step 2: Add Decoupling Capacitors<a href="#step-2-add-decoupling-capacitors" class="hash-link" aria-label="Direct link to Step 2: Add Decoupling Capacitors" title="Direct link to Step 2: Add Decoupling Capacitors">​</a></h3>
+<p>Decoupling capacitors are essential for stabilizing voltage levels and filtering out noise in the power supply.</p>
+<ol>
+<li>
+<p>Input Capacitor</p>
+<ul>
+<li>Component: 22µF capacitor.</li>
+<li>Connection: Place between VIN (input of AMS1117-3.3) and GND.</li>
+<li>Purpose: Smoothens incoming voltage and filters high-frequency noise.</li>
+</ul>
+</li>
+<li>
+<p>Output Capacitor</p>
+<ul>
+<li>Component: 22µF capacitor.</li>
+<li>Connection: Place between VOUT (output of AMS1117-3.3) and GND.</li>
+<li>Purpose: Ensures stable 3.3V output and mitigates voltage fluctuations.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="practical-example">Practical Example<a href="#practical-example" class="hash-link" aria-label="Direct link to Practical Example" title="Direct link to Practical Example">​</a></h3>
+<p>When designing the power supply section:</p>
+<ul>
+<li>Component Placement: Position the AMS1117-3.3 regulator close to the microcontroller to minimize voltage drop and noise.</li>
+<li>Trace Routing: Use short, wide traces for power connections to reduce resistance and inductance.</li>
+<li>Thermal Considerations: Ensure adequate copper area around the regulator for heat dissipation, especially if the current draw is significant.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices-1">Best Practices<a href="#best-practices-1" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h3>
+<ul>
+<li>Capacitor Quality: Use low Equivalent Series Resistance (ESR) capacitors for better performance.</li>
+<li>Voltage Ratings: Ensure capacitors are rated appropriately for the operating voltage (e.g., 6.3V or higher for 3.3V lines).</li>
+<li>Physical Layout: Place capacitors as close as possible to the regulator&#x27;s input and output pins to maximize their effectiveness.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-adding-a-status-led">3. Adding a Status LED<a href="#3-adding-a-status-led" class="hash-link" aria-label="Direct link to 3. Adding a Status LED" title="Direct link to 3. Adding a Status LED">​</a></h2>
+<p>A status LED serves as a visual indicator to confirm that the system is powered on. This simple addition enhances debugging and user interaction by providing immediate feedback on the system&#x27;s power state.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-add-the-led">Step 1: Add the LED<a href="#step-1-add-the-led" class="hash-link" aria-label="Direct link to Step 1: Add the LED" title="Direct link to Step 1: Add the LED">​</a></h3>
+<ol>
+<li>
+<p>Add the LED Symbol</p>
+<ul>
+<li>Search and Select: Locate the LED symbol in KiCad&#x27;s component library.</li>
+<li>Placement: Place the LED on the schematic, positioning it near the power supply for logical grouping.</li>
+</ul>
+</li>
+<li>
+<p>Connect the LED</p>
+<ul>
+<li>Anode Connection: Connect the anode of the LED to the 3.3V power rail.</li>
+<li>Cathode Connection: Connect the cathode to ground through a current-limiting resistor.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-add-a-current-limiting-resistor">Step 2: Add a Current-Limiting Resistor<a href="#step-2-add-a-current-limiting-resistor" class="hash-link" aria-label="Direct link to Step 2: Add a Current-Limiting Resistor" title="Direct link to Step 2: Add a Current-Limiting Resistor">​</a></h3>
+<ol>
+<li>
+<p>Add the Resistor Symbol</p>
+<ul>
+<li>Search and Select: Find the resistor symbol in the component library.</li>
+<li>Placement: Place the resistor in series with the LED&#x27;s cathode.</li>
+</ul>
+</li>
+<li>
+<p>Determine Resistor Value</p>
+<ul>
+<li>Value: Use a 1.5kΩ resistor (labeled as 1K5).</li>
+<li>Current Calculation:<!-- -->
+<ul>
+<li>LED Forward Voltage (Vf): Typically 1.8V for a red LED.</li>
+<li>Supply Voltage (Vcc): 3.3V.</li>
+<li>Voltage Across Resistor: 3.3V - 1.8V = 1.5V.</li>
+<li>Current (I): I = V/R = 1.5V / 1.5kΩ = 1mA (suitable for indicator purposes).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Connection</p>
+<ul>
+<li>Series Placement: Ensure the resistor is directly in series with the LED&#x27;s cathode to limit current effectively.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="led-voltage-and-current-considerations">LED Voltage and Current Considerations<a href="#led-voltage-and-current-considerations" class="hash-link" aria-label="Direct link to LED Voltage and Current Considerations" title="Direct link to LED Voltage and Current Considerations">​</a></h3>
+<ul>
+<li>Forward Voltage (Vf): A standard red LED has a forward voltage drop of approximately 1.8V.</li>
+<li>Current Limiting: A 1.5kΩ resistor restricts the current to around 1mA, which is sufficient for visible indication while minimizing power consumption.</li>
+<li>Alternative Values: Depending on the desired brightness, resistor values can range between 1kΩ to 2kΩ.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices-2">Best Practices<a href="#best-practices-2" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h3>
+<ul>
+<li>Resistor Precision: Use resistors with appropriate tolerance (e.g., ±1%) to ensure consistent LED brightness.</li>
+<li>LED Orientation: Verify the correct orientation of the LED to prevent reverse biasing, which can damage the component.</li>
+<li>Component Selection: Choose LEDs with suitable brightness and color for your application needs.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-finalizing-the-schematic">4. Finalizing the Schematic<a href="#4-finalizing-the-schematic" class="hash-link" aria-label="Direct link to 4. Finalizing the Schematic" title="Direct link to 4. Finalizing the Schematic">​</a></h2>
+<p>With the core components in place, the finalization process involves organizing the schematic, documenting key aspects, and ensuring design integrity through checks.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-group-components-and-add-notes">Step 1: Group Components and Add Notes<a href="#step-1-group-components-and-add-notes" class="hash-link" aria-label="Direct link to Step 1: Group Components and Add Notes" title="Direct link to Step 1: Group Components and Add Notes">​</a></h3>
+<ol>
+<li>
+<p>Component Grouping</p>
+<ul>
+<li>Logical Sections: Organize related components into distinct sections:<!-- -->
+<ul>
+<li>Power Supply: Includes the AMS1117-3.3 regulator and decoupling capacitors.</li>
+<li>SWD Debug: Comprises the SWD header and associated connections.</li>
+<li>UART: Contains the UART header and related signal lines.</li>
+<li>I²C: Encompasses the I²C header and pull-up resistors.</li>
+<li>Status LED: Consists of the LED and its current-limiting resistor.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Bounding Boxes</p>
+<ul>
+<li>Visual Organization: Use bounding boxes to encapsulate each section, enhancing readability and navigation.</li>
+<li>Labeling: Clearly label each bounding box (e.g., Power Supply, SWD Debug, UART, I²C, Status LED).</li>
+</ul>
+</li>
+<li>
+<p>Adding Notes</p>
+<ul>
+<li>Documentation: Insert notes to explain critical design decisions, such as:<!-- -->
+<ul>
+<li>Pull-Up Resistor Values: Justify the choice of 1.5kΩ for I²C pull-ups.</li>
+<li>LED Purpose: Describe the role of the status LED in indicating power status.</li>
+<li>Component Selection: Provide reasoning for selecting the AMS1117-3.3 regulator.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-add-no-connect-dnc-flags">Step 2: Add No-Connect (DNC) Flags<a href="#step-2-add-no-connect-dnc-flags" class="hash-link" aria-label="Direct link to Step 2: Add No-Connect (DNC) Flags" title="Direct link to Step 2: Add No-Connect (DNC) Flags">​</a></h3>
+<ol>
+<li>
+<p>Identify Unused Pins</p>
+<ul>
+<li>Unused STM32 Pins: Review the microcontroller&#x27;s pinout to identify pins that are not utilized in the current design.</li>
+</ul>
+</li>
+<li>
+<p>Place DNC Flags</p>
+<ul>
+<li>Tool Selection: Use KiCad&#x27;s DNC flag tool.</li>
+<li>Placement: Assign a DNC flag to each unused pin to signify that they are intentionally left unconnected.</li>
+</ul>
+</li>
+<li>
+<p>Benefits</p>
+<ul>
+<li>Error Prevention: Prevent unintentional connections that could lead to design errors.</li>
+<li>Electrical Rule Check (ERC) Compliance: Reduce ERC warnings related to floating or unconnected pins.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-run-electrical-rule-check-erc">Step 3: Run Electrical Rule Check (ERC)<a href="#step-3-run-electrical-rule-check-erc" class="hash-link" aria-label="Direct link to Step 3: Run Electrical Rule Check (ERC)" title="Direct link to Step 3: Run Electrical Rule Check (ERC)">​</a></h3>
+<ol>
+<li>
+<p>Initiate ERC</p>
+<ul>
+<li>Process: Execute the Electrical Rule Check within KiCad to identify potential issues in the schematic.</li>
+</ul>
+</li>
+<li>
+<p>Review ERC Results</p>
+<ul>
+<li>Error Identification: Look for errors such as:<!-- -->
+<ul>
+<li>Missing Connections: Ensure all power and ground connections are complete.</li>
+<li>Signal Integrity: Verify that all signal lines are properly connected and terminated.</li>
+<li>Component Values: Check for missing or incorrect component values.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Resolve Errors</p>
+<ul>
+<li>Action Steps: Address each flagged issue by:<!-- -->
+<ul>
+<li>Connecting Missing Nets: Ensure all intended connections are made.</li>
+<li>Correcting Labels: Verify that all net labels are correctly assigned.</li>
+<li>Adjusting Component Values: Modify component values as necessary to meet design requirements.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices-3">Best Practices<a href="#best-practices-3" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices">​</a></h3>
+<ul>
+<li>Incremental Checking: Run ERC frequently during the schematic development to catch and resolve issues early.</li>
+<li>Clear Documentation: Maintain comprehensive notes and labels to facilitate easier debugging and future revisions.</li>
+<li>Consistent Naming Conventions: Adopt consistent naming conventions for nets and components to enhance clarity and maintainability.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="5-conclusion">5. Conclusion<a href="#5-conclusion" class="hash-link" aria-label="Direct link to 5. Conclusion" title="Direct link to 5. Conclusion">​</a></h2>
+<p>By meticulously following the steps outlined in this documentation, you have successfully developed a complete and robust STM32-based schematic in KiCad. The design encompasses the following key components:</p>
+<ul>
+<li>Serial Debug (SWD): Facilitates programming and debugging through a dedicated header.</li>
+<li>UART and I²C Headers: Enable serial communication with external devices, complete with necessary pull-up resistors for I²C.</li>
+<li>Power Supply: Implements a linear regulator (AMS1117-3.3) to convert 5V from USB to a stable 3.3V for the microcontroller, supported by decoupling capacitors for voltage stability.</li>
+<li>Status LED: Provides a visual indicator for power status, enhancing debugging and user feedback.</li>
+<li>Properly Decoupled Power Lines: Ensures clean power regulation and minimizes noise through strategically placed capacitors.</li>
+</ul>
+<p>This schematic serves as a solid foundation for your STM32 project, balancing simplicity with essential functionality. The next phase involves transitioning to the PCB layout and routing stage, where you will:</p>
+<ul>
+<li>Component Placement: Strategically position components on the PCB to optimize space and signal flow.</li>
+<li>Trace Routing: Route connections while adhering to best practices for signal integrity, including considerations for differential pair routing (e.g., USB), power distribution, and minimizing interference.</li>
+<li>Design Rule Checks (DRC): Perform thorough checks to ensure the PCB layout meets all design specifications and manufacturing requirements.</li>
+</ul>
+<p>By adhering to these practices, you will create a reliable and efficient PCB design that meets the demands of your STM32-based application.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/02_Schematic/06_Power-Supply-Connectors.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/USB"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Connecting USB Circuitry to STM32</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/ERC-Annotation"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Sectioning, Annotating, and Finalizing the Schematic</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-adding-serial-debug-swd-and-communication-headers" class="table-of-contents__link toc-highlight">1. Adding Serial Debug (SWD) and Communication Headers</a><ul><li><a href="#step-1-adding-the-swd-header" class="table-of-contents__link toc-highlight">Step 1: Adding the SWD Header</a></li><li><a href="#step-2-adding-uart-and-ic-headers" class="table-of-contents__link toc-highlight">Step 2: Adding UART and I²C Headers</a></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a></li></ul></li><li><a href="#2-adding-the-power-supply-linear-regulator" class="table-of-contents__link toc-highlight">2. Adding the Power Supply (Linear Regulator)</a><ul><li><a href="#step-1-add-the-ams1117-33-regulator" class="table-of-contents__link toc-highlight">Step 1: Add the AMS1117-3.3 Regulator</a></li><li><a href="#step-2-add-decoupling-capacitors" class="table-of-contents__link toc-highlight">Step 2: Add Decoupling Capacitors</a></li><li><a href="#practical-example" class="table-of-contents__link toc-highlight">Practical Example</a></li><li><a href="#best-practices-1" class="table-of-contents__link toc-highlight">Best Practices</a></li></ul></li><li><a href="#3-adding-a-status-led" class="table-of-contents__link toc-highlight">3. Adding a Status LED</a><ul><li><a href="#step-1-add-the-led" class="table-of-contents__link toc-highlight">Step 1: Add the LED</a></li><li><a href="#step-2-add-a-current-limiting-resistor" class="table-of-contents__link toc-highlight">Step 2: Add a Current-Limiting Resistor</a></li><li><a href="#led-voltage-and-current-considerations" class="table-of-contents__link toc-highlight">LED Voltage and Current Considerations</a></li><li><a href="#best-practices-2" class="table-of-contents__link toc-highlight">Best Practices</a></li></ul></li><li><a href="#4-finalizing-the-schematic" class="table-of-contents__link toc-highlight">4. Finalizing the Schematic</a><ul><li><a href="#step-1-group-components-and-add-notes" class="table-of-contents__link toc-highlight">Step 1: Group Components and Add Notes</a></li><li><a href="#step-2-add-no-connect-dnc-flags" class="table-of-contents__link toc-highlight">Step 2: Add No-Connect (DNC) Flags</a></li><li><a href="#step-3-run-electrical-rule-check-erc" class="table-of-contents__link toc-highlight">Step 3: Run Electrical Rule Check (ERC)</a></li><li><a href="#best-practices-3" class="table-of-contents__link toc-highlight">Best Practices</a></li></ul></li><li><a href="#5-conclusion" class="table-of-contents__link toc-highlight">5. Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-PCB_Routing/Power-Routing" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.6.3">
+<title data-rh="true">Finalizing Power and Ground Routing on a Two-Layer PCB | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Finalizing Power and Ground Routing on a Two-Layer PCB | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="In this section, we delve into the critical aspects of finalizing power and ground routing for a two-layer PCB design using KiCad. Properly managing power and ground is essential for ensuring robust electrical performance, minimizing noise, and preventing issues such as ground loops. This guide provides clear explanations, practical examples, and best practices to help you achieve an optimized layout. We will cover the management of vias and copper fills to efficiently route the 3.3V and ground connections across the board."><meta data-rh="true" property="og:description" content="In this section, we delve into the critical aspects of finalizing power and ground routing for a two-layer PCB design using KiCad. Properly managing power and ground is essential for ensuring robust electrical performance, minimizing noise, and preventing issues such as ground loops. This guide provides clear explanations, practical examples, and best practices to help you achieve an optimized layout. We will cover the management of vias and copper fills to efficiently route the 3.3V and ground connections across the board."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.7aa4f678.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.bdf553f8.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.1e04f7b0.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">STM32 Hardware Design with KiCAD</b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/BOM-Gerber-Drill">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Ground and Power Routing, Decoupling Capacitors, and Critical Connections</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Signal-Routing">Routing USB Differential Pair and Fine-Tuning Signal Layout</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing">Finalizing Power and Ground Routing on a Two-Layer PCB</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Finishing-Touches-DRC">Silkscreen, Logos, and Design Rule Checks in KiCad</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Finalizing Power and Ground Routing on a Two-Layer PCB</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Finalizing Power and Ground Routing on a Two-Layer PCB</h1></header>
+<p>In this section, we delve into the critical aspects of finalizing power and ground routing for a two-layer PCB design using KiCad. Properly managing power and ground is essential for ensuring robust electrical performance, minimizing noise, and preventing issues such as ground loops. This guide provides clear explanations, practical examples, and best practices to help you achieve an optimized layout. We will cover the management of vias and copper fills to efficiently route the 3.3V and ground connections across the board.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-ground-connections-efficient-routing-with-ground-plane-and-vias">1. Ground Connections: Efficient Routing with Ground Plane and Vias<a href="#1-ground-connections-efficient-routing-with-ground-plane-and-vias" class="hash-link" aria-label="Direct link to 1. Ground Connections: Efficient Routing with Ground Plane and Vias" title="Direct link to 1. Ground Connections: Efficient Routing with Ground Plane and Vias">​</a></h2>
+<p>Establishing a solid ground network is foundational for any PCB design. Utilizing a ground plane combined with strategic via placement ensures low-impedance paths, minimizes noise, and simplifies the grounding of top-layer components.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-using-the-ground-plane-on-the-bottom-layer">Step 1: Using the Ground Plane on the Bottom Layer<a href="#step-1-using-the-ground-plane-on-the-bottom-layer" class="hash-link" aria-label="Direct link to Step 1: Using the Ground Plane on the Bottom Layer" title="Direct link to Step 1: Using the Ground Plane on the Bottom Layer">​</a></h3>
+<p>Leveraging a dedicated ground plane on the bottom layer simplifies grounding for top-layer components. Follow these steps to effectively utilize the ground plane:</p>
+<ol>
+<li>
+<p>Identifying Ground Pads</p>
+<ul>
+<li>Locate Ground Pads: Identify all ground pads on the top layer, including those for decoupling capacitors, integrated circuits (ICs), and connectors.</li>
+<li>Component Grounding: Ensure that each component requiring a ground connection is clearly marked and accessible for routing.</li>
+</ul>
+</li>
+<li>
+<p>Via Placement for Grounding</p>
+<ul>
+<li>Proximity to Ground Pads: Place vias near each ground pad, maintaining a distance of approximately 0.5mm from the pad edge to facilitate easy soldering and prevent bridging.</li>
+<li>Via Size Selection:<!-- -->
+<ul>
+<li>Standard Ground Connections: Use 0.4mm diameter vias for typical ground connections.</li>
+<li>High-Current Components: For components that draw higher currents, such as voltage regulators or power modules, opt for larger vias (e.g., 0.5mm diameter) to handle increased current without excessive heating.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Routing the Ground Trace</p>
+<ul>
+<li>Short Trace Segments: From each ground pad, route a short 0.5mm trace to the nearest via. This minimizes the trace length and reduces inductance.</li>
+<li>Single Via per Component: Avoid placing multiple ground vias in close proximity for the same component. This practice prevents ground loops and reduces complexity in the ground network.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-pre-planning-ground-via-placement">Step 2: Pre-Planning Ground Via Placement<a href="#step-2-pre-planning-ground-via-placement" class="hash-link" aria-label="Direct link to Step 2: Pre-Planning Ground Via Placement" title="Direct link to Step 2: Pre-Planning Ground Via Placement">​</a></h3>
+<p>Strategic planning of via placement enhances ground connectivity and prevents potential issues such as ground loops or excessive via usage.</p>
+<ol>
+<li>
+<p>Grouping Ground Connections</p>
+<ul>
+<li>Local Ground Loops: For components like decoupling capacitors associated with a microcontroller, route their ground pads to a single via. This approach maintains a localized ground loop, reducing the risk of noise coupling.</li>
+<li>Example: When multiple decoupling capacitors are placed around a microcontroller, connect all their ground pads to one via near the microcontroller&#x27;s ground pin.</li>
+</ul>
+</li>
+<li>
+<p>Component-Specific Via Planning</p>
+<ul>
+<li>Critical Components: Pre-plan via locations for essential components like USB connectors, voltage regulators, and power filtering capacitors. This ensures consistent connectivity and prevents unnecessary interruptions in the ground plane.</li>
+<li>Avoiding Ground Plane Cuts: Proper via placement minimizes the need to cut the ground plane, maintaining its integrity and effectiveness in shielding and noise reduction.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-checking-the-ground-plane-in-the-3d-viewer">Step 3: Checking the Ground Plane in the 3D Viewer<a href="#step-3-checking-the-ground-plane-in-the-3d-viewer" class="hash-link" aria-label="Direct link to Step 3: Checking the Ground Plane in the 3D Viewer" title="Direct link to Step 3: Checking the Ground Plane in the 3D Viewer">​</a></h3>
+<p>Verification is crucial to ensure that the ground plane is correctly implemented and free from defects.</p>
+<ol>
+<li>
+<p>Ground Plane Connectivity</p>
+<ul>
+<li>3D Viewer Inspection: Utilize KiCad’s 3D viewer (<code>ALT + 3</code>) to visually inspect the ground plane connections.</li>
+<li>Verify Via Connections: Ensure that each ground via connects seamlessly to the bottom ground plane without gaps or disconnections that could form ground islands.</li>
+</ul>
+</li>
+<li>
+<p>Thermal Relief Patterns</p>
+<ul>
+<li>Ease of Soldering: Confirm that all ground vias incorporate thermal relief patterns. These patterns facilitate soldering by reducing heat dissipation from the pad to the ground plane, preventing cold joints.</li>
+<li>Visual Confirmation: In the 3D viewer, check that thermal reliefs appear as spokes or links connecting the via to the ground plane, rather than solid fills.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-power-routing-33v-and-vbus-connections">2. Power Routing: 3.3V and VBUS Connections<a href="#2-power-routing-33v-and-vbus-connections" class="hash-link" aria-label="Direct link to 2. Power Routing: 3.3V and VBUS Connections" title="Direct link to 2. Power Routing: 3.3V and VBUS Connections">​</a></h2>
+<p>Efficient power routing is essential for reliable operation of the PCB. This section outlines strategies for distributing 3.3V and VBUS power using large copper fills and optimized trace routing.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-large-copper-fills-power-puddles-for-33v-and-vbus">Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS<a href="#step-1-large-copper-fills-power-puddles-for-33v-and-vbus" class="hash-link" aria-label="Direct link to Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS" title="Direct link to Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS">​</a></h3>
+<p>Utilizing large copper areas, referred to as power puddles, ensures robust power distribution with low impedance paths, essential for stable voltage supply to all components.</p>
+<ol>
+<li>
+<p>3.3V Power Distribution</p>
+<ul>
+<li>Starting Point: Begin from the voltage regulator’s output.</li>
+<li>Wide Traces: Route wide traces (e.g., 0.5mm or larger) to critical components like the microcontroller and other ICs to handle the current demand without significant voltage drops.</li>
+<li>Adding Power Puddles:<!-- -->
+<ul>
+<li>Tool Usage: Use the Add Filled Zone tool in KiCad to create a 3.3V power puddle near components requiring stable power.</li>
+<li>Low Impedance Paths: These puddles provide low impedance connections, ensuring consistent voltage levels across the board.</li>
+</ul>
+</li>
+<li>Clearance Considerations: Maintain sufficient clearance between power puddles and other signal lines or ground planes to prevent short circuits and minimize noise coupling.</li>
+</ul>
+</li>
+<li>
+<p>VBUS Power Routing</p>
+<ul>
+<li>USB Connector Integration: The VBUS line from the USB connector must be routed to the input pin of the voltage regulator.</li>
+<li>Trace Width: Use 0.5mm to 0.8mm wide traces for the VBUS line to accommodate the required current without excessive heating or voltage drops.</li>
+<li>Power Puddle Creation:<!-- -->
+<ul>
+<li>Consistent Connectivity: Similar to the 3.3V distribution, create a VBUS power puddle to ensure stable and low-impedance connections from the USB connector to the voltage regulator.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-minimizing-trace-jumps-with-vias">Step 2: Minimizing Trace Jumps with Vias<a href="#step-2-minimizing-trace-jumps-with-vias" class="hash-link" aria-label="Direct link to Step 2: Minimizing Trace Jumps with Vias" title="Direct link to Step 2: Minimizing Trace Jumps with Vias">​</a></h3>
+<p>Reducing the number of via transitions between layers enhances signal integrity and power distribution efficiency.</p>
+<ol>
+<li>
+<p>Selective Via Usage</p>
+<ul>
+<li>Necessity-Based Vias: Employ vias only when crossing signal paths or when a trace must transition between layers. This minimizes potential interference and maintains the integrity of the ground and power planes.</li>
+<li>Example: Use vias to route power around densely packed signal traces, rather than indiscriminately adding vias throughout the power network.</li>
+</ul>
+</li>
+<li>
+<p>Short Via Paths</p>
+<ul>
+<li>Impedance Control: Keep via transitions short to avoid cutting through large sections of the ground plane or power puddles, which can introduce impedance discontinuities or signal noise.</li>
+<li>Path Optimization: Design via paths to follow the most direct route between layers, minimizing the length and number of vias required.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-completing-the-power-layout">Step 3: Completing the Power Layout<a href="#step-3-completing-the-power-layout" class="hash-link" aria-label="Direct link to Step 3: Completing the Power Layout" title="Direct link to Step 3: Completing the Power Layout">​</a></h3>
+<p>Finalizing the power layout ensures that all components receive adequate power with minimal interference.</p>
+<ol>
+<li>
+<p>Routing the 3.3V Power Traces</p>
+<ul>
+<li>Starting Point: Begin routing from the regulator’s output capacitor.</li>
+<li>Branching Out: Distribute power to necessary components using 0.5mm or larger traces to handle the current requirements effectively.</li>
+<li>Example: From the voltage regulator, a wide trace can branch to the microcontroller, while another branch powers peripheral ICs.</li>
+</ul>
+</li>
+<li>
+<p>Using Power Puddles for Connectivity</p>
+<ul>
+<li>Consistent Power Distribution: Similar to the ground plane, employ copper fills for both 3.3V and VBUS. These power puddles ensure robust connectivity and reduce the need for excessive trace routing.</li>
+<li>Placement Strategy: Position power puddles strategically near clusters of components to facilitate easy and direct power connections.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-final-touches-ensuring-good-layout-practices">3. Final Touches: Ensuring Good Layout Practices<a href="#3-final-touches-ensuring-good-layout-practices" class="hash-link" aria-label="Direct link to 3. Final Touches: Ensuring Good Layout Practices" title="Direct link to 3. Final Touches: Ensuring Good Layout Practices">​</a></h2>
+<p>Attention to detail in the final layout stages can prevent potential issues and enhance the overall performance and manufacturability of the PCB.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-keeping-clearance-between-power-ground-and-signals">Step 1: Keeping Clearance Between Power, Ground, and Signals<a href="#step-1-keeping-clearance-between-power-ground-and-signals" class="hash-link" aria-label="Direct link to Step 1: Keeping Clearance Between Power, Ground, and Signals" title="Direct link to Step 1: Keeping Clearance Between Power, Ground, and Signals">​</a></h3>
+<p>Maintaining appropriate spacing between different electrical domains is crucial for preventing interference and ensuring signal integrity.</p>
+<ol>
+<li>
+<p>Spacing Guidelines</p>
+<ul>
+<li>Typical Clearance: A clearance of 0.3mm is generally sufficient for low-speed designs to prevent unintended electrical connections and reduce noise coupling.</li>
+<li>Adjustments for High-Speed Designs: For higher-speed or sensitive signal environments, consider increasing clearance to further minimize potential interference.</li>
+</ul>
+</li>
+<li>
+<p>Reviewing Via Placement</p>
+<ul>
+<li>Logical Positioning: Ensure that vias are placed in logical locations, providing easy access for routing without crowding adjacent traces or components.</li>
+<li>Clearance from Other Elements: Verify that vias maintain adequate distance from other signal traces and component pads to prevent accidental shorts or soldering issues.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-fine-tuning-the-layout">Step 2: Fine-Tuning the Layout<a href="#step-2-fine-tuning-the-layout" class="hash-link" aria-label="Direct link to Step 2: Fine-Tuning the Layout" title="Direct link to Step 2: Fine-Tuning the Layout">​</a></h3>
+<p>Fine-tuning involves meticulous adjustments to optimize trace routing and ensure compliance with design standards.</p>
+<ol>
+<li>
+<p>Managing Trace Crossings</p>
+<ul>
+<li>Appropriate Via Usage: When trace crossings are unavoidable, use vias judiciously to transition between layers. Ensure that these vias are placed where they minimally impact the surrounding ground and power planes.</li>
+<li>Minimizing Ground Plane Disruptions: Avoid placing vias in ways that disrupt the continuity of the ground plane or power puddles, as this can lead to impedance mismatches and signal integrity issues.</li>
+</ul>
+</li>
+<li>
+<p>Verifying Critical Signal Traces</p>
+<ul>
+<li>High-Priority Signals: Pay special attention to routing critical signals such as USB differential pairs and clock signals. Ensure they are well-spaced from noisy power lines and have controlled impedance if necessary.</li>
+<li>Shielding Sensitive Signals: Consider shielding sensitive traces with ground traces or maintaining a consistent ground reference to enhance signal integrity.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-3-final-drc-and-3d-view">Step 3: Final DRC and 3D View<a href="#step-3-final-drc-and-3d-view" class="hash-link" aria-label="Direct link to Step 3: Final DRC and 3D View" title="Direct link to Step 3: Final DRC and 3D View">​</a></h3>
+<p>Final checks are essential to ensure the PCB design meets all specified requirements and is free from errors.</p>
+<ol>
+<li>
+<p>Design Rule Check (DRC)</p>
+<ul>
+<li>Running DRC: Utilize KiCad’s Design Rule Check (DRC) to identify and rectify any clearance issues, unconnected nets, or other potential design violations.</li>
+<li>Addressing DRC Errors: Carefully review and correct any errors or warnings reported by the DRC to ensure a manufacturable and reliable PCB design.</li>
+</ul>
+</li>
+<li>
+<p>3D Viewer Inspection</p>
+<ul>
+<li>Visual Inspection: Use the 3D Viewer to visually inspect the PCB layout for any anomalies such as overlapping components, misaligned silkscreens, or obstructive vias.</li>
+<li>Component Placement Verification: Confirm that all components are correctly placed, with silkscreen markings clear of pads and mounting holes unobstructed.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-wrapping-up-preparing-for-manufacturing">4. Wrapping Up: Preparing for Manufacturing<a href="#4-wrapping-up-preparing-for-manufacturing" class="hash-link" aria-label="Direct link to 4. Wrapping Up: Preparing for Manufacturing" title="Direct link to 4. Wrapping Up: Preparing for Manufacturing">​</a></h2>
+<p>With the power and ground routing finalized, the design is now ready for the final preparation steps before manufacturing.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-1-finalize-the-silkscreen">Step 1: Finalize the Silkscreen<a href="#step-1-finalize-the-silkscreen" class="hash-link" aria-label="Direct link to Step 1: Finalize the Silkscreen" title="Direct link to Step 1: Finalize the Silkscreen">​</a></h3>
+<p>The silkscreen layer provides essential information for assembly and testing.</p>
+<ol>
+<li>
+<p>Adding Labels and Markings</p>
+<ul>
+<li>Connector Labels: Clearly label all connectors (e.g., USB, power) to guide assembly and usage.</li>
+<li>Test Points: Mark test points for critical signals and power lines to facilitate debugging and testing.</li>
+<li>Component Identifiers: Ensure all components are labeled accurately to assist in the assembly process.</li>
+</ul>
+</li>
+<li>
+<p>Ensuring Clarity and Readability</p>
+<ul>
+<li>Font Size and Style: Use legible fonts with adequate size to ensure that markings are easily readable.</li>
+<li>Avoiding Overlaps: Verify that silkscreen elements do not overlap with pads, vias, or other critical areas to prevent manufacturing issues.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-2-generate-gerber-files">Step 2: Generate Gerber Files<a href="#step-2-generate-gerber-files" class="hash-link" aria-label="Direct link to Step 2: Generate Gerber Files" title="Direct link to Step 2: Generate Gerber Files">​</a></h3>
+<p>Gerber files are the standard format for PCB manufacturing, containing all the necessary information for fabrication.</p>
+<ol>
+<li>
+<p>Using KiCad’s Gerber Export Tool</p>
+<ul>
+<li>Export All Layers: Ensure that all relevant layers are exported, including:<!-- -->
+<ul>
+<li>Top and Bottom Copper Layers</li>
+<li>Silkscreen Layers</li>
+<li>Solder Mask Layers</li>
+<li>Mechanical Layers (if applicable)</li>
+</ul>
+</li>
+<li>DRC Compliance: Confirm that the design is free from DRC errors before exporting to avoid manufacturing delays.</li>
+</ul>
+</li>
+<li>
+<p>Double-Checking with a Gerber Viewer</p>
+<ul>
+<li>Gerber File Verification: Use a Gerber viewer to inspect each exported file, ensuring that all elements are correctly represented and aligned.</li>
+<li>Final Validation: Check for any discrepancies or omissions that could impact the manufacturing process, such as missing layers or incorrect dimensions.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-power-and-ground-optimization-for-two-layer-pcb">Conclusion: Power and Ground Optimization for Two-Layer PCB<a href="#conclusion-power-and-ground-optimization-for-two-layer-pcb" class="hash-link" aria-label="Direct link to Conclusion: Power and Ground Optimization for Two-Layer PCB" title="Direct link to Conclusion: Power and Ground Optimization for Two-Layer PCB">​</a></h2>
+<p>By meticulously utilizing the bottom layer as a ground plane and employing large copper fills for 3.3V and VBUS power distribution on the top layer, we have achieved a design that prioritizes electrical performance and manufacturability. The strategic use of power puddles, careful via placement, and minimized trace jumps collectively contribute to a design that is both robust and efficient.</p>
+<p>The final routing steps, coupled with rigorous verification through DRC checks and 3D inspections, ensure that the PCB layout is ready for manufacturing. The next steps involve performing a final DRC check, reviewing the overall layout for any last-minute adjustments, and generating the necessary Gerber files for fabrication. Following these best practices in power and ground routing lays a solid foundation for a reliable and high-performing PCB design.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="best-practices-summary">Best Practices Summary<a href="#best-practices-summary" class="hash-link" aria-label="Direct link to Best Practices Summary" title="Direct link to Best Practices Summary">​</a></h2>
+<ul>
+<li>Use Dedicated Ground Plane: Employ a solid ground plane on one layer to simplify grounding and reduce noise.</li>
+<li>Strategic Via Placement: Place vias close to ground pads but with sufficient spacing to avoid soldering issues and ground loops.</li>
+<li>Wide Power Traces and Puddles: Utilize wide traces and large copper fills for power distribution to ensure low impedance and reliable power delivery.</li>
+<li>Minimize Via Usage: Limit the number of vias to essential transitions to maintain signal integrity and reduce complexity.</li>
+<li>Clearance Maintenance: Maintain appropriate clearances between power, ground, and signal traces to prevent shorts and minimize interference.</li>
+<li>Thorough Verification: Use DRC and 3D viewer tools to validate the design and catch potential issues before manufacturing.</li>
+</ul>
+<p>Implementing these practices will enhance the quality and reliability of your PCB design, ensuring that power and ground routing contribute positively to the overall performance of the final product.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="additional-resources">Additional Resources<a href="#additional-resources" class="hash-link" aria-label="Direct link to Additional Resources" title="Direct link to Additional Resources">​</a></h2>
+<ul>
+<li>KiCad Official Documentation: <a href="https://kicad.org/documentation/" target="_blank" rel="noopener noreferrer">KiCad EDA</a></li>
+<li>PCB Design Guidelines: <a href="https://www.eeweb.com/category/pcb-design/" target="_blank" rel="noopener noreferrer">EEWeb PCB Design Articles</a></li>
+<li>Grounding Techniques: <a href="https://www.allaboutcircuits.com/technical-articles/grounding-principles-in-pcb-design/" target="_blank" rel="noopener noreferrer">Grounding in PCB Design</a></li>
+<li>Signal Integrity: <a href="https://www.eetimes.com/understanding-signal-integrity-basics/" target="_blank" rel="noopener noreferrer">Understanding Signal Integrity</a></li>
+</ul>
+<p>These resources provide further insights and detailed information to enhance your PCB design skills and knowledge.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="appendix-practical-example">Appendix: Practical Example<a href="#appendix-practical-example" class="hash-link" aria-label="Direct link to Appendix: Practical Example" title="Direct link to Appendix: Practical Example">​</a></h2>
+<p>To illustrate the concepts discussed, consider the following practical example of routing ground and power on a two-layer PCB.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-scenario">Example Scenario<a href="#example-scenario" class="hash-link" aria-label="Direct link to Example Scenario" title="Direct link to Example Scenario">​</a></h3>
+<p>You are designing a two-layer PCB for a microcontroller-based project that includes USB connectivity and several peripheral components requiring 3.3V power.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="steps-applied">Steps Applied<a href="#steps-applied" class="hash-link" aria-label="Direct link to Steps Applied" title="Direct link to Steps Applied">​</a></h3>
+<ol>
+<li>
+<p>Ground Plane Setup</p>
+<ul>
+<li>Assign the bottom layer as a solid ground plane.</li>
+<li>Identify all ground pads on the top layer, including those for the microcontroller, USB connector, and decoupling capacitors.</li>
+</ul>
+</li>
+<li>
+<p>Via Placement</p>
+<ul>
+<li>Place 0.4mm vias near each ground pad, maintaining a 0.5mm distance from the pad edges.</li>
+<li>For the voltage regulator, use 0.5mm vias to handle higher currents.</li>
+</ul>
+</li>
+<li>
+<p>Ground Trace Routing</p>
+<ul>
+<li>Route short 0.5mm traces from each ground pad to their respective vias.</li>
+<li>Group decoupling capacitors around the microcontroller and connect them to a single via to maintain a localized ground loop.</li>
+</ul>
+</li>
+<li>
+<p>Power Distribution</p>
+<ul>
+<li>From the voltage regulator’s output, route 0.5mm wide traces to the microcontroller and other ICs.</li>
+<li>Create a 3.3V power puddle near the microcontroller using the Add Filled Zone tool.</li>
+<li>Route the VBUS from the USB connector using a 0.8mm wide trace to the input of the voltage regulator.</li>
+</ul>
+</li>
+<li>
+<p>Final Layout Verification</p>
+<ul>
+<li>Run a DRC to ensure all clearances are met and there are no unconnected nets.</li>
+<li>Use the 3D viewer to inspect the placement of vias, power puddles, and ensure no ground plane gaps exist.</li>
+</ul>
+</li>
+<li>
+<p>Preparation for Manufacturing</p>
+<ul>
+<li>Finalize the silkscreen with clear labels for the USB connector and test points.</li>
+<li>Generate and verify the Gerber files using a Gerber viewer.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="outcome">Outcome<a href="#outcome" class="hash-link" aria-label="Direct link to Outcome" title="Direct link to Outcome">​</a></h3>
+<p>By following these steps, the resulting PCB design features a robust ground plane, efficient power distribution, minimal via usage, and clear silkscreen markings, ensuring both high electrical performance and ease of manufacturing.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="troubleshooting-tips">Troubleshooting Tips<a href="#troubleshooting-tips" class="hash-link" aria-label="Direct link to Troubleshooting Tips" title="Direct link to Troubleshooting Tips">​</a></h2>
+<ul>
+<li>
+<p>Ground Loops Detection</p>
+<ul>
+<li>Symptom: Unexpected noise or interference in the circuit.</li>
+<li>Solution: Review via placement and ensure that each ground connection does not create multiple paths that can form loops. Consolidate ground vias where possible.</li>
+</ul>
+</li>
+<li>
+<p>Insufficient Power Delivery</p>
+<ul>
+<li>Symptom: Components not receiving adequate voltage or inconsistent performance.</li>
+<li>Solution: Check the width of power traces and the size of copper fills. Increase trace widths or add additional power vias to handle higher current demands.</li>
+</ul>
+</li>
+<li>
+<p>Thermal Issues</p>
+<ul>
+<li>Symptom: Overheating components or vias during operation.</li>
+<li>Solution: Ensure that high-current paths use appropriately sized vias and wide traces. Consider adding thermal relief patterns and using larger copper areas to dissipate heat effectively.</li>
+</ul>
+</li>
+<li>
+<p>DRC Errors Post-Via Addition</p>
+<ul>
+<li>Symptom: DRC reports clearance violations after adding vias.</li>
+<li>Solution: Re-evaluate via placement to maintain adequate spacing from other traces and components. Adjust via sizes if necessary to comply with design rules.</li>
+</ul>
+</li>
+</ul>
+<p>By proactively addressing these common issues, you can enhance the reliability and performance of your PCB design.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h2>
+<p>Finalizing power and ground routing is a pivotal step in PCB design that significantly impacts the functionality and reliability of the final product. By employing a solid ground plane, strategic via placement, and robust power distribution techniques, you can create a two-layer PCB that not only meets but exceeds performance expectations. Adhering to best practices and thorough verification processes ensures that your design is ready for successful manufacturing and deployment.</p>
+<p>Embrace these guidelines to elevate your PCB design workflow, ensuring that power and ground considerations are seamlessly integrated into your projects for optimal results.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/04_PCB_Routing/03_Power-Routing.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Signal-Routing"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Routing USB Differential Pair and Fine-Tuning Signal Layout</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Finishing-Touches-DRC"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Silkscreen, Logos, and Design Rule Checks in KiCad</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-ground-connections-efficient-routing-with-ground-plane-and-vias" class="table-of-contents__link toc-highlight">1. Ground Connections: Efficient Routing with Ground Plane and Vias</a><ul><li><a href="#step-1-using-the-ground-plane-on-the-bottom-layer" class="table-of-contents__link toc-highlight">Step 1: Using the Ground Plane on the Bottom Layer</a></li><li><a href="#step-2-pre-planning-ground-via-placement" class="table-of-contents__link toc-highlight">Step 2: Pre-Planning Ground Via Placement</a></li><li><a href="#step-3-checking-the-ground-plane-in-the-3d-viewer" class="table-of-contents__link toc-highlight">Step 3: Checking the Ground Plane in the 3D Viewer</a></li></ul></li><li><a href="#2-power-routing-33v-and-vbus-connections" class="table-of-contents__link toc-highlight">2. Power Routing: 3.3V and VBUS Connections</a><ul><li><a href="#step-1-large-copper-fills-power-puddles-for-33v-and-vbus" class="table-of-contents__link toc-highlight">Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS</a></li><li><a href="#step-2-minimizing-trace-jumps-with-vias" class="table-of-contents__link toc-highlight">Step 2: Minimizing Trace Jumps with Vias</a></li><li><a href="#step-3-completing-the-power-layout" class="table-of-contents__link toc-highlight">Step 3: Completing the Power Layout</a></li></ul></li><li><a href="#3-final-touches-ensuring-good-layout-practices" class="table-of-contents__link toc-highlight">3. Final Touches: Ensuring Good Layout Practices</a><ul><li><a href="#step-1-keeping-clearance-between-power-ground-and-signals" class="table-of-contents__link toc-highlight">Step 1: Keeping Clearance Between Power, Ground, and Signals</a></li><li><a href="#step-2-fine-tuning-the-layout" class="table-of-contents__link toc-highlight">Step 2: Fine-Tuning the Layout</a></li><li><a href="#step-3-final-drc-and-3d-view" class="table-of-contents__link toc-highlight">Step 3: Final DRC and 3D View</a></li></ul></li><li><a href="#4-wrapping-up-preparing-for-manufacturing" class="table-of-contents__link toc-highlight">4. Wrapping Up: Preparing for Manufacturing</a><ul><li><a href="#step-1-finalize-the-silkscreen" class="table-of-contents__link toc-highlight">Step 1: Finalize the Silkscreen</a></li><li><a href="#step-2-generate-gerber-files" class="table-of-contents__link toc-highlight">Step 2: Generate Gerber Files</a></li></ul></li><li><a href="#conclusion-power-and-ground-optimization-for-two-layer-pcb" class="table-of-contents__link toc-highlight">Conclusion: Power and Ground Optimization for Two-Layer PCB</a></li><li><a href="#best-practices-summary" class="table-of-contents__link toc-highlight">Best Practices Summary</a></li><li><a href="#additional-resources" class="table-of-contents__link toc-highlight">Additional Resources</a></li><li><a href="#appendix-practical-example" class="table-of-contents__link toc-highlight">Appendix: Practical Example</a><ul><li><a href="#example-scenario" class="table-of-contents__link toc-highlight">Example Scenario</a></li><li><a href="#steps-applied" class="table-of-contents__link toc-highlight">Steps Applied</a></li><li><a href="#outcome" class="table-of-contents__link toc-highlight">Outcome</a></li></ul></li><li><a href="#troubleshooting-tips" class="table-of-contents__link toc-highlight">Troubleshooting Tips</a></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

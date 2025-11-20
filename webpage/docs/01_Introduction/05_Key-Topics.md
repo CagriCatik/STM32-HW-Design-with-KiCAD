@@ -1,8 +1,8 @@
-## 5. Key Topics Covered in the Course
+# Key Topics Covered in the Course
 
-### a) Project Setup in KiCad
+## Project Setup in KiCad
 
-#### Creating a New Project
+### Creating a New Project
 
 - Step-by-Step Guide:
   1. Launching KiCad: Opening the KiCad application and accessing the project manager.
@@ -13,7 +13,7 @@
   - Structured Directory Layout: Creating separate folders for schematics, PCB layouts, libraries, and documentation to maintain order.
   - Version Control Integration: Using version control systems like Git to manage changes and collaborate effectively.
 
-#### Defining Circuit Parameters
+### Defining Circuit Parameters
 
 - Considerations for STM32-Based Designs:
   - Power Requirements: Determining voltage levels, current demands, and power supply configurations.
@@ -24,9 +24,9 @@
   - Low Power vs. High Performance: Balancing power consumption with processing capabilities based on application needs.
   - Peripheral Availability: Choosing STM32 models with necessary integrated peripherals to reduce external component count.
 
-### b) Schematic Design
+## Schematic Design
 
-#### Component Selection and Libraries
+### Component Selection and Libraries
 
 - Selecting Components:
   - STM32 Microcontrollers: Evaluating different STM32 families (e.g., STM32F1, STM32F4, STM32H7) based on performance and feature sets.
@@ -38,7 +38,7 @@
   - Navigating Libraries: Accessing and utilizing built-in symbol libraries for common components.
   - Custom Symbols: Creating and integrating custom symbols for unique or specialized components not available in standard libraries.
 
-#### Drawing the Schematic
+### Drawing the Schematic
 
 - Step-by-Step Process:
   1. Placing Components: Dragging and positioning components onto the schematic canvas.
@@ -51,9 +51,9 @@
   - Consistent Layout: Maintaining a uniform layout style for ease of understanding and modification.
   - Documentation and Labeling: Providing comprehensive labels and documentation within the schematic to facilitate collaboration and future revisions.
 
-### c) PCB Layout and Routing
+## PCB Layout and Routing
 
-#### Design Rules and Constraints
+### Design Rules and Constraints
 
 - Setting Design Rules in KiCad:
   - Clearances: Defining minimum spacing between traces, pads, and components to prevent short circuits and ensure manufacturability.
@@ -64,7 +64,7 @@
   - Adhering to Manufacturer Specifications: Ensuring design rules comply with the capabilities and tolerances of the chosen PCB manufacturer.
   - Design Rule Check (DRC): Regularly running DRCs to identify and rectify design violations promptly.
 
-#### Component Placement
+### Component Placement
 
 - Strategies for Optimal Placement:
   - Functional Grouping: Placing related components close to each other to minimize signal path lengths and reduce routing complexity.
@@ -75,7 +75,7 @@
   - Logical Placement: Arranging components in a manner that follows the signal flow, reducing the need for intricate trace routing.
   - Spacing Considerations: Allowing adequate space around high-frequency or sensitive components to prevent interference.
 
-#### Signal Integrity and Grounding
+### Signal Integrity and Grounding
 
 - Maintaining Signal Integrity:
   - Shorter Traces: Keeping signal traces as short as possible to reduce inductance and potential signal degradation.
@@ -89,9 +89,9 @@
   - Decoupling Capacitors: Placing capacitors close to power pins of integrated circuits to filter out noise and stabilize voltage levels.
   - Power Planes: Designing robust power planes to ensure consistent power delivery across the PCB, reducing voltage drops and noise.
 
-### d) Finalizing the Design and Getting Manufactured
+## Finalizing the Design and Getting Manufactured
 
-#### Generating Gerber Files
+### Generating Gerber Files
 
 - Understanding Gerber Files:
   - Essential Components: Recognizing the necessary Gerber files for PCB fabrication, including copper layers, solder mask, silkscreen, and drill files.
@@ -100,7 +100,7 @@
   - Step-by-Step Process: Using KiCad’s export tools to generate accurate Gerber and drill files ready for submission to manufacturers.
   - Verification: Utilizing Gerber viewers to inspect files for correctness before manufacturing.
 
-#### Sourcing Components
+### Sourcing Components
 
 - Using JLCPCB’s Parts Library:
   - Component Availability: Ensuring all components listed in the BOM are available in JLCPCB’s parts library to streamline the sourcing process.
@@ -110,9 +110,9 @@
   - Pin Compatibility: Verifying that component footprints match manufacturer specifications to prevent assembly errors.
   - Lead-Free Compliance: Selecting components that comply with environmental and safety standards for manufacturability.
 
-### e) STM32 Microcontroller Design and Programming
+## STM32 Microcontroller Design and Programming
 
-#### Programming the STM32
+### Programming the STM32
 
 - Development Environments:
   - Arduino IDE: Utilizing the familiar Arduino interface for programming STM32, beneficial for those transitioning from Arduino platforms.
@@ -125,5 +125,3 @@
 - Flashing Firmware onto the PCB:
   - Connection Methods: Using USB, JTAG, or SWD interfaces to upload firmware to the STM32 microcontroller.
   - Debugging Techniques: Implementing debugging tools and methods to troubleshoot and optimize firmware performance.
-
----

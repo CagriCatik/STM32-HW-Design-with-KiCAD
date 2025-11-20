@@ -4,7 +4,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'STM32 Hardware Design with KiCAD',
-  tagline: 'A website for PCB Design with KiCad',
+  tagline: ' ',
   favicon: 'img/favicon.ico',
   url: 'https://CagriCatik.github.io',
   baseUrl: '/STM32-HW-Design-with-KiCAD/',
@@ -62,7 +62,7 @@ const config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'STM32 Hardware Design with KiCAD',
+      title: '',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.png',
@@ -73,6 +73,12 @@ const config = {
           sidebarId: 'IntroSidebar',
           position: 'left',
           label: 'Introduction',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'StepsSidebar',
+          position: 'left',
+          label: 'First-Steps',
         },
         {
           type: 'docSidebar',

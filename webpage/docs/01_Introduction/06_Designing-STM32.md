@@ -1,12 +1,12 @@
-## 6. Designing a New STM32 Board
+# Designing a New STM32 Board
 
-### Goal
+## Goal
 
 The primary objective is to design a robust, professional-grade STM32-based board that builds upon the foundation of the popular Blue Pill board. This new design aims to rectify the known limitations of the Blue Pill, particularly in power management and peripheral integration, resulting in a more reliable and feature-rich embedded system.
 
-### Project Steps
+## Project Steps
 
-#### 1. Schematic Creation
+### Schematic Creation
 
 - Designing the Schematic:
   - Microcontroller Selection: Choosing the appropriate STM32 variant that balances performance, power consumption, and peripheral requirements.
@@ -24,7 +24,7 @@ The primary objective is to design a robust, professional-grade STM32-based boar
   - Component Placement Considerations: Ensuring logical grouping of related components to simplify routing and improve signal integrity.
   - Decoupling and Filtering: Adding decoupling capacitors and filters to minimize noise and ensure stable operation of sensitive components.
 
-#### 2. PCB Layout
+### PCB Layout
 
 - Translating Schematic to PCB:
   - Board Outline Definition: Setting the physical dimensions and shape of the PCB based on the intended application and enclosure constraints.
@@ -45,7 +45,7 @@ The primary objective is to design a robust, professional-grade STM32-based boar
   - Layer Utilization: Efficiently using multiple layers to segregate different types of signals and reduce interference.
   - Routing Order Strategy: Establishing a systematic routing order (e.g., critical signals first) to streamline the layout process.
 
-#### 3. Assembly and Manufacturing
+### Assembly and Manufacturing
 
 - Preparing for Manufacturing:
   - Final Design Review: Conducting thorough reviews of the PCB layout and schematic to identify and rectify any remaining issues.
@@ -65,4 +65,3 @@ The primary objective is to design a robust, professional-grade STM32-based boar
   - Enclosure Design: Designing and integrating enclosures or housings to protect the PCB and provide user-friendly interfaces.
   - Documentation and Support: Creating detailed documentation for assembly, usage, and troubleshooting to support end-users and future development.
 
----

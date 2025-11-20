@@ -1,12 +1,12 @@
-## 2. Key Learning Outcomes
+# Key Learning Outcomes
 
-### 1. Create Projects in KiCad v8
+## Create Projects in KiCad v8
 
 - Project Initialization:
   - Starting a New Project: Step-by-step guide to initiating a new project in KiCad v8, including setting up the project directory and understanding the file hierarchy.
   - Project Structure and Organization: Best practices for organizing schematics, PCB layouts, libraries, and documentation within KiCad to maintain a clean and manageable workspace.
 
-### 2. Design Schematics
+## Design Schematics
 
 - Component Selection:
   - Choosing the Right Components: Criteria for selecting suitable STM32 microcontrollers and peripheral components based on project requirements.
@@ -20,7 +20,7 @@
   - Defining Connections: Techniques for accurately connecting components to reflect the intended circuit functionality.
   - Functional Block Diagrams: Organizing the schematic into functional blocks to enhance readability and maintainability.
 
-### 3. Layout and Routing of PCBs
+## Layout and Routing of PCBs
 
 - PCB Design Workflow:
   - Transitioning from Schematic to PCB Layout: Importing the schematic into KiCad’s PCB editor and setting up the board outline.
@@ -37,7 +37,7 @@
   - Implementing Ground Planes: Utilizing ground planes to reduce noise, enhance signal integrity, and provide a stable reference for signals.
   - Layer Stack-Up Considerations: Deciding on the number of layers and their functions to optimize performance and manufacturability.
 
-### 4. Introduction to STM32 Microcontrollers
+## Introduction to STM32 Microcontrollers
 
 - STM32 Architecture:
   - Core Features: Overview of the ARM Cortex-M cores used in STM32, including processing capabilities and power management features.
@@ -48,7 +48,7 @@
   - Sensor Integration: Techniques for connecting various sensors, ensuring accurate data acquisition and processing.
   - Audio Codecs: Implementing audio processing capabilities through codec integration for applications requiring sound input/output.
 
-### 5. From Prototype to Final Product
+## From Prototype to Final Product
 
 - Transitioning to Professional Hardware:
   - Beyond Prototyping: Strategies for evolving from breadboard prototypes to reliable, manufacturable PCB designs.
@@ -61,5 +61,3 @@
 - Utilizing JLCPCB Services:
   - Sourcing Components: Leveraging JLCPCB’s extensive parts library to source high-quality components efficiently.
   - Automating PCB Manufacturing: Streamlining the manufacturing process through JLCPCB’s automated systems, reducing lead times and costs.
-
----

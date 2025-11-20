@@ -1,10 +1,12 @@
-## 3. Hardware Overview and Project Outline
+# Hardware Overview and Project Outline
 
-### Target Hardware Design
+## Target Hardware Design
 
-The course focuses on designing STM32-based hardware inspired by the popular "STM32 Blue Pill" board. The Blue Pill is renowned for its affordability and versatility, serving as a robust alternative to Arduino for embedded projects. However, it has certain limitations that the course aims to address, resulting in a more refined and professional-grade design.
+The course focuses on designing STM32-based hardware inspired by the popular "STM32 Blue Pill" board.
+The Blue Pill is renowned for its affordability and versatility, serving as a robust alternative to Arduino for embedded projects.
+However, it has certain limitations that the course aims to address, resulting in a more refined and professional-grade design.
 
-### Improvements on STM32 Blue Pill
+## Improvements on STM32 Blue Pill
 
 - Power Design Enhancements:
   - Stabilized Power Supply: Implementing more reliable voltage regulation to ensure consistent power delivery to all components.
@@ -21,5 +23,3 @@ The course focuses on designing STM32-based hardware inspired by the popular "ST
 - Scalability and Flexibility:
   - Modular Design: Designing the board to allow easy addition or removal of peripherals based on project requirements.
   - Firmware Support: Ensuring compatibility with various firmware development environments for diverse application needs.
-
----

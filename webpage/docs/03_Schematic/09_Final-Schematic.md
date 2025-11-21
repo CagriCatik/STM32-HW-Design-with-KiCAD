@@ -2,13 +2,15 @@
 
 ## Decoupling
 
-<div style="text-align:center;">
-  <img src="../images/schematic_stm32_decoupling.png" alt="decoupling" style="width:600px;"/>
+<div style={{ textAlign: "center" }}>
+  <img
+    src="../images/schematic_stm32_decoupling.png"
+    alt="decoupling"
+    width="600"
+  />
 </div>
 
 ## Configuration Pins
-
-
 
 ## PIN-Out
 

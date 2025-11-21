@@ -22,3 +22,16 @@ tips-and-tricks:
   label: Tips and Tricks
   permalink: /tips-and-tricks
   description: Practical advice to improve your PCB design workflow.
+
+
+pcb-design:
+  label: PCB Design
+  permalink: /tags/pcb-design
+
+kicad:
+  label: KiCad
+  permalink: /tags/kicad
+
+electronics:
+  label: Electronics
+  permalink: /tags/electronics

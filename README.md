@@ -2,19 +2,28 @@
 
 <h1>KiCad and STM32 Hardware Design</h1>
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/KiCad-Logo.svg" alt="KiCad Logo" width="180">
+
 [![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml)
 ![KiCad 9](https://img.shields.io/badge/KiCad-9.0-blue)
 [![Documentation](https://img.shields.io/badge/Docusaurus-Available-green)](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)
 
+<!-- Extra Badges -->
+![Last Commit](https://img.shields.io/github/last-commit/CagriCatik/PCB-Design-with-KiCad)
+![Issues](https://img.shields.io/github/issues/CagriCatik/PCB-Design-with-KiCad)
+![Pull Requests](https://img.shields.io/github/issues-pr/CagriCatik/PCB-Design-with-KiCad)
+![Stars](https://img.shields.io/github/stars/CagriCatik/PCB-Design-with-KiCad?style=social)
+
 </div>
 
+<div align="center">
 This project documents my first complete PCB design journey using KiCad and an STM32 microcontroller. It represents a hands-on, end-to-end dive into schematic design, PCB layout, routing, manufacturing files, and the practical considerations required to make a real, manufacturable embedded board.
 
 The goal was not only to learn KiCad as a professional tool, but to understand what makes a microcontroller board electrically reliable, layout-aware, and production-ready. Every stage reflects actual engineering constraints encountered during the design of a small STM32-based board.
+</div>
 
-## Key Topics
-
-### 1. Schematic Design
+<details>
+<summary><strong>1. Schematic Design</strong></summary>
 
 - [ ] STM32 microcontroller fundamentals and decoupling guidance.
 - [ ] STM32 configuration pin requirements and best practices.
@@ -25,7 +34,12 @@ The goal was not only to learn KiCad as a professional tool, but to understand w
 - [ ] Electrical Rules Check (ERC), annotation workflow, and validation.
 - [ ] Component footprint assignment.
 
-### 2. PCB Layout
+</details>
+
+---
+
+<details>
+<summary><strong>2. PCB Layout</strong></summary>
 
 - [ ] KiCad PCB project setup and configuration.
 - [ ] Placement strategy for MCU, decoupling capacitors, and crystal components.
@@ -35,18 +49,31 @@ The goal was not only to learn KiCad as a professional tool, but to understand w
 - [ ] Power distribution layout and grounding practices.
 - [ ] Defining board outline and mechanical mounting features.
 
-### 3. PCB Routing
+</details>
+
+---
+<details>
+<summary><strong>3. PCB Routing</strong></summary>
 
 - [ ] Routing guidelines for decoupling and crystal signals.
 - [ ] Digital and analog signal routing strategies.
 - [ ] Power trace routing and current handling considerations.
 - [ ] Refinement procedures and thorough DRC validation.
 
-### 4. Manufacturing
+</details>
+
+---
+
+<details>
+<summary><strong>4. Manufacturing</strong></summary>
 
 - [ ] Generating BOM files
 - [ ] Generating Gerber and Pick/Place files
 - [ ] Generating Drill files
+
+</details>
+
+---
 
 ## Additional Resources
 

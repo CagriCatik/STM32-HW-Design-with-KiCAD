@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
@@ -6,17 +6,20 @@ const config = {
   title: 'STM32 Hardware Design with KiCAD',
   tagline: ' ',
   favicon: 'img/favicon.ico',
+
   url: 'https://CagriCatik.github.io',
   baseUrl: '/STM32-HW-Design-with-KiCAD/',
   organizationName: 'CagriCatik',
   projectName: 'STM32-HW-Design-with-KiCAD',
   deploymentBranch: 'gh-pages',
-  onBrokenLinks: 'ignore',
-  onBrokenMarkdownLinks: 'ignore',
 
-  // ENABLE MERMAID IN MARKDOWN
+  onBrokenLinks: 'ignore',
+
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'ignore',
+    },
   },
 
   i18n: {
@@ -51,7 +54,6 @@ const config = {
     ],
   ],
 
-  // REGISTER MERMAID THEME
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [

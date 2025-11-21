@@ -1,4 +1,4 @@
-# [Simplifying Complex Components by Segmenting Footprints](https://www.youtube.com/watch?v=NZdi7CuJm7w&list=PLZNH6jlLeFXsg9ohRMbJ0qqSfUrRyAn7b&index=37)
+# Simplifying Complex Components by Segmenting Footprints
 
 ## Introduction
 
@@ -21,8 +21,6 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
 1. **Open KiCad:** Launch the KiCad application on your computer.
 2. **Access Symbol Editor:** From the KiCad project manager, click on the **Symbol Editor** icon to open it.
 
-   ![Symbol Editor Icon](https://example.com/symbol-editor-icon.png)
-
 ### 2. Create a New Symbol
 
 1. **Select Library:** In the Symbol Editor, navigate to the **Library** where you want to create the new symbol. For organizational purposes, it’s advisable to use a dedicated library, such as `custom.lib`.
@@ -30,14 +28,10 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
 3. **Name the Symbol:** Assign a meaningful name to your symbol, e.g., `RaspberryPi_Module`.
 4. **Initialize the Symbol:** A blank symbol canvas will appear, ready for customization.
 
-   ![New Symbol Creation](https://example.com/new-symbol.png)
-
 ### 3. Define Units for Segmentation
 
 1. **Access Symbol Properties:** Double-click on the newly created symbol or select it and press **E** to edit its properties.
 2. **Set Number of Units:** In the symbol properties dialog, locate the **Number of Units** field. This determines how many separate sections the component will be divided into. For example, set it to `4` to represent Ground, Ethernet, GPIO, and VCC sections.
-
-   ![Symbol Properties](https://example.com/symbol-properties.png)
 
 3. **Name Each Unit:** Assign descriptive names to each unit for clarity:
    - **Unit A:** Ground
@@ -52,14 +46,10 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
    - **Ground Pins:** Based on the component’s datasheet, identify all ground pins (e.g., pins 1, 2, 7, 8, 13, 14).
    - **Place Pins:** Use the **Add Pin** tool to place these pins within Unit A. Label them appropriately (e.g., GND1, GND2).
 
-   ![Ground Pins](https://example.com/ground-pins.png)
-
 3. **Repeat for Other Units:**
    - **Unit B (Ethernet):** Assign Ethernet-related pins, such as differential pairs (e.g., TX+, TX-, RX+, RX-).
    - **Unit C (GPIO):** Assign GPIO pins as per the datasheet.
    - **Unit D (VCC):** Assign power supply pins (e.g., VCC3.3V, VCC5V).
-
-   ![Ethernet Pins](https://example.com/ethernet-pins.png)
 
 4. **Ensure Logical Grouping:** Maintain a logical grouping of pins within each unit to enhance schematic readability.
 
@@ -68,8 +58,6 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
 1. **Edit Symbol Appearance:** For each unit, you can customize the symbol body to visually differentiate between sections.
 2. **Color Coding:** Assign different colors to each unit's body to represent different functionalities (e.g., green for Ground, blue for Ethernet).
 3. **Avoid Common Shapes:** **Do not select** the **"Common to all units"** option when editing the symbol body. This ensures that each unit can have a unique shape and size if necessary.
-
-   ![Customize Symbol Body](https://example.com/custom-symbol-body.png)
 
 4. **Prevent Unit Interchangeability:**
    - Ensure that the **"Unit is Interchangeable"** option is **unchecked**. This prevents units from being mistakenly swapped, maintaining the integrity of the schematic.
@@ -84,8 +72,6 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
 4. **Configure Units in Schematic:**
    - Upon placement, each unit (A, B, C, D) can be individually positioned within the schematic.
    - Connect the respective sections to other components (e.g., ground connections to GND nets, Ethernet sections to Ethernet circuitry).
-
-   ![Placed Component](https://example.com/placed-component.png)
 
 5. **Annotate and Wire:**
    - Annotate the schematic to assign unique identifiers while maintaining the component as a single entity (e.g., U1.A, U1.B).
@@ -110,6 +96,4 @@ When dealing with components that have a large number of pins (e.g., a 200-pin R
 
 Managing complex components in KiCad becomes significantly more manageable by segmenting their footprints into logical sections. This approach not only simplifies the schematic but also enhances the overall design process, reducing the likelihood of errors and improving readability. By following the steps outlined in this documentation, PCB designers can efficiently handle intricate components, ensuring robust and maintainable PCB designs.
 
-
-
-*For further assistance or to share your experiences, consider joining the KiCad community Discord server [here](https://discord.com/invite/kicad). Happy designing!*
+Source: [Simplifying Complex Components by Segmenting Footprints](https://www.youtube.com/watch?v=NZdi7CuJm7w&list=PLZNH6jlLeFXsg9ohRMbJ0qqSfUrRyAn7b&index=37)

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>STM32 Hardware Design with KiCAD Blog</title>
+        <link>https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/blog</link>
+        <description>STM32 Hardware Design with KiCAD Blog</description>
+        <lastBuildDate>Fri, 03 Jan 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome to PCB Design with KiCad]]></title>
+            <link>https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design</link>
+            <guid>https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design</guid>
+            <pubDate>Fri, 03 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[My journey into PCB design began the way many technical adventures start: with curiosity, a stubborn idea, and absolutely no clue what I was getting into. Designing a PCB always sounded like something reserved for electrical engineers locked away in labs. Eventually I decided to learn it myself, and KiCad became the tool that made that possible.]]></description>
+            <content:encoded><![CDATA[<p>My journey into PCB design began the way many technical adventures start: with curiosity, a stubborn idea, and absolutely no clue what I was getting into. Designing a PCB always sounded like something reserved for electrical engineers locked away in labs. Eventually I decided to learn it myself, and KiCad became the tool that made that possible.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-it-started">How It Started<a href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design#how-it-started" class="hash-link" aria-label="Direct link to How It Started" title="Direct link to How It Started" translate="no">​</a></h3>
+<p>At first, KiCad looked overwhelming. Schematics, footprints, nets, layers, design rules, and menus hidden inside other menus. Every step introduced a new concept I had never heard of, and the early days felt like wandering through an unfamiliar city with a partially working map.</p>
+<p>The first milestone was building a clean schematic. I learned quickly that a schematic is not art; it is communication. Poor naming, messy wires, and incorrect symbols always came back to haunt me. Getting it right took patience, but each revision brought me closer to something that made sense.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="moving-to-pcb-layout">Moving to PCB Layout<a href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design#moving-to-pcb-layout" class="hash-link" aria-label="Direct link to Moving to PCB Layout" title="Direct link to Moving to PCB Layout" translate="no">​</a></h3>
+<p>Transitioning from schematic to layout felt like entering another discipline entirely. Suddenly I was dealing with physical geometry, clearances, trace widths, vias, copper pours, and layer management. It was both technical and oddly artistic.</p>
+<p>My early boards were chaotic. Components placed too tightly, traces routed without strategy, and ground handling that would make any experienced designer cringe. But seeing the software visualize something real, something manufacturable, was addictive. Small improvements started adding up, and I began to understand why layout is considered its own craft.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-through-mistakes">Learning Through Mistakes<a href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design#learning-through-mistakes" class="hash-link" aria-label="Direct link to Learning Through Mistakes" title="Direct link to Learning Through Mistakes" translate="no">​</a></h3>
+<p>Every mistake taught me something:</p>
+<ul>
+<li class="">A forgotten ground reference turned an amplifier into a noise generator.</li>
+<li class="">A misplaced footprint forced me to redo an entire layout.</li>
+<li class="">Incorrect clearances failed DRC checks repeatedly until I understood what the tool was trying to protect me from.</li>
+<li class="">Auto-routing looked tempting until I realized manual routing teaches discipline and structure.</li>
+</ul>
+<p>These mistakes were not setbacks; they were part of the process that made later designs cleaner and more intentional.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-i-stuck-with-kicad">Why I Stuck With KiCad<a href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design#why-i-stuck-with-kicad" class="hash-link" aria-label="Direct link to Why I Stuck With KiCad" title="Direct link to Why I Stuck With KiCad" translate="no">​</a></h3>
+<p>KiCad was challenging at first, but the longer I used it, the more it rewarded understanding. Its openness, community, and constant improvement made it feel like the right tool for learning properly rather than just producing a board quickly.</p>
+<p>It gave me control. It forced me to think. It encouraged me to understand decisions instead of hiding them behind automation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-comes-next">What Comes Next<a href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/blog/welcome-to-pcb-design#what-comes-next" class="hash-link" aria-label="Direct link to What Comes Next" title="Direct link to What Comes Next" translate="no">​</a></h3>
+<p>This series will follow my ongoing process of learning PCB design step by step:</p>
+<ul>
+<li class="">Building better schematics</li>
+<li class="">Creating disciplined PCB layouts</li>
+<li class="">Understanding manufacturing constraints</li>
+<li class="">Exploring best practices through real projects</li>
+</ul>
+<p>I am still learning, and this journey is far from over. My hope is that documenting it will not only help others starting out but also help me refine my own understanding as I continue building more complex and more reliable boards.</p>
+<p>This is the beginning of that path.</p>]]></content:encoded>
+            <category>PCB Design</category>
+            <category>KiCad</category>
+            <category>Electronics</category>
+        </item>
+    </channel>
+</rss>

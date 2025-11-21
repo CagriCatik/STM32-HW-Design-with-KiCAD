@@ -1,5 +1,5 @@
 // @ts-check
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -13,6 +13,11 @@ const config = {
   deploymentBranch: 'gh-pages',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
+
+  // ENABLE MERMAID IN MARKDOWN
+  markdown: {
+    mermaid: true,
+  },
 
   i18n: {
     defaultLocale: 'en',
@@ -46,7 +51,9 @@ const config = {
     ],
   ],
 
-  // ADD THIS BLOCK
+  // REGISTER MERMAID THEME
+  themes: ['@docusaurus/theme-mermaid'],
+
   plugins: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
@@ -116,7 +123,13 @@ const config = {
           position: 'left',
           label: 'Glossary',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'RecipesSidebar',
+          position: 'left',
+          label: 'Recipes',
+        },
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD',
           label: 'GitHub',
@@ -183,7 +196,8 @@ const config = {
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css',
       type: 'text/css',
-      integrity: 'sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9',
+      integrity:
+        'sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9',
       crossorigin: 'anonymous',
     },
   ],

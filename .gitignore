@@ -6,7 +6,7 @@ information
 
 # Dependencies
 node_modules
-
+/sort
 # Production
 /build
 webpage/build/

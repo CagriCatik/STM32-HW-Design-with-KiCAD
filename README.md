@@ -50,5 +50,8 @@ The goal was not only to learn KiCad as a professional tool, but to understand w
 
 ## Additional Resources
 
-This content is aligned with the Udemy course: 
-[Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
+- This content is aligned with [Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
+- STM32CubeIDE Documentation: [STMicroelectronics Documentation](https://www.st.com/en/development-tools/stm32cubeide.html)
+- KiCad Official Documentation: [KiCad Documentation](https://docs.kicad.org/)
+- STM32 Community Forums: [ST Community](https://community.st.com/s/)
+- USB Design Guidelines: [USB.org Guidelines](https://www.usb.org/documents)

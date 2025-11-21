@@ -4,7 +4,9 @@
 
 ### Objective
 
-This course is meticulously designed to equip learners with comprehensive knowledge and practical skills necessary for designing STM32-based hardware. The journey begins with project initiation and extends through schematic design, PCB layout, and culminates in the manufacturing and assembly of the printed circuit board (PCB). A significant emphasis is placed on transitioning from rudimentary Arduino-based designs to more sophisticated and professional hardware solutions leveraging the capabilities of the STM32 microcontroller.
+- This course is meticulously designed to equip learners with comprehensive knowledge and practical skills necessary for designing STM32-based hardware. 
+- The journey begins with project initiation and extends through schematic design, PCB layout, and culminates in the manufacturing and assembly of the printed circuit board (PCB). 
+- A significant emphasis is placed on transitioning from rudimentary Arduino-based designs to more sophisticated and professional hardware solutions leveraging the capabilities of the STM32 microcontroller.
 
 ### Course Overview
 

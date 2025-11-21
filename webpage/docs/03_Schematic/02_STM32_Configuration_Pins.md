@@ -6,9 +6,7 @@
 
 ## Reset Pin Configuration (NRST)
 
-The NRST pin is the dedicated hardware reset input on STM32 microcontrollers. When activated, it forces the microcontroller back to its initial startup state.
-For beginners, think of NRST as a safety switch that brings the chip back to a known-good condition whenever things go wrong.
-A correct NRST configuration is important for reliable operation, stable debugging, and preventing hard-to-diagnose lockups during development.
+The NRST pin is the dedicated hardware reset input on STM32 microcontrollers. When activated, it forces the microcontroller back to its initial startup state. For beginners, think of NRST as a safety switch that brings the chip back to a known-good condition whenever things go wrong. A correct NRST configuration is important for reliable operation, stable debugging, and preventing hard-to-diagnose lockups during development.
 
 ### Behavior of the NRST Pin
 
@@ -190,7 +188,7 @@ This circuit gives you a robust and beginner-friendly way to choose boot modes d
 
 ## Adding the Power Source
 
-A stable 3.3V power supply is crucial for the reliable operation of the STM32 microcontroller. 
+A stable 3.3V power supply is crucial for the reliable operation of the STM32 microcontroller.
 This section outlines the selection and integration of a voltage regulator to achieve the required voltage level.
 
 ### Voltage Regulator Selection

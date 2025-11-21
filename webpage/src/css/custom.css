@@ -1,10 +1,8 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Global CSS
+ * Infima variable overrides
  */
 
-/* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
@@ -13,11 +11,62 @@
   --ifm-color-primary-light: #33925d;
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
+
+  --ifm-code-font-size: 80%;
+  --ifm-font-size-base: 80%;
+  --ifm-navbar-item-font-size: 1rem;
+  --ifm-spacing-horizontal: 1rem;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Center navbar items */
+.navbar__items--left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__items--right {
+  margin-left: auto;
+}
+
+/* Navbar text sizing */
+.navbar__item,
+.navbar__link {
+  font-size: var(--ifm-navbar-item-font-size);
+}
+
+/* Large screens */
+@media screen and (min-width: 1200px) {
+  :root {
+    --ifm-font-size-base: 105%;
+    --ifm-code-font-size: 97%;
+    --ifm-navbar-item-font-size: 1.05rem;
+  }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  :root {
+    --ifm-font-size-base: 95%;
+    --ifm-code-font-size: 92%;
+    --ifm-spacing-horizontal: 0.75rem;
+    --ifm-navbar-item-font-size: 0.9rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  :root {
+    --ifm-font-size-base: 92%;
+    --ifm-code-font-size: 90%;
+    --ifm-spacing-horizontal: 0.5rem;
+    --ifm-navbar-item-font-size: 0.85rem;
+  }
+}
+
+/* Dark mode overrides */
 [data-theme='dark'] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
@@ -26,5 +75,13 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode mobile text scaling */
+@media screen and (max-width: 480px) {
+  [data-theme='dark'] {
+    --ifm-font-size-base: 90%;
+  }
 }

@@ -2,7 +2,8 @@
 
 ## Goal
 
-The primary objective is to design a robust, professional-grade STM32-based board that builds upon the foundation of the popular Blue Pill board. This new design aims to rectify the known limitations of the Blue Pill, particularly in power management and peripheral integration, resulting in a more reliable and feature-rich embedded system.
+- The primary objective is to design a robust, professional-grade STM32-based board that builds upon the foundation of the popular Blue Pill board.
+- This new design aims to rectify the known limitations of the Blue Pill, particularly in power management and peripheral integration, resulting in a more reliable and feature-rich embedded system.
 
 ## Project Steps
 
@@ -12,7 +13,6 @@ The primary objective is to design a robust, professional-grade STM32-based boar
   - Microcontroller Selection: Choosing the appropriate STM32 variant that balances performance, power consumption, and peripheral requirements.
   - Peripheral Integration:
     - USB Interface: Incorporating USB connectivity with proper pin assignments and supporting components.
-    - SD Card Interface: Designing a reliable SD card slot connection with necessary signal conditioning and level shifting.
     - Sensors: Integrating sensors with accurate power supply and signal conditioning to ensure reliable data acquisition.
 
 - Functional Block Integration:

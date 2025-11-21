@@ -4,14 +4,9 @@
 - It emphasizes best practices, essential design principles, and the critical role of decoupling capacitors and filtering in both analog and digital circuits.
 - Through clear explanations and practical examples, this documentation will assist you in creating robust and reliable PCB designs.
 
-<div style="text-align:center;">
-  <img src="../images/schematic_stm32_decoupling.png" alt="decoupling" style="width:600px;"/>
-</div>
+## Getting Started
 
-## Getting Started with KiCad
-
-Embarking on PCB design begins with schematic capture, a fundamental step where the circuit is diagrammatically represented.
-KiCad offers a powerful schematic editor that facilitates this process, allowing designers to layout their designs before transitioning to the PCB layout phase.
+Embarking on PCB design begins with schematic capture, a fundamental step where the circuit is diagrammatically represented. KiCad offers a powerful schematic editor that facilitates this process, allowing designers to layout their designs before transitioning to the PCB layout phase.
 
 ### Opening the Schematic Editor
 
@@ -39,15 +34,15 @@ KiCad offers a powerful schematic editor that facilitates this process, allowing
 
 ### STM32 Microcontroller
 
-The STM32F103 series is a popular choice for microcontroller-based designs, offering a balance of performance and versatility.
+The `STM32F103` series is a popular choice for microcontroller-based designs, offering a balance of performance and versatility.
 
 1. Add the Microcontroller Symbol:
    - Click on Add Symbol in the right toolbar.
-   - In the symbol library search bar, type STM32F103.
-   - Select the appropriate variant, such as STM32F103C8T6, commonly used in Blue Pill boards.
+   - In the symbol library search bar, type `STM32F103`.
+   - Select the appropriate variant, such as `STM32F103C8T6`, commonly used in Blue Pill boards.
    - Placement: Position the microcontroller at the center of your schematic for optimal routing.
 2. Consider Package Variants:
-   - STM32 microcontrollers come in various packages (e.g., LQFP, BGA).
+   - STM32 microcontrollers come in various packages (e.g., LQFP (Low Profile Quad Flat Package), BGA (Ball Grid Array)).
    - Verify that the selected package matches your design requirements, including pin count and footprint.
 
 **Best Practices:**
@@ -60,16 +55,31 @@ The STM32F103 series is a popular choice for microcontroller-based designs, offe
 STM32 microcontrollers feature a versatile pin configuration, divided into various pin banks serving distinct functions:
 
 - **Power Pins:**
-  - VDD: Main power supply.
-  - VBAT: Battery backup for the Real-Time Clock (RTC).
+  - VDD
+    - Primary digital supply voltage for the MCU core and I/O circuitry.
+    - Typically 1.8 V to 3.6 V depending on the series.
+  - VBAT
+    - Backup-power domain supply input. Powers the RTC, backup registers, and tamper detection when VDD is absent.
+    - Draws extremely low current.
 - **Ground Pins:**
-  - VSS: Digital ground.
-  - VSSA: Analog ground for sensitive circuits.
+  - VSS
+    - Primary digital ground reference.
+    - All digital circuitry returns here.
+  - VSSA
+    - Analog ground reference.
+    - Used by the ADC, DAC, and other analog peripherals to reduce noise coupling from digital switching.
 - **GPIO Pins:**
-  - Organized into banks (e.g., PAx, PBx), each serving general-purpose input/output functions.
+  - Pins grouped into ports (PA, PB, PC, etc.).
+  - Each pin can be configured as input, output, analog, or alternate-function (UART, SPI, I2C, etc.).
+  - Each is mapped to the internal APB/AHB bus matrix.
 - **Configuration Pins:**
-  - NRST: Reset pin.
-  - BOOT0/BOOT1: Pins for configuring the microcontroller's boot mode.
+  - NRST
+    - Active-low hardware reset input.
+    - Pulling it low forces a system reset, reinitializing registers and peripheral states.
+    - Also driven low by internal watchdogs.
+  - BOOT0/BOOT1
+    - Boot configuration pins.
+    - Sampled at reset to select the memory region used for initial program execution.
 
 **Best Practices:**
 
@@ -298,3 +308,82 @@ While the current guide concludes with the schematic phase, effective PCB layout
 - Design Rule Checks (DRC): Regularly perform DRCs to ensure the layout adheres to design specifications and manufacturing capabilities.
 
 By adhering to these practices, you will ensure that your PCB design not only functions correctly but is also optimized for manufacturing and long-term reliability.
+
+## Power Distribution and Decoupling Overview
+
+Following diagram shows the STM32 power distribution and decoupling structure. The 5V input is regulated down to 3.3V, stabilized with bulk capacitors. Each VDD and VBAT pin receives a dedicated 0.1uF capacitor placed close to the MCU to suppress high-frequency noise. A ferrite bead and additional capacitors form a filtered analog rail for VDA, reducing interference on ADC and DAC circuits. Digital and analog grounds meet at a single point to maintain a clean reference. This arrangement ensures stable power delivery and minimizes noise across the microcontroller system.
+
+```mermaid
+graph TD
+
+    %% Top-level power source and regulation
+    Vin["External supply (e.g. 5V)"]:::power
+    Reg["3.3V linear regulator\n(e.g. AMS1117-3.3)"]:::power
+    Cin["10uF input bulk cap\nclose to regulator IN"]:::cap
+    Cout["10uF output bulk cap\nclose to regulator OUT"]:::cap
+
+    Vin --> Cin --> Reg --> Cout --> VDD3V3["+3.3V digital rail (VDD)"]:::power
+
+    %% Digital ground
+    GND["VSS digital ground"]:::ground
+
+    %% Digital decoupling around the MCU
+    subgraph Digital_decoupling_around_MCU
+        VDD3V3 --> Cdec_VDD1["0.1uF decoupling cap\nfor VDD pin 1"]:::cap
+        VDD3V3 --> Cdec_VDD2["0.1uF decoupling cap\nfor VDD pin 2"]:::cap
+        VDD3V3 --> Cdec_VDDn["0.1uF decoupling caps\nfor remaining VDD pins"]:::cap
+        VDD3V3 --> Cdec_VBAT["0.1uF decoupling cap\nfor VBAT (if used)"]:::cap
+
+        Cdec_VDD1 --> GND
+        Cdec_VDD2 --> GND
+        Cdec_VDDn --> GND
+        Cdec_VBAT --> GND
+    end
+
+    %% MCU core supply connections
+    MCU["STM32 microcontroller"]:::mcu
+
+    VDD3V3 -->|short, wide traces| MCU
+    GND --> MCU
+
+    %% Analog filtering and decoupling (VDA / +3.3VA)
+    subgraph Analog_power_filtering
+        VDD3V3 --> FB["Ferrite bead\n~120 ohm @ 100MHz"]:::filter
+        FB --> VDA3V3["+3.3VA analog rail (VDA)"]:::power
+
+        VDA3V3 --> C10n_ANA["10nF cap\nclose to VDA"]:::cap
+        VDA3V3 --> C1u_ANA["1uF cap\nclose to VDA"]:::cap
+
+        C10n_ANA --> VSSA["Analog ground (VSSA)"]:::ground
+        C1u_ANA --> VSSA
+    end
+
+    %% Tie analog ground to digital ground
+    VSSA --- GND
+
+    %% MCU analog pins
+    VDA3V3 --> MCU
+    VSSA --> MCU
+
+    %% VBAT handling
+    VBAT["VBAT pin"]:::mcu
+    VDD3V3 --> VBAT
+    Cdec_VBAT -. local energy storage .- VBAT
+
+    %% Notes
+    note1["Place all decoupling capacitors\nas close as possible to their pins"]:::note
+    note2["Bulk vs local decoupling behavior"]:::note
+    note3["Ferrite bead + caps = clean analog rail"]:::note
+
+    VDD3V3 -. design rule .- note1
+    VDD3V3 -. design rule .- note2
+    VDA3V3 -. design rule .- note3
+
+    %% Styles
+    classDef power fill:#ffddaa,stroke:#cc8800,stroke-width:1px;
+    classDef ground fill:#ddeeff,stroke:#003388,stroke-width:1px;
+    classDef cap fill:#ffeeee,stroke:#cc4444,stroke-width:1px;
+    classDef filter fill:#e0ffe0,stroke:#44aa44,stroke-width:1px;
+    classDef mcu fill:#fff6cc,stroke:#d4a017,stroke-width:1px;
+    classDef note fill:#f0f0f0,stroke:#777,stroke-dasharray:3 3;
+```

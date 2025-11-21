@@ -17,3 +17,4 @@ GND, or Ground, serves as the common reference point for all voltage levels in a
 
 
 
+Gerber Files: Standard file format used to describe PCB layers for manufacturing.

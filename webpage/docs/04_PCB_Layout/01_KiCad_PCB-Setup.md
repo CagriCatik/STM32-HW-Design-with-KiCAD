@@ -59,7 +59,7 @@ The board stack defines the physical structure of your PCB, including the number
      - Additional Layers: Such as Solder Mask and Silkscreen, if applicable.
    - Confirm that the total board thickness aligns with standard manufacturing specifications, typically around 1.6mm.
 
-### Best Practices
+### Best Practices - PCB Board Stack
 
 - Layer Assignment: Assigning a solid ground plane to the bottom layer enhances signal integrity by providing a consistent return path.
 - Standard Thickness: Adhering to standard PCB thickness simplifies manufacturing and reduces costs.
@@ -87,7 +87,7 @@ Before configuring design rules, consult your PCB manufacturer’s specification
    - Via Drill Diameter: Configure to 0.3mm with a pad diameter of 0.7mm.
    - Annular Ring Width: Define the copper ring surrounding vias to ensure reliable connections.
 
-### Best Practices
+### Best Practices - Design Rules
 
 - Margin for Manufacturing Tolerances: Always include a margin beyond the minimum specifications to account for manufacturing variances.
 - Consistent Design Rules: Apply consistent design rules across the entire PCB to maintain uniformity and reduce complexity.
@@ -125,7 +125,7 @@ For designs incorporating high-speed signals such as USB, differential pairs are
    - Ensure that differential pairs are routed in parallel with consistent spacing.
    - Best Practice: Keep differential pair traces as short and matched in length as possible to maintain timing and reduce signal degradation.
 
-### Best Practices
+### Best Practices - Pre-Defining Track Sizes
 
 - Current-Carrying Capacity: Ensure that power traces are wide enough to handle the maximum expected current without excessive heating.
 - Signal Integrity: Properly sized traces and differential pairs are crucial for maintaining the integrity of high-speed signals.
@@ -165,7 +165,7 @@ Importing and correctly placing component footprints from your schematic is esse
    - Right-click on a footprint and select "View Footprint 3D" to visualize the component placement in three dimensions.
    - Best Practice: Regularly use the 3D view to identify potential placement issues and ensure components do not interfere with each other.
 
-### Best Practices
+### Best Practices - Arranging Components
 
 - Logical Grouping: Grouping related components reduces trace lengths and improves signal integrity.
 - Clearances: Maintain adequate spacing between components to facilitate routing and prevent potential shorts.
@@ -205,7 +205,7 @@ Routing involves connecting component pads with copper traces based on the netli
 3. Net Priority
    - Identify critical nets (e.g., high-speed signals) and prioritize their routing paths to maintain signal integrity.
 
-### Best Practices
+### Best Practices - Preparing for Routing
 
 - Plan Routing Paths: Before starting, plan the routing paths for critical signals to minimize crossing and interference.
 - Minimize Via Usage: Use vias sparingly to reduce manufacturing complexity and potential signal degradation.

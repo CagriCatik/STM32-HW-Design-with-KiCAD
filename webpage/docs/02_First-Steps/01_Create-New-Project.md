@@ -14,13 +14,15 @@ This foundational step ensures that all your design files are organized and easi
 ## 2. Create a New Project
 
 - Initiate a New Project:
-  - In the Project Manager, navigate to File > New Project > New Project.
+  - In the Project Manager, navigate to `File > New Project > New Project`.
   
 - Choose Project Location:
-  - Select a directory on your computer where you want to store your project files. It's advisable to create a dedicated folder for each project to maintain organization.
+  - Select a directory on your computer where you want to store your project files.
+  - It's advisable to create a dedicated folder for each project to maintain organization.
   
 - Name Your Project:
-  - Enter a meaningful name for your project, such as `STM32_First_Project`. This name will be used for the project's primary files.
+  - Enter a meaningful name for your project, such as `STM32_First_Project`.
+  - This name will be used for the project's primary files.
   
 - Create the Project:
   - Click Save to create the project. KiCad will generate essential files, including:

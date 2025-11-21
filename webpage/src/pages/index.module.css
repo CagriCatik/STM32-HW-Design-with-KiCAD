@@ -1,6 +1,5 @@
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * Scoped CSS module
  */
 
 .heroBanner {
@@ -10,9 +9,24 @@
   overflow: hidden;
 }
 
+/* Large tablets and below */
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Tablets and below */
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 2.5rem 1.25rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .heroBanner {
+    padding: 2rem 1rem;
   }
 }
 
@@ -20,4 +34,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  /* allows buttons to break into multiple rows on small screens */
+  gap: 1rem;
+  /* consistent spacing */
+}
+
+/* Improve button spacing on very small screens */
+@media screen and (max-width: 480px) {
+  .buttons {
+    gap: 0.75rem;
+  }
 }

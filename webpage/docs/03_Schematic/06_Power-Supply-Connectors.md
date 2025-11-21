@@ -72,7 +72,7 @@ Serial Wire Debug (SWD) is a crucial feature for programming and debugging STM32
      - VCC
      - GND
 
-### Best Practices
+### Best Practices - Serial Debug
 
 - Consistent Labeling: Use consistent and clear labels for all headers to avoid confusion during debugging and testing.
 - Spacing and Alignment: Ensure that headers are spaced adequately to prevent signal interference and to facilitate easy access on the PCB.
@@ -115,7 +115,7 @@ When designing the power supply section:
 - Trace Routing: Use short, wide traces for power connections to reduce resistance and inductance.
 - Thermal Considerations: Ensure adequate copper area around the regulator for heat dissipation, especially if the current draw is significant.
 
-### Best Practices
+### Best Practices - Power Supply
 
 - Capacitor Quality: Use low Equivalent Series Resistance (ESR) capacitors for better performance.
 - Voltage Ratings: Ensure capacitors are rated appropriately for the operating voltage (e.g., 6.3V or higher for 3.3V lines).
@@ -158,7 +158,7 @@ A status LED serves as a visual indicator to confirm that the system is powered 
 - Current Limiting: A 1.5kΩ resistor restricts the current to around 1mA, which is sufficient for visible indication while minimizing power consumption.
 - Alternative Values: Depending on the desired brightness, resistor values can range between 1kΩ to 2kΩ.
 
-### Best Practices
+### Best Practices - LED
 
 - Resistor Precision: Use resistors with appropriate tolerance (e.g., ±1%) to ensure consistent LED brightness.
 - LED Orientation: Verify the correct orientation of the LED to prevent reverse biasing, which can damage the component.

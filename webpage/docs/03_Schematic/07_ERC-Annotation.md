@@ -14,7 +14,6 @@ Procedure:
 
 1. Access the Connected Graphic Lines Tool:
    - Locate the "Connected Graphic Lines Tool" in the right-hand toolbar of KiCad.
-   
 2. Create Bounding Boxes:
    - Draw bounding boxes around each functional section of your schematic. Common sections include:
      - Power Supply Section:
@@ -23,13 +22,14 @@ Procedure:
        - Components: STM32 microcontroller, decoupling capacitors, crystal oscillator, USB circuitry.
      - Communication Interfaces:
        - Components: UART, I²C, SWD debug connectors.
-   
-Best Practices:
+
+**Best Practices:**
 
 - Consistent Styling: Use uniform line styles and colors for bounding boxes to maintain a cohesive look.
 - Adequate Spacing: Ensure there is sufficient space between bounding boxes to prevent overlapping and maintain readability.
 
 Example:
+
 ```plaintext
 +-+     +--+
 | Power Supply      |     | Microcontroller    |
@@ -46,21 +46,20 @@ Procedure:
 
 1. Select the Add Text Tool:
    - Click on the "Add Text" tool in the toolbar.
-   
 2. Insert Section Titles:
    - Add descriptive titles to each bounded section, such as "Power Supply", "Microcontroller", and "USB Circuitry".
    - Utilize larger, bold fonts to make titles prominent.
-   
 3. Adjust Text Size:
    - Double-click the inserted text to open the properties dialog.
    - Increase the font size to enhance visibility.
 
-Best Practices:
+**Best Practices:**
 
 - Descriptive Labels: Use clear and specific titles that accurately describe the section's purpose.
 - Consistent Formatting: Maintain uniform font styles and sizes across all section titles.
 
 Example:
+
 ```plaintext
 +-+     +--+
 | Power Supply  |     | Microcontroller|
@@ -81,22 +80,21 @@ Procedure:
 
 1. Access Page Settings:
    - Click the Page Settings button, represented by a sheet of paper icon, located on the toolbar.
-   
 2. Fill in the Title Block Fields:
    - Title: Enter the project name (e.g., "STM32 Demo PCB").
    - Revision: Assign a meaningful revision number (e.g., "v0.1") to track changes.
    - Company Name: Input your company or project name, if applicable.
    - Date: The field auto-fills with the current date, but it can be edited manually if needed.
-   
 3. Apply Changes:
    - Click OK to update the title block on your schematic.
 
-Best Practices:
+**Best Practices:**
 
 - Accurate Information: Ensure all fields are correctly filled to avoid confusion during project handovers or reviews.
 - Version Control: Use a systematic revision numbering scheme to track schematic iterations effectively.
 
 Example:
+
 ```plaintext
 -
 | Title      : STM32 Demo PCB                   |
@@ -114,18 +112,17 @@ Annotations provide context and explanations within your schematic, aiding in un
 
 Objective: Document the rationale behind component selections and design choices.
 
-Procedure:
+**Procedure:**
 
 1. Select the Add Text Tool:
    - Use the "Add Text" tool to insert explanatory notes near relevant components.
-   
 2. Insert Explanations:
    - Example 1: Near a crystal oscillator, add:
      - *"Calculated based on crystal load capacitance of 10 pF and stray capacitance of 5 pF."*
    - Example 2: Near a USB D+ line resistor, add:
      - *"Pull-up resistor for USB detection as per STM32 application note AN4879."*
 
-Best Practices:
+**Best Practices:**
 
 - Clarity: Ensure comments are concise and directly related to the component or section they describe.
 - Relevance: Include only necessary explanations to avoid cluttering the schematic.
@@ -148,6 +145,7 @@ Best Practices:
 - Avoid Overcrowding: Distribute comments evenly to prevent overlapping and maintain a clean schematic.
 
 Example:
+
 ```plaintext
 +-+
 | VBUS Power Input  | <-- "Defines the main power source for the PCB."
@@ -170,15 +168,13 @@ Procedure:
 
 1. Initiate Annotation:
    - Click the Annotate Schematic Symbols button, identifiable by an "A" icon, in the toolbar.
-   
 2. Configure Annotation Settings:
    - In the Annotate Schematic dialog, select the schematic sheets to annotate.
    - Choose the annotation order, such as by X/Y position, to maintain logical sequencing (e.g., top-to-bottom, left-to-right).
-   
 3. Execute Annotation:
    - Click Annotate to allow KiCad to automatically assign designators (e.g., C1, R2, U1) based on the selected settings.
 
-Best Practices:
+**Best Practices:**
 
 - Logical Sequencing: Opt for annotation by position to reflect the physical layout, aiding in intuitive PCB placement.
 - Review Assignments: After annotation, review designators to ensure consistency and logical grouping.
@@ -187,18 +183,19 @@ Best Practices:
 
 Objective: Gain granular control over designator assignments for specific organizational needs.
 
-Procedure:
+**Procedure:**
 
 - Manual Assignment:
   - Double-click on a component's designator (e.g., "C?") to edit.
   - Input the desired designator manually (e.g., "C1", "R1").
 
-Best Practices:
+**Best Practices:**
 
 - Consistency: Maintain a consistent naming convention to facilitate easy identification and troubleshooting.
 - Grouping: Assign designators in a manner that groups related components logically (e.g., all decoupling capacitors as C1, C2, etc.).
 
 Example:
+
 ```plaintext
 C1: 10 µF Decoupling Capacitor
 R1: 1kΩ Pull-up Resistor
@@ -213,18 +210,17 @@ Conducting an Electrical Rules Check ensures the schematic is free from electric
 
 Objective: Identify and rectify electrical issues within the schematic.
 
-Procedure:
+**Procedure:**
 
 1. Access ERC Tool:
    - Click the Electrical Rules Check (ERC) button, represented by a checkmark icon, in the toolbar.
-   
 2. Execute ERC:
    - Initiate the ERC process to scan the schematic for potential electrical issues, such as:
      - Unconnected Pins: Pins that are not connected to any other component.
      - Power Inputs Without Sources: Power lines that lack defined power sources.
      - Incorrect Connections: Inappropriate connections between pins of differing types (e.g., output to output).
 
-Best Practices:
+**Best Practices:**
 
 - Regular Checks: Perform ERC frequently during schematic development to catch errors early.
 - Detailed Review: Carefully examine ERC reports to understand and address each identified issue.
@@ -247,6 +243,7 @@ Best Practices:
 - Iterative Checking: After making corrections, rerun ERC to confirm that all issues have been resolved.
 
 Example:
+
 ```plaintext
 Error: Unconnected pin on U1 (VCC)
 Solution: Add Power Flag to VCC line.
@@ -267,14 +264,13 @@ Procedure:
 
 1. Access Footprint Assignment Tool:
    - Click the Assign Footprints to Symbols button, depicted by a footprint icon, in the toolbar.
-   
 2. Assign Appropriate Footprints:
    - In the Footprint Assignment window, select and assign footprints based on each component's physical characteristics. Examples include:
      - AMS1117-3.3 Regulator: Choose a SOT-223 footprint suitable for surface-mount applications.
      - Decoupling Capacitors: Select 0805 or 0603 package footprints based on design specifications.
      - Microcontroller: Assign a TQFP or DIP package footprint, depending on the specific STM32 variant used.
-   
-Best Practices:
+
+**Best Practices:**
 
 - Manufacturer Datasheets: Refer to component datasheets to ensure correct footprint selection.
 - Standard Packages: Utilize standard footprint libraries to maintain consistency and ease of sourcing.
@@ -301,6 +297,7 @@ Best Practices:
 - Utilize KiCad’s Preview Feature: Use the footprint preview to visualize component placement and identify potential issues.
 
 Example:
+
 ```plaintext
 Component: AMS1117-3.3
 Assigned Footprint: SOT-223-3

@@ -1,12 +1,12 @@
 # STM32 CubeIDE for Pinout Configuration and Peripheral Setup
 
-This comprehensive guide delves into configuring the pinout and peripherals of an STM32 microcontroller using STM32CubeIDE. Whether you are a beginner or an advanced user, this documentation provides detailed explanations, practical examples, and best practices to streamline your hardware configuration and project setup. By the end of this guide, you will be proficient in leveraging STM32CubeIDE for efficient microcontroller setup and seamless integration with KiCad for PCB design.
+This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design.
 
 ## 1. Getting Started with STM32CubeIDE
 
 ### Installing STM32CubeIDE
 
-Before embarking on your STM32 project, it's essential to install the STM32CubeIDE, a robust Eclipse-based development environment provided by STMicroelectronics. STM32CubeIDE integrates hardware abstraction layers, peripheral libraries, and driver configurations, facilitating streamlined microcontroller management.
+STM32CubeIDE is the official Eclipse-based development environment for STM32 microcontrollers. It combines code editing, project generation, hardware configuration, HAL/LL driver setup, and debugging in a single tool. Its built-in CubeMX engine manages pin assignments, peripheral initialization, and clock configuration, allowing rapid setup of STM32 firmware projects.
 
 #### Step-by-Step Installation Guide
 
@@ -47,7 +47,7 @@ Creating a new project is the foundational step in developing your STM32 applica
 ### Step-by-Step Project Creation
 
 1. Initiate Project Creation:
-   - Navigate to File > New > STM32 Project from the top menu.
+   - Navigate to `File > New > STM32 Project` from the top menu.
    - This action opens the Target Selector window, where you will choose your microcontroller or development board.
 
 2. Selecting Your Microcontroller (MCU):
@@ -84,7 +84,8 @@ Creating a new project is the foundational step in developing your STM32 applica
 
 ## 3. Configuring the Pinout in STM32CubeIDE
 
-The Pinout Configuration tab is a visual tool within STM32CubeIDE that allows you to assign functions to the microcontroller's pins intuitively. Proper pin configuration is vital for ensuring that your hardware interfaces correctly with peripherals and other components.
+- The Pinout Configuration tab is a visual tool within STM32CubeIDE that allows you to assign functions to the microcontroller's pins intuitively.
+- Proper pin configuration is vital for ensuring that your hardware interfaces correctly with peripherals and other components.
 
 ### Understanding the Pinout View
 
@@ -253,7 +254,8 @@ The Real-Time Clock (RTC) requires a low-power, continuous clock source to maint
 
 ## 6. Transferring Pinout Configuration to KiCad
 
-After configuring your pinout and peripherals in STM32CubeIDE, the next step is to transfer this setup to KiCad for PCB design. Maintaining consistency between your software configuration and hardware design is crucial to avoid errors and ensure seamless integration.
+- After configuring your pinout and peripherals in STM32CubeIDE, the next step is to transfer this setup to KiCad for PCB design.
+- Maintaining consistency between your software configuration and hardware design is crucial to avoid errors and ensure seamless integration.
 
 ### Exporting Pinout and Labels from STM32CubeIDE
 
@@ -367,9 +369,49 @@ STM32CubeIDE stands out as a powerful tool for configuring STM32 microcontroller
 
 By following the methodologies and best practices outlined in this documentation, you can achieve a smooth transition from software configuration to hardware design, minimizing errors and enhancing the efficiency of your development workflow. Leveraging STM32CubeIDE's robust features in conjunction with KiCad's powerful PCB design capabilities empowers you to create sophisticated and reliable embedded systems.
 
-## Additional Resources
 
-- STM32CubeIDE Documentation: [STMicroelectronics Documentation](https://www.st.com/en/development-tools/stm32cubeide.html)
-- KiCad Official Documentation: [KiCad Documentation](https://docs.kicad.org/)
-- STM32 Community Forums: [ST Community](https://community.st.com/s/)
-- USB Design Guidelines: [USB.org Guidelines](https://www.usb.org/documents)
+## Configuration Pins: NRST and BOOT0
+
+This diagram shows how the STM32 reset pin (NRST) and boot configuration pin (BOOT0) are wired for reliable operation:
+
+- NRST is held high with an internal pull-up and protected with a 100 nF capacitor and optional reset button to GND,
+- while BOOT0 uses a 10 kΩ pull-down and an SPDT switch to select between booting from Flash (BOOT0 = 0) and entering the system bootloader (BOOT0 = 1).
+
+```mermaid
+graph TD
+
+  VDD3V3["3.3V rail"]
+  GND["GND"]
+
+  subgraph RESET_CIRCUIT ["Reset Pin Configuration 'NRST'"]
+    NRST["NRST pin"]
+    Rint["Internal pull-up"]
+    C_NRST["100 nF cap - NRST to GND"]
+    SW_NRST["Reset button - NRST to GND"]
+  end
+
+  VDD3V3 --> Rint --> NRST
+  NRST --> C_NRST --> GND
+  NRST --> SW_NRST --> GND
+
+  subgraph BOOT_CONFIG ["Boot Pin Configuration 'BOOT0'"]
+    BOOT0["BOOT0 pin"]
+    R_PD["10 kΩ pull-down - BOOT0 to GND"]
+    SW_BOOT_C["SPDT common -> BOOT0"]
+    SW_BOOT_HIGH["SPDT position: BOOT HIGH - 3.3V"]
+    SW_BOOT_LOW["SPDT position: BOOT LOW - GND"]
+    BOOT_FLASH["BOOT0 = 0 - Boot from Flash"]
+    BOOT_SYSTEM["BOOT0 = 1 - System bootloader"]
+  end
+
+  BOOT0 --- SW_BOOT_C
+  BOOT0 --> R_PD --> GND
+
+  SW_BOOT_HIGH --> VDD3V3
+  SW_BOOT_LOW --> GND
+
+  SW_BOOT_LOW -.-> BOOT_FLASH
+  SW_BOOT_HIGH -.-> BOOT_SYSTEM
+
+
+```

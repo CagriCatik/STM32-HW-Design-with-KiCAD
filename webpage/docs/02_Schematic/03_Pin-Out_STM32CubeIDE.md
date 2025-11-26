@@ -1,8 +1,8 @@
-# STM32 CubeIDE for Pinout Configuration and Peripheral Setup
+# Pinout Configuration and Peripheral Setup
 
 This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design.
 
-## 1. Getting Started with STM32CubeIDE
+## Getting Started with STM32CubeIDE
 
 ### Installing STM32CubeIDE
 
@@ -40,7 +40,7 @@ Understanding the layout of STM32CubeIDE is crucial for efficient navigation and
 - Configuration Tabs: Located typically at the top or side, allowing access to Pinout Configuration, Clock Configuration, and Peripheral Configuration.
 - Toolbars: Provide quick access to common actions such as building the project, debugging, and running simulations.
 
-## 2. Creating a New Project in STM32CubeIDE
+## Creating a New Project in STM32CubeIDE
 
 Creating a new project is the foundational step in developing your STM32 application. STM32CubeIDE simplifies this process with a user-friendly interface.
 
@@ -82,7 +82,7 @@ Creating a new project is the foundational step in developing your STM32 applica
 - Consistent Naming Conventions: Adopt a naming convention (e.g., using underscores or camelCase) to maintain consistency across projects.
 - Organized Directory Structure: Store related projects in dedicated folders to simplify navigation and management.
 
-## 3. Configuring the Pinout in STM32CubeIDE
+## Configuring the Pinout in STM32CubeIDE
 
 - The Pinout Configuration tab is a visual tool within STM32CubeIDE that allows you to assign functions to the microcontroller's pins intuitively.
 - Proper pin configuration is vital for ensuring that your hardware interfaces correctly with peripherals and other components.
@@ -148,7 +148,7 @@ Configuring a basic generic board involves setting up essential power, reset, co
   - Function Conflicts: Ensure that no two peripherals are assigned to the same pin unless multiplexing is intentionally desired.
   - Alternate Functions: Verify that alternate functions of a pin do not interfere with the primary function you intend to assign.
 
-## 4. Configuring Peripherals in STM32CubeIDE
+## Configuring Peripherals in STM32CubeIDE
 
 Configuring peripherals is a crucial step that enables your STM32 microcontroller to interface with various hardware components effectively. STM32CubeIDE provides an intuitive interface to enable and customize these peripherals.
 
@@ -208,7 +208,7 @@ Debugging is an integral part of embedded development, allowing you to program a
 - Consistent Configuration:
   - Maintain consistency between peripheral settings in STM32CubeIDE and your hardware design in KiCad to prevent mismatches and functional issues.
 
-## 5. Clock Configuration in STM32CubeIDE
+## Clock Configuration in STM32CubeIDE
 
 Accurate clock configuration is paramount for ensuring the microcontroller operates at optimal frequencies, enabling reliable communication protocols and overall system performance.
 
@@ -308,7 +308,7 @@ Maintaining consistent naming conventions between STM32CubeIDE and KiCad is esse
 - Documentation: Maintain thorough documentation of all pin assignments and configurations to facilitate troubleshooting and future modifications.
 - Verification: After transferring the configurations, perform a thorough review to ensure that all connections are accurate and align with the intended design.
 
-## 7. Understanding Differential Pairs for USB
+## Understanding Differential Pairs for USB
 
 Differential pairs are essential for high-speed communication protocols like USB, as they enhance signal integrity and reduce electromagnetic interference (EMI). Proper handling of differential pairs in PCB design is critical to ensuring reliable data transmission.
 
@@ -368,7 +368,6 @@ STM32CubeIDE stands out as a powerful tool for configuring STM32 microcontroller
 - Differential Pair Handling: Implement best practices for routing differential pairs in KiCad to ensure high-speed communication integrity.
 
 By following the methodologies and best practices outlined in this documentation, you can achieve a smooth transition from software configuration to hardware design, minimizing errors and enhancing the efficiency of your development workflow. Leveraging STM32CubeIDE's robust features in conjunction with KiCad's powerful PCB design capabilities empowers you to create sophisticated and reliable embedded systems.
-
 
 ## Configuration Pins: NRST and BOOT0
 

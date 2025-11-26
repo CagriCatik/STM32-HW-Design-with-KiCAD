@@ -1,4 +1,4 @@
-# Adding Serial Debug Connectors, Power Supply, and Finalizing
+# Serial Debug Connectors, Power Supply
 
 This section provides a comprehensive guide to enhancing your STM32-based PCB design in KiCad. It covers the addition of Serial Debug Connectors, the setup of a power supply using a linear regulator, the integration of a status LED, and the finalization of the schematic. The objective is to develop a simple, functional, and robust design that incorporates UART and I²C connections, proper decoupling, and clean power regulation.
 

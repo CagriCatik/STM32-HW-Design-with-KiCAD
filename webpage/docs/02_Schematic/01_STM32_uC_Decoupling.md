@@ -1,4 +1,4 @@
-# STM32 Microcontroller PCB Design and Decoupling
+# Decoupling
 
 - This guide delves into the PCB design process for STM32 microcontrollers using KiCad.
 - It emphasizes best practices, essential design principles, and the critical role of decoupling capacitors and filtering in both analog and digital circuits.

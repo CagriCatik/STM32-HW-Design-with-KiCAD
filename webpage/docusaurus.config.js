@@ -85,12 +85,6 @@ const config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'StepsSidebar',
-          position: 'left',
-          label: 'First-Steps',
-        },
-        {
-          type: 'docSidebar',
           sidebarId: 'SchematicSidebar',
           position: 'left',
           label: 'Schematics',

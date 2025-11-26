@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>KiCad and STM32 Hardware Design</h1>
+<h2>KiCad and STM32 Hardware Design</h2>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/KiCad-Logo.svg" alt="KiCad Logo" width="180">
 
@@ -25,8 +25,8 @@ The goal was not only to learn KiCad as a professional tool, but to understand w
 <details>
 <summary><strong>1. Schematic Design</strong></summary>
 
-- [ ] STM32 microcontroller fundamentals and decoupling guidance.
-- [ ] STM32 configuration pin requirements and best practices.
+- [x] STM32 microcontroller fundamentals and decoupling guidance.
+- [x] STM32 configuration pin requirements and best practices.
 - [ ] Pin-out management using STM32CubeIDE.
 - [ ] Crystal oscillator circuit design.
 - [ ] USB interface design for STM32 systems.
@@ -75,7 +75,7 @@ The goal was not only to learn KiCad as a professional tool, but to understand w
 
 ---
 
-## Additional Resources
+**Additional Resources**
 
 - This content is aligned with [Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
 - STM32CubeIDE Documentation: [STMicroelectronics Documentation](https://www.st.com/en/development-tools/stm32cubeide.html)

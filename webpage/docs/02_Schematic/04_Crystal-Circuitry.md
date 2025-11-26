@@ -1,4 +1,4 @@
-# Connecting the Crystal Oscillator in STM32 Microcontroller Circuits
+# Connecting the Crystal Oscillator
 
 Integrating a `crystal oscillator`  into your STM32 microcontroller circuit is a pivotal step in ensuring accurate timing, especially for high-speed communication protocols such as USB, CAN, and UART.
 
@@ -10,97 +10,88 @@ A schematic typically includes the crystal between `OSC_IN` and `OSC_OUT` pins, 
 
 This following part provides a guide on designing and implementing a `crystal oscillator` circuit using KiCad, covering fundamental principles, component selection, schematic design, and best practices.
 
-## 1. The Role of the Crystal Oscillator in STM32 Microcontrollers
+## The Role of the Crystal Oscillator in STM32 Microcontrollers
 
 ### Importance of a Precise Clock Source
 
-- Accurate Timing: Critical for the reliable operation of microcontrollers, especially in applications involving high-speed data transmission.
-- Stable Communication Protocols: Ensures consistency and reduces errors in protocols like USB, CAN, and UART.
+- **Accurate Timing**: Critical for the reliable operation of microcontrollers, especially in applications involving high-speed data transmission.
+- **Stable Communication Protocols**: Ensures consistency and reduces errors in protocols like USB, CAN, and UART.
 
 ### Internal vs. External Oscillators
 
-- Internal Oscillator:
+- **Internal Oscillator**:
   - Advantages: Simplifies the design by reducing external components.
   - Disadvantages: Generally less accurate and stable, unsuitable for timing-critical applications.
-- High-Speed External (HSE) Clock:
+- **High-Speed External (HSE) Clock**:
   - Advantages: Provides higher accuracy and stability.
   - Implementation: Utilizes a `crystal oscillator`  connected to the HSE pins (OSC_IN and OSC_OUT) on the STM32 microcontroller.
 
 ### Typical Crystal Oscillator Circuit Components
 
-- Crystal: Typically a 16 MHz component connected between OSC_IN and OSC_OUT.
-- Load Capacitors: Stabilize the oscillation frequency, ensuring accurate timing.
-- Optional Feedback Resistors: May be used for controlling signal distortion.
+- **Crystal**: Typically a 16 MHz component connected between OSC_IN and OSC_OUT.
+- **Load Capacitors**: Stabilize the oscillation frequency, ensuring accurate timing.
+- **Optional Feedback Resistors**: May be used for controlling signal distortion.
 
 ## 2. Crystal Package Types and Symbol Selection in KiCad
 
 ### Crystal Oscillator Package Configurations
 
-- Two-Pin Configuration:
-  - Common Usage: Widely used due to simplicity.
-  - Applications: Suitable for most standard `crystal oscillator`  requirements.
-
-- Four-Pin Configuration:
-  - Enhanced Stability: Grounding additional pins can improve signal stability and reduce electromagnetic interference (EMI).
-  - Use Case: Preferred in environments where noise reduction is critical.
+- **Two-Pin Configuration**:
+  - **Common Usage**: Widely used due to simplicity.
+  - **Applications**: Suitable for most standard `crystal oscillator`  requirements.
+- **Four-Pin Configuration**:
+  - **Enhanced Stability**: Grounding additional pins can improve signal stability and reduce electromagnetic interference (EMI).
+  - **Use Case**: Preferred in environments where noise reduction is critical.
 
 ### Selecting the Crystal Symbol in KiCad
 
-1. Accessing Symbols:
+1. **Accessing Symbols**:
    - Navigate to the Add Symbol tool within KiCad’s schematic editor.
-
-2. Searching for Crystal Symbols:
+2. **Searching for Crystal Symbols**:
    - Enter "Crystal" in the symbol library search bar.
-
-3. Choosing the Appropriate Symbol:
-   - Two-Pin Crystal: Select for simpler designs.
-   - Four-Pin Crystal: Opt for enhanced stability and noise reduction.
-
-4. Placing the Symbol:
-   - Position the crystal symbol near the HSE_IN and HSE_OUT pins of the STM32 microcontroller on the schematic for logical layout and ease of routing.
+3. **Choosing the Appropriate Symbol**:
+   - **Two-Pin Crystal**: Select for simpler designs.
+   - **Four-Pin Crystal**: Opt for enhanced stability and noise reduction.
+4. **Placing the Symbol**:
+   - Position the crystal symbol near the `HSE_IN` and `HSE_OUT` pins of the STM32 microcontroller on the schematic for logical layout and ease of routing.
 
 ### Pin Configuration for a Four-Pin Crystal
 
-- Pins 1 and 3:
-  - Function: Connect to HSE_IN (OSC_IN) and HSE_OUT (OSC_OUT) on the STM32.
-  
-- Pins 2 and 4:
+- **Pins 1 and 3:**
+  - Function: Connect to `HSE_IN` (OSC_IN) and `HSE_OUT` (OSC_OUT) on the STM32.
+- **Pins 2 and 4:**
   - Function: Grounded to enhance stability and minimize electromagnetic interference.
 
-## 3. Understanding the Crystal Circuit Design
+## Understanding the Crystal Circuit Design
 
 ### Built-in Microcontroller Features
 
-- Inverters and Feedback Resistors:
+- **Inverters and Feedback Resistors**:
   - Integrated into the STM32, these components assist in forming a stable oscillation circuit.
 
 ### External Components Required
 
-- Load Capacitors:
+- **Load Capacitors**:
   - Purpose: Stabilize the oscillation frequency.
   - Selection Criteria: Based on crystal load capacitance and PCB stray capacitance.
-
-- Optional Feedback Resistors:
+- **Optional Feedback Resistors**:
   - Function: Limit signal distortion.
   - Consideration: Often omitted unless specific distortion control is required.
 
 ### Typical Crystal Oscillator Circuit Layout
 
-- Crystal Connection:
-  - Between HSE_IN (PD0) and HSE_OUT (PD1) pins of the STM32.
-
-- Load Capacitors:
+- **Crystal Connection**:
+  - Between `HSE_IN` (PD0) and `HSE_OUT` (PD1) pins of the STM32.
+- **Load Capacitors**:
   - Two identical capacitors connected from each crystal pin to ground.
-
-- Feedback Resistor:
+- **Feedback Resistor**:
   - Optional series resistor connected to manage signal integrity.
 
 ### External Components: Load Capacitors
 
-- Role in Oscillation:
+- **Role in Oscillation**:
   - Ensure the crystal oscillates at its designated frequency by providing necessary capacitive loading.
-
-- Determining Capacitor Values:
+- **Determining Capacitor Values**:
   - Based on the crystal’s specified load capacitance and the PCB’s stray capacitance.
 
 ## 4. Application Note AN2867: Oscillator Design for STM32
@@ -112,12 +103,10 @@ STMicroelectronics' Application Note AN2867 serves as an essential reference for
 1. Crystal Load Capacitors:
    - Critical for stabilizing oscillation.
    - Work in conjunction with the STM32's internal oscillator circuitry to generate a stable clock signal.
-
 2. Stray Capacitance Considerations:
    - Arises from PCB traces and nearby components.
    - Typically ranges between 3-5 pF.
    - Must be accounted for when calculating load capacitor values.
-
 3. Feedback Resistor Usage:
    - Generally optional.
    - May be included to prevent overdriving the crystal and reduce distortion.
@@ -125,10 +114,9 @@ STMicroelectronics' Application Note AN2867 serves as an essential reference for
 
 ### Best Practices
 
-- Adherence to Guidelines:
+- **Adherence to Guidelines**:
   - Following AN2867 ensures reliable oscillator performance and minimizes design errors.
-  
-- Component Selection:
+- **Component Selection**:
   - Carefully choose capacitors and resistors based on the application requirements and guidelines provided.
 
 ## 5. Calculating the Load Capacitor Values
@@ -306,3 +294,41 @@ Integrating a `crystal oscillator`  into your STM32 microcontroller design is fu
 - Validation: Thoroughly review and validate the schematic to prevent design flaws.
 
 With a well-designed `crystal oscillator`  circuit, your STM32 microcontroller will operate with a stable and accurate clock source, enabling robust performance in high-speed and timing-sensitive applications.
+
+```mermaid
+flowchart LR
+    subgraph MCU["STM32 Microcontroller"]
+        PD0["PD0 / HSE_IN (OSC_IN)"]
+        PD1["PD1 / HSE_OUT (OSC_OUT)"]
+    end
+
+    subgraph XTAL["16 MHz Crystal (4-pin)"]
+        X1["Pin 1"]
+        X3["Pin 3"]
+        X2["Pin 2 (GND)"]
+        X4["Pin 4 (GND)"]
+    end
+
+    C1["C1: Load capacitor - (e.g. 8 pF) - HSE_IN to GND"]
+    C2["C2: Load capacitor - (e.g. 8 pF) - HSE_OUT to GND"]
+
+    GND((GND))
+
+    %% Signal connections
+    PD0 --- X1
+    PD1 --- X3
+
+    %% Load capacitors to ground
+    X1 --- C1
+    X3 --- C2
+    C1 --- GND
+    C2 --- GND
+
+    %% Crystal grounded pins
+    X2 --- GND
+    X4 --- GND
+
+    %% Optional series / feedback resistor (if used)
+    Rseries["Optional series resistor - for drive/control"]
+    PD1 -.-> Rseries -.-> X3
+```

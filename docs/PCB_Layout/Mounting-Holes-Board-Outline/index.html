@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-PCB_Layout/Mounting-Holes-Board-Outline" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Adding Mounting Holes, Defining Board Outline, and Preparing for Routing | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="In this section, we delve into the essential steps of adding mounting holes, defining the board outline, and adjusting the layout to prepare for PCB routing using KiCad. These procedures are critical for ensuring that your PCB is securely mounted, properly enclosed, and optimized for manufacturing. The following guide provides detailed instructions, practical examples, and best practices to help you achieve a professional and reliable PCB design."><meta data-rh="true" property="og:description" content="In this section, we delve into the essential steps of adding mounting holes, defining the board outline, and adjusting the layout to prepare for PCB routing using KiCad. These procedures are critical for ensuring that your PCB is securely mounted, properly enclosed, and optimized for manufacturing. The following guide provides detailed instructions, practical examples, and best practices to help you achieve a professional and reliable PCB design."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Adding Mounting Holes, Defining Board Outline, and Preparing for Routing","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"><span title="PCB Layout and Routing Setup" class="linkLabel_WmDU">PCB Layout and Routing Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/MCU-Decoupling_Capacitors_Crystal-Layout"><span title="Initial Component Placement and Layout" class="linkLabel_WmDU">Initial Component Placement and Layout</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/USB_SWD_Layout"><span title="Prioritizing and Placing Critical Circuitry" class="linkLabel_WmDU">Prioritizing and Placing Critical Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Changing-Footprints-Adding-3D-Models"><span title="Fixing 3D Models and Adjusting Footprints" class="linkLabel_WmDU">Fixing 3D Models and Adjusting Footprints</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Switch-Connector-Placement"><span title="Finalizing the Rough Layout and Preparing for Power Circuitry" class="linkLabel_WmDU">Finalizing the Rough Layout and Preparing for Power Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><span title="Finalizing Power Supply Layout and Preparing for PCB Routing" class="linkLabel_WmDU">Finalizing Power Supply Layout and Preparing for PCB Routing</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><span title="Adding Mounting Holes, Defining Board Outline, and Preparing for Routing" class="linkLabel_WmDU">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</h1></header>
+<p>In this section, we delve into the essential steps of adding mounting holes, defining the board outline, and adjusting the layout to prepare for PCB routing using KiCad. These procedures are critical for ensuring that your PCB is securely mounted, properly enclosed, and optimized for manufacturing. The following guide provides detailed instructions, practical examples, and best practices to help you achieve a professional and reliable PCB design.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-adding-mounting-holes-to-the-pcb">1. Adding Mounting Holes to the PCB<a href="#1-adding-mounting-holes-to-the-pcb" class="hash-link" aria-label="Direct link to 1. Adding Mounting Holes to the PCB" title="Direct link to 1. Adding Mounting Holes to the PCB" translate="no">​</a></h2>
+<p>Mounting holes play a pivotal role in attaching the PCB to an enclosure or mechanical structure, providing mechanical stability. They are especially crucial in projects that require mounting within cases or during assembly handling.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-add-mounting-holes-to-the-schematic">Step 1: Add Mounting Holes to the Schematic<a href="#step-1-add-mounting-holes-to-the-schematic" class="hash-link" aria-label="Direct link to Step 1: Add Mounting Holes to the Schematic" title="Direct link to Step 1: Add Mounting Holes to the Schematic" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Open the Schematic Editor:</p>
+<ul>
+<li class="">Launch KiCad and open your project.</li>
+<li class="">Navigate to the Schematic Editor by clicking on the corresponding icon.</li>
+</ul>
+</li>
+<li class="">
+<p>Access the Symbol Library:</p>
+<ul>
+<li class="">Click on the Add Symbol tool (usually represented by an op-amp icon or a symbol with a plus sign).</li>
+<li class="">In the Symbol Library dialog, use the search bar to locate &quot;Mounting Hole&quot; symbols.</li>
+</ul>
+</li>
+<li class="">
+<p>Select the Appropriate Mounting Hole Symbol:</p>
+<ul>
+<li class="">Simple Mounting Hole: A non-electrically connected hole, ideal for mechanical stability without affecting the electrical design.</li>
+<li class="">Mounting Hole with Pad: Includes a pad that can be tied to ground, beneficial for grounding purposes, such as grounding oscilloscope probes.</li>
+<li class="">For this design, select the simple mounting hole to avoid unintended electrical connections.</li>
+</ul>
+</li>
+<li class="">
+<p>Place Mounting Holes on the Schematic:</p>
+<ul>
+<li class="">Position four mounting holes strategically on the schematic to correspond with the PCB&#x27;s corners.</li>
+<li class="">Ensure that their locations do not interfere with critical components or signal paths.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-select-and-assign-footprint">Step 2: Select and Assign Footprint<a href="#step-2-select-and-assign-footprint" class="hash-link" aria-label="Direct link to Step 2: Select and Assign Footprint" title="Direct link to Step 2: Select and Assign Footprint" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access Mounting Hole Properties:</p>
+<ul>
+<li class="">Double-click each mounting hole symbol to open the Symbol Properties dialog.</li>
+</ul>
+</li>
+<li class="">
+<p>Assign Footprint:</p>
+<ul>
+<li class="">Click the Footprint button to open the Footprint Library Browser.</li>
+<li class="">Search for a suitable mounting hole footprint. Common footprints include:<!-- -->
+<ul>
+<li class="">Mounting Hole M2: Suitable for small boards requiring minimal space.</li>
+<li class="">Mounting Hole M3: Provides a larger diameter for increased mechanical strength.</li>
+</ul>
+</li>
+<li class="">Select the appropriate footprint based on your board size and mechanical requirements.</li>
+</ul>
+</li>
+<li class="">
+<p>Uniform Footprint Assignment:</p>
+<ul>
+<li class="">Assign the same footprint to all four mounting holes to maintain consistency.</li>
+<li class="">Utilize the copy and paste functions to replicate the footprint assignment efficiently.</li>
+</ul>
+</li>
+<li class="">
+<p>Confirm Footprint Assignment:</p>
+<ul>
+<li class="">Verify that each mounting hole has the correct footprint by reviewing the properties.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-import-mounting-holes-to-the-pcb-layout">Step 3: Import Mounting Holes to the PCB Layout<a href="#step-3-import-mounting-holes-to-the-pcb-layout" class="hash-link" aria-label="Direct link to Step 3: Import Mounting Holes to the PCB Layout" title="Direct link to Step 3: Import Mounting Holes to the PCB Layout" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Save the Schematic:</p>
+<ul>
+<li class="">After placing and assigning footprints to all mounting holes, save your schematic changes.</li>
+</ul>
+</li>
+<li class="">
+<p>Open the PCB Editor:</p>
+<ul>
+<li class="">Navigate to the PCB Editor by clicking its icon within KiCad.</li>
+</ul>
+</li>
+<li class="">
+<p>Update PCB from Schematic:</p>
+<ul>
+<li class="">Click on Update PCB from Schematic (often represented by an arrow or synchronization icon).</li>
+<li class="">In the Update PCB dialog, ensure that the Mounting Holes are selected for import.</li>
+<li class="">Confirm to import the mounting holes into the PCB layout.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-positioning-mounting-holes">Step 4: Positioning Mounting Holes<a href="#step-4-positioning-mounting-holes" class="hash-link" aria-label="Direct link to Step 4: Positioning Mounting Holes" title="Direct link to Step 4: Positioning Mounting Holes" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Strategic Placement:</p>
+<ul>
+<li class="">Position the mounting holes near the four corners of the PCB to provide balanced support.</li>
+<li class="">Balanced mounting prevents stress concentration and enhances mechanical stability.</li>
+</ul>
+</li>
+<li class="">
+<p>Spacing Considerations:</p>
+<ul>
+<li class="">Ensure even spacing to maintain structural integrity.</li>
+<li class="">Example Placement:<!-- -->
+<ul>
+<li class="">X-Axis Spacing: 35mm apart.</li>
+<li class="">Y-Axis Spacing: 25mm apart.</li>
+</ul>
+</li>
+<li class="">Adjust spacing based on board size and enclosure dimensions.</li>
+</ul>
+</li>
+<li class="">
+<p>Avoiding Interference:</p>
+<ul>
+<li class="">Ensure mounting holes do not interfere with component placement or signal paths.</li>
+<li class="">Leave adequate clearance around the holes for screw heads and mounting hardware.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-5-aligning-and-adjusting-mounting-holes">Step 5: Aligning and Adjusting Mounting Holes<a href="#step-5-aligning-and-adjusting-mounting-holes" class="hash-link" aria-label="Direct link to Step 5: Aligning and Adjusting Mounting Holes" title="Direct link to Step 5: Aligning and Adjusting Mounting Holes" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Utilize Alignment Tools:</p>
+<ul>
+<li class="">Use KiCad&#x27;s Align Tools to ensure precise alignment of mounting holes.</li>
+<li class="">Access these tools via the Tools menu or relevant keyboard shortcuts.</li>
+</ul>
+</li>
+<li class="">
+<p>Grid Adjustment:</p>
+<ul>
+<li class="">Modify the grid size if necessary to achieve finer placement accuracy.</li>
+<li class="">Access grid settings through the View or Grid menu.</li>
+</ul>
+</li>
+<li class="">
+<p>Clearance from Critical Components:</p>
+<ul>
+<li class="">Position mounting holes away from sensitive or critical components to prevent mechanical stress from affecting their functionality.</li>
+<li class="">Best Practice: Maintain a minimum clearance distance (e.g., 5mm) from high-speed or heat-sensitive components.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-removing-unnecessary-silkscreen-labels">2. Removing Unnecessary Silkscreen Labels<a href="#2-removing-unnecessary-silkscreen-labels" class="hash-link" aria-label="Direct link to 2. Removing Unnecessary Silkscreen Labels" title="Direct link to 2. Removing Unnecessary Silkscreen Labels" translate="no">​</a></h2>
+<p>Silkscreen layers provide labels and markings on the PCB, aiding in assembly and troubleshooting. However, unnecessary labels, especially around mounting holes and connectors, can clutter the design and interfere with manufacturing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-remove-silkscreen-from-mounting-holes">Step 1: Remove Silkscreen from Mounting Holes<a href="#step-1-remove-silkscreen-from-mounting-holes" class="hash-link" aria-label="Direct link to Step 1: Remove Silkscreen from Mounting Holes" title="Direct link to Step 1: Remove Silkscreen from Mounting Holes" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Edit Mounting Hole Properties:</p>
+<ul>
+<li class="">Double-click each mounting hole in the PCB layout to open its Footprint Properties.</li>
+</ul>
+</li>
+<li class="">
+<p>Modify Silkscreen Layer:</p>
+<ul>
+<li class="">Navigate to the Silkscreen Layer settings within the footprint.</li>
+<li class="">Option 1: Move silkscreen labels to the Fabrication Layer if they serve a reference purpose.</li>
+<li class="">Option 2: Remove silkscreen labels entirely to declutter the PCB.</li>
+</ul>
+</li>
+<li class="">
+<p>Confirm Changes:</p>
+<ul>
+<li class="">Save the changes to each mounting hole footprint.</li>
+<li class="">Verify that silkscreen labels around mounting holes are no longer present or have been relocated appropriately.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-adjust-connector-silkscreens">Step 2: Adjust Connector Silkscreens<a href="#step-2-adjust-connector-silkscreens" class="hash-link" aria-label="Direct link to Step 2: Adjust Connector Silkscreens" title="Direct link to Step 2: Adjust Connector Silkscreens" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Identify Connectors with Generic Labels:</p>
+<ul>
+<li class="">Locate connectors such as UART, SWD, and USB that may have generic labels like J1, J2, etc.</li>
+</ul>
+</li>
+<li class="">
+<p>Edit Connector Labels:</p>
+<ul>
+<li class="">Double-click each connector to open its Footprint Properties.</li>
+<li class="">Access the Silkscreen layer.</li>
+</ul>
+</li>
+<li class="">
+<p>Replace Generic Labels:</p>
+<ul>
+<li class="">Substitute generic labels with descriptive names to enhance clarity.<!-- -->
+<ul>
+<li class="">Example Replacements:<!-- -->
+<ul>
+<li class="">J1 → USB Connector</li>
+<li class="">J2 → UART Interface</li>
+<li class="">J3 → SWD Debug Port</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">This practice facilitates easier assembly, testing, and troubleshooting by clearly identifying each connector&#x27;s function.</li>
+</ul>
+</li>
+<li class="">
+<p>Maintain Consistency:</p>
+<ul>
+<li class="">Ensure that all connectors are uniformly labeled across the PCB to avoid confusion.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-defining-the-pcb-board-outline">3. Defining the PCB Board Outline<a href="#3-defining-the-pcb-board-outline" class="hash-link" aria-label="Direct link to 3. Defining the PCB Board Outline" title="Direct link to 3. Defining the PCB Board Outline" translate="no">​</a></h2>
+<p>A well-defined board outline is crucial for ensuring that the PCB fits within its intended enclosure and meets manufacturing specifications. The Edge.Cuts layer in KiCad is used to define the physical boundaries and shape of the PCB, including any rounded corners or specific contours.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-switch-to-edgecuts-layer">Step 1: Switch to Edge.Cuts Layer<a href="#step-1-switch-to-edgecuts-layer" class="hash-link" aria-label="Direct link to Step 1: Switch to Edge.Cuts Layer" title="Direct link to Step 1: Switch to Edge.Cuts Layer" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access Edge.Cuts Layer:</p>
+<ul>
+<li class="">In the PCB Editor, locate the Layer Selection Panel typically found on the right side.</li>
+<li class="">Select the Edge.Cuts layer to begin drawing the board outline.</li>
+</ul>
+</li>
+<li class="">
+<p>Initiate Board Outline Drawing:</p>
+<ul>
+<li class="">Use the Draw Line tool (usually represented by a line icon) to start defining the PCB&#x27;s edges.</li>
+<li class="">Begin by drawing two horizontal lines and two vertical lines that outline the primary dimensions of the PCB.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-determine-board-outline-spacing">Step 2: Determine Board Outline Spacing<a href="#step-2-determine-board-outline-spacing" class="hash-link" aria-label="Direct link to Step 2: Determine Board Outline Spacing" title="Direct link to Step 2: Determine Board Outline Spacing" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Maintain Clearance from Mounting Holes:</p>
+<ul>
+<li class="">Ensure that the board outline is at least 3mm away from all mounting holes.</li>
+<li class="">This clearance prevents mechanical interference from screw heads and mounting hardware.</li>
+</ul>
+</li>
+<li class="">
+<p>Align Outline with Mounting Pattern:</p>
+<ul>
+<li class="">Position the outline to align with the mounting hole pattern, ensuring sufficient clearance around each hole.</li>
+<li class="">Example Alignment:<!-- -->
+<ul>
+<li class="">If mounting holes are placed at (0,0), (35,0), (35,25), and (0,25) mm, adjust the board edges accordingly to maintain the 3mm clearance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Consider Enclosure Dimensions:</p>
+<ul>
+<li class="">Verify that the board outline accommodates the internal dimensions of the intended enclosure.</li>
+<li class="">Allow additional space if necessary for cable management or additional components.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-adding-rounded-corners">Step 3: Adding Rounded Corners<a href="#step-3-adding-rounded-corners" class="hash-link" aria-label="Direct link to Step 3: Adding Rounded Corners" title="Direct link to Step 3: Adding Rounded Corners" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Use the Arc Tool for Rounded Corners:</p>
+<ul>
+<li class="">Select the Arc Tool from the drawing tools palette.</li>
+<li class="">Click to place the center point of the arc at the corner intersection of the horizontal and vertical lines.</li>
+</ul>
+</li>
+<li class="">
+<p>Create Smooth Transitions:</p>
+<ul>
+<li class="">Draw an arc that smoothly connects the two perpendicular edges, replacing the sharp corner with a rounded one.</li>
+<li class="">Radius Consideration: Choose a radius that maintains structural integrity without excessively reducing the PCB area (e.g., 5mm radius).</li>
+</ul>
+</li>
+<li class="">
+<p>Repeat for All Corners:</p>
+<ul>
+<li class="">Apply the same method to all four corners to achieve a uniform rounded appearance.</li>
+<li class="">Ensure that all arcs are symmetrical and consistent in size.</li>
+</ul>
+</li>
+<li class="">
+<p>Review the Board Outline:</p>
+<ul>
+<li class="">Inspect the rounded corners for accuracy and smoothness.</li>
+<li class="">Make adjustments as necessary to ensure that the outline meets design specifications.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-fine-tuning-connector-placement">Step 4: Fine-Tuning Connector Placement<a href="#step-4-fine-tuning-connector-placement" class="hash-link" aria-label="Direct link to Step 4: Fine-Tuning Connector Placement" title="Direct link to Step 4: Fine-Tuning Connector Placement" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Align Connectors with Board Edge:</p>
+<ul>
+<li class="">Position connectors like USB and SWD so that they are slightly offset from the board edge.</li>
+<li class="">Example: Place a USB-C connector with part of it extending beyond the edge to ensure accessibility when housed in an enclosure.</li>
+</ul>
+</li>
+<li class="">
+<p>Ensure Sufficient Access:</p>
+<ul>
+<li class="">Verify that connectors protrude adequately for user interaction without hindering enclosure closure.</li>
+<li class="">Best Practice: Maintain a minimum clearance (e.g., 2mm) between the connector and the board edge to prevent interference.</li>
+</ul>
+</li>
+<li class="">
+<p>Adjust Component Placement:</p>
+<ul>
+<li class="">Relocate other components, such as switches or LEDs, to fit within the newly defined board outline.</li>
+<li class="">Ensure that all components are accessible and do not overlap with the board&#x27;s edges or other critical features.</li>
+</ul>
+</li>
+<li class="">
+<p>Validate Clearance:</p>
+<ul>
+<li class="">Use KiCad&#x27;s Design Rule Checker (DRC) to ensure that all components and connectors have adequate clearance from the board edges and each other.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-adjusting-component-silkscreens-and-finalizing-placement">4. Adjusting Component Silkscreens and Finalizing Placement<a href="#4-adjusting-component-silkscreens-and-finalizing-placement" class="hash-link" aria-label="Direct link to 4. Adjusting Component Silkscreens and Finalizing Placement" title="Direct link to 4. Adjusting Component Silkscreens and Finalizing Placement" translate="no">​</a></h2>
+<p>A clean and professional PCB layout requires meticulous adjustment of silkscreen elements and final placement refinements before routing. This ensures that the PCB is not only functional but also aesthetically pleasing and manufacturable.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-remove-overlapping-silkscreens">Step 1: Remove Overlapping Silkscreens<a href="#step-1-remove-overlapping-silkscreens" class="hash-link" aria-label="Direct link to Step 1: Remove Overlapping Silkscreens" title="Direct link to Step 1: Remove Overlapping Silkscreens" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Identify Overlapping Silkscreens:</p>
+<ul>
+<li class="">Inspect the PCB layout for any silkscreen elements that overlap with the board outline or other components.</li>
+<li class="">Common culprits include labels on connectors like the USB-C connector.</li>
+</ul>
+</li>
+<li class="">
+<p>Edit Component Footprints:</p>
+<ul>
+<li class="">Double-click on the affected component to open its Footprint Properties.</li>
+<li class="">Navigate to the Silkscreen Layer settings.</li>
+</ul>
+</li>
+<li class="">
+<p>Modify or Remove Silkscreen Elements:</p>
+<ul>
+<li class="">Option 1: Relocate silkscreen labels to a less congested area within the PCB.</li>
+<li class="">Option 2: Remove unnecessary silkscreen elements entirely to declutter the layout.</li>
+</ul>
+</li>
+<li class="">
+<p>Ensure Compliance with Design Rules:</p>
+<ul>
+<li class="">Verify that the removal or relocation of silkscreen elements does not violate any design rules or obscure critical information.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-final-3d-view-check">Step 2: Final 3D View Check<a href="#step-2-final-3d-view-check" class="hash-link" aria-label="Direct link to Step 2: Final 3D View Check" title="Direct link to Step 2: Final 3D View Check" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access 3D Viewer:</p>
+<ul>
+<li class="">Press ALT + 3 or navigate to the View menu and select 3D Viewer to open the 3D visualization of your PCB.</li>
+</ul>
+</li>
+<li class="">
+<p>Inspect Silkscreen and Component Placement:</p>
+<ul>
+<li class="">Rotate and zoom into different areas to ensure that silkscreens do not overlap with the board edges or interfere with component placements.</li>
+<li class="">Look for any components positioned too close to the PCB edges that might affect manufacturability or assembly.</li>
+</ul>
+</li>
+<li class="">
+<p>Verify Board Outline and Mounting Holes:</p>
+<ul>
+<li class="">Ensure that the board outline is accurately represented and that mounting holes are correctly placed and sized.</li>
+<li class="">Confirm that mounting holes do not interfere with any components or traces.</li>
+</ul>
+</li>
+<li class="">
+<p>Make Necessary Adjustments:</p>
+<ul>
+<li class="">Return to the PCB Editor to adjust any components or silkscreen elements that do not meet the desired criteria.</li>
+<li class="">Repeat the 3D view check until the layout meets all visual and functional requirements.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-move-connectors-and-switches">Step 3: Move Connectors and Switches<a href="#step-3-move-connectors-and-switches" class="hash-link" aria-label="Direct link to Step 3: Move Connectors and Switches" title="Direct link to Step 3: Move Connectors and Switches" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Adjust Connector Positions:</p>
+<ul>
+<li class="">Reposition connectors such as USB, UART, and SWD to align properly with the board edges.</li>
+<li class="">Ensure that connectors are easily accessible and do not obstruct other components.</li>
+</ul>
+</li>
+<li class="">
+<p>Optimize Switch Placement:</p>
+<ul>
+<li class="">Position switches so that they protrude slightly from the board edge, facilitating easy access.</li>
+<li class="">Verify that switches are not obstructed by the enclosure or other mechanical structures.</li>
+</ul>
+</li>
+<li class="">
+<p>Ensure Even Spacing:</p>
+<ul>
+<li class="">Distribute components evenly across the PCB to balance the layout and reduce potential signal interference.</li>
+<li class="">Maintain consistent spacing between connectors and other peripherals to enhance the PCB&#x27;s usability.</li>
+</ul>
+</li>
+<li class="">
+<p>Confirm Alignment with Board Outline:</p>
+<ul>
+<li class="">Ensure that all moved connectors and switches are within the defined board outline and do not extend beyond permissible boundaries.</li>
+<li class="">Use alignment tools to maintain precision in component placement.</li>
+</ul>
+</li>
+<li class="">
+<p>Final Component Check:</p>
+<ul>
+<li class="">Review all components to ensure they are correctly oriented and positioned for optimal performance and manufacturability.</li>
+<li class="">Ensure that connectors align with their respective headers or external interfaces.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-conclusion-and-next-steps">5. Conclusion and Next Steps<a href="#5-conclusion-and-next-steps" class="hash-link" aria-label="Direct link to 5. Conclusion and Next Steps" title="Direct link to 5. Conclusion and Next Steps" translate="no">​</a></h2>
+<p>Congratulations! You have successfully completed the critical steps of:</p>
+<ul>
+<li class="">Adding Mounting Holes: Implemented four strategically placed mounting holes to ensure mechanical stability and secure attachment within enclosures.</li>
+<li class="">Removing Unnecessary Silkscreen Labels: Cleared clutter from the silkscreen layer, enhancing the PCB&#x27;s readability and manufacturability.</li>
+<li class="">Defining the Board Outline: Crafted a precise board outline with rounded corners, ensuring compatibility with enclosures and maintaining structural integrity.</li>
+<li class="">Adjusting Component Placement: Fine-tuned the placement of connectors and switches, ensuring accessibility and optimal layout before routing.</li>
+</ul>
+<p>The PCB is now well-structured and visually clean, setting a solid foundation for the next phase: Routing the Traces. In this upcoming stage, you will connect all the components electrically, ensuring proper signal integrity and power distribution across the PCB.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps-routing-the-traces">Next Steps: Routing the Traces<a href="#next-steps-routing-the-traces" class="hash-link" aria-label="Direct link to Next Steps: Routing the Traces" title="Direct link to Next Steps: Routing the Traces" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Plan the Routing Path:</p>
+<ul>
+<li class="">Identify critical signal paths and prioritize routing based on signal integrity and minimal interference.</li>
+</ul>
+</li>
+<li class="">
+<p>Utilize Routing Tools:</p>
+<ul>
+<li class="">Leverage KiCad’s automatic and manual routing tools to create efficient and clean trace layouts.</li>
+</ul>
+</li>
+<li class="">
+<p>Implement Best Practices:</p>
+<ul>
+<li class="">Follow routing best practices such as maintaining adequate trace widths, minimizing via usage, and ensuring proper grounding.</li>
+</ul>
+</li>
+<li class="">
+<p>Perform Design Rule Checks (DRC):</p>
+<ul>
+<li class="">Continuously run DRCs to identify and rectify any routing issues or violations before finalizing the design.</li>
+</ul>
+</li>
+</ol>
+<p>With the mechanical design elements finalized, you are now poised to transition into fine-tuning the layout and meticulously routing the PCB traces to complete your professional PCB design.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-summary">Best Practices Summary<a href="#best-practices-summary" class="hash-link" aria-label="Direct link to Best Practices Summary" title="Direct link to Best Practices Summary" translate="no">​</a></h2>
+<ul>
+<li class="">Consistent Footprint Assignment: Use uniform footprints for mounting holes to maintain consistency and simplify the manufacturing process.</li>
+<li class="">Clear Silkscreen Labels: Use descriptive labels for connectors and critical components to facilitate easier assembly and troubleshooting.</li>
+<li class="">Adequate Clearance: Ensure sufficient spacing between mounting holes, components, and the board outline to prevent mechanical and electrical interference.</li>
+<li class="">Precision in Alignment: Utilize KiCad’s alignment and grid tools to achieve precise component placement and board outline definition.</li>
+<li class="">Visual Verification: Regularly use the 3D Viewer to inspect the PCB layout for any visual inconsistencies or placement issues.</li>
+<li class="">Iterative Review: Continuously review and adjust the layout throughout the design process to ensure adherence to design specifications and best practices.</li>
+</ul>
+<p>By adhering to these best practices, you ensure that your PCB design is not only functionally robust but also manufacturable and aesthetically pleasing.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/03_PCB_Layout/07_Mounting-Holes-Board-Outline.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Finalizing Power Supply Layout and Preparing for PCB Routing</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-adding-mounting-holes-to-the-pcb" class="table-of-contents__link toc-highlight">1. Adding Mounting Holes to the PCB</a><ul><li><a href="#step-1-add-mounting-holes-to-the-schematic" class="table-of-contents__link toc-highlight">Step 1: Add Mounting Holes to the Schematic</a></li><li><a href="#step-2-select-and-assign-footprint" class="table-of-contents__link toc-highlight">Step 2: Select and Assign Footprint</a></li><li><a href="#step-3-import-mounting-holes-to-the-pcb-layout" class="table-of-contents__link toc-highlight">Step 3: Import Mounting Holes to the PCB Layout</a></li><li><a href="#step-4-positioning-mounting-holes" class="table-of-contents__link toc-highlight">Step 4: Positioning Mounting Holes</a></li><li><a href="#step-5-aligning-and-adjusting-mounting-holes" class="table-of-contents__link toc-highlight">Step 5: Aligning and Adjusting Mounting Holes</a></li></ul></li><li><a href="#2-removing-unnecessary-silkscreen-labels" class="table-of-contents__link toc-highlight">2. Removing Unnecessary Silkscreen Labels</a><ul><li><a href="#step-1-remove-silkscreen-from-mounting-holes" class="table-of-contents__link toc-highlight">Step 1: Remove Silkscreen from Mounting Holes</a></li><li><a href="#step-2-adjust-connector-silkscreens" class="table-of-contents__link toc-highlight">Step 2: Adjust Connector Silkscreens</a></li></ul></li><li><a href="#3-defining-the-pcb-board-outline" class="table-of-contents__link toc-highlight">3. Defining the PCB Board Outline</a><ul><li><a href="#step-1-switch-to-edgecuts-layer" class="table-of-contents__link toc-highlight">Step 1: Switch to Edge.Cuts Layer</a></li><li><a href="#step-2-determine-board-outline-spacing" class="table-of-contents__link toc-highlight">Step 2: Determine Board Outline Spacing</a></li><li><a href="#step-3-adding-rounded-corners" class="table-of-contents__link toc-highlight">Step 3: Adding Rounded Corners</a></li><li><a href="#step-4-fine-tuning-connector-placement" class="table-of-contents__link toc-highlight">Step 4: Fine-Tuning Connector Placement</a></li></ul></li><li><a href="#4-adjusting-component-silkscreens-and-finalizing-placement" class="table-of-contents__link toc-highlight">4. Adjusting Component Silkscreens and Finalizing Placement</a><ul><li><a href="#step-1-remove-overlapping-silkscreens" class="table-of-contents__link toc-highlight">Step 1: Remove Overlapping Silkscreens</a></li><li><a href="#step-2-final-3d-view-check" class="table-of-contents__link toc-highlight">Step 2: Final 3D View Check</a></li><li><a href="#step-3-move-connectors-and-switches" class="table-of-contents__link toc-highlight">Step 3: Move Connectors and Switches</a></li></ul></li><li><a href="#5-conclusion-and-next-steps" class="table-of-contents__link toc-highlight">5. Conclusion and Next Steps</a><ul><li><a href="#next-steps-routing-the-traces" class="table-of-contents__link toc-highlight">Next Steps: Routing the Traces</a></li></ul></li><li><a href="#best-practices-summary" class="table-of-contents__link toc-highlight">Best Practices Summary</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Schematic/STM32_Configuration_Pins" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Boot Configuration, Reset Circuit, and Power Source Setup | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Boot Configuration, Reset Circuit, and Power Source Setup | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="- This section explores the critical components of STM32 PCB design, focusing on configuring the reset pin (NRST), boot configuration pin (BOOT0), and ensuring reliable microcontroller booting."><meta data-rh="true" property="og:description" content="- This section explores the critical components of STM32 PCB design, focusing on configuring the reset pin (NRST), boot configuration pin (BOOT0), and ensuring reliable microcontroller booting."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Boot Configuration, Reset Circuit, and Power Source Setup","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling"><span title="Decoupling" class="linkLabel_WmDU">Decoupling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><span title="Boot Configuration, Reset Circuit, and Power Source Setup" class="linkLabel_WmDU">Boot Configuration, Reset Circuit, and Power Source Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"><span title="Pinout Configuration and Peripheral Setup" class="linkLabel_WmDU">Pinout Configuration and Peripheral Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Crystal-Circuitry"><span title="Connecting the Crystal Oscillator" class="linkLabel_WmDU">Connecting the Crystal Oscillator</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/USB"><span title="Connecting USB Circuitry" class="linkLabel_WmDU">Connecting USB Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors"><span title="Serial Debug Connectors, Power Supply" class="linkLabel_WmDU">Serial Debug Connectors, Power Supply</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/ERC-Annotation"><span title="Sectioning and Annotating" class="linkLabel_WmDU">Sectioning and Annotating</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Footprint-Assignment"><span title="Assigning Footprints to Schematic Symbols" class="linkLabel_WmDU">Assigning Footprints to Schematic Symbols</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Final-Schematic"><span title="Schematic" class="linkLabel_WmDU">Schematic</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Summary/power_decoupling_network"><span title="Summary" class="categoryLinkLabel_W154">Summary</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Boot Configuration, Reset Circuit, and Power Source Setup</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Boot Configuration, Reset Circuit, and Power Source Setup</h1></header>
+<ul>
+<li class="">This section explores the critical components of STM32 PCB design, focusing on configuring the reset pin (NRST), boot configuration pin (BOOT0), and ensuring reliable microcontroller booting.</li>
+<li class="">Additionally, it covers connecting a power source and integrating basic external components such as resistors and capacitors to stabilize the circuit.</li>
+<li class="">Practical examples and best practices are provided to guide you through each step using KiCad.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="reset-pin-configuration-nrst">Reset Pin Configuration (NRST)<a href="#reset-pin-configuration-nrst" class="hash-link" aria-label="Direct link to Reset Pin Configuration (NRST)" title="Direct link to Reset Pin Configuration (NRST)" translate="no">​</a></h2>
+<p>The NRST pin is the dedicated hardware reset input on STM32 microcontrollers. When activated, it forces the microcontroller back to its initial startup state. For beginners, think of NRST as a safety switch that brings the chip back to a known-good condition whenever things go wrong. A correct NRST configuration is important for reliable operation, stable debugging, and preventing hard-to-diagnose lockups during development.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="behavior-of-the-nrst-pin">Behavior of the NRST Pin<a href="#behavior-of-the-nrst-pin" class="hash-link" aria-label="Direct link to Behavior of the NRST Pin" title="Direct link to Behavior of the NRST Pin" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="inverted-reset-logic">Inverted Reset Logic<a href="#inverted-reset-logic" class="hash-link" aria-label="Direct link to Inverted Reset Logic" title="Direct link to Inverted Reset Logic" translate="no">​</a></h4>
+<p>The NRST pin uses inverted logic. This means the pin normally sits at a logical high level, and pulling it low resets the MCU. In practice:</p>
+<ul>
+<li class="">NRST high → microcontroller runs normally</li>
+<li class="">NRST low → microcontroller resets</li>
+</ul>
+<p>This behavior is common in microcontroller families and helps ensure resets are clean and well-defined.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="internal-pull-up-resistor">Internal Pull-Up Resistor<a href="#internal-pull-up-resistor" class="hash-link" aria-label="Direct link to Internal Pull-Up Resistor" title="Direct link to Internal Pull-Up Resistor" translate="no">​</a></h4>
+<ul>
+<li class="">STM32 devices include an internal pull-up resistor connected to NRST.</li>
+<li class="">This pull-up keeps the pin high by default, preventing accidental resets from floating signals.</li>
+<li class="">Because of this, most designs do not require an external pull-up resistor.</li>
+<li class="">However, the internal resistor is relatively weak.</li>
+<li class="">For noisy environments or long traces, adding external conditioning (such as a capacitor) helps maintain stability.</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="accessibility-for-debug-tools">Accessibility for Debug Tools<a href="#accessibility-for-debug-tools" class="hash-link" aria-label="Direct link to Accessibility for Debug Tools" title="Direct link to Accessibility for Debug Tools" translate="no">​</a></h4>
+<ul>
+<li class="">Even with an internal pull-up, always bring the NRST pin out to a test point, header, or debug connector.</li>
+<li class="">Tools like ST-Link, J-Link, or DAPLink use NRST during programming and debugging.</li>
+<li class="">Without access to NRST, recovering a locked device becomes difficult.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="adding-a-reset-circuit">Adding a Reset Circuit<a href="#adding-a-reset-circuit" class="hash-link" aria-label="Direct link to Adding a Reset Circuit" title="Direct link to Adding a Reset Circuit" translate="no">​</a></h3>
+<p>A simple reset circuit improves reliability and allows manual resets during debugging.
+The circuit typically includes two optional parts:</p>
+<ol>
+<li class="">A decoupling capacitor</li>
+<li class="">A tactile reset button</li>
+</ol>
+<p>Both components connect directly to the NRST pin.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-manual-reset-button">1. Manual Reset Button<a href="#1-manual-reset-button" class="hash-link" aria-label="Direct link to 1. Manual Reset Button" title="Direct link to 1. Manual Reset Button" translate="no">​</a></h4>
+<p>A manual reset button lets you force a hardware reset without power-cycling the whole board.</p>
+<ul>
+<li class="">Component: Tactile (momentary) push button</li>
+<li class="">How it works: Pressing the button momentarily connects NRST to ground, pulling it low and triggering a reset.</li>
+<li class="">Placement: Put the button in an accessible spot on the schematic and, later, on the PCB.</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-protection-against-unwanted-resets">2. Protection Against Unwanted Resets<a href="#2-protection-against-unwanted-resets" class="hash-link" aria-label="Direct link to 2. Protection Against Unwanted Resets" title="Direct link to 2. Protection Against Unwanted Resets" translate="no">​</a></h4>
+<p>Electrical noise, switching power supplies, and long traces can cause NRST to dip briefly.
+Even a tiny voltage drop can trigger a reset. To prevent that:</p>
+<ul>
+<li class="">Component: 100 nF capacitor</li>
+<li class="">Function: The capacitor filters sudden voltage drops, making the NRST line more resistant to glitches.</li>
+<li class="">Typical value: 100 nF (0.1 uF) ceramic capacitor, placed as close to the NRST pin as possible on the PCB.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-by-step-instructions-in-kicad---nrst">Step-by-Step Instructions in KiCad - NRST<a href="#step-by-step-instructions-in-kicad---nrst" class="hash-link" aria-label="Direct link to Step-by-Step Instructions in KiCad - NRST" title="Direct link to Step-by-Step Instructions in KiCad - NRST" translate="no">​</a></h3>
+<p>These instructions assume you already have your STM32 symbol placed in your schematic.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-add-the-100-nf-decoupling-capacitor">Step 1: Add the 100 nF Decoupling Capacitor<a href="#step-1-add-the-100-nf-decoupling-capacitor" class="hash-link" aria-label="Direct link to Step 1: Add the 100 nF Decoupling Capacitor" title="Direct link to Step 1: Add the 100 nF Decoupling Capacitor" translate="no">​</a></h4>
+<ol>
+<li class="">Open the symbol library (Add Symbol tool).</li>
+<li class="">Search for a &quot;C&quot; or generic capacitor symbol.</li>
+<li class="">Place a capacitor component and set its value to 100 nF.</li>
+<li class="">Connect one terminal of the capacitor to the NRST pin.</li>
+<li class="">Connect the other terminal to ground (GND).</li>
+</ol>
+<p>This forms the noise filter that stabilizes the reset line.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-optional-add-a-reset-button">Step 2: (Optional) Add a Reset Button<a href="#step-2-optional-add-a-reset-button" class="hash-link" aria-label="Direct link to Step 2: (Optional) Add a Reset Button" title="Direct link to Step 2: (Optional) Add a Reset Button" translate="no">​</a></h4>
+<ol>
+<li class="">Add another symbol from the library. Search for &quot;SW&quot; or &quot;Button&quot;.</li>
+<li class="">Choose a tactile momentary switch.</li>
+<li class="">Connect one side of the switch to NRST.</li>
+<li class="">Connect the other side to GND.</li>
+</ol>
+<p>Pressing the button will now pull NRST low and trigger a reset.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="naming-the-nrst-net">Naming the NRST Net<a href="#naming-the-nrst-net" class="hash-link" aria-label="Direct link to Naming the NRST Net" title="Direct link to Naming the NRST Net" translate="no">​</a></h3>
+<p>KiCad works more smoothly when nets are clearly labeled. Labeling the NRST net ensures consistent connections and makes routing easier.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="procedure">Procedure<a href="#procedure" class="hash-link" aria-label="Direct link to Procedure" title="Direct link to Procedure" translate="no">​</a></h4>
+<ol>
+<li class="">Select the Net Label tool from the toolbar.</li>
+<li class="">Click on the wire connected to the NRST pin.</li>
+<li class="">Enter the label name <code>NRST</code>.</li>
+</ol>
+<p>A labeled net ensures KiCad treats all wires named NRST as the same electrical connection, even if they are drawn in different parts of the schematic.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="benefits">Benefits<a href="#benefits" class="hash-link" aria-label="Direct link to Benefits" title="Direct link to Benefits" translate="no">​</a></h4>
+<ul>
+<li class="">Easier debugging</li>
+<li class="">Clear schematic organization</li>
+<li class="">Correct net connectivity during PCB layout</li>
+<li class="">Better compatibility with debug headers and programming connectors</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="boot-pin-configuration-boot0">Boot Pin Configuration (BOOT0)<a href="#boot-pin-configuration-boot0" class="hash-link" aria-label="Direct link to Boot Pin Configuration (BOOT0)" title="Direct link to Boot Pin Configuration (BOOT0)" translate="no">​</a></h2>
+<p>The BOOT0 pin controls how an STM32 selects its startup source.
+At reset, the microcontroller reads the BOOT0 level and decides whether to run your stored application or enter its built-in system bootloader.
+Understanding and wiring BOOT0 correctly is essential for both normal operation and reliable firmware loading.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="purpose-of-boot0">Purpose of BOOT0<a href="#purpose-of-boot0" class="hash-link" aria-label="Direct link to Purpose of BOOT0" title="Direct link to Purpose of BOOT0" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-boot-modes-work">How Boot Modes Work<a href="#how-boot-modes-work" class="hash-link" aria-label="Direct link to How Boot Modes Work" title="Direct link to How Boot Modes Work" translate="no">​</a></h4>
+<p>STM32 devices support multiple boot modes. BOOT0 determines which one is selected:</p>
+<ul>
+<li class="">Booting from Flash memory: The microcontroller loads your compiled firmware from internal flash. This is the standard mode for normal operation.</li>
+<li class="">Booting from System Memory: The device enters its factory bootloader. The bootloader supports programming methods such as UART, USB DFU (on supported models), SPI, or CAN. This is useful for firmware updates, recovery, or initial programming when no debugger is available.</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="practical-scenarios">Practical Scenarios<a href="#practical-scenarios" class="hash-link" aria-label="Direct link to Practical Scenarios" title="Direct link to Practical Scenarios" translate="no">​</a></h4>
+<ul>
+<li class="">Day-to-day operation: BOOT0 remains low so the device starts the user application.</li>
+<li class="">Firmware loading and recovery: BOOT0 is pulled high to enable the system bootloader.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="building-a-boot0-configuration-switch">Building a BOOT0 Configuration Switch<a href="#building-a-boot0-configuration-switch" class="hash-link" aria-label="Direct link to Building a BOOT0 Configuration Switch" title="Direct link to Building a BOOT0 Configuration Switch" translate="no">​</a></h3>
+<p>For development boards or prototypes, adding a simple hardware switch makes it easy to toggle between normal operation and bootloader mode.
+An SPDT (Single-Pole, Dual-Throw) switch works well because it gives you a clean and direct way to connect BOOT0 either to ground or to 3.3 V.</p>
+<p>The circuit consists of:</p>
+<ul>
+<li class="">An SPDT switch</li>
+<li class="">A 10 kΩ pull-down resistor</li>
+<li class="">Wires to 3.3 V, GND, and the BOOT0 pin</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-by-step-instructions-in-kicad---boot0">Step-by-Step Instructions in KiCad - BOOT0<a href="#step-by-step-instructions-in-kicad---boot0" class="hash-link" aria-label="Direct link to Step-by-Step Instructions in KiCad - BOOT0" title="Direct link to Step-by-Step Instructions in KiCad - BOOT0" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-add-an-spdt-switch">Step 1: Add an SPDT Switch<a href="#step-1-add-an-spdt-switch" class="hash-link" aria-label="Direct link to Step 1: Add an SPDT Switch" title="Direct link to Step 1: Add an SPDT Switch" translate="no">​</a></h4>
+<ol>
+<li class="">Use the Add Symbol tool and search for an SPDT switch.</li>
+<li class="">Place it in your schematic.</li>
+<li class="">Rotate or flip it using the X and Y keys to fit your layout.</li>
+</ol>
+<p>The switch has three terminals: one common terminal (center) and two selectable positions.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-add-the-pull-down-resistor">Step 2: Add the Pull-Down Resistor<a href="#step-2-add-the-pull-down-resistor" class="hash-link" aria-label="Direct link to Step 2: Add the Pull-Down Resistor" title="Direct link to Step 2: Add the Pull-Down Resistor" translate="no">​</a></h4>
+<ol>
+<li class="">Add a resistor symbol and set its value to 10 kΩ.</li>
+<li class="">Connect one side of the resistor to the BOOT0 pin.</li>
+<li class="">Connect the other side to GND.</li>
+</ol>
+<p>The resistor ensures BOOT0 defaults to a low state when the switch is not selecting 3.3 V.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-wire-power-and-ground">Step 3: Wire Power and Ground<a href="#step-3-wire-power-and-ground" class="hash-link" aria-label="Direct link to Step 3: Wire Power and Ground" title="Direct link to Step 3: Wire Power and Ground" translate="no">​</a></h4>
+<ol>
+<li class="">Connect one side of the switch to 3.3 V (the high position).</li>
+<li class="">Connect the opposite side to GND (the low position).</li>
+<li class="">Connect the common middle terminal of the switch to the BOOT0 pin.</li>
+</ol>
+<p>Using the wiring tool (W) creates the necessary connections between symbols and nets.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-label-the-nets">Step 4: Label the Nets<a href="#step-4-label-the-nets" class="hash-link" aria-label="Direct link to Step 4: Label the Nets" title="Direct link to Step 4: Label the Nets" translate="no">​</a></h4>
+<p>Clear labeling improves readability and prevents wiring mistakes.</p>
+<p>Recommended labels:</p>
+<ul>
+<li class="">The wire going to the BOOT0 pin: <code>BOOT0</code></li>
+<li class="">The switch terminal tied to 3.3 V: <code>BOOT HIGH</code></li>
+<li class="">The terminal tied to GND: <code>BOOT LOW</code></li>
+</ul>
+<p>These labels help both during design and while debugging or configuring boot mode on the physical board.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-the-pull-down-resistor-matters">Why the Pull-Down Resistor Matters<a href="#why-the-pull-down-resistor-matters" class="hash-link" aria-label="Direct link to Why the Pull-Down Resistor Matters" title="Direct link to Why the Pull-Down Resistor Matters" translate="no">​</a></h3>
+<p>The pull-down resistor keeps BOOT0 at a stable logic low when the switch is not selecting 3.3 V.
+Without it, BOOT0 could float, meaning the voltage could drift unpredictably.
+A floating BOOT0 pin may cause accidental entry into the wrong boot mode, especially during power-up.</p>
+<p>A 10 kΩ value provides a strong enough pull-down to keep BOOT0 low, but not so strong that it interferes with intentionally pulling it high through the switch.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-circuit-behavior">Final Circuit Behavior<a href="#final-circuit-behavior" class="hash-link" aria-label="Direct link to Final Circuit Behavior" title="Direct link to Final Circuit Behavior" translate="no">​</a></h3>
+<ul>
+<li class="">Default operation: With the switch set to GND, BOOT0 is low and the microcontroller boots from its internal Flash memory.</li>
+<li class="">Bootloader mode: Moving the switch to 3.3 V raises BOOT0 high. After resetting or power cycling, the STM32 enters its system bootloader, ready for firmware loading or recovery.</li>
+</ul>
+<p>This circuit gives you a robust and beginner-friendly way to choose boot modes during development while maintaining stable behavior during normal operation.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="adding-the-power-source">Adding the Power Source<a href="#adding-the-power-source" class="hash-link" aria-label="Direct link to Adding the Power Source" title="Direct link to Adding the Power Source" translate="no">​</a></h2>
+<p>A stable 3.3V power supply is crucial for the reliable operation of the STM32 microcontroller.
+This section outlines the selection and integration of a voltage regulator to achieve the required voltage level.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="voltage-regulator-selection">Voltage Regulator Selection<a href="#voltage-regulator-selection" class="hash-link" aria-label="Direct link to Voltage Regulator Selection" title="Direct link to Voltage Regulator Selection" translate="no">​</a></h3>
+<p>Choosing an appropriate voltage regulator ensures efficient and stable power delivery to the microcontroller.</p>
+<ul>
+<li class="">Common Choice: AMS1117-3.3 voltage regulator<!-- -->
+<ul>
+<li class="">Function: Steps down input voltages (e.g., 5V from USB) to a stable 3.3V output.</li>
+<li class="">Advantages: Widely available, easy to implement, and provides sufficient current for STM32 applications.</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li class="">
+<p>Add a Voltage Regulator:</p>
+<ul>
+<li class="">Action: Search for and place the AMS1117-3.3 symbol from the KiCad library. If unavailable, select a compatible 3.3V linear regulator.</li>
+<li class="">Placement: Position the regulator symbol in the schematic where the power input is managed.</li>
+</ul>
+</li>
+<li class="">
+<p>Connect Input and Output:</p>
+<ul>
+<li class="">Input Connection: Connect the input pin of the regulator to the 5V power source, such as USB or an external supply.</li>
+<li class="">Output Connection: Connect the output pin to the 3.3V rail that powers the STM32 microcontroller.</li>
+</ul>
+</li>
+<li class="">
+<p>Add Decoupling Capacitors:</p>
+<ul>
+<li class="">Components: Two 10µF capacitors<!-- -->
+<ul>
+<li class="">Placement: One capacitor should be placed on the input side and the other on the output side of the regulator.</li>
+<li class="">Proximity: Position the capacitors as close to the regulator pins as possible to maximize effectiveness.</li>
+</ul>
+</li>
+<li class="">Function: These capacitors filter out electrical noise and stabilize the voltage during fluctuations, ensuring a steady power supply to the microcontroller.</li>
+</ul>
+</li>
+<li class="">
+<p>Ground Connections:</p>
+<ul>
+<li class="">Action: Connect the ground pin of the regulator to the main ground (GND) of the circuit.</li>
+<li class="">Verification: Ensure all ground connections are secure to prevent potential ground loops or noise issues.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="finalizing-the-circuit-and-testing">Finalizing the Circuit and Testing<a href="#finalizing-the-circuit-and-testing" class="hash-link" aria-label="Direct link to Finalizing the Circuit and Testing" title="Direct link to Finalizing the Circuit and Testing" translate="no">​</a></h2>
+<p>After configuring the reset and boot pins and setting up the power supply, it is essential to verify that all connections are correct and that the microcontroller is ready to operate reliably.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="checklist-for-proper-operation">Checklist for Proper Operation<a href="#checklist-for-proper-operation" class="hash-link" aria-label="Direct link to Checklist for Proper Operation" title="Direct link to Checklist for Proper Operation" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Power Supply:</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Confirm that the 3.3V power supply is correctly connected to both the VDD and VBAT pins of the STM32 microcontroller.</li>
+<li class="">Ensure that decoupling capacitors are placed on all power pins to filter out noise and stabilize voltage levels.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Ground Connections:</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Ensure all ground pins (e.g., VSS, VSSA) are connected to the main ground (GND) of the circuit.</li>
+<li class="">Check for a solid ground plane in the PCB layout to minimize noise and ensure signal integrity.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Reset Circuit:</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Confirm that the NRST pin is connected to ground via the decoupling capacitor.</li>
+<li class="">If a manual reset switch is included, ensure it is properly connected between NRST and GND.</li>
+<li class="">Verify that the NRST net is labeled <code>NRST</code> for clarity in the PCB layout.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Boot Configuration:</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Ensure the BOOT0 pin is connected to the SPDT switch that toggles between 3.3V and GND.</li>
+<li class="">Confirm the presence of the 10kΩ pull-down resistor connecting BOOT0 to ground.</li>
+<li class="">Check that the switch labels (<code>BOOT0</code>, <code>BOOT HIGH</code>, <code>BOOT LOW</code>) are correctly placed for easy identification.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Voltage Regulation:</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Confirm that the voltage regulator (e.g., AMS1117-3.3) is correctly connected with input to 5V and output to the 3.3V rail.</li>
+<li class="">Ensure that 10µF decoupling capacitors are placed on both the input and output sides of the regulator.</li>
+<li class="">Verify that all ground connections related to the regulator are secure.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps-enhancing-the-design">Next Steps: Enhancing the Design<a href="#next-steps-enhancing-the-design" class="hash-link" aria-label="Direct link to Next Steps: Enhancing the Design" title="Direct link to Next Steps: Enhancing the Design" translate="no">​</a></h2>
+<p>While the foundational circuitry for the STM32 microcontroller is established, further enhancements can be made to tailor the design to specific application requirements.
+Consider integrating the following components and peripherals to expand functionality and improve performance:</p>
+<ul>
+<li class="">
+<p><strong>Crystal Oscillator:</strong></p>
+<ul>
+<li class="">Purpose: Enhances clock accuracy, which is critical for timing-sensitive applications.</li>
+<li class="">Implementation: Add a crystal oscillator circuit connected to the microcontroller’s clock pins, typically accompanied by load capacitors.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Communication Interfaces:</strong></p>
+<ul>
+<li class="">Options:<!-- -->
+<ul>
+<li class="">UART: For serial communication.</li>
+<li class="">SPI: For high-speed data transfer with peripherals.</li>
+<li class="">I²C: For interfacing with sensors and other devices.</li>
+<li class="">USB: For direct connectivity to computers or other USB-enabled devices.</li>
+</ul>
+</li>
+<li class="">Considerations: Ensure proper termination and shielding for high-speed signals to maintain signal integrity.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Programming Headers:</strong></p>
+<ul>
+<li class="">Types:<!-- -->
+<ul>
+<li class="">SWD (Serial Wire Debug): For programming and debugging the microcontroller.</li>
+<li class="">JTAG: For more advanced debugging capabilities.</li>
+</ul>
+</li>
+<li class="">Placement: Position programming headers in an accessible area of the PCB to facilitate easy connection with debugging tools.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Power Management Features:</strong></p>
+<ul>
+<li class="">Options:<!-- -->
+<ul>
+<li class="">Power Switches: To control power distribution to different parts of the circuit.</li>
+<li class="">Battery Charging Circuits: If the design includes battery operation.</li>
+</ul>
+</li>
+<li class="">Purpose: Enhances the versatility and efficiency of the power system.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Peripheral Integration:</strong></p>
+<ul>
+<li class="">Examples:<!-- -->
+<ul>
+<li class="">LED Indicators: For status indication.</li>
+<li class="">Buttons: For user input.</li>
+<li class="">Sensors: To add environmental or operational sensing capabilities.</li>
+</ul>
+</li>
+<li class="">Best Practices: Follow standard guidelines for component placement and signal routing to ensure reliable operation.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>This guide has provided a comprehensive overview of setting up the reset pin (NRST), boot configuration pin (BOOT0), and power source for the STM32 microcontroller using KiCad.
+By following the detailed steps and best practices outlined, you can design a robust and reliable PCB that ensures the microcontroller boots correctly and operates efficiently.</p>
+<p>Key Takeaways:</p>
+<ul>
+<li class="">Reset Configuration: Properly configuring the NRST pin with a decoupling capacitor and optional manual reset switch enhances system stability.</li>
+<li class="">Boot Configuration: Implementing a BOOT0 switch with a pull-down resistor allows flexible boot mode selection between Flash memory and the bootloader.</li>
+<li class="">Power Supply: Utilizing a voltage regulator with appropriate decoupling capacitors ensures a stable 3.3V power supply essential for the microcontroller’s operation.</li>
+<li class="">Final Verification: A thorough checklist ensures that all critical connections are correctly established, paving the way for successful circuit operation.</li>
+</ul>
+<p>Moving forward, consider expanding the design with additional components and peripherals tailored to your specific project needs.
+Continuous testing and iteration will further refine the PCB, leading to a high-quality and functional STM32-based system.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/02_Schematic/02_STM32_Configuration_Pins.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Decoupling</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Pinout Configuration and Peripheral Setup</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#reset-pin-configuration-nrst" class="table-of-contents__link toc-highlight">Reset Pin Configuration (NRST)</a><ul><li><a href="#behavior-of-the-nrst-pin" class="table-of-contents__link toc-highlight">Behavior of the NRST Pin</a></li><li><a href="#adding-a-reset-circuit" class="table-of-contents__link toc-highlight">Adding a Reset Circuit</a></li><li><a href="#step-by-step-instructions-in-kicad---nrst" class="table-of-contents__link toc-highlight">Step-by-Step Instructions in KiCad - NRST</a></li><li><a href="#naming-the-nrst-net" class="table-of-contents__link toc-highlight">Naming the NRST Net</a></li></ul></li><li><a href="#boot-pin-configuration-boot0" class="table-of-contents__link toc-highlight">Boot Pin Configuration (BOOT0)</a><ul><li><a href="#purpose-of-boot0" class="table-of-contents__link toc-highlight">Purpose of BOOT0</a></li><li><a href="#building-a-boot0-configuration-switch" class="table-of-contents__link toc-highlight">Building a BOOT0 Configuration Switch</a></li><li><a href="#step-by-step-instructions-in-kicad---boot0" class="table-of-contents__link toc-highlight">Step-by-Step Instructions in KiCad - BOOT0</a></li><li><a href="#why-the-pull-down-resistor-matters" class="table-of-contents__link toc-highlight">Why the Pull-Down Resistor Matters</a></li><li><a href="#final-circuit-behavior" class="table-of-contents__link toc-highlight">Final Circuit Behavior</a></li></ul></li><li><a href="#adding-the-power-source" class="table-of-contents__link toc-highlight">Adding the Power Source</a><ul><li><a href="#voltage-regulator-selection" class="table-of-contents__link toc-highlight">Voltage Regulator Selection</a></li></ul></li><li><a href="#finalizing-the-circuit-and-testing" class="table-of-contents__link toc-highlight">Finalizing the Circuit and Testing</a><ul><li><a href="#checklist-for-proper-operation" class="table-of-contents__link toc-highlight">Checklist for Proper Operation</a></li></ul></li><li><a href="#next-steps-enhancing-the-design" class="table-of-contents__link toc-highlight">Next Steps: Enhancing the Design</a></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

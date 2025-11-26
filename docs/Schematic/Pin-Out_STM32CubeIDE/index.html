@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Schematic/Pin-Out_STM32CubeIDE" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Pinout Configuration and Peripheral Setup | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Pinout Configuration and Peripheral Setup | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design."><meta data-rh="true" property="og:description" content="This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pinout Configuration and Peripheral Setup","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling"><span title="Decoupling" class="linkLabel_WmDU">Decoupling</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><span title="Boot Configuration, Reset Circuit, and Power Source Setup" class="linkLabel_WmDU">Boot Configuration, Reset Circuit, and Power Source Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Pin-Out_STM32CubeIDE"><span title="Pinout Configuration and Peripheral Setup" class="linkLabel_WmDU">Pinout Configuration and Peripheral Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Crystal-Circuitry"><span title="Connecting the Crystal Oscillator" class="linkLabel_WmDU">Connecting the Crystal Oscillator</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/USB"><span title="Connecting USB Circuitry" class="linkLabel_WmDU">Connecting USB Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Power-Supply-Connectors"><span title="Serial Debug Connectors, Power Supply" class="linkLabel_WmDU">Serial Debug Connectors, Power Supply</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/ERC-Annotation"><span title="Sectioning and Annotating" class="linkLabel_WmDU">Sectioning and Annotating</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Footprint-Assignment"><span title="Assigning Footprints to Schematic Symbols" class="linkLabel_WmDU">Assigning Footprints to Schematic Symbols</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Final-Schematic"><span title="Schematic" class="linkLabel_WmDU">Schematic</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Summary/power_decoupling_network"><span title="Summary" class="categoryLinkLabel_W154">Summary</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Pinout Configuration and Peripheral Setup</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Pinout Configuration and Peripheral Setup</h1></header>
+<p>This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="getting-started-with-stm32cubeide">Getting Started with STM32CubeIDE<a href="#getting-started-with-stm32cubeide" class="hash-link" aria-label="Direct link to Getting Started with STM32CubeIDE" title="Direct link to Getting Started with STM32CubeIDE" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="installing-stm32cubeide">Installing STM32CubeIDE<a href="#installing-stm32cubeide" class="hash-link" aria-label="Direct link to Installing STM32CubeIDE" title="Direct link to Installing STM32CubeIDE" translate="no">​</a></h3>
+<p>STM32CubeIDE is the official Eclipse-based development environment for STM32 microcontrollers. It combines code editing, project generation, hardware configuration, HAL/LL driver setup, and debugging in a single tool. Its built-in CubeMX engine manages pin assignments, peripheral initialization, and clock configuration, allowing rapid setup of STM32 firmware projects.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-by-step-installation-guide">Step-by-Step Installation Guide<a href="#step-by-step-installation-guide" class="hash-link" aria-label="Direct link to Step-by-Step Installation Guide" title="Direct link to Step-by-Step Installation Guide" translate="no">​</a></h4>
+<ol>
+<li class="">
+<p>Download STM32CubeIDE:</p>
+<ul>
+<li class="">Visit the <a href="https://www.st.com/en/development-tools/stm32cubeide.html" target="_blank" rel="noopener noreferrer" class="">STMicroelectronics official website</a>.</li>
+<li class="">Navigate to the STM32CubeIDE section and download the latest version compatible with your operating system (Windows, macOS, or Linux).</li>
+</ul>
+</li>
+<li class="">
+<p>Run the Installer:</p>
+<ul>
+<li class="">Execute the downloaded installer file.</li>
+<li class="">Follow the on-screen instructions, accepting the license agreements and selecting the installation directory.</li>
+</ul>
+</li>
+<li class="">
+<p>Configure Installation Options:</p>
+<ul>
+<li class="">Choose the components you wish to install. The default selections are typically sufficient for most projects.</li>
+<li class="">Ensure that the installer includes necessary tools such as the GCC compiler and the STM32CubeMX integration.</li>
+</ul>
+</li>
+<li class="">
+<p>Complete Installation:</p>
+<ul>
+<li class="">Once the installation process completes, launch STM32CubeIDE from your applications menu or desktop shortcut.</li>
+</ul>
+</li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="launching-stm32cubeide">Launching STM32CubeIDE<a href="#launching-stm32cubeide" class="hash-link" aria-label="Direct link to Launching STM32CubeIDE" title="Direct link to Launching STM32CubeIDE" translate="no">​</a></h4>
+<ul>
+<li class="">Upon launching, you will be greeted with the STM32CubeIDE welcome screen.</li>
+<li class="">Familiarize yourself with the workspace selection prompt. Choose a directory where your projects will be stored.</li>
+<li class="">Click Launch to enter the main interface of STM32CubeIDE.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exploring-stm32cubeide-interface">Exploring STM32CubeIDE Interface<a href="#exploring-stm32cubeide-interface" class="hash-link" aria-label="Direct link to Exploring STM32CubeIDE Interface" title="Direct link to Exploring STM32CubeIDE Interface" translate="no">​</a></h3>
+<p>Understanding the layout of STM32CubeIDE is crucial for efficient navigation and utilization of its features.</p>
+<ul>
+<li class="">Project Explorer: Displays all your projects and their associated files.</li>
+<li class="">Editor Window: The central area where you will write code, configure pinouts, and manage settings.</li>
+<li class="">Configuration Tabs: Located typically at the top or side, allowing access to Pinout Configuration, Clock Configuration, and Peripheral Configuration.</li>
+<li class="">Toolbars: Provide quick access to common actions such as building the project, debugging, and running simulations.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="creating-a-new-project-in-stm32cubeide">Creating a New Project in STM32CubeIDE<a href="#creating-a-new-project-in-stm32cubeide" class="hash-link" aria-label="Direct link to Creating a New Project in STM32CubeIDE" title="Direct link to Creating a New Project in STM32CubeIDE" translate="no">​</a></h2>
+<p>Creating a new project is the foundational step in developing your STM32 application. STM32CubeIDE simplifies this process with a user-friendly interface.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-by-step-project-creation">Step-by-Step Project Creation<a href="#step-by-step-project-creation" class="hash-link" aria-label="Direct link to Step-by-Step Project Creation" title="Direct link to Step-by-Step Project Creation" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Initiate Project Creation:</p>
+<ul>
+<li class="">Navigate to <code>File &gt; New &gt; STM32 Project</code> from the top menu.</li>
+<li class="">This action opens the Target Selector window, where you will choose your microcontroller or development board.</li>
+</ul>
+</li>
+<li class="">
+<p>Selecting Your Microcontroller (MCU):</p>
+<ul>
+<li class="">MCU Selector Tab:<!-- -->
+<ul>
+<li class="">Enter the exact part number of your STM32 microcontroller in the search bar. For example, input &quot;STM32F103C8&quot; to locate the STM32F103C8T6.</li>
+<li class="">The search results display relevant information such as:<!-- -->
+<ul>
+<li class="">Package Size: Indicates the physical dimensions and pin count.</li>
+<li class="">Flash Memory: Specifies the non-volatile memory size.</li>
+<li class="">RAM: Details the available volatile memory.</li>
+<li class="">Maximum Operating Frequency: Highlights the highest clock speed the MCU can achieve.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Selection:<!-- -->
+<ul>
+<li class="">Click on your desired MCU from the search results.</li>
+<li class="">Review the specifications to ensure it meets your project requirements.</li>
+<li class="">Click Next to proceed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Naming Your Project:</p>
+<ul>
+<li class="">Project Name:<!-- -->
+<ul>
+<li class="">Enter a descriptive name that reflects the project&#x27;s purpose, such as &quot;STM32_Example_Project&quot;.</li>
+</ul>
+</li>
+<li class="">Project Location:<!-- -->
+<ul>
+<li class="">Specify the directory where the project files will be stored.</li>
+</ul>
+</li>
+<li class="">Toolchain/IDE:<!-- -->
+<ul>
+<li class="">Ensure that STM32CubeIDE is selected as the toolchain.</li>
+</ul>
+</li>
+<li class="">Click Finish to create the project.</li>
+</ul>
+</li>
+<li class="">
+<p>Project Initialization:</p>
+<ul>
+<li class="">STM32CubeIDE initializes the project and opens the Pinout Configuration screen.</li>
+<li class="">The Project Explorer now lists your newly created project, ready for configuration.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-for-project-naming-and-organization">Best Practices for Project Naming and Organization<a href="#best-practices-for-project-naming-and-organization" class="hash-link" aria-label="Direct link to Best Practices for Project Naming and Organization" title="Direct link to Best Practices for Project Naming and Organization" translate="no">​</a></h3>
+<ul>
+<li class="">Descriptive Names: Use clear and concise names that reflect the project&#x27;s functionality or target MCU.</li>
+<li class="">Consistent Naming Conventions: Adopt a naming convention (e.g., using underscores or camelCase) to maintain consistency across projects.</li>
+<li class="">Organized Directory Structure: Store related projects in dedicated folders to simplify navigation and management.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuring-the-pinout-in-stm32cubeide">Configuring the Pinout in STM32CubeIDE<a href="#configuring-the-pinout-in-stm32cubeide" class="hash-link" aria-label="Direct link to Configuring the Pinout in STM32CubeIDE" title="Direct link to Configuring the Pinout in STM32CubeIDE" translate="no">​</a></h2>
+<ul>
+<li class="">The Pinout Configuration tab is a visual tool within STM32CubeIDE that allows you to assign functions to the microcontroller&#x27;s pins intuitively.</li>
+<li class="">Proper pin configuration is vital for ensuring that your hardware interfaces correctly with peripherals and other components.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="understanding-the-pinout-view">Understanding the Pinout View<a href="#understanding-the-pinout-view" class="hash-link" aria-label="Direct link to Understanding the Pinout View" title="Direct link to Understanding the Pinout View" translate="no">​</a></h3>
+<ul>
+<li class="">Graphical Representation:<!-- -->
+<ul>
+<li class="">The microcontroller is depicted in a top-down schematic, showcasing all available pins.</li>
+<li class="">Each pin is labeled with its default function and identifier (e.g., PA0, PB1).</li>
+</ul>
+</li>
+<li class="">Function Assignment:<!-- -->
+<ul>
+<li class="">Clicking on a pin opens a list of possible functions such as GPIO, UART, SPI, I²C, ADC, and more.</li>
+<li class="">Selecting a function assigns that role to the pin, automatically updating the project&#x27;s configuration files.</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="basic-pinout-configuration">Basic Pinout Configuration<a href="#basic-pinout-configuration" class="hash-link" aria-label="Direct link to Basic Pinout Configuration" title="Direct link to Basic Pinout Configuration" translate="no">​</a></h3>
+<p>Configuring a basic generic board involves setting up essential power, reset, communication, and debugging pins. Below is a step-by-step guide:</p>
+<ol>
+<li class="">
+<p>Select Core Peripherals:</p>
+<ul>
+<li class="">Power Pins:<!-- -->
+<ul>
+<li class="">VDD (Power Supply): Ensure that VDD pins are connected to the 3.3V power rail.</li>
+<li class="">VSS (Ground): Connect VSS pins to the ground (GND) rail.</li>
+<li class="">VDDA (Analog Power Supply): If your project uses analog peripherals, ensure VDDA is also connected appropriately.</li>
+</ul>
+</li>
+<li class="">Reset Pins:<!-- -->
+<ul>
+<li class="">NRST (Reset): Configure the NRST pin to allow the MCU to reset. Assign it to a dedicated reset button or circuit if applicable.</li>
+</ul>
+</li>
+<li class="">BOOT0 Pin:<!-- -->
+<ul>
+<li class="">Configuration:<!-- -->
+<ul>
+<li class="">The BOOT0 pin determines the boot mode of the MCU. For standard operation, set BOOT0 to Flash memory.</li>
+<li class="">If your project requires bootloader functionality, configure BOOT0 accordingly.</li>
+</ul>
+</li>
+<li class="">Example:<!-- -->
+<ul>
+<li class="">Assign BOOT0 to a pull-down resistor if booting from Flash is desired.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Enable USB and Crystal Oscillator:</p>
+<ul>
+<li class="">USB Configuration:<!-- -->
+<ul>
+<li class="">Navigate to the Connectivity section in the left panel.</li>
+<li class="">Expand the USB category and select USB Device in Full-Speed mode.</li>
+<li class="">This action automatically assigns PA11 (USB_DM) and PA12 (USB_DP) to the USB differential pair.</li>
+</ul>
+</li>
+<li class="">Crystal Oscillator Configuration:<!-- -->
+<ul>
+<li class="">Go to the RCC (Reset and Clock Control) tab.</li>
+<li class="">Select Crystal/Ceramic Resonator to enable an external crystal oscillator.</li>
+<li class="">The tool assigns PD0 (OSC_IN) and PD1 (OSC_OUT) for the High-Speed External (HSE) crystal connections.</li>
+<li class="">Clock Source Configuration:<!-- -->
+<ul>
+<li class="">Specify the crystal frequency (e.g., 8 MHz) to match your external oscillator.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Configure Debugging Pins:</p>
+<ul>
+<li class="">SWD (Serial Wire Debug):<!-- -->
+<ul>
+<li class="">Navigate to System Core &gt; SYS.</li>
+<li class="">Enable Serial Wire Debug (SWD) to allow programming and debugging via an ST-Link programmer.</li>
+<li class="">Assign PA13 (SWDIO) and PA14 (SWCLK) for the SWD interface.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pin-configuration-best-practices">Pin Configuration Best Practices<a href="#pin-configuration-best-practices" class="hash-link" aria-label="Direct link to Pin Configuration Best Practices" title="Direct link to Pin Configuration Best Practices" translate="no">​</a></h3>
+<ul>
+<li class="">Power Management:<!-- -->
+<ul>
+<li class="">Decoupling Capacitors: Place decoupling capacitors close to power pins to stabilize voltage levels and filter noise.</li>
+<li class="">Power Routing: Ensure that all power pins are connected to their respective power and ground planes to maintain signal integrity.</li>
+</ul>
+</li>
+<li class="">Labeling and Documentation:<!-- -->
+<ul>
+<li class="">Consistent Naming: Use consistent and descriptive labels for pins to facilitate easy identification during PCB design and troubleshooting.</li>
+<li class="">Documentation: Maintain a detailed pinout diagram that reflects the configured assignments for reference and verification.</li>
+</ul>
+</li>
+<li class="">Avoiding Conflicts:<!-- -->
+<ul>
+<li class="">Function Conflicts: Ensure that no two peripherals are assigned to the same pin unless multiplexing is intentionally desired.</li>
+<li class="">Alternate Functions: Verify that alternate functions of a pin do not interfere with the primary function you intend to assign.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuring-peripherals-in-stm32cubeide">Configuring Peripherals in STM32CubeIDE<a href="#configuring-peripherals-in-stm32cubeide" class="hash-link" aria-label="Direct link to Configuring Peripherals in STM32CubeIDE" title="Direct link to Configuring Peripherals in STM32CubeIDE" translate="no">​</a></h2>
+<p>Configuring peripherals is a crucial step that enables your STM32 microcontroller to interface with various hardware components effectively. STM32CubeIDE provides an intuitive interface to enable and customize these peripherals.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="enabling-the-usb-peripheral">Enabling the USB Peripheral<a href="#enabling-the-usb-peripheral" class="hash-link" aria-label="Direct link to Enabling the USB Peripheral" title="Direct link to Enabling the USB Peripheral" translate="no">​</a></h3>
+<p>USB connectivity is essential for various applications, including data transfer, device communication, and more. Here&#x27;s how to enable and configure the USB peripheral:</p>
+<ol>
+<li class="">Access USB Settings:<!-- -->
+<ul>
+<li class="">In the Pinout Configuration tab, navigate to Connectivity &gt; USB.</li>
+</ul>
+</li>
+<li class="">Set USB Mode:<!-- -->
+<ul>
+<li class="">Select USB Device and choose Full-Speed mode to support standard USB data rates.</li>
+</ul>
+</li>
+<li class="">Automatic Pin Assignment:<!-- -->
+<ul>
+<li class="">Upon selection, PA11 (USB_DM) and PA12 (USB_DP) are automatically assigned to the USB differential pair.</li>
+</ul>
+</li>
+<li class="">Configuring USB Class:<!-- -->
+<ul>
+<li class="">Navigate to Middleware &gt; USB Device in the left panel.</li>
+<li class="">Select the desired USB Class based on your application:<!-- -->
+<ul>
+<li class="">Virtual COM Port (CDC): For serial communication over USB.</li>
+<li class="">Mass Storage: To present the device as a USB storage medium.</li>
+<li class="">Human Interface Device (HID): For keyboards, mice, or custom input devices.</li>
+</ul>
+</li>
+<li class="">Example Configuration:<!-- -->
+<ul>
+<li class="">For a virtual COM port, select Communication Device Class (CDC) to enable serial communication via USB.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="enabling-the-high-speed-crystal-oscillator-hse">Enabling the High-Speed Crystal Oscillator (HSE)<a href="#enabling-the-high-speed-crystal-oscillator-hse" class="hash-link" aria-label="Direct link to Enabling the High-Speed Crystal Oscillator (HSE)" title="Direct link to Enabling the High-Speed Crystal Oscillator (HSE)" translate="no">​</a></h3>
+<p>A stable and precise clock source is vital for accurate timing and reliable communication. Enabling the High-Speed External (HSE) crystal oscillator ensures high-precision clocking.</p>
+<ol>
+<li class="">Access RCC Settings:<!-- -->
+<ul>
+<li class="">Go to the RCC (Reset and Clock Control) tab within the Pinout Configuration.</li>
+</ul>
+</li>
+<li class="">Enable HSE Crystal:<!-- -->
+<ul>
+<li class="">Select Crystal/Ceramic Resonator to activate the external crystal oscillator.</li>
+</ul>
+</li>
+<li class="">Pin Assignment:<!-- -->
+<ul>
+<li class="">PD0 (OSC_IN) and PD1 (OSC_OUT) are automatically assigned to connect the external crystal.</li>
+</ul>
+</li>
+<li class="">Clock Configuration:<!-- -->
+<ul>
+<li class="">Specify the crystal frequency (e.g., 8 MHz) to match your external oscillator.</li>
+<li class="">STM32CubeIDE will adjust the system clock settings to utilize the HSE as the primary clock source.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="enabling-debugging-via-swd">Enabling Debugging via SWD<a href="#enabling-debugging-via-swd" class="hash-link" aria-label="Direct link to Enabling Debugging via SWD" title="Direct link to Enabling Debugging via SWD" translate="no">​</a></h3>
+<p>Debugging is an integral part of embedded development, allowing you to program and troubleshoot your MCU effectively.</p>
+<ol>
+<li class="">Access SYS Settings:<!-- -->
+<ul>
+<li class="">Navigate to System Core &gt; SYS within the Pinout Configuration.</li>
+</ul>
+</li>
+<li class="">Enable SWD Interface:<!-- -->
+<ul>
+<li class="">Select Serial Wire Debug (SWD) to activate the SWD interface for programming and debugging.</li>
+</ul>
+</li>
+<li class="">Pin Assignment:<!-- -->
+<ul>
+<li class="">PA13 (SWDIO) and PA14 (SWCLK) are automatically assigned for SWD communication.</li>
+</ul>
+</li>
+<li class="">Connecting ST-Link Programmer:<!-- -->
+<ul>
+<li class="">Connect your STM32 development board to your computer using an ST-Link programmer.</li>
+<li class="">Ensure that the SWDIO and SWCLK lines are correctly connected to facilitate seamless debugging and flashing.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-for-peripheral-configuration">Best Practices for Peripheral Configuration<a href="#best-practices-for-peripheral-configuration" class="hash-link" aria-label="Direct link to Best Practices for Peripheral Configuration" title="Direct link to Best Practices for Peripheral Configuration" translate="no">​</a></h3>
+<ul>
+<li class="">Peripheral Exclusivity:<!-- -->
+<ul>
+<li class="">Ensure that each peripheral is assigned to unique pins unless intentional multiplexing is required.</li>
+</ul>
+</li>
+<li class="">Resource Optimization:<!-- -->
+<ul>
+<li class="">Enable only the peripherals necessary for your application to conserve MCU resources and reduce power consumption.</li>
+</ul>
+</li>
+<li class="">Consistent Configuration:<!-- -->
+<ul>
+<li class="">Maintain consistency between peripheral settings in STM32CubeIDE and your hardware design in KiCad to prevent mismatches and functional issues.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="clock-configuration-in-stm32cubeide">Clock Configuration in STM32CubeIDE<a href="#clock-configuration-in-stm32cubeide" class="hash-link" aria-label="Direct link to Clock Configuration in STM32CubeIDE" title="Direct link to Clock Configuration in STM32CubeIDE" translate="no">​</a></h2>
+<p>Accurate clock configuration is paramount for ensuring the microcontroller operates at optimal frequencies, enabling reliable communication protocols and overall system performance.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="setting-the-main-clock-frequency">Setting the Main Clock Frequency<a href="#setting-the-main-clock-frequency" class="hash-link" aria-label="Direct link to Setting the Main Clock Frequency" title="Direct link to Setting the Main Clock Frequency" translate="no">​</a></h3>
+<p>Configuring the system clock involves selecting the appropriate clock source and setting the desired frequency. STM32CubeIDE simplifies this process with automatic calculations based on your input.</p>
+<ol>
+<li class="">Access Clock Configuration:<!-- -->
+<ul>
+<li class="">Click on the Clock Configuration tab within STM32CubeIDE.</li>
+</ul>
+</li>
+<li class="">Input Frequency:<!-- -->
+<ul>
+<li class="">Enter the frequency of your external crystal (e.g., 8 MHz) in the HSE (High-Speed External) field.</li>
+</ul>
+</li>
+<li class="">Set Desired SYSCLK Frequency:<!-- -->
+<ul>
+<li class="">Specify the target system clock frequency (e.g., 72 MHz) in the SYSCLK field.</li>
+</ul>
+</li>
+<li class="">Automatic Prescaler and Multiplier Calculation:<!-- -->
+<ul>
+<li class="">STM32CubeIDE calculates the necessary prescaler (division) and multiplier (multiplication) values to achieve the desired SYSCLK.</li>
+<li class="">Review the calculated values to ensure they align with your hardware capabilities and project requirements.</li>
+</ul>
+</li>
+<li class="">Validation:<!-- -->
+<ul>
+<li class="">Verify that the configured frequencies do not exceed the MCU’s maximum specifications.</li>
+<li class="">Ensure that all peripheral clocks are derived appropriately from the SYSCLK to maintain synchronization.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="low-speed-clock-lsi-for-rtc">Low-Speed Clock (LSI) for RTC<a href="#low-speed-clock-lsi-for-rtc" class="hash-link" aria-label="Direct link to Low-Speed Clock (LSI) for RTC" title="Direct link to Low-Speed Clock (LSI) for RTC" translate="no">​</a></h3>
+<p>The Real-Time Clock (RTC) requires a low-power, continuous clock source to maintain accurate timekeeping, even during low-power modes.</p>
+<ol>
+<li class="">Access RTC Settings:<!-- -->
+<ul>
+<li class="">Within the Clock Configuration tab, locate the RTC settings.</li>
+</ul>
+</li>
+<li class="">Enable LSI Oscillator:<!-- -->
+<ul>
+<li class="">Select the Low-Speed Internal (LSI) oscillator as the clock source for the RTC.</li>
+</ul>
+</li>
+<li class="">Configuration Options:<!-- -->
+<ul>
+<li class="">RTC Clock Source: Choose LSI from the available options.</li>
+<li class="">Prescalers: Configure the asynchronous and synchronous prescalers to divide the LSI frequency to a suitable rate for the RTC.</li>
+</ul>
+</li>
+<li class="">Accuracy Considerations:<!-- -->
+<ul>
+<li class="">The LSI oscillator provides low-power timing but lacks the precision of the HSE. For applications requiring high accuracy, consider using an external low-speed crystal (LSE).</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-for-clock-configuration">Best Practices for Clock Configuration<a href="#best-practices-for-clock-configuration" class="hash-link" aria-label="Direct link to Best Practices for Clock Configuration" title="Direct link to Best Practices for Clock Configuration" translate="no">​</a></h3>
+<ul>
+<li class="">Stability and Accuracy:<!-- -->
+<ul>
+<li class="">Use high-quality crystals to ensure clock stability and accuracy, especially for communication protocols like USB, UART, and SPI.</li>
+</ul>
+</li>
+<li class="">Power Consumption:<!-- -->
+<ul>
+<li class="">Optimize clock settings to balance performance with power consumption, particularly for battery-powered or low-power applications.</li>
+</ul>
+</li>
+<li class="">Peripheral Synchronization:<!-- -->
+<ul>
+<li class="">Ensure that peripheral clocks are derived appropriately from the system clock to prevent timing mismatches and communication errors.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-transferring-pinout-configuration-to-kicad">6. Transferring Pinout Configuration to KiCad<a href="#6-transferring-pinout-configuration-to-kicad" class="hash-link" aria-label="Direct link to 6. Transferring Pinout Configuration to KiCad" title="Direct link to 6. Transferring Pinout Configuration to KiCad" translate="no">​</a></h2>
+<ul>
+<li class="">After configuring your pinout and peripherals in STM32CubeIDE, the next step is to transfer this setup to KiCad for PCB design.</li>
+<li class="">Maintaining consistency between your software configuration and hardware design is crucial to avoid errors and ensure seamless integration.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exporting-pinout-and-labels-from-stm32cubeide">Exporting Pinout and Labels from STM32CubeIDE<a href="#exporting-pinout-and-labels-from-stm32cubeide" class="hash-link" aria-label="Direct link to Exporting Pinout and Labels from STM32CubeIDE" title="Direct link to Exporting Pinout and Labels from STM32CubeIDE" translate="no">​</a></h3>
+<p>To facilitate the transfer of pin configurations from STM32CubeIDE to KiCad, you need to document and export the configured pinout.</p>
+<ol>
+<li class="">Generate Pinout Report:<!-- -->
+<ul>
+<li class="">In STM32CubeIDE, navigate to Project &gt; Generate Code to ensure all configurations are up-to-date.</li>
+<li class="">Use the Pinout &amp; Configuration tool to view the current pin assignments.</li>
+<li class="">Capture screenshots or export the pinout diagram by selecting File &gt; Export &gt; Pinout Diagram if available.</li>
+</ul>
+</li>
+<li class="">Export Configuration Files:<!-- -->
+<ul>
+<li class="">STM32CubeIDE allows you to export the configuration settings as XML or other compatible formats.</li>
+<li class="">These exported files can serve as references when designing the PCB in KiCad.</li>
+</ul>
+</li>
+<li class="">Create a Pin Mapping Document:<!-- -->
+<ul>
+<li class="">Compile a document listing all pin assignments, including their functions and labels.</li>
+<li class="">Include details such as pin numbers, assigned peripherals, and any special configurations.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="naming-pins-in-kicad">Naming Pins in KiCad<a href="#naming-pins-in-kicad" class="hash-link" aria-label="Direct link to Naming Pins in KiCad" title="Direct link to Naming Pins in KiCad" translate="no">​</a></h3>
+<p>Maintaining consistent naming conventions between STM32CubeIDE and KiCad is essential for accurate PCB design and functionality.</p>
+<ol>
+<li class="">Define Pin Names:<!-- -->
+<ul>
+<li class="">Use the exported pinout documentation to define the same pin names in KiCad.</li>
+<li class="">For example:<!-- -->
+<ul>
+<li class="">PD0 → HSE_IN</li>
+<li class="">PD1 → HSE_OUT</li>
+<li class="">PA11 → USB_DP</li>
+<li class="">PA12 → USB_DM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Assign Functions in KiCad:<!-- -->
+<ul>
+<li class="">In KiCad’s schematic editor, assign the defined names to the corresponding microcontroller pins.</li>
+<li class="">Ensure that each pin’s function matches its configuration in STM32CubeIDE to maintain consistency.</li>
+</ul>
+</li>
+<li class="">Use Net Labels:<!-- -->
+<ul>
+<li class="">Utilize net labels in KiCad to connect corresponding pins and peripherals, enhancing readability and simplifying routing.</li>
+</ul>
+</li>
+<li class="">Maintain a Reference Sheet:<!-- -->
+<ul>
+<li class="">Keep a reference sheet or a legend that maps STM32CubeIDE pin assignments to KiCad labels for easy verification during design.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="practical-example-transferring-usb-configuration">Practical Example: Transferring USB Configuration<a href="#practical-example-transferring-usb-configuration" class="hash-link" aria-label="Direct link to Practical Example: Transferring USB Configuration" title="Direct link to Practical Example: Transferring USB Configuration" translate="no">​</a></h3>
+<ul>
+<li class="">STM32CubeIDE Configuration:<!-- -->
+<ul>
+<li class="">PA11 (USB_DP): Assigned to USB Data Plus.</li>
+<li class="">PA12 (USB_DM): Assigned to USB Data Minus.</li>
+</ul>
+</li>
+<li class="">KiCad Schematic Assignment:<!-- -->
+<ul>
+<li class="">PA11: Label as USB_DP.</li>
+<li class="">PA12: Label as USB_DM.</li>
+</ul>
+</li>
+<li class="">PCB Layout:<!-- -->
+<ul>
+<li class="">Ensure that USB_DP and USB_DM traces are routed as differential pairs to maintain signal integrity.</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-for-transferring-configurations">Best Practices for Transferring Configurations<a href="#best-practices-for-transferring-configurations" class="hash-link" aria-label="Direct link to Best Practices for Transferring Configurations" title="Direct link to Best Practices for Transferring Configurations" translate="no">​</a></h3>
+<ul>
+<li class="">Consistency: Ensure that all pin names and functions are consistently represented in both STM32CubeIDE and KiCad to prevent mismatches.</li>
+<li class="">Documentation: Maintain thorough documentation of all pin assignments and configurations to facilitate troubleshooting and future modifications.</li>
+<li class="">Verification: After transferring the configurations, perform a thorough review to ensure that all connections are accurate and align with the intended design.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="understanding-differential-pairs-for-usb">Understanding Differential Pairs for USB<a href="#understanding-differential-pairs-for-usb" class="hash-link" aria-label="Direct link to Understanding Differential Pairs for USB" title="Direct link to Understanding Differential Pairs for USB" translate="no">​</a></h2>
+<p>Differential pairs are essential for high-speed communication protocols like USB, as they enhance signal integrity and reduce electromagnetic interference (EMI). Proper handling of differential pairs in PCB design is critical to ensuring reliable data transmission.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-to-handle-differential-pairs-in-kicad">How to Handle Differential Pairs in KiCad<a href="#how-to-handle-differential-pairs-in-kicad" class="hash-link" aria-label="Direct link to How to Handle Differential Pairs in KiCad" title="Direct link to How to Handle Differential Pairs in KiCad" translate="no">​</a></h3>
+<p>KiCad offers specialized tools and features to manage differential pairs effectively during PCB layout.</p>
+<ol>
+<li class="">Naming Differential Pairs:<!-- -->
+<ul>
+<li class="">In your schematic, name the differential signals with consistent suffixes such as _P (positive) and _N (negative).</li>
+<li class="">Example:<!-- -->
+<ul>
+<li class="">USB_DP_P for the positive data line.</li>
+<li class="">USB_DP_N for the negative data line.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Assigning Differential Pair Classes:<!-- -->
+<ul>
+<li class="">Define a differential pair class in KiCad to group related signals.</li>
+<li class="">Navigate to Setup &gt; Design Rules &gt; Differential Pairs in the PCB editor.</li>
+<li class="">Create a new differential pair class (e.g., &quot;USB_Differential&quot;) and assign it to the USB_DP and USB_DM nets.</li>
+</ul>
+</li>
+<li class="">Routing Differential Pairs:<!-- -->
+<ul>
+<li class="">Parallel Routing: Route the differential pairs in parallel, maintaining equal spacing to minimize EMI.</li>
+<li class="">Equal Lengths: Ensure that both traces of the differential pair are of equal length to prevent timing mismatches and skew.</li>
+<li class="">Impedance Matching: Configure trace widths and spacing to achieve the desired differential impedance (typically 90 Ohms for USB 2.0).</li>
+</ul>
+</li>
+<li class="">Using Differential Pair Routing Tools:<!-- -->
+<ul>
+<li class="">Utilize KiCad’s differential pair routing tool to automate the process.</li>
+<li class="">Select the differential pair class and use the auto-router or manual routing features to lay out the traces accurately.</li>
+</ul>
+</li>
+<li class="">Termination and Filtering:<!-- -->
+<ul>
+<li class="">Add proper termination resistors if required by the USB specification.</li>
+<li class="">Incorporate filtering components to suppress noise and enhance signal quality.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-for-differential-pair-routing">Best Practices for Differential Pair Routing<a href="#best-practices-for-differential-pair-routing" class="hash-link" aria-label="Direct link to Best Practices for Differential Pair Routing" title="Direct link to Best Practices for Differential Pair Routing" translate="no">​</a></h3>
+<ul>
+<li class="">Controlled Impedance: Design traces with controlled impedance to match USB standards, ensuring signal integrity at high speeds.</li>
+<li class="">Minimal Via Usage: Avoid using vias in differential pairs as they can introduce signal discontinuities and affect impedance.</li>
+<li class="">Shortest Path: Route differential pairs along the shortest and most direct path between components to minimize latency and signal degradation.</li>
+<li class="">Shielding and Grounding: Use ground planes and proper shielding techniques to reduce EMI and crosstalk between differential pairs and other signals.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="practical-example-routing-usb-differential-pairs">Practical Example: Routing USB Differential Pairs<a href="#practical-example-routing-usb-differential-pairs" class="hash-link" aria-label="Direct link to Practical Example: Routing USB Differential Pairs" title="Direct link to Practical Example: Routing USB Differential Pairs" translate="no">​</a></h3>
+<ol>
+<li class="">Assign Differential Pair Names:<!-- -->
+<ul>
+<li class="">USB_DP_P and USB_DP_N.</li>
+</ul>
+</li>
+<li class="">Define Differential Pair Class:<!-- -->
+<ul>
+<li class="">Create a class named &quot;USB_Diff&quot; in KiCad’s differential pair settings.</li>
+</ul>
+</li>
+<li class="">Route the Pairs:<!-- -->
+<ul>
+<li class="">Use the differential pair routing tool to lay out USB_DP_P and USB_DP_N side by side with matched lengths.</li>
+<li class="">Set trace widths and spacing to achieve a 90 Ohm differential impedance.</li>
+</ul>
+</li>
+<li class="">Finalize Layout:<!-- -->
+<ul>
+<li class="">Review the routed pairs to ensure adherence to USB routing guidelines.</li>
+<li class="">Perform impedance checks using KiCad’s design rule checker or external simulation tools.</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>STM32CubeIDE stands out as a powerful tool for configuring STM32 microcontroller pinouts and peripherals, streamlining the development process from software setup to hardware design. This guide has walked you through the essential steps to:</p>
+<ul>
+<li class="">Create and Configure Projects: Initiate new projects, select appropriate MCUs, and set up the development environment.</li>
+<li class="">Pinout Configuration: Utilize the intuitive Pinout Configuration tool to assign functions to microcontroller pins, ensuring proper connectivity and functionality.</li>
+<li class="">Peripheral Management: Enable and customize essential peripherals such as USB, clock oscillators, and debugging interfaces to meet project requirements.</li>
+<li class="">Clock Configuration: Accurately set system and peripheral clocks to optimize performance and reliability.</li>
+<li class="">Integration with KiCad: Seamlessly transfer pin configurations to KiCad, maintaining consistency and accuracy in PCB design.</li>
+<li class="">Differential Pair Handling: Implement best practices for routing differential pairs in KiCad to ensure high-speed communication integrity.</li>
+</ul>
+<p>By following the methodologies and best practices outlined in this documentation, you can achieve a smooth transition from software configuration to hardware design, minimizing errors and enhancing the efficiency of your development workflow. Leveraging STM32CubeIDE&#x27;s robust features in conjunction with KiCad&#x27;s powerful PCB design capabilities empowers you to create sophisticated and reliable embedded systems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuration-pins-nrst-and-boot0">Configuration Pins: NRST and BOOT0<a href="#configuration-pins-nrst-and-boot0" class="hash-link" aria-label="Direct link to Configuration Pins: NRST and BOOT0" title="Direct link to Configuration Pins: NRST and BOOT0" translate="no">​</a></h2>
+<p>This diagram shows how the STM32 reset pin (NRST) and boot configuration pin (BOOT0) are wired for reliable operation:</p>
+<ul>
+<li class="">NRST is held high with an internal pull-up and protected with a 100 nF capacitor and optional reset button to GND,</li>
+<li class="">while BOOT0 uses a 10 kΩ pull-down and an SPDT switch to select between booting from Flash (BOOT0 = 0) and entering the system bootloader (BOOT0 = 1).</li>
+</ul>
+</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/02_Schematic/03_Pin-Out_STM32CubeIDE.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_Configuration_Pins"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Boot Configuration, Reset Circuit, and Power Source Setup</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/Crystal-Circuitry"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Connecting the Crystal Oscillator</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#getting-started-with-stm32cubeide" class="table-of-contents__link toc-highlight">Getting Started with STM32CubeIDE</a><ul><li><a href="#installing-stm32cubeide" class="table-of-contents__link toc-highlight">Installing STM32CubeIDE</a></li><li><a href="#exploring-stm32cubeide-interface" class="table-of-contents__link toc-highlight">Exploring STM32CubeIDE Interface</a></li></ul></li><li><a href="#creating-a-new-project-in-stm32cubeide" class="table-of-contents__link toc-highlight">Creating a New Project in STM32CubeIDE</a><ul><li><a href="#step-by-step-project-creation" class="table-of-contents__link toc-highlight">Step-by-Step Project Creation</a></li><li><a href="#best-practices-for-project-naming-and-organization" class="table-of-contents__link toc-highlight">Best Practices for Project Naming and Organization</a></li></ul></li><li><a href="#configuring-the-pinout-in-stm32cubeide" class="table-of-contents__link toc-highlight">Configuring the Pinout in STM32CubeIDE</a><ul><li><a href="#understanding-the-pinout-view" class="table-of-contents__link toc-highlight">Understanding the Pinout View</a></li><li><a href="#basic-pinout-configuration" class="table-of-contents__link toc-highlight">Basic Pinout Configuration</a></li><li><a href="#pin-configuration-best-practices" class="table-of-contents__link toc-highlight">Pin Configuration Best Practices</a></li></ul></li><li><a href="#configuring-peripherals-in-stm32cubeide" class="table-of-contents__link toc-highlight">Configuring Peripherals in STM32CubeIDE</a><ul><li><a href="#enabling-the-usb-peripheral" class="table-of-contents__link toc-highlight">Enabling the USB Peripheral</a></li><li><a href="#enabling-the-high-speed-crystal-oscillator-hse" class="table-of-contents__link toc-highlight">Enabling the High-Speed Crystal Oscillator (HSE)</a></li><li><a href="#enabling-debugging-via-swd" class="table-of-contents__link toc-highlight">Enabling Debugging via SWD</a></li><li><a href="#best-practices-for-peripheral-configuration" class="table-of-contents__link toc-highlight">Best Practices for Peripheral Configuration</a></li></ul></li><li><a href="#clock-configuration-in-stm32cubeide" class="table-of-contents__link toc-highlight">Clock Configuration in STM32CubeIDE</a><ul><li><a href="#setting-the-main-clock-frequency" class="table-of-contents__link toc-highlight">Setting the Main Clock Frequency</a></li><li><a href="#low-speed-clock-lsi-for-rtc" class="table-of-contents__link toc-highlight">Low-Speed Clock (LSI) for RTC</a></li><li><a href="#best-practices-for-clock-configuration" class="table-of-contents__link toc-highlight">Best Practices for Clock Configuration</a></li></ul></li><li><a href="#6-transferring-pinout-configuration-to-kicad" class="table-of-contents__link toc-highlight">6. Transferring Pinout Configuration to KiCad</a><ul><li><a href="#exporting-pinout-and-labels-from-stm32cubeide" class="table-of-contents__link toc-highlight">Exporting Pinout and Labels from STM32CubeIDE</a></li><li><a href="#naming-pins-in-kicad" class="table-of-contents__link toc-highlight">Naming Pins in KiCad</a></li><li><a href="#practical-example-transferring-usb-configuration" class="table-of-contents__link toc-highlight">Practical Example: Transferring USB Configuration</a></li><li><a href="#best-practices-for-transferring-configurations" class="table-of-contents__link toc-highlight">Best Practices for Transferring Configurations</a></li></ul></li><li><a href="#understanding-differential-pairs-for-usb" class="table-of-contents__link toc-highlight">Understanding Differential Pairs for USB</a><ul><li><a href="#how-to-handle-differential-pairs-in-kicad" class="table-of-contents__link toc-highlight">How to Handle Differential Pairs in KiCad</a></li><li><a href="#best-practices-for-differential-pair-routing" class="table-of-contents__link toc-highlight">Best Practices for Differential Pair Routing</a></li><li><a href="#practical-example-routing-usb-differential-pairs" class="table-of-contents__link toc-highlight">Practical Example: Routing USB Differential Pairs</a></li></ul></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li><li><a href="#configuration-pins-nrst-and-boot0" class="table-of-contents__link toc-highlight">Configuration Pins: NRST and BOOT0</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Ground and Power Routing, Decoupling Capacitors, and Critical Connections | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ground and Power Routing, Decoupling Capacitors, and Critical Connections | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="In this section, we delve into the intricate process of routing for a two-layer Printed Circuit Board (PCB) using KiCad. Our primary focus encompasses the strategic placement and routing of decoupling capacitors, the crystal oscillator, and other sensitive components. Additionally, we will explore best practices for routing ground and power planes to ensure minimal noise interference and maintain impeccable signal integrity."><meta data-rh="true" property="og:description" content="In this section, we delve into the intricate process of routing for a two-layer Printed Circuit Board (PCB) using KiCad. Our primary focus encompasses the strategic placement and routing of decoupling capacitors, the crystal oscillator, and other sensitive components. Additionally, we will explore best practices for routing ground and power planes to ensure minimal noise interference and maintain impeccable signal integrity."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ground and Power Routing, Decoupling Capacitors, and Critical Connections","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing"><span title="Ground and Power Routing, Decoupling Capacitors, and Critical Connections" class="linkLabel_WmDU">Ground and Power Routing, Decoupling Capacitors, and Critical Connections</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Signal-Routing"><span title="Routing USB Differential Pair and Fine-Tuning Signal Layout" class="linkLabel_WmDU">Routing USB Differential Pair and Fine-Tuning Signal Layout</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Power-Routing"><span title="Finalizing Power and Ground Routing on a Two-Layer PCB" class="linkLabel_WmDU">Finalizing Power and Ground Routing on a Two-Layer PCB</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Finishing-Touches-DRC"><span title="Silkscreen, Logos, and Design Rule Checks" class="linkLabel_WmDU">Silkscreen, Logos, and Design Rule Checks</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Ground and Power Routing, Decoupling Capacitors, and Critical Connections</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Ground and Power Routing, Decoupling Capacitors, and Critical Connections</h1></header>
+<p>In this section, we delve into the intricate process of routing for a two-layer Printed Circuit Board (PCB) using KiCad. Our primary focus encompasses the strategic placement and routing of decoupling capacitors, the crystal oscillator, and other sensitive components. Additionally, we will explore best practices for routing ground and power planes to ensure minimal noise interference and maintain impeccable signal integrity.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="setting-up-the-ground-plane">Setting Up the Ground Plane<a href="#setting-up-the-ground-plane" class="hash-link" aria-label="Direct link to Setting Up the Ground Plane" title="Direct link to Setting Up the Ground Plane" translate="no">​</a></h2>
+<p>Establishing a robust ground plane is foundational to minimizing electrical noise and ensuring stable operation of sensitive components. For a two-layer PCB, the ground plane is conventionally allocated to the bottom layer, providing a low impedance return path for signals traversing the top layer.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-creating-a-ground-plane">Step 1: Creating a Ground Plane<a href="#step-1-creating-a-ground-plane" class="hash-link" aria-label="Direct link to Step 1: Creating a Ground Plane" title="Direct link to Step 1: Creating a Ground Plane" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Select the Bottom Layer</p>
+<ul>
+<li class=""><strong>Action:</strong> In KiCad’s PCB Editor, navigate to the bottom copper layer by selecting it from the layer selection toolbar.</li>
+<li class="">Rationale: Positioning the ground plane on the bottom layer facilitates an unobstructed return path for signals on the top layer, enhancing signal integrity and reducing electromagnetic interference (EMI).</li>
+</ul>
+</li>
+<li class="">
+<p>Create a Ground Fill Zone</p>
+<ul>
+<li class="">Tool Utilization: Activate the Add Filled Zone tool using the shortcut SHIFT + CTRL + F.</li>
+<li class="">Configuration:<!-- -->
+<ul>
+<li class="">
+<p>Net Selection: Assign the zone to the GND net to ensure all ground connections are unified within this plane.</p>
+</li>
+<li class="">
+<p>Clearance Settings: Set a clearance of 0.3mm to prevent unintended shorts with adjacent traces or pads.</p>
+</li>
+<li class="">
+<p>Minimum Trace Width: Define a minimum trace width of 0.25mm to maintain manufacturability standards and accommodate sufficient current carrying capacity.</p>
+</li>
+<li class="">
+<p>Thermal Relief: Enable thermal relief for through-hole pads to facilitate easier soldering. Configure the thermal relief with a spoke width and clearance of 0.5mm.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Best Practice: Thermal relief connections minimize thermal stress during soldering by providing a limited thermal path between the pad and the ground plane, preventing excessive heat dissipation that could damage components or the PCB itself.</p>
+</blockquote>
+</li>
+<li class="">
+<p>Define the Shape</p>
+<ul>
+<li class=""><strong>Action:</strong> Initiate the ground zone at one corner of the PCB and extend it to cover the entire bottom layer. Ensure the zone does not obstruct component placements or essential routing channels.</li>
+<li class="">Consideration: Maintain symmetry and avoid intricate shapes that could complicate manufacturing or introduce unnecessary inductance.</li>
+</ul>
+</li>
+<li class="">
+<p>Fill the Zone</p>
+<ul>
+<li class=""><strong>Action:</strong> After delineating the ground area, press B to execute the zone fill, effectively creating a continuous ground plane on the bottom layer.</li>
+<li class="">Verification: Utilize the Design Rules Checker (DRC) to confirm that the ground plane adheres to specified clearances and connectivity rules.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-dropping-vias-for-ground">Step 2: Dropping Vias for Ground<a href="#step-2-dropping-vias-for-ground" class="hash-link" aria-label="Direct link to Step 2: Dropping Vias for Ground" title="Direct link to Step 2: Dropping Vias for Ground" translate="no">​</a></h3>
+<p>Connecting ground pins from the top layer to the ground plane on the bottom layer is crucial for maintaining a consistent ground reference.</p>
+<ol>
+<li class="">
+<p>Via Placement for Ground Pins</p>
+<ul>
+<li class="">
+<p><strong>Procedure:</strong></p>
+<ul>
+<li class="">For each ground pin on the top layer, route a short ground trace, preferably with a 0.5mm width, directly from the pad.</li>
+<li class="">Press V to place a via that seamlessly connects this trace to the bottom ground plane.</li>
+<li class="">Position the vias slightly offset from the ground pad to prevent solder bridging and ensure reliable mechanical and electrical connections.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">If an MCU has multiple ground pins, each pin should have an individual via connecting it to the ground plane, ensuring low impedance paths.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Minimizing Ground Loops</p>
+<ul>
+<li class="">
+<p><strong>Strategy:</strong></p>
+<ul>
+<li class="">Centralize ground traces to converge at a single point or a minimal number of vias to avoid creating ground loops.</li>
+<li class="">Ground loops can introduce unwanted inductance and noise, adversely affecting signal integrity, especially in high-frequency circuits.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Implementation:</strong></p>
+<ul>
+<li class="">Use a star grounding scheme where all ground connections radiate from a central point, ensuring that each return path is independent and free from interference.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="routing-critical-components">Routing Critical Components<a href="#routing-critical-components" class="hash-link" aria-label="Direct link to Routing Critical Components" title="Direct link to Routing Critical Components" translate="no">​</a></h2>
+<p>Once the ground plane is established, attention shifts to the meticulous routing of critical components such as decoupling capacitors, the crystal oscillator, and sensitive signals. Proper routing of these elements is paramount to achieving a noise-free and reliable PCB design.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-routing-decoupling-capacitors">Step 1: Routing Decoupling Capacitors<a href="#step-1-routing-decoupling-capacitors" class="hash-link" aria-label="Direct link to Step 1: Routing Decoupling Capacitors" title="Direct link to Step 1: Routing Decoupling Capacitors" translate="no">​</a></h3>
+<p>Decoupling capacitors are essential for stabilizing power supply lines and filtering out noise, ensuring that sensitive components receive clean and consistent power.</p>
+<ol>
+<li class="">
+<p>Track Width Configuration</p>
+<ul>
+<li class="">Specification: Utilize a 0.3mm track width for connections between decoupling capacitors and the Microcontroller Unit (MCU).</li>
+<li class="">Rationale: This width balances manufacturability with adequate current handling for transient currents during switching.</li>
+</ul>
+</li>
+<li class="">
+<p>Routing Strategy</p>
+<ul>
+<li class="">
+<p><strong>Procedure:</strong></p>
+<ul>
+<li class="">Begin by routing from the power pin of the MCU directly to the decoupling capacitor.</li>
+<li class="">Maintain maximum spacing between the capacitor traces and other signal traces to prevent crosstalk and ensure clean power delivery.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Place decoupling capacitors as close to the MCU power pins as possible to minimize the inductance and resistance in the power path, enhancing their effectiveness in filtering high-frequency noise.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Wider Traces for Power Connections</p>
+<ul>
+<li class="">
+<p><strong>Implementation:</strong></p>
+<ul>
+<li class="">For connections from the capacitor to the 3.3V power rail, increase the track width to 0.5mm.</li>
+<li class="">Route these wider traces to power puddles or the power plane, ensuring robust power distribution with minimal voltage drop.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">A 0.5mm trace can handle higher current loads, which is crucial for supplying stable power to the MCU during rapid switching events.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Consistency in Placement and Routing</p>
+<ul>
+<li class="">
+<p><strong>Action:</strong></p>
+<ul>
+<li class="">Repeat the decoupling process for all capacitors associated with the MCU, ensuring each is positioned as proximal to the MCU pins as possible.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Benefit:</strong></p>
+<ul>
+<li class="">Consistent placement and routing reduce the potential for noise coupling and enhance the overall stability of the power supply to the MCU.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-routing-the-crystal-oscillator">Step 2: Routing the Crystal Oscillator<a href="#step-2-routing-the-crystal-oscillator" class="hash-link" aria-label="Direct link to Step 2: Routing the Crystal Oscillator" title="Direct link to Step 2: Routing the Crystal Oscillator" translate="no">​</a></h3>
+<p>The crystal oscillator is a critical component that dictates the timing and synchronization of the MCU. Precise routing ensures stable clock signals and reliable operation.</p>
+<ol>
+<li class="">
+<p>Track Width Specification</p>
+<ul>
+<li class="">Detail: Employ 0.3mm tracks for oscillator signal routing, balancing signal integrity with manufacturability.</li>
+</ul>
+</li>
+<li class="">
+<p>Maximizing Signal Spacing</p>
+<ul>
+<li class="">Guideline:<!-- -->
+<ul>
+<li class="">Ensure that the HSE (High-Speed External) in and HSE out signals are well-spaced to prevent mutual interference.</li>
+<li class="">Adequate spacing mitigates the risk of crosstalk and ensures the purity of the clock signals.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Short and Direct Trace Paths</p>
+<ul>
+<li class=""><strong>Strategy:</strong>
+<ul>
+<li class="">Keep traces between the MCU and the crystal as short and direct as possible to minimize parasitic inductance and capacitance.</li>
+<li class="">Route traces directly under the crystal if necessary, avoiding lengthy or convoluted paths that could degrade signal quality.</li>
+</ul>
+</li>
+<li class=""><strong>Practical Example:</strong>
+<ul>
+<li class="">Position the crystal oscillator near the MCU with minimal trace length to ensure rapid and reliable signal propagation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Grounding the Oscillator</p>
+<ul>
+<li class=""><strong>Action:</strong>
+<ul>
+<li class="">Ensure that ground connections for the crystal oscillator are tightly coupled to the ground plane using short vias or direct connections to nearby ground pins.</li>
+</ul>
+</li>
+<li class=""><strong>Advantage:</strong>
+<ul>
+<li class="">Proper grounding enhances signal stability and reduces susceptibility to EMI, which is crucial for high-frequency clock signals.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="routing-usb-differential-pair-and-other-signals">Routing USB Differential Pair and Other Signals<a href="#routing-usb-differential-pair-and-other-signals" class="hash-link" aria-label="Direct link to Routing USB Differential Pair and Other Signals" title="Direct link to Routing USB Differential Pair and Other Signals" translate="no">​</a></h2>
+<p>Effective routing of high-speed signals like USB differential pairs, along with other communication interfaces such as SWD and UART, is critical for maintaining data integrity and system reliability.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-routing-the-usb-differential-pair">Step 1: Routing the USB Differential Pair<a href="#step-1-routing-the-usb-differential-pair" class="hash-link" aria-label="Direct link to Step 1: Routing the USB Differential Pair" title="Direct link to Step 1: Routing the USB Differential Pair" translate="no">​</a></h3>
+<p>USB differential pairs require precise routing to preserve signal integrity and meet impedance specifications.</p>
+<ol>
+<li class="">
+<p>Utilizing the Differential Pair Tool</p>
+<ul>
+<li class="">
+<p>Tool Selection: Activate KiCad’s Route Differential Pair tool to handle the USB D+ and D- signals efficiently.</p>
+</li>
+<li class="">
+<p>Configuration: Define the track width and spacing as per design specifications, typically 0.3mm width with 0.3mm spacing for USB 2.0.</p>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">For a USB 2.0 differential pair, maintain consistent trace impedance (~90 Ohms) by adhering to the defined track width and spacing.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Maintaining Differential Pair Integrity</p>
+<ul>
+<li class="">
+<p><strong>Procedure:</strong></p>
+<ul>
+<li class="">Begin routing from the MCU&#x27;s USB pins and extend directly to the USB connector.</li>
+<li class="">Ensure that the traces remain parallel and close together throughout their path to maintain differential signaling characteristics.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Avoid bends and stubs in differential pair routing to prevent signal reflections and degradation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Avoiding Length Mismatch</p>
+<ul>
+<li class="">
+<p>Guideline:</p>
+<ul>
+<li class="">Ensure both traces in the differential pair are of equal length to synchronize signal arrival times.</li>
+<li class="">Implement length matching techniques to prevent skew, which can lead to data errors in high-speed communication.</li>
+</ul>
+</li>
+<li class="">
+<p>Implementation Tip:</p>
+<ul>
+<li class="">Use serpentine routing if necessary to equalize trace lengths without compromising overall routing density.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-routing-swd-and-uart">Step 2: Routing SWD and UART<a href="#step-2-routing-swd-and-uart" class="hash-link" aria-label="Direct link to Step 2: Routing SWD and UART" title="Direct link to Step 2: Routing SWD and UART" translate="no">​</a></h3>
+<p>In addition to USB, Serial Wire Debug (SWD) and Universal Asynchronous Receiver/Transmitter (UART) interfaces require careful routing to ensure reliable communication.</p>
+<ol>
+<li class="">
+<p>SWD (Serial Wire Debug) Routing</p>
+<ul>
+<li class="">
+<p>Track Width: Use 0.3mm tracks for the SWD clock (SWCLK) and SWD data (SWDIO) signals.</p>
+</li>
+<li class="">
+<p>Routing <strong>Strategy:</strong></p>
+<ul>
+<li class="">Route these traces shortly and directly to the MCU&#x27;s debug pins.</li>
+<li class="">Avoid proximity to high-speed signals like USB to minimize interference.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">Position the SWD header near the MCU with minimal trace length to facilitate efficient debugging without signal degradation.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>UART Signal Routing</p>
+<ul>
+<li class="">
+<p>Track Width: Similarly, employ 0.3mm tracks for TX and RX lines.</p>
+</li>
+<li class="">
+<p>Routing Considerations:</p>
+<ul>
+<li class="">Route UART traces directly to the UART header, ensuring adequate spacing from other signals to prevent crosstalk.</li>
+<li class="">Maintain consistent trace impedance to support reliable data transmission.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Keep UART traces away from power lines and noisy digital signals to preserve signal clarity.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-avoiding-crosstalk">Step 3: Avoiding Crosstalk<a href="#step-3-avoiding-crosstalk" class="hash-link" aria-label="Direct link to Step 3: Avoiding Crosstalk" title="Direct link to Step 3: Avoiding Crosstalk" translate="no">​</a></h3>
+<p>Crosstalk can significantly impair signal integrity, especially in high-speed or sensitive signal environments.</p>
+<ol>
+<li class="">
+<p>Signal Isolation</p>
+<ul>
+<li class="">
+<p>Technique:</p>
+<ul>
+<li class="">When routing multiple signals in proximity, ensure that critical traces like USB, UART, and SWD are adequately spaced from high-current power traces.</li>
+<li class="">Utilize ground fills or guard traces between sensitive signals and noisy lines to provide shielding.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Benefit:</strong></p>
+<ul>
+<li class="">Enhances signal integrity by reducing electromagnetic interference (EMI) and mutual inductance between adjacent traces.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Minimizing Layer Crossovers</p>
+<ul>
+<li class="">
+<p><strong>Strategy:</strong></p>
+<ul>
+<li class="">Where possible, maintain all critical signal traces on the same layer to reduce the need for vias.</li>
+<li class="">Each via introduces an additional impedance discontinuity, which can adversely affect high-speed signal performance.</li>
+</ul>
+</li>
+<li class="">
+<p>Implementation Tip:</p>
+<ul>
+<li class="">Plan the routing path to avoid unnecessary layer transitions, thereby maintaining a clean and efficient signal pathway.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="finalizing-power-and-ground-routing">Finalizing Power and Ground Routing<a href="#finalizing-power-and-ground-routing" class="hash-link" aria-label="Direct link to Finalizing Power and Ground Routing" title="Direct link to Finalizing Power and Ground Routing" translate="no">​</a></h2>
+<p>After routing critical components and signals, the next phase involves refining the power and ground connections to ensure comprehensive coverage and minimal impedance paths.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-power-puddle-creation">Step 1: Power Puddle Creation<a href="#step-1-power-puddle-creation" class="hash-link" aria-label="Direct link to Step 1: Power Puddle Creation" title="Direct link to Step 1: Power Puddle Creation" translate="no">​</a></h3>
+<p>Creating large copper pours, or power puddles, facilitates efficient power distribution across the PCB.</p>
+<ol>
+<li class="">
+<p>Creating Power Puddles</p>
+<ul>
+<li class="">
+<p>Tool Utilization: Employ the Add Filled Zone tool to create extensive copper areas linked to power nets such as 3.3V and Vbus on the top layer.</p>
+</li>
+<li class="">
+<p>Configuration:</p>
+<ul>
+<li class="">Assign each puddle to its respective power net, ensuring that all power pins are connected to these pours.</li>
+<li class="">Set appropriate clearances (typically 0.3mm) to prevent shorts and maintain manufacturability.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">A large 3.3V puddle on the top layer ensures ample power distribution to various components without the need for excessively wide traces.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Preserving Ground Plane Continuity</p>
+<ul>
+<li class="">
+<p>Guideline:</p>
+<ul>
+<li class="">Design power puddles and traces in a manner that minimizes disruptions to the bottom ground plane.</li>
+<li class="">Avoid placing power traces directly over the ground plane to prevent unintentional isolation or impedance issues.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Strategically place power puddles around the perimeter or in areas that do not interfere with critical ground paths, maintaining the integrity of the ground plane.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-routing-power-traces">Step 2: Routing Power Traces<a href="#step-2-routing-power-traces" class="hash-link" aria-label="Direct link to Step 2: Routing Power Traces" title="Direct link to Step 2: Routing Power Traces" translate="no">​</a></h3>
+<p>Effective power trace routing is essential for maintaining stable voltage levels and minimizing potential voltage drops.</p>
+<ol>
+<li class="">
+<p>Utilizing Wide Traces</p>
+<ul>
+<li class="">
+<p>Specification: For power distribution, particularly the 3.3V rail, use wide traces (0.5mm or greater) to handle higher current loads.</p>
+</li>
+<li class="">
+<p>Rationale: Wider traces reduce resistive losses and ensure consistent voltage levels across the PCB, which is vital for sensitive components.</p>
+</li>
+<li class="">
+<p>Implementation Tip:</p>
+<ul>
+<li class="">Use trace width calculators to determine the optimal width based on current requirements and PCB manufacturing capabilities.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Short Power Jumps</p>
+<ul>
+<li class="">
+<p>Technique:</p>
+<ul>
+<li class="">When transitioning between layers, employ larger vias to facilitate adequate current flow and minimize resistance.</li>
+<li class="">Keep the length of power traces as short as possible to prevent excessive voltage drops and maintain power integrity.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Example</strong>:</p>
+<ul>
+<li class="">A 1mm via diameter can accommodate higher current levels compared to smaller vias, making it suitable for power transitions.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-grounding-sensitive-components">Step 3: Grounding Sensitive Components<a href="#step-3-grounding-sensitive-components" class="hash-link" aria-label="Direct link to Step 3: Grounding Sensitive Components" title="Direct link to Step 3: Grounding Sensitive Components" translate="no">​</a></h3>
+<p>Ensuring that sensitive components are effectively grounded is crucial for minimizing noise and maintaining signal integrity.</p>
+<ol>
+<li class="">Grounding Critical Components<!-- -->
+<ul>
+<li class="">
+<p><strong>Procedure:</strong></p>
+<ul>
+<li class="">Connect decoupling capacitors, the crystal oscillator, and the USB connector directly to the bottom ground plane via short, direct traces and vias.</li>
+<li class="">Prioritize short ground paths to reduce inductance and resistance, enhancing the performance of these sensitive elements.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Implement a star grounding topology for sensitive components, ensuring that their ground connections do not interfere with each other and maintain a stable reference.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="completing-the-layout">Completing the Layout<a href="#completing-the-layout" class="hash-link" aria-label="Direct link to Completing the Layout" title="Direct link to Completing the Layout" translate="no">​</a></h2>
+<p>With the critical components and primary signal routes established, the layout enters its finalization phase. This step ensures that all connections are secure, components are properly placed, and the design adheres to best practices for manufacturability and performance.</p>
+<ol>
+<li class="">
+<p>Comprehensive Component Connection</p>
+<ul>
+<li class=""><strong>Action:</strong> Verify that all components are correctly connected according to the schematic, ensuring no missing or unintended connections.</li>
+<li class="">Method: Use KiCad’s ERC (Electrical Rules Check) to identify and rectify any connectivity issues.</li>
+</ul>
+</li>
+<li class="">
+<p>Adequate Signal Spacing</p>
+<ul>
+<li class="">Guideline:<!-- -->
+<ul>
+<li class="">Maintain sufficient spacing between different signal traces to prevent crosstalk and interference.</li>
+<li class="">Adhere to the minimum spacing rules defined in the design specifications, typically 0.3mm or as dictated by the fabrication process.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Wide and Well-Connected Power and Ground Traces</p>
+<ul>
+<li class="">Verification:<!-- -->
+<ul>
+<li class="">Ensure that all power and ground traces are adequately wide to handle the expected current loads.</li>
+<li class="">Confirm that these traces are well-connected to their respective planes and puddles, providing low impedance paths across the PCB.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Thermal Reliefs for Easy Soldering</p>
+<ul>
+<li class="">Check:<!-- -->
+<ul>
+<li class="">Verify that thermal reliefs are correctly implemented for through-hole components, facilitating easier soldering without compromising thermal performance.</li>
+<li class="">Inspect the spokes of thermal reliefs to ensure they provide sufficient connectivity without creating excessive thermal dissipation.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps">Next Steps<a href="#next-steps" class="hash-link" aria-label="Direct link to Next Steps" title="Direct link to Next Steps" translate="no">​</a></h2>
+<p>With the layout and routing meticulously completed, it is essential to undertake final validation and preparation steps to ensure the PCB design is robust and ready for production.</p>
+<ol>
+<li class="">
+<p>Design Rule Check (DRC)</p>
+<ul>
+<li class=""><strong>Action:</strong> Run KiCad’s Design Rule Check (DRC) tool to identify and resolve any design violations, such as spacing issues, unconnected nets, or overlapping traces.</li>
+<li class="">Importance: Ensures that the PCB design adheres to manufacturing and electrical standards, preventing costly errors during fabrication.</li>
+</ul>
+</li>
+<li class="">
+<p>3D Layout Inspection</p>
+<ul>
+<li class="">
+<p><strong>Procedure:</strong></p>
+<ul>
+<li class="">Utilize KiCad’s 3D viewer to inspect the PCB layout from all angles.</li>
+<li class="">Check for proper alignment of components, clearance between elements, and overall physical feasibility.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Benefit:</strong></p>
+<ul>
+<li class="">Visual inspection helps identify mechanical issues that might not be apparent in the 2D layout, such as component interference or improper mounting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Final Layout Review</p>
+<ul>
+<li class="">
+<p>Tasks:</p>
+<ul>
+<li class="">Conduct a thorough review of all remaining signal traces, ensuring that they meet design requirements and maintain proper clearances.</li>
+<li class="">Add labels to the silkscreen layer to enhance clarity, aiding in assembly and troubleshooting processes.</li>
+</ul>
+</li>
+<li class="">
+<p>Best Practice:</p>
+<ul>
+<li class="">Collaborate with team members or utilize peer reviews to gain different perspectives and identify potential oversights.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Preparation for Fabrication</p>
+<ul>
+<li class="">
+<p>Steps:</p>
+<ul>
+<li class="">Generate necessary fabrication files, including Gerber files, Bill of Materials (BOM), and assembly drawings.</li>
+<li class="">Verify file integrity and compatibility with the chosen PCB manufacturer’s specifications.</li>
+</ul>
+</li>
+<li class="">
+<p>Tip:</p>
+<ul>
+<li class="">Include detailed notes or instructions for the manufacturer, highlighting any special requirements or considerations unique to the design.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>By meticulously following these steps, you will achieve a high-quality PCB design characterized by clean signal routing, stable power delivery, and minimal noise interference. This comprehensive approach not only enhances the performance and reliability of the final product but also streamlines the manufacturing and assembly processes.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Signal-Routing"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Routing USB Differential Pair and Fine-Tuning Signal Layout</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#setting-up-the-ground-plane" class="table-of-contents__link toc-highlight">Setting Up the Ground Plane</a><ul><li><a href="#step-1-creating-a-ground-plane" class="table-of-contents__link toc-highlight">Step 1: Creating a Ground Plane</a></li><li><a href="#step-2-dropping-vias-for-ground" class="table-of-contents__link toc-highlight">Step 2: Dropping Vias for Ground</a></li></ul></li><li><a href="#routing-critical-components" class="table-of-contents__link toc-highlight">Routing Critical Components</a><ul><li><a href="#step-1-routing-decoupling-capacitors" class="table-of-contents__link toc-highlight">Step 1: Routing Decoupling Capacitors</a></li><li><a href="#step-2-routing-the-crystal-oscillator" class="table-of-contents__link toc-highlight">Step 2: Routing the Crystal Oscillator</a></li></ul></li><li><a href="#routing-usb-differential-pair-and-other-signals" class="table-of-contents__link toc-highlight">Routing USB Differential Pair and Other Signals</a><ul><li><a href="#step-1-routing-the-usb-differential-pair" class="table-of-contents__link toc-highlight">Step 1: Routing the USB Differential Pair</a></li><li><a href="#step-2-routing-swd-and-uart" class="table-of-contents__link toc-highlight">Step 2: Routing SWD and UART</a></li><li><a href="#step-3-avoiding-crosstalk" class="table-of-contents__link toc-highlight">Step 3: Avoiding Crosstalk</a></li></ul></li><li><a href="#finalizing-power-and-ground-routing" class="table-of-contents__link toc-highlight">Finalizing Power and Ground Routing</a><ul><li><a href="#step-1-power-puddle-creation" class="table-of-contents__link toc-highlight">Step 1: Power Puddle Creation</a></li><li><a href="#step-2-routing-power-traces" class="table-of-contents__link toc-highlight">Step 2: Routing Power Traces</a></li><li><a href="#step-3-grounding-sensitive-components" class="table-of-contents__link toc-highlight">Step 3: Grounding Sensitive Components</a></li></ul></li><li><a href="#completing-the-layout" class="table-of-contents__link toc-highlight">Completing the Layout</a></li><li><a href="#next-steps" class="table-of-contents__link toc-highlight">Next Steps</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

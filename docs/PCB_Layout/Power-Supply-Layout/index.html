@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-PCB_Layout/Power-Supply-Layout" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Finalizing Power Supply Layout and Preparing for PCB Routing | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Finalizing Power Supply Layout and Preparing for PCB Routing | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="In the final stage of component placement, we will complete the layout of the power supply section, ensuring the proper positioning of the voltage regulator, capacitors, and LED indicators. Additionally, we will prepare the design for PCB routing by adjusting connector positions, reviewing the layout for neatness, and adding mounting holes. This documentation provides a comprehensive guide to achieving an optimized power supply layout and a well-prepared PCB design ready for routing using KiCad."><meta data-rh="true" property="og:description" content="In the final stage of component placement, we will complete the layout of the power supply section, ensuring the proper positioning of the voltage regulator, capacitors, and LED indicators. Additionally, we will prepare the design for PCB routing by adjusting connector positions, reviewing the layout for neatness, and adding mounting holes. This documentation provides a comprehensive guide to achieving an optimized power supply layout and a well-prepared PCB design ready for routing using KiCad."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Finalizing Power Supply Layout and Preparing for PCB Routing","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"><span title="PCB Layout and Routing Setup" class="linkLabel_WmDU">PCB Layout and Routing Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/MCU-Decoupling_Capacitors_Crystal-Layout"><span title="Initial Component Placement and Layout" class="linkLabel_WmDU">Initial Component Placement and Layout</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/USB_SWD_Layout"><span title="Prioritizing and Placing Critical Circuitry" class="linkLabel_WmDU">Prioritizing and Placing Critical Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Changing-Footprints-Adding-3D-Models"><span title="Fixing 3D Models and Adjusting Footprints" class="linkLabel_WmDU">Fixing 3D Models and Adjusting Footprints</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Switch-Connector-Placement"><span title="Finalizing the Rough Layout and Preparing for Power Circuitry" class="linkLabel_WmDU">Finalizing the Rough Layout and Preparing for Power Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><span title="Finalizing Power Supply Layout and Preparing for PCB Routing" class="linkLabel_WmDU">Finalizing Power Supply Layout and Preparing for PCB Routing</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><span title="Adding Mounting Holes, Defining Board Outline, and Preparing for Routing" class="linkLabel_WmDU">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Finalizing Power Supply Layout and Preparing for PCB Routing</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Finalizing Power Supply Layout and Preparing for PCB Routing</h1></header>
+<p>In the final stage of component placement, we will complete the layout of the power supply section, ensuring the proper positioning of the voltage regulator, capacitors, and LED indicators. Additionally, we will prepare the design for PCB routing by adjusting connector positions, reviewing the layout for neatness, and adding mounting holes. This documentation provides a comprehensive guide to achieving an optimized power supply layout and a well-prepared PCB design ready for routing using KiCad.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-laying-out-the-power-supply-section">1. Laying Out the Power Supply Section<a href="#1-laying-out-the-power-supply-section" class="hash-link" aria-label="Direct link to 1. Laying Out the Power Supply Section" title="Direct link to 1. Laying Out the Power Supply Section" translate="no">​</a></h2>
+<p>The power supply is a critical part of the PCB that ensures stable voltage delivery to the entire circuit. Proper placement of components in the power section, such as the voltage regulator, input/output capacitors, and power LEDs, is essential for both functionality and routing efficiency.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-positioning-the-voltage-regulator">Step 1: Positioning the Voltage Regulator<a href="#step-1-positioning-the-voltage-regulator" class="hash-link" aria-label="Direct link to Step 1: Positioning the Voltage Regulator" title="Direct link to Step 1: Positioning the Voltage Regulator" translate="no">​</a></h3>
+<p>Objective: Ensure that the voltage regulator is optimally placed to facilitate efficient power distribution and thermal management.</p>
+<ol>
+<li class="">
+<p>Placement Near Power Input:</p>
+<ul>
+<li class="">Action: Move the voltage regulator (e.g., AMS1117-3.3V) close to the USB-C power input pin (pin 1).</li>
+<li class="">Rationale: Positioning the regulator near the power input minimizes the trace length for incoming power, reducing potential voltage drops and noise.</li>
+<li class="">Practical Tip: Use the Rotate (R) function in KiCad to align the input pin of the regulator with the VBUS from the USB connector. This alignment simplifies routing and enhances signal integrity.</li>
+</ul>
+</li>
+<li class="">
+<p>Thermal Considerations:</p>
+<ul>
+<li class="">Action: Ensure adequate spacing around the voltage regulator for heat dissipation.</li>
+<li class="">Rationale: Voltage regulators can generate significant heat, especially under high current loads. Sufficient spacing prevents thermal buildup, which can lead to component failure or reduced performance.</li>
+<li class="">Best Practice: Incorporate thermal reliefs or heatsinks if the regulator is expected to handle substantial current. Additionally, consider using thermal vias to connect the regulator&#x27;s ground pin to internal ground planes for better heat management.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-placing-the-input-and-output-capacitors">Step 2: Placing the Input and Output Capacitors<a href="#step-2-placing-the-input-and-output-capacitors" class="hash-link" aria-label="Direct link to Step 2: Placing the Input and Output Capacitors" title="Direct link to Step 2: Placing the Input and Output Capacitors" translate="no">​</a></h3>
+<p>Objective: Stabilize voltage levels and filter out noise to ensure smooth power delivery.</p>
+<ol>
+<li class="">
+<p>Input Capacitor Placement:</p>
+<ul>
+<li class="">Action: Place the input capacitor (e.g., C10) as close as possible to the input pin of the voltage regulator.</li>
+<li class="">Rationale: Proximity minimizes the inductance and resistance in the power path, enhancing the capacitor&#x27;s effectiveness in smoothing voltage fluctuations from the USB power source.</li>
+<li class="">Connection Tip: Ensure the ground pin of the capacitor is near the regulator&#x27;s ground pin to reduce trace length and minimize ground loop inductance.</li>
+</ul>
+</li>
+<li class="">
+<p>Output Capacitor Placement:</p>
+<ul>
+<li class="">Action: Position the output capacitor (e.g., C11) near the output pin of the voltage regulator.</li>
+<li class="">Rationale: This placement stabilizes the 3.3V output, ensuring consistent power delivery to sensitive components like the microcontroller.</li>
+<li class="">Routing Strategy: Align the output capacitor inline with the regulator&#x27;s output pin to facilitate straightforward routing of the 3.3V trace to downstream components.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Capacitor Selection: Use capacitors with appropriate ESR (Equivalent Series Resistance) as recommended in the voltage regulator&#x27;s datasheet.</li>
+<li class="">Decoupling: Consider adding additional decoupling capacitors near high-speed or noise-sensitive components to further enhance power stability.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-adding-the-power-on-led">Step 3: Adding the Power-On LED<a href="#step-3-adding-the-power-on-led" class="hash-link" aria-label="Direct link to Step 3: Adding the Power-On LED" title="Direct link to Step 3: Adding the Power-On LED" translate="no">​</a></h3>
+<p>Objective: Provide visual indication of power status, aiding in debugging and user interface.</p>
+<ol>
+<li class="">
+<p>LED Placement:</p>
+<ul>
+<li class="">Action: Place the power-on LED (e.g., D1) near the output of the voltage regulator but away from sensitive components.</li>
+<li class="">Rationale: While the LED&#x27;s placement is not critical, positioning it near the voltage regulator ensures it accurately reflects the power status. Keeping it away from sensitive components prevents potential interference.</li>
+<li class="">Visibility Consideration: Position the LED where it is easily visible on the final PCB, facilitating quick power status checks during testing and use.</li>
+</ul>
+</li>
+<li class="">
+<p>Current-Limiting Resistor Placement:</p>
+<ul>
+<li class="">Action: Position the current-limiting resistor (e.g., R6) inline with the LED&#x27;s anode and the 3.3V output.</li>
+<li class="">Rationale: The resistor controls the current through the LED, preventing excessive current that could damage the LED or affect the power supply stability.</li>
+<li class="">Connection Tip: Ensure the resistor is placed close to the LED to minimize trace length and maintain consistent current regulation.</li>
+</ul>
+</li>
+</ol>
+<p>Practical Example:</p>
+<ul>
+<li class="">
+<p>Resistor Calculation: For a typical red LED with a forward voltage of 2V and desired current of 10mA, the resistor value can be calculated using Ohm&#x27;s Law:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><msub><mi>V</mi><mrow><mi>s</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>c</mi><mi>e</mi></mrow></msub><mo>−</mo><msub><mi>V</mi><mrow><mi>L</mi><mi>E</mi><mi>D</mi></mrow></msub></mrow><mi>I</mi></mfrac><mo>=</mo><mfrac><mrow><mn>3.3</mn><mi>V</mi><mo>−</mo><mn>2</mn><mi>V</mi></mrow><mrow><mn>0.01</mn><mi>A</mi></mrow></mfrac><mo>=</mo><mn>130</mn><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">R = \frac{V_{source} - V_{LED}}{I} = \frac{3.3V - 2V}{0.01A} = 130\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord mathnormal" style="margin-right:0.00773em">R</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em"><span style="top:-2.314em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em">I</span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.677em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">so</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">rce</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight" style="margin-right:0.05764em">E</span><span class="mord mathnormal mtight" style="margin-right:0.02778em">D</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em"><span style="top:-2.314em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord">0.01</span><span class="mord mathnormal">A</span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.677em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord">3.3</span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.22222em">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord">130Ω</span></span></span></span></span>
+<p>Choose the nearest standard resistor value, such as 150Ω, to ensure safe operation.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-adjusting-for-layout-compactness">Step 4: Adjusting for Layout Compactness<a href="#step-4-adjusting-for-layout-compactness" class="hash-link" aria-label="Direct link to Step 4: Adjusting for Layout Compactness" title="Direct link to Step 4: Adjusting for Layout Compactness" translate="no">​</a></h3>
+<p>Objective: Optimize the power supply section for space efficiency and ease of routing.</p>
+<ol>
+<li class="">
+<p>Compact Arrangement:</p>
+<ul>
+<li class="">Action: Review the layout to ensure the power supply section is compact, with short traces between the voltage regulator and capacitors.</li>
+<li class="">Rationale: A compact layout reduces trace length, minimizing inductance and resistance, which enhances power stability and reduces electromagnetic interference (EMI).</li>
+<li class="">Grouping Strategy: Cluster related components together—voltage regulator, input/output capacitors, and power LED—to streamline routing and enhance signal integrity.</li>
+</ul>
+</li>
+<li class="">
+<p>Trace Management:</p>
+<ul>
+<li class="">Action: Adjust component placement to avoid overlapping traces and ensure clear grounding paths.</li>
+<li class="">Rationale: Overlapping traces can lead to short circuits and complicate the routing process. Clear grounding paths enhance power distribution and reduce noise.</li>
+<li class="">Best Practice: Utilize ground planes where possible to provide a low-impedance path for ground connections, improving overall power integrity.</li>
+</ul>
+</li>
+</ol>
+<p>Practical Tip:</p>
+<ul>
+<li class="">Component Alignment: Align components along symmetrical axes to create a visually organized layout, which simplifies troubleshooting and future modifications.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-handling-remaining-passive-components">2. Handling Remaining Passive Components<a href="#2-handling-remaining-passive-components" class="hash-link" aria-label="Direct link to 2. Handling Remaining Passive Components" title="Direct link to 2. Handling Remaining Passive Components" translate="no">​</a></h2>
+<p>With the power supply section largely complete, the final passive component to address is the bulk decoupling capacitor for the microcontroller. This capacitor plays a vital role in maintaining power stability across the entire circuit.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-positioning-the-bulk-decoupling-capacitor">Step 1: Positioning the Bulk Decoupling Capacitor<a href="#step-1-positioning-the-bulk-decoupling-capacitor" class="hash-link" aria-label="Direct link to Step 1: Positioning the Bulk Decoupling Capacitor" title="Direct link to Step 1: Positioning the Bulk Decoupling Capacitor" translate="no">​</a></h3>
+<p>Objective: Ensure reliable power delivery to the microcontroller by minimizing voltage fluctuations and noise.</p>
+<ol>
+<li class="">
+<p>Bulk Capacitor Placement:</p>
+<ul>
+<li class="">Action: Place the bulk decoupling capacitor (e.g., C12) near the power traces leading to the microcontroller.</li>
+<li class="">Rationale: Proximity to the microcontroller minimizes the inductance and resistance in the power path, enhancing the capacitor&#x27;s effectiveness in smoothing out power supply variations.</li>
+<li class="">Placement Strategy: While the exact placement is flexible, aim to position the capacitor within a short distance from the microcontroller&#x27;s 3.3V power input to maximize its impact.</li>
+</ul>
+</li>
+<li class="">
+<p>Ground Connection:</p>
+<ul>
+<li class="">Action: Ensure the ground pin of the decoupling capacitor has a short, direct connection to the ground plane.</li>
+<li class="">Rationale: A short ground connection reduces ground loop inductance and enhances the capacitor&#x27;s ability to filter out noise, contributing to overall circuit stability.</li>
+<li class="">Best Practice: Use thermal vias or multiple ground vias if necessary to provide a low-impedance path between the capacitor&#x27;s ground pin and the ground plane.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Capacitor Value Selection: Choose a capacitor value that aligns with the microcontroller&#x27;s power requirements and noise sensitivity. Common values range from 10µF to 100µF.</li>
+<li class="">Multiple Decoupling Capacitors: Consider using a combination of bulk capacitors and smaller ceramic capacitors (e.g., 0.1µF) to address a wider range of frequency noise.</li>
+</ul>
+<p>Practical Example:</p>
+<ul>
+<li class="">Placement Illustration: In KiCad&#x27;s layout editor, position C12 adjacent to the microcontroller&#x27;s power input pin, ensuring minimal trace length between the capacitor and the pin. Utilize the design grid to maintain consistent spacing and alignment.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-inspecting-the-layout-and-preparing-for-routing">3. Inspecting the Layout and Preparing for Routing<a href="#3-inspecting-the-layout-and-preparing-for-routing" class="hash-link" aria-label="Direct link to 3. Inspecting the Layout and Preparing for Routing" title="Direct link to 3. Inspecting the Layout and Preparing for Routing" translate="no">​</a></h2>
+<p>With all components placed, it&#x27;s crucial to review the entire layout to ensure readiness for the PCB routing phase. This involves verifying component placement, alignment, and preparing clear paths for trace routing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-inspect-the-layout-in-the-3d-viewer">Step 1: Inspect the Layout in the 3D Viewer<a href="#step-1-inspect-the-layout-in-the-3d-viewer" class="hash-link" aria-label="Direct link to Step 1: Inspect the Layout in the 3D Viewer" title="Direct link to Step 1: Inspect the Layout in the 3D Viewer" translate="no">​</a></h3>
+<p>Objective: Visualize the PCB layout in three dimensions to identify potential placement issues and ensure component alignment.</p>
+<ol>
+<li class="">
+<p>Accessing the 3D Viewer:</p>
+<ul>
+<li class="">Action: Press ALT + 3 or navigate to View &gt; 3D Viewer in KiCad.</li>
+<li class="">Rationale: The 3D Viewer provides a realistic representation of the PCB, helping to identify physical placement issues that may not be evident in the 2D layout.</li>
+</ul>
+</li>
+<li class="">
+<p>Component Verification:</p>
+<ul>
+<li class="">Action: Ensure that all components, especially connectors (e.g., USB-C) and switches, are correctly positioned.</li>
+<li class="">Practical Tip: For connectors like USB-C, verify that they extend slightly beyond the PCB edge to facilitate easy access when housed in an enclosure.</li>
+</ul>
+</li>
+<li class="">
+<p>Silkscreen Inspection:</p>
+<ul>
+<li class="">Action: Check that silkscreen labels do not overlap with pads, traces, or other components.</li>
+<li class="">Rationale: Overlapping silkscreen can interfere with soldering and assembly, leading to potential manufacturing issues.</li>
+<li class="">Best Practice: Adjust silkscreen layers to provide clear labeling without encroaching on component footprints or routing paths.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Clearances: Verify that component clearances meet manufacturing tolerances to prevent shorts and facilitate reliable assembly.</li>
+<li class="">Height Considerations: Ensure that taller components do not interfere with mounting holes or enclosure fittings.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-fine-tune-the-placement-of-connectors-and-components">Step 2: Fine-Tune the Placement of Connectors and Components<a href="#step-2-fine-tune-the-placement-of-connectors-and-components" class="hash-link" aria-label="Direct link to Step 2: Fine-Tune the Placement of Connectors and Components" title="Direct link to Step 2: Fine-Tune the Placement of Connectors and Components" translate="no">​</a></h3>
+<p>Objective: Achieve a neat and organized layout that simplifies routing and enhances PCB functionality.</p>
+<ol>
+<li class="">
+<p>Component Alignment:</p>
+<ul>
+<li class="">Action: Adjust the placement of components to ensure neat alignment and prevent crossing traces.</li>
+<li class="">Rationale: A well-aligned layout reduces the complexity of routing and minimizes potential interference between traces.</li>
+<li class="">Practical Tip: Utilize KiCad&#x27;s alignment tools to align connectors and critical components along symmetrical axes or predefined grid lines.</li>
+</ul>
+</li>
+<li class="">
+<p>Connector Positioning:</p>
+<ul>
+<li class="">Action: Move connectors closer to the board edges if necessary to allow for easy external connections (e.g., USB-C, UART, SWD).</li>
+<li class="">Rationale: Placing connectors near edges facilitates accessibility and ensures they are not obstructed when housed in enclosures.</li>
+<li class="">Best Practice: Leave sufficient edge clearance to accommodate the physical dimensions of connectors and prevent mechanical interference.</li>
+</ul>
+</li>
+<li class="">
+<p>Power and Ground Alignment:</p>
+<ul>
+<li class="">Action: Ensure that power and ground connections are properly aligned with the main power routes.</li>
+<li class="">Rationale: Proper alignment facilitates efficient power distribution and minimizes the risk of ground loops or power supply issues.</li>
+<li class="">Routing Strategy: Plan power and ground traces to follow straight paths where possible, reducing trace length and inductance.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Component Spacing: Maintain consistent spacing between components to enhance readability and simplify routing.</li>
+<li class="">Grouping: Group related components together based on functionality to streamline trace routing and improve signal integrity.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-3-prepare-for-routing">Step 3: Prepare for Routing<a href="#step-3-prepare-for-routing" class="hash-link" aria-label="Direct link to Step 3: Prepare for Routing" title="Direct link to Step 3: Prepare for Routing" translate="no">​</a></h3>
+<p>Objective: Lay the groundwork for efficient and effective PCB routing by planning critical trace paths and ensuring accessibility.</p>
+<ol>
+<li class="">
+<p>Critical Trace Planning:</p>
+<ul>
+<li class="">Action: Identify and plan for critical traces, such as power (3.3V) and ground, ensuring they can be routed without crossing other traces.</li>
+<li class="">Rationale: Critical traces often carry higher currents or are essential for signal integrity. Proper planning prevents routing conflicts and ensures reliable connections.</li>
+<li class="">Best Practice: Utilize wider trace widths for power and ground to handle higher currents and minimize voltage drops.</li>
+</ul>
+</li>
+<li class="">
+<p>Accessibility of Power Traces:</p>
+<ul>
+<li class="">Action: Ensure that 3.3V and GND traces are easily accessible from the voltage regulator to all necessary components, especially the microcontroller.</li>
+<li class="">Rationale: Accessible power traces simplify routing and enhance power distribution efficiency across the PCB.</li>
+<li class="">Routing Tip: Use KiCad&#x27;s design rules to define appropriate trace widths and clearances for power traces, ensuring they meet current handling requirements.</li>
+</ul>
+</li>
+<li class="">
+<p>Trace Width Optimization:</p>
+<ul>
+<li class="">Action: Use wide traces for power and ground lines to handle the required current and reduce resistance.</li>
+<li class="">Rationale: Wider traces lower the overall impedance, minimizing voltage drops and ensuring stable power delivery.</li>
+<li class="">Calculation Example: For a 3.3V power trace carrying up to 1A, a trace width of at least 1mm is recommended, depending on the PCB&#x27;s copper thickness and temperature rise constraints.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Layer Utilization: Consider using internal power and ground planes to provide low-impedance paths and reduce the need for multiple wide traces on signal layers.</li>
+<li class="">Via Planning: Plan the placement of vias to connect power traces across different layers efficiently, enhancing current distribution and thermal management.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-adding-mounting-holes-and-board-outline">4. Adding Mounting Holes and Board Outline<a href="#4-adding-mounting-holes-and-board-outline" class="hash-link" aria-label="Direct link to 4. Adding Mounting Holes and Board Outline" title="Direct link to 4. Adding Mounting Holes and Board Outline" translate="no">​</a></h2>
+<p>Before initiating the routing process, it&#x27;s essential to add mounting holes and finalize the board outline to ensure the PCB can be securely mounted within its intended enclosure or assembly.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-adding-mounting-holes">Step 1: Adding Mounting Holes<a href="#step-1-adding-mounting-holes" class="hash-link" aria-label="Direct link to Step 1: Adding Mounting Holes" title="Direct link to Step 1: Adding Mounting Holes" translate="no">​</a></h3>
+<p>Objective: Provide physical mounting points for securing the PCB within an enclosure or to a chassis.</p>
+<ol>
+<li class="">
+<p>Mounting Hole Placement:</p>
+<ul>
+<li class="">Action: Use the Add a Mounting Hole tool from the KiCad toolbar to place mounting holes in each corner of the PCB.</li>
+<li class="">Rationale: Placing mounting holes at the corners ensures balanced support and stability when the PCB is mounted.</li>
+<li class="">Practical Tip: Standard mounting hole sizes are typically around 3.2mm for screws, but verify the specific requirements based on the enclosure or mounting hardware being used.</li>
+</ul>
+</li>
+<li class="">
+<p>Spacing and Clearance:</p>
+<ul>
+<li class="">Action: Ensure that the mounting holes are spaced evenly and positioned away from critical components to avoid interference.</li>
+<li class="">Rationale: Even spacing distributes mechanical stress evenly across the PCB, preventing warping or damage. Avoiding critical components ensures that mounting does not compromise circuit integrity.</li>
+<li class="">Best Practice: Follow the four-hole mounting standard by placing mounting holes in a rectangular pattern, with dimensions suited to the enclosure&#x27;s mounting points.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Hole Countersinking: Consider countersinking mounting holes to accommodate screw heads, ensuring a flush finish and preventing screw interference with components.</li>
+<li class="">Silk Screen Marking: Clearly mark mounting hole positions on the silkscreen layer to aid in assembly and verification during manufacturing.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-drawing-the-board-outline">Step 2: Drawing the Board Outline<a href="#step-2-drawing-the-board-outline" class="hash-link" aria-label="Direct link to Step 2: Drawing the Board Outline" title="Direct link to Step 2: Drawing the Board Outline" translate="no">​</a></h3>
+<p>Objective: Define the physical boundaries of the PCB to ensure it fits within its intended space and accommodates all components.</p>
+<ol>
+<li class="">
+<p>Selecting the Edge.Cuts Layer:</p>
+<ul>
+<li class="">Action: Switch to the Edge.Cuts layer, the designated layer for defining the PCB’s outer boundary.</li>
+<li class="">Rationale: The Edge.Cuts layer dictates the final shape and size of the PCB, guiding the manufacturer during the fabrication process.</li>
+</ul>
+</li>
+<li class="">
+<p>Creating the Board Outline:</p>
+<ul>
+<li class="">Action: Use the Draw Line tool to create the board outline, ensuring it is large enough to accommodate all components without excess space.</li>
+<li class="">Rationale: An appropriately sized board outline ensures efficient use of material, simplifies mounting within enclosures, and maintains aesthetic appeal.</li>
+<li class="">Design Considerations:<!-- -->
+<ul>
+<li class="">Component Clearance: Ensure the outline provides sufficient clearance around components, especially around connectors like USB-C, to prevent mechanical interference.</li>
+<li class="">Edge Accessibility: Position edge-mounted components (e.g., USB-C) so that they extend slightly beyond the board edge for easy access and connection.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Practical Example:</p>
+<ul>
+<li class="">Rounded Corners: To reduce stress concentrations and improve the PCB&#x27;s mechanical robustness, consider incorporating rounded corners in the board outline.</li>
+<li class="">Cutouts: If necessary, include cutouts in the board outline for connectors or other protruding components, ensuring they do not interfere with the overall board integrity.</li>
+</ul>
+<p>Best Practices:</p>
+<ul>
+<li class="">Dimension Verification: Double-check the board outline dimensions against the enclosure specifications to ensure a proper fit.</li>
+<li class="">Mechanical Constraints: Account for any mechanical constraints, such as standoffs or mounting brackets, when designing the board outline.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-final-review-before-routing">5. Final Review Before Routing<a href="#5-final-review-before-routing" class="hash-link" aria-label="Direct link to 5. Final Review Before Routing" title="Direct link to 5. Final Review Before Routing" translate="no">​</a></h2>
+<p>Before proceeding to the PCB routing phase, a thorough review of the layout ensures that all components are correctly placed and that the design is optimized for efficient routing and assembly.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-1-conduct-a-final-layout-review">Step 1: Conduct a Final Layout Review<a href="#step-1-conduct-a-final-layout-review" class="hash-link" aria-label="Direct link to Step 1: Conduct a Final Layout Review" title="Direct link to Step 1: Conduct a Final Layout Review" translate="no">​</a></h3>
+<p>Objective: Identify and rectify any remaining issues in the layout to ensure a flawless transition to the routing phase.</p>
+<ol>
+<li class="">
+<p>Connection Verification:</p>
+<ul>
+<li class="">Action: Check for any missing connections or misplaced components.</li>
+<li class="">Rationale: Ensuring all components are correctly placed and connected prevents functional issues and reduces the risk of design errors.</li>
+<li class="">Tool Utilization: Use KiCad’s Electrical Rules Checker (ERC) and Design Rules Checker (DRC) to identify and address connectivity and layout issues.</li>
+</ul>
+</li>
+<li class="">
+<p>3D Viewer Sanity Check:</p>
+<ul>
+<li class="">Action: Utilize the 3D Viewer to perform a final visual inspection, ensuring that all components fit correctly and are positioned for easy routing and assembly.</li>
+<li class="">Rationale: Visual checks can reveal placement issues, such as overlapping components or misaligned connectors, that may not be apparent in the 2D layout.</li>
+<li class="">Practical Tip: Rotate the 3D view to inspect components from different angles, ensuring that no components interfere with each other and that there is adequate clearance for connectors and mounting features.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Annotation Consistency: Ensure that all components are correctly annotated and labeled to facilitate assembly and troubleshooting.</li>
+<li class="">Design Rule Compliance: Verify that the layout adheres to all design rules, including trace widths, clearances, and component placements, to ensure manufacturability.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-prepare-for-routing">Step 2: Prepare for Routing<a href="#step-2-prepare-for-routing" class="hash-link" aria-label="Direct link to Step 2: Prepare for Routing" title="Direct link to Step 2: Prepare for Routing" translate="no">​</a></h3>
+<p>Objective: Transition seamlessly to the PCB routing phase by ensuring that the layout is fully optimized and ready for trace connections.</p>
+<ol>
+<li class="">
+<p>Final Layout Optimization:</p>
+<ul>
+<li class="">Action: Confirm that all components are optimally placed and that the power supply and critical traces are clearly planned.</li>
+<li class="">Rationale: An optimized layout simplifies the routing process, reducing the time required for trace connections and enhancing overall PCB performance.</li>
+<li class="">Best Practice: Utilize grid snapping and alignment tools in KiCad to maintain consistent component spacing and alignment, facilitating straightforward routing paths.</li>
+</ul>
+</li>
+<li class="">
+<p>Route Accessibility:</p>
+<ul>
+<li class="">Action: Ensure that all 3.3V and GND traces are accessible from the voltage regulator to necessary components, particularly the microcontroller.</li>
+<li class="">Rationale: Accessible power traces prevent routing bottlenecks and ensure efficient power distribution across the PCB.</li>
+<li class="">Routing Strategy: Plan major power traces first, followed by signal traces, to establish a solid foundation for the routing process.</li>
+</ul>
+</li>
+</ol>
+<p>Best Practices:</p>
+<ul>
+<li class="">Layer Planning: Decide on the number of signal and power layers required based on the complexity of the PCB, ensuring adequate routing space for all connections.</li>
+<li class="">Via Management: Plan the placement of vias to transition traces between layers efficiently, reducing trace length and maintaining signal integrity.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>By meticulously completing the layout of the power supply section and refining the positioning of passive components, connectors, and decoupling capacitors, the PCB design is now primed for the next critical phase: PCB routing. This process ensures that components are optimally placed for power distribution and signal integrity, laying a solid foundation for effective trace routing.</p>
+<p>The design is now well-organized and compact, which facilitates a smoother and more efficient routing stage. With mounting holes and the board outline added, the PCB is nearly ready for the final stages of design. The next step involves PCB routing, where all components will be interconnected using copper traces, finalizing the electrical connections that make the PCB functional.</p>
+<p>Best Practices Moving Forward:</p>
+<ul>
+<li class="">Iterative Review: Continuously review and adjust the layout as routing progresses to accommodate any unforeseen challenges.</li>
+<li class="">Documentation: Maintain comprehensive documentation of the design process, including component placement decisions and routing strategies, to aid in future revisions and troubleshooting.</li>
+<li class="">Testing and Validation: Plan for thorough testing and validation of the routed PCB to ensure functionality, reliability, and adherence to design specifications.</li>
+</ul>
+<p>By following this structured and detailed approach, you ensure a high-quality PCB design that meets both functional and manufacturing standards, leveraging KiCad&#x27;s robust design capabilities to their fullest potential.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/03_PCB_Layout/06_Power-Supply-Layout.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Switch-Connector-Placement"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Finalizing the Rough Layout and Preparing for Power Circuitry</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-laying-out-the-power-supply-section" class="table-of-contents__link toc-highlight">1. Laying Out the Power Supply Section</a><ul><li><a href="#step-1-positioning-the-voltage-regulator" class="table-of-contents__link toc-highlight">Step 1: Positioning the Voltage Regulator</a></li><li><a href="#step-2-placing-the-input-and-output-capacitors" class="table-of-contents__link toc-highlight">Step 2: Placing the Input and Output Capacitors</a></li><li><a href="#step-3-adding-the-power-on-led" class="table-of-contents__link toc-highlight">Step 3: Adding the Power-On LED</a></li><li><a href="#step-4-adjusting-for-layout-compactness" class="table-of-contents__link toc-highlight">Step 4: Adjusting for Layout Compactness</a></li></ul></li><li><a href="#2-handling-remaining-passive-components" class="table-of-contents__link toc-highlight">2. Handling Remaining Passive Components</a><ul><li><a href="#step-1-positioning-the-bulk-decoupling-capacitor" class="table-of-contents__link toc-highlight">Step 1: Positioning the Bulk Decoupling Capacitor</a></li></ul></li><li><a href="#3-inspecting-the-layout-and-preparing-for-routing" class="table-of-contents__link toc-highlight">3. Inspecting the Layout and Preparing for Routing</a><ul><li><a href="#step-1-inspect-the-layout-in-the-3d-viewer" class="table-of-contents__link toc-highlight">Step 1: Inspect the Layout in the 3D Viewer</a></li><li><a href="#step-2-fine-tune-the-placement-of-connectors-and-components" class="table-of-contents__link toc-highlight">Step 2: Fine-Tune the Placement of Connectors and Components</a></li><li><a href="#step-3-prepare-for-routing" class="table-of-contents__link toc-highlight">Step 3: Prepare for Routing</a></li></ul></li><li><a href="#4-adding-mounting-holes-and-board-outline" class="table-of-contents__link toc-highlight">4. Adding Mounting Holes and Board Outline</a><ul><li><a href="#step-1-adding-mounting-holes" class="table-of-contents__link toc-highlight">Step 1: Adding Mounting Holes</a></li><li><a href="#step-2-drawing-the-board-outline" class="table-of-contents__link toc-highlight">Step 2: Drawing the Board Outline</a></li></ul></li><li><a href="#5-final-review-before-routing" class="table-of-contents__link toc-highlight">5. Final Review Before Routing</a><ul><li><a href="#step-1-conduct-a-final-layout-review" class="table-of-contents__link toc-highlight">Step 1: Conduct a Final Layout Review</a></li><li><a href="#step-2-prepare-for-routing" class="table-of-contents__link toc-highlight">Step 2: Prepare for Routing</a></li></ul></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

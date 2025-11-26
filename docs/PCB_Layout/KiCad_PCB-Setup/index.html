@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-PCB_Layout/KiCad_PCB-Setup" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">PCB Layout and Routing Setup | STM32 Hardware Design with KiCAD</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="PCB Layout and Routing Setup | STM32 Hardware Design with KiCAD"><meta data-rh="true" name="description" content="Creating a reliable and manufacturable Printed Circuit Board (PCB) is a critical step in bringing your electronic designs to life. This documentation provides a comprehensive guide to setting up PCB layout and routing in KiCad, specifically tailored for an STM32-based design. By following these detailed instructions, you will ensure that your PCB design adheres to best practices, maintains signal integrity, and meets manufacturing requirements."><meta data-rh="true" property="og:description" content="Creating a reliable and manufacturable Printed Circuit Board (PCB) is a critical step in bringing your electronic designs to life. This documentation provides a comprehensive guide to setting up PCB layout and routing in KiCad, specifically tailored for an STM32-based design. By following these detailed instructions, you will ensure that your PCB design adheres to best practices, maintains signal integrity, and meets manufacturing requirements."><link data-rh="true" rel="icon" href="/STM32-HW-Design-with-KiCAD/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup" hreflang="en"><link data-rh="true" rel="alternate" href="https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PCB Layout and Routing Setup","item":"https://CagriCatik.github.io/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"}]}</script><link rel="alternate" type="application/rss+xml" href="/STM32-HW-Design-with-KiCAD/blog/rss.xml" title="STM32 Hardware Design with KiCAD RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/STM32-HW-Design-with-KiCAD/blog/atom.xml" title="STM32 Hardware Design with KiCAD Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-d6UvP8MjG/jrWTLxz4ph1bEXHVNyMYAx4GqeFPYYR5tWLm4XAoVRSaSejzE/sFs9" crossorigin="anonymous"><link rel="stylesheet" href="/STM32-HW-Design-with-KiCAD/assets/css/styles.cc534fa5.css">
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/runtime~main.607fb828.js" defer="defer"></script>
+<script src="/STM32-HW-Design-with-KiCAD/assets/js/main.dfe735fd.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/STM32-HW-Design-with-KiCAD/"><div class="navbar__logo"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/STM32-HW-Design-with-KiCAD/img/logo.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Introduction/">Introduction</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Schematic/STM32_uC_Decoupling">Schematics</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup">Layout</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Routing/Decoupling-Capacitors-Cyrstal-Routing">Routing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Manufacturing/Generating-BOM">Manufacturing</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Scripts/Automated_Design">Scripts</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Glossary/A">Glossary</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/docs/Recipes/simplify-complex-components">Recipes</a><a class="navbar__item navbar__link" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/KiCad_PCB-Setup"><span title="PCB Layout and Routing Setup" class="linkLabel_WmDU">PCB Layout and Routing Setup</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/MCU-Decoupling_Capacitors_Crystal-Layout"><span title="Initial Component Placement and Layout" class="linkLabel_WmDU">Initial Component Placement and Layout</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/USB_SWD_Layout"><span title="Prioritizing and Placing Critical Circuitry" class="linkLabel_WmDU">Prioritizing and Placing Critical Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Changing-Footprints-Adding-3D-Models"><span title="Fixing 3D Models and Adjusting Footprints" class="linkLabel_WmDU">Fixing 3D Models and Adjusting Footprints</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Switch-Connector-Placement"><span title="Finalizing the Rough Layout and Preparing for Power Circuitry" class="linkLabel_WmDU">Finalizing the Rough Layout and Preparing for Power Circuitry</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Power-Supply-Layout"><span title="Finalizing Power Supply Layout and Preparing for PCB Routing" class="linkLabel_WmDU">Finalizing Power Supply Layout and Preparing for PCB Routing</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/Mounting-Holes-Board-Outline"><span title="Adding Mounting Holes, Defining Board Outline, and Preparing for Routing" class="linkLabel_WmDU">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/STM32-HW-Design-with-KiCAD/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">PCB Layout and Routing Setup</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>PCB Layout and Routing Setup</h1></header>
+<p>Creating a reliable and manufacturable Printed Circuit Board (PCB) is a critical step in bringing your electronic designs to life. This documentation provides a comprehensive guide to setting up PCB layout and routing in KiCad, specifically tailored for an STM32-based design. By following these detailed instructions, you will ensure that your PCB design adheres to best practices, maintains signal integrity, and meets manufacturing requirements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-opening-the-pcb-layout-editor">1. Opening the PCB Layout Editor<a href="#1-opening-the-pcb-layout-editor" class="hash-link" aria-label="Direct link to 1. Opening the PCB Layout Editor" title="Direct link to 1. Opening the PCB Layout Editor" translate="no">​</a></h2>
+<p>Transitioning from schematic design to PCB layout is a pivotal phase in the design process. The PCB Layout Editor in KiCad facilitates this transition, allowing you to arrange components and route connections effectively.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-by-step-guide">Step-by-Step Guide<a href="#step-by-step-guide" class="hash-link" aria-label="Direct link to Step-by-Step Guide" title="Direct link to Step-by-Step Guide" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Complete Your Schematic</p>
+<ul>
+<li class="">Ensure that your schematic is fully developed and all components have been assigned appropriate footprints.</li>
+<li class="">Verify the netlist for accuracy to prevent connectivity issues during layout.</li>
+</ul>
+</li>
+<li class="">
+<p>Accessing the PCB Layout Editor</p>
+<ul>
+<li class="">Locate and click the &quot;Open PCB Editor&quot; button in KiCad’s main toolbar.</li>
+<li class="">A new window titled PCB Layout Editor (also known as the Board Editor) will appear, presenting a blank canvas for your PCB design.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices">Best Practices<a href="#best-practices" class="hash-link" aria-label="Direct link to Best Practices" title="Direct link to Best Practices" translate="no">​</a></h3>
+<ul>
+<li class="">Organize Your Schematic First: A well-organized schematic simplifies the layout process, reducing the time spent on troubleshooting connectivity issues.</li>
+<li class="">Consistent Naming Conventions: Use consistent naming for nets and components to avoid confusion during the layout phase.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-setting-up-the-pcb-board-stack">2. Setting Up the PCB Board Stack<a href="#2-setting-up-the-pcb-board-stack" class="hash-link" aria-label="Direct link to 2. Setting Up the PCB Board Stack" title="Direct link to 2. Setting Up the PCB Board Stack" translate="no">​</a></h2>
+<p>The board stack defines the physical structure of your PCB, including the number of layers and their respective functions. Proper configuration is essential for signal integrity and manufacturability.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-configuring-the-board-layers">2.1 Configuring the Board Layers<a href="#21-configuring-the-board-layers" class="hash-link" aria-label="Direct link to 2.1 Configuring the Board Layers" title="Direct link to 2.1 Configuring the Board Layers" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access Board Setup</p>
+<ul>
+<li class="">In the PCB Editor, click the &quot;Board Setup&quot; button located in the top-left corner to open the Board Setup window.</li>
+</ul>
+</li>
+<li class="">
+<p>Define Layers</p>
+<ul>
+<li class="">Navigate to the Layers tab within the Board Setup window.</li>
+<li class="">Configure the following layers:<!-- -->
+<ul>
+<li class="">Top Layer (Front Copper): Utilized primarily for signal routing.</li>
+<li class="">Bottom Layer (Back Copper): Typically assigned as a solid ground plane to enhance signal integrity and reduce electromagnetic interference (EMI).</li>
+<li class="">Silkscreen, Solder Mask, and Paste Layers: Retain default settings unless specific customizations are required for your design.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-setting-the-ground-plane">2.2 Setting the Ground Plane<a href="#22-setting-the-ground-plane" class="hash-link" aria-label="Direct link to 2.2 Setting the Ground Plane" title="Direct link to 2.2 Setting the Ground Plane" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Configure Bottom Copper Layer</p>
+<ul>
+<li class="">Assign the Bottom Copper Layer as a solid ground plane. This serves as a reference for all ground connections and provides a low-impedance path for return currents.</li>
+</ul>
+</li>
+<li class="">
+<p>Utilize Vias for Connectivity</p>
+<ul>
+<li class="">To connect signal traces to the ground plane, use vias—small plated-through holes that bridge the top and bottom layers.</li>
+<li class="">Best Practice: Strategically place vias near critical components to minimize loop areas and reduce noise.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-reviewing-the-stack-up">2.3 Reviewing the Stack-Up<a href="#23-reviewing-the-stack-up" class="hash-link" aria-label="Direct link to 2.3 Reviewing the Stack-Up" title="Direct link to 2.3 Reviewing the Stack-Up" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access Physical Stack-Up View</p>
+<ul>
+<li class="">Switch to the Physical Stack-Up tab to visualize the layer arrangement of your PCB.</li>
+</ul>
+</li>
+<li class="">
+<p>Verify Layer Details</p>
+<ul>
+<li class="">Ensure the stack-up includes:<!-- -->
+<ul>
+<li class="">Top Copper Layer</li>
+<li class="">Dielectric Layer (Insulating Material)</li>
+<li class="">Bottom Copper Layer</li>
+<li class="">Additional Layers: Such as Solder Mask and Silkscreen, if applicable.</li>
+</ul>
+</li>
+<li class="">Confirm that the total board thickness aligns with standard manufacturing specifications, typically around 1.6mm.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices---pcb-board-stack">Best Practices - PCB Board Stack<a href="#best-practices---pcb-board-stack" class="hash-link" aria-label="Direct link to Best Practices - PCB Board Stack" title="Direct link to Best Practices - PCB Board Stack" translate="no">​</a></h3>
+<ul>
+<li class="">Layer Assignment: Assigning a solid ground plane to the bottom layer enhances signal integrity by providing a consistent return path.</li>
+<li class="">Standard Thickness: Adhering to standard PCB thickness simplifies manufacturing and reduces costs.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-setting-up-design-rules">3. Setting Up Design Rules<a href="#3-setting-up-design-rules" class="hash-link" aria-label="Direct link to 3. Setting Up Design Rules" title="Direct link to 3. Setting Up Design Rules" translate="no">​</a></h2>
+<p>Design rules are critical in ensuring that your PCB can be fabricated reliably. They define parameters such as trace widths, clearances, and via sizes based on the capabilities of your chosen PCB manufacturer.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-understanding-manufacturer-capabilities">3.1 Understanding Manufacturer Capabilities<a href="#31-understanding-manufacturer-capabilities" class="hash-link" aria-label="Direct link to 3.1 Understanding Manufacturer Capabilities" title="Direct link to 3.1 Understanding Manufacturer Capabilities" translate="no">​</a></h3>
+<p>Before configuring design rules, consult your PCB manufacturer’s specifications. Common manufacturers like JLCPCB and PCBWay provide detailed guidelines, including:</p>
+<ul>
+<li class="">Minimum Trace Width: Typically around 0.2mm (8 mils).</li>
+<li class="">Minimum Clearance: Often 0.2mm between copper features.</li>
+<li class="">Via Specifications: For example, a 0.6mm pad diameter with a 0.3mm drill hole.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-configuring-design-rules-in-kicad">3.2 Configuring Design Rules in KiCad<a href="#32-configuring-design-rules-in-kicad" class="hash-link" aria-label="Direct link to 3.2 Configuring Design Rules in KiCad" title="Direct link to 3.2 Configuring Design Rules in KiCad" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Open Design Rules Tab</p>
+<ul>
+<li class="">In the Board Setup window, navigate to the Design Rules tab.</li>
+</ul>
+</li>
+<li class="">
+<p>Set Parameters Based on Manufacturer Specifications</p>
+<ul>
+<li class="">Minimum Track Width: Set to 0.3mm (adjust as per manufacturer’s minimum).</li>
+<li class="">Clearance: Set to 0.3mm for copper-to-copper clearances to prevent shorts and ensure manufacturability.</li>
+<li class="">Via Drill Diameter: Configure to 0.3mm with a pad diameter of 0.7mm.</li>
+<li class="">Annular Ring Width: Define the copper ring surrounding vias to ensure reliable connections.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices---design-rules">Best Practices - Design Rules<a href="#best-practices---design-rules" class="hash-link" aria-label="Direct link to Best Practices - Design Rules" title="Direct link to Best Practices - Design Rules" translate="no">​</a></h3>
+<ul>
+<li class="">Margin for Manufacturing Tolerances: Always include a margin beyond the minimum specifications to account for manufacturing variances.</li>
+<li class="">Consistent Design Rules: Apply consistent design rules across the entire PCB to maintain uniformity and reduce complexity.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-pre-defining-track-sizes">4. Pre-Defining Track Sizes<a href="#4-pre-defining-track-sizes" class="hash-link" aria-label="Direct link to 4. Pre-Defining Track Sizes" title="Direct link to 4. Pre-Defining Track Sizes" translate="no">​</a></h2>
+<p>Defining track sizes beforehand ensures that your PCB layout accommodates the necessary current and maintains signal integrity. Different types of traces (e.g., power vs. signal) require varying widths.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-defining-signal-and-power-track-sizes">4.1 Defining Signal and Power Track Sizes<a href="#41-defining-signal-and-power-track-sizes" class="hash-link" aria-label="Direct link to 4.1 Defining Signal and Power Track Sizes" title="Direct link to 4.1 Defining Signal and Power Track Sizes" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Access Predefined Sizes</p>
+<ul>
+<li class="">Within the Board Setup window, locate the Predefined Sizes section.</li>
+</ul>
+</li>
+<li class="">
+<p>Set Track Widths</p>
+<ul>
+<li class="">Signal Traces: Assign a width of 0.3mm. This size is adequate for general signal routing and minimizes space usage.</li>
+<li class="">Power Traces: Assign a wider width of 0.5mm to handle higher current loads without significant voltage drops.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-defining-via-sizes">4.2 Defining Via Sizes<a href="#42-defining-via-sizes" class="hash-link" aria-label="Direct link to 4.2 Defining Via Sizes" title="Direct link to 4.2 Defining Via Sizes" translate="no">​</a></h3>
+<ul>
+<li class="">Standard Via Configuration:<!-- -->
+<ul>
+<li class="">Pad Diameter: 0.7mm</li>
+<li class="">Drill Hole Diameter: 0.3mm</li>
+</ul>
+<!-- -->This configuration ensures robust connections between layers while adhering to manufacturing standards.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-adding-differential-pair-sizes">4.3 Adding Differential Pair Sizes<a href="#43-adding-differential-pair-sizes" class="hash-link" aria-label="Direct link to 4.3 Adding Differential Pair Sizes" title="Direct link to 4.3 Adding Differential Pair Sizes" translate="no">​</a></h3>
+<p>For designs incorporating high-speed signals such as USB, differential pairs are essential to maintain signal integrity and reduce noise.</p>
+<ol>
+<li class="">
+<p>Define Differential Pair Parameters</p>
+<ul>
+<li class="">Trace Width: 0.3mm</li>
+<li class="">Trace Gap: 0.3mm</li>
+</ul>
+</li>
+<li class="">
+<p>Routing Differential Pairs</p>
+<ul>
+<li class="">Ensure that differential pairs are routed in parallel with consistent spacing.</li>
+<li class="">Best Practice: Keep differential pair traces as short and matched in length as possible to maintain timing and reduce signal degradation.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices---pre-defining-track-sizes">Best Practices - Pre-Defining Track Sizes<a href="#best-practices---pre-defining-track-sizes" class="hash-link" aria-label="Direct link to Best Practices - Pre-Defining Track Sizes" title="Direct link to Best Practices - Pre-Defining Track Sizes" translate="no">​</a></h3>
+<ul>
+<li class="">Current-Carrying Capacity: Ensure that power traces are wide enough to handle the maximum expected current without excessive heating.</li>
+<li class="">Signal Integrity: Properly sized traces and differential pairs are crucial for maintaining the integrity of high-speed signals.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-importing-component-footprints">5. Importing Component Footprints<a href="#5-importing-component-footprints" class="hash-link" aria-label="Direct link to 5. Importing Component Footprints" title="Direct link to 5. Importing Component Footprints" translate="no">​</a></h2>
+<p>Importing and correctly placing component footprints from your schematic is essential for accurate PCB layout and subsequent manufacturing.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-importing-footprints">5.1 Importing Footprints<a href="#51-importing-footprints" class="hash-link" aria-label="Direct link to 5.1 Importing Footprints" title="Direct link to 5.1 Importing Footprints" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Update PCB from Schematic</p>
+<ul>
+<li class="">In the PCB Editor, click the &quot;Update PCB from Schematic&quot; button (represented by an icon of a wire connecting to a PCB).</li>
+</ul>
+</li>
+<li class="">
+<p>Footprint Importation</p>
+<ul>
+<li class="">KiCad will automatically import all component footprints defined in your schematic, placing them on the PCB layout canvas outside the designated board area.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-arranging-components">5.2 Arranging Components<a href="#52-arranging-components" class="hash-link" aria-label="Direct link to 5.2 Arranging Components" title="Direct link to 5.2 Arranging Components" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Manual Component Placement</p>
+<ul>
+<li class="">Begin by dragging and dropping components from outside the board area onto the PCB canvas.</li>
+</ul>
+</li>
+<li class="">
+<p>Organize Components Logically</p>
+<ul>
+<li class="">Grouping: Place related components, such as decoupling capacitors near the microcontroller pins, to minimize trace lengths and enhance performance.</li>
+<li class="">Edge Placement: Position connectors (e.g., USB, power, SWD) along the board edges to facilitate easy access and interfacing.</li>
+<li class="">Thermal Management: Arrange components that generate heat to allow for adequate heat dissipation.</li>
+</ul>
+</li>
+<li class="">
+<p>Optimizing Layout</p>
+<ul>
+<li class="">Space Utilization: Efficiently use board space to prevent overcrowding and ensure clear routing paths.</li>
+<li class="">Accessibility: Ensure that components requiring frequent access are easily reachable.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="53-previewing-footprints">5.3 Previewing Footprints<a href="#53-previewing-footprints" class="hash-link" aria-label="Direct link to 5.3 Previewing Footprints" title="Direct link to 5.3 Previewing Footprints" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Verify Footprint Orientation and Alignment</p>
+<ul>
+<li class="">For each component, confirm that the footprint has been correctly imported and oriented as per the schematic.</li>
+</ul>
+</li>
+<li class="">
+<p>Utilize 3D View for Visualization</p>
+<ul>
+<li class="">Right-click on a footprint and select &quot;View Footprint 3D&quot; to visualize the component placement in three dimensions.</li>
+<li class="">Best Practice: Regularly use the 3D view to identify potential placement issues and ensure components do not interfere with each other.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices---arranging-components">Best Practices - Arranging Components<a href="#best-practices---arranging-components" class="hash-link" aria-label="Direct link to Best Practices - Arranging Components" title="Direct link to Best Practices - Arranging Components" translate="no">​</a></h3>
+<ul>
+<li class="">Logical Grouping: Grouping related components reduces trace lengths and improves signal integrity.</li>
+<li class="">Clearances: Maintain adequate spacing between components to facilitate routing and prevent potential shorts.</li>
+<li class="">Orientation Consistency: Align components consistently (e.g., all ICs facing the same direction) to streamline the routing process.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-preparing-for-routing">6. Preparing for Routing<a href="#6-preparing-for-routing" class="hash-link" aria-label="Direct link to 6. Preparing for Routing" title="Direct link to 6. Preparing for Routing" translate="no">​</a></h2>
+<p>Routing involves connecting component pads with copper traces based on the netlist derived from your schematic. Proper preparation ensures an efficient and error-free routing process.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="61-placing-key-components">6.1 Placing Key Components<a href="#61-placing-key-components" class="hash-link" aria-label="Direct link to 6.1 Placing Key Components" title="Direct link to 6.1 Placing Key Components" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Identify Critical Components</p>
+<ul>
+<li class="">Microcontroller: Central to your design, requiring careful placement to minimize trace lengths to peripherals.</li>
+<li class="">Power Supply: Ensure that power components are placed to efficiently distribute power across the board.</li>
+<li class="">Connectors: Position connectors strategically for easy access and to minimize trace lengths.</li>
+</ul>
+</li>
+<li class="">
+<p>Positioning for Optimal Routing</p>
+<ul>
+<li class="">Central Placement: Place frequently connected components near the center of the board to reduce overall trace lengths.</li>
+<li class="">Edge Placement: Position connectors along the board edges to facilitate interfacing with external devices.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="62-checking-netlist-connections">6.2 Checking Netlist Connections<a href="#62-checking-netlist-connections" class="hash-link" aria-label="Direct link to 6.2 Checking Netlist Connections" title="Direct link to 6.2 Checking Netlist Connections" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Verify Connectivity</p>
+<ul>
+<li class="">Ensure that all components are correctly connected according to the netlist. Use KiCad’s Electrical Rules Checker (ERC) to identify and resolve connectivity issues.</li>
+</ul>
+</li>
+<li class="">
+<p>Identify Unconnected Nets</p>
+<ul>
+<li class="">Address any unconnected nets or floating pins to prevent potential functionality issues.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="63-final-preparations-before-routing">6.3 Final Preparations Before Routing<a href="#63-final-preparations-before-routing" class="hash-link" aria-label="Direct link to 6.3 Final Preparations Before Routing" title="Direct link to 6.3 Final Preparations Before Routing" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Review Component Placement</p>
+<ul>
+<li class="">Double-check that all components are placed logically and do not obstruct each other.</li>
+</ul>
+</li>
+<li class="">
+<p>Layer Configuration</p>
+<ul>
+<li class="">Ensure that the top layer is designated for signal routing and the bottom layer for the ground plane.</li>
+</ul>
+</li>
+<li class="">
+<p>Net Priority</p>
+<ul>
+<li class="">Identify critical nets (e.g., high-speed signals) and prioritize their routing paths to maintain signal integrity.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices---preparing-for-routing">Best Practices - Preparing for Routing<a href="#best-practices---preparing-for-routing" class="hash-link" aria-label="Direct link to Best Practices - Preparing for Routing" title="Direct link to Best Practices - Preparing for Routing" translate="no">​</a></h3>
+<ul>
+<li class="">Plan Routing Paths: Before starting, plan the routing paths for critical signals to minimize crossing and interference.</li>
+<li class="">Minimize Via Usage: Use vias sparingly to reduce manufacturing complexity and potential signal degradation.</li>
+<li class="">Maintain Clearances: Adhere to design rules for clearances to prevent shorts and ensure manufacturability.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>You have successfully set up your PCB layout in KiCad by configuring the board stack, establishing design rules, pre-defining track sizes, and importing and arranging component footprints. These foundational steps are crucial for creating a functional and manufacturable PCB design. In the subsequent phase, you will proceed to route the PCB, meticulously connecting components with copper traces while adhering to best practices for signal integrity and manufacturability. By following this structured approach, your PCB design will meet the high standards required for reliable electronic performance.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="best-practices-summary">Best Practices Summary<a href="#best-practices-summary" class="hash-link" aria-label="Direct link to Best Practices Summary" title="Direct link to Best Practices Summary" translate="no">​</a></h2>
+<ul>
+<li class="">Thorough Planning: Adequate planning during each setup phase prevents errors and facilitates a smoother routing process.</li>
+<li class="">Consistent Verification: Regularly verify configurations and connections to maintain design integrity.</li>
+<li class="">Adherence to Standards: Following manufacturer guidelines and industry standards ensures that your PCB is manufacturable and reliable.</li>
+<li class="">Efficient Component Placement: Logical and strategic component placement simplifies routing and enhances overall PCB performance.</li>
+<li class="">Continuous Learning: Stay updated with KiCad’s features and PCB design best practices to continually improve your designs.</li>
+</ul>
+<p>By adhering to these best practices and leveraging the detailed steps outlined in this documentation, you are well-equipped to create professional and high-quality PCB layouts using KiCad.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/03_PCB_Layout/01_KiCad_PCB-Setup.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/STM32-HW-Design-with-KiCAD/docs/PCB_Layout/MCU-Decoupling_Capacitors_Crystal-Layout"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Initial Component Placement and Layout</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-opening-the-pcb-layout-editor" class="table-of-contents__link toc-highlight">1. Opening the PCB Layout Editor</a><ul><li><a href="#step-by-step-guide" class="table-of-contents__link toc-highlight">Step-by-Step Guide</a></li><li><a href="#best-practices" class="table-of-contents__link toc-highlight">Best Practices</a></li></ul></li><li><a href="#2-setting-up-the-pcb-board-stack" class="table-of-contents__link toc-highlight">2. Setting Up the PCB Board Stack</a><ul><li><a href="#21-configuring-the-board-layers" class="table-of-contents__link toc-highlight">2.1 Configuring the Board Layers</a></li><li><a href="#22-setting-the-ground-plane" class="table-of-contents__link toc-highlight">2.2 Setting the Ground Plane</a></li><li><a href="#23-reviewing-the-stack-up" class="table-of-contents__link toc-highlight">2.3 Reviewing the Stack-Up</a></li><li><a href="#best-practices---pcb-board-stack" class="table-of-contents__link toc-highlight">Best Practices - PCB Board Stack</a></li></ul></li><li><a href="#3-setting-up-design-rules" class="table-of-contents__link toc-highlight">3. Setting Up Design Rules</a><ul><li><a href="#31-understanding-manufacturer-capabilities" class="table-of-contents__link toc-highlight">3.1 Understanding Manufacturer Capabilities</a></li><li><a href="#32-configuring-design-rules-in-kicad" class="table-of-contents__link toc-highlight">3.2 Configuring Design Rules in KiCad</a></li><li><a href="#best-practices---design-rules" class="table-of-contents__link toc-highlight">Best Practices - Design Rules</a></li></ul></li><li><a href="#4-pre-defining-track-sizes" class="table-of-contents__link toc-highlight">4. Pre-Defining Track Sizes</a><ul><li><a href="#41-defining-signal-and-power-track-sizes" class="table-of-contents__link toc-highlight">4.1 Defining Signal and Power Track Sizes</a></li><li><a href="#42-defining-via-sizes" class="table-of-contents__link toc-highlight">4.2 Defining Via Sizes</a></li><li><a href="#43-adding-differential-pair-sizes" class="table-of-contents__link toc-highlight">4.3 Adding Differential Pair Sizes</a></li><li><a href="#best-practices---pre-defining-track-sizes" class="table-of-contents__link toc-highlight">Best Practices - Pre-Defining Track Sizes</a></li></ul></li><li><a href="#5-importing-component-footprints" class="table-of-contents__link toc-highlight">5. Importing Component Footprints</a><ul><li><a href="#51-importing-footprints" class="table-of-contents__link toc-highlight">5.1 Importing Footprints</a></li><li><a href="#52-arranging-components" class="table-of-contents__link toc-highlight">5.2 Arranging Components</a></li><li><a href="#53-previewing-footprints" class="table-of-contents__link toc-highlight">5.3 Previewing Footprints</a></li><li><a href="#best-practices---arranging-components" class="table-of-contents__link toc-highlight">Best Practices - Arranging Components</a></li></ul></li><li><a href="#6-preparing-for-routing" class="table-of-contents__link toc-highlight">6. Preparing for Routing</a><ul><li><a href="#61-placing-key-components" class="table-of-contents__link toc-highlight">6.1 Placing Key Components</a></li><li><a href="#62-checking-netlist-connections" class="table-of-contents__link toc-highlight">6.2 Checking Netlist Connections</a></li><li><a href="#63-final-preparations-before-routing" class="table-of-contents__link toc-highlight">6.3 Final Preparations Before Routing</a></li><li><a href="#best-practices---preparing-for-routing" class="table-of-contents__link toc-highlight">Best Practices - Preparing for Routing</a></li></ul></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li><li><a href="#best-practices-summary" class="table-of-contents__link toc-highlight">Best Practices Summary</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/introduction">Knowledge Base</a></li><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/docs/category/recipes">Recipes</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Projects</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 1<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 2<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">Project 3<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/STM32-HW-Design-with-KiCAD/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">STM32 Hardware Design with KiCAD</div></div></div></footer></div>
+</body>
+</html>

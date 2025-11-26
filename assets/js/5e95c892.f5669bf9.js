@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkPCB_Design=self.webpackChunkPCB_Design||[]).push([[9647],{7121:(e,s,r)=>{r.r(s),r.d(s,{default:()=>l});r(96540);var n=r(34164),u=r(45500),a=r(17559),c=r(22831),t=r(55398),i=r(74848);function l(e){return(0,i.jsx)(u.e3,{className:(0,n.A)(a.G.wrapper.docsPages),children:(0,i.jsx)(t.A,{children:(0,c.v)(e.route.routes)})})}}}]);

@@ -1,0 +1,2109 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/06_Scripts/08_Design_Automation/">
+      
+      
+        <link rel="prev" href="../07_UI/">
+      
+      
+        <link rel="next" href="../09_Plug/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Design Automation - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-automation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Design Automation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📜 Scripts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Automated_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Customized_Footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custome Footprint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_DRC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DRC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Netlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netlist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_BOM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_UI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Automation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automate-the-design-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Automate the Design Process?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases-for-design-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases for Design Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases for Design Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-batch-processing-multiple-designs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Batch Processing Multiple Designs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-batch-processing-designs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Batch Processing Designs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-iterative-design-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Iterative Design Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-iterative-design-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Iterative Design Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-automated-documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automated Documentation Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-automating-documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Automating Documentation Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-for-design-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Design Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices for Design Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-focus-on-repetitive-and-time-consuming-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Focus on Repetitive and Time-Consuming Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ensure-flexibility-in-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ensure Flexibility in Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-validate-automated-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Validate Automated Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-iterative-automation-for-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Use Iterative Automation for Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-leverage-design-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Leverage Design Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Plug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automate-the-design-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Automate the Design Process?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases-for-design-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases for Design Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases for Design Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-batch-processing-multiple-designs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Batch Processing Multiple Designs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-batch-processing-designs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Batch Processing Designs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-iterative-design-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Iterative Design Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-iterative-design-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Iterative Design Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-automated-documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automated Documentation Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code-automating-documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Code: Automating Documentation Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-for-design-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Design Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices for Design Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-focus-on-repetitive-and-time-consuming-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Focus on Repetitive and Time-Consuming Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ensure-flexibility-in-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ensure Flexibility in Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-validate-automated-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Validate Automated Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-iterative-automation-for-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Use Iterative Automation for Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-leverage-design-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Leverage Design Templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_Automated_Design/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    📜 Scripts
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="design-automation">Design Automation</h1>
+<p>Python scripting in KiCad allows for the automation of the entire design process, from schematic capture through PCB layout, validation, and even documentation generation. This powerful feature enables users to manage complex workflows, streamline batch processes, and optimize designs iteratively for performance or manufacturability. Automating these tasks not only saves time but also helps reduce human errors, particularly when dealing with repetitive tasks or multiple designs.</p>
+<h2 id="why-automate-the-design-process">Why Automate the Design Process?</h2>
+<p>Automating the design process provides several significant benefits:</p>
+<ul>
+<li>Time Efficiency: By scripting repetitive tasks like component placement, routing, or netlist generation, designers can focus on high-level design decisions while automation handles the details.</li>
+<li>Consistency: Automated processes ensure that the same rules and procedures are applied across multiple designs, improving consistency and reducing the likelihood of errors.</li>
+<li>Design Optimization: Iteratively optimizing a design for various factors (e.g., signal integrity, manufacturability, or power consumption) can be automated to explore multiple configurations without manual intervention.</li>
+<li>Scalability: Automation is particularly valuable when managing large-scale projects or batch-processing multiple designs, as the same script can handle repetitive tasks for multiple boards with different configurations.</li>
+</ul>
+<h2 id="common-use-cases-for-design-automation">Common Use Cases for Design Automation</h2>
+<h3 id="1-batch-processing-multiple-designs">1. Batch Processing Multiple Designs</h3>
+<p>In scenarios where multiple designs share common characteristics or components, Python scripting can be used to automate tasks such as generating netlists, running design rule checks (DRC), or exporting files across all designs simultaneously. This is especially useful for projects that involve creating variations of a base design or handling product families with different configurations.</p>
+<p>Example Use Case:
+- A company producing a family of similar devices (e.g., different versions of a microcontroller board) can use automation to quickly replicate design tasks across all variants, ensuring that every board is processed with the same steps.</p>
+<h3 id="example-code-batch-processing-designs">Example Code: Batch Processing Designs</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pcbnew</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">batch_process_designs</span><span class="p">(</span><span class="n">designs</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">for</span> <span class="n">design</span> <span class="ow">in</span> <span class="n">designs</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">pcb</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">LoadBoard</span><span class="p">(</span><span class="n">design</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">generate_netlist</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">run_drc</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">export_gerbers</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_netlist</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="c1"># Logic for generating netlist</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Netlist generated for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_drc</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="c1"># Logic for running DRC checks</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DRC completed for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">export_gerbers</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="c1"># Logic for exporting Gerber files</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gerber files exported for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Example usage</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">design_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;board1.kicad_pcb&quot;</span><span class="p">,</span> <span class="s2">&quot;board2.kicad_pcb&quot;</span><span class="p">,</span> <span class="s2">&quot;board3.kicad_pcb&quot;</span><span class="p">]</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">batch_process_designs</span><span class="p">(</span><span class="n">design_files</span><span class="p">)</span>
+</span></code></pre></div>
+<p>In this example, a script processes multiple designs (provided as a list of file names) by automatically generating netlists, running DRC checks, and exporting Gerber files for each board in the batch. This approach ensures consistent processing across all designs and reduces manual effort.</p>
+<h3 id="2-iterative-design-optimization">2. Iterative Design Optimization</h3>
+<p>For complex designs, you may need to iterate through various configurations to optimize for performance, manufacturability, or other design constraints. Python scripts can automatically modify design parameters, rerun validation checks, and evaluate results, making it easier to find the best solution without manually changing the design after each iteration.</p>
+<p>Example Use Case:
+- A designer working on a high-speed PCB might need to adjust trace widths, spacing, or layer stackups to improve signal integrity. Using a script, the designer can automate the process of adjusting these parameters and re-running simulations or validation checks until the optimal configuration is found.</p>
+<h3 id="example-code-iterative-design-optimization">Example Code: Iterative Design Optimization</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pcbnew</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">optimize_design</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="n">adjust_trace_widths</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">run_drc</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">evaluate_results</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">adjust_trace_widths</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="n">iteration</span><span class="p">):</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="c1"># Example logic to adjust trace widths based on iteration</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">new_width</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="p">(</span><span class="n">iteration</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span>  <span class="c1"># Increment width with each iteration</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">pcb</span><span class="o">.</span><span class="n">GetTracks</span><span class="p">():</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">TRACK</span><span class="p">):</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>            <span class="n">track</span><span class="o">.</span><span class="n">SetWidth</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">new_width</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">))</span>  <span class="c1"># Set width in nm</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_results</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="c1"># Example logic to evaluate DRC results or other criteria</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Evaluating design </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1"># Example usage</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">LoadBoard</span><span class="p">(</span><span class="s2">&quot;my_board.kicad_pcb&quot;</span><span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">optimize_design</span><span class="p">(</span><span class="n">pcb</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This example adjusts the trace widths in each iteration, runs a design rule check, and evaluates the results to find the optimal design parameters. It automates the process of experimenting with different configurations, making iterative optimization faster and more consistent.</p>
+<h3 id="3-automated-documentation-generation">3. Automated Documentation Generation</h3>
+<p>Generating design documentation (e.g., schematics, layouts, BOMs, assembly instructions) is a critical part of the design process, especially when handing off designs to manufacturing teams or clients. Python scripts can automate the generation of these documents, ensuring they are up-to-date and accurate based on the latest design.</p>
+<p>Example Use Case:
+- A script could automatically generate a comprehensive set of design documentation (schematics, BOM, Gerber files, and assembly instructions) every time a new version of the board is saved. This ensures that documentation is always aligned with the design's current state.</p>
+<h3 id="example-code-automating-documentation-generation">Example Code: Automating Documentation Generation</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pcbnew</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_documentation</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="c1"># Generate a schematic PDF</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">generate_schematic_pdf</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="c1"># Generate a BOM</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">generate_bom</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="c1"># Generate assembly instructions</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">generate_assembly_instructions</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="c1"># Export Gerber files</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">export_gerbers</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_schematic_pdf</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating schematic PDF for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="c1"># Add logic to export schematic as PDF</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_bom</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating BOM for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="c1"># Add logic to generate BOM</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_assembly_instructions</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generating assembly instructions for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="c1"># Add logic to generate assembly instructions</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="k">def</span><span class="w"> </span><span class="nf">export_gerbers</span><span class="p">(</span><span class="n">pcb</span><span class="p">):</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exporting Gerber files for </span><span class="si">{</span><span class="n">pcb</span><span class="o">.</span><span class="n">GetFileName</span><span class="p">()</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    <span class="c1"># Add logic to export Gerber files</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="c1"># Example usage</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="n">pcb</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">LoadBoard</span><span class="p">(</span><span class="s2">&quot;my_board.kicad_pcb&quot;</span><span class="p">)</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="n">generate_documentation</span><span class="p">(</span><span class="n">pcb</span><span class="p">)</span>
+</span></code></pre></div>
+<p>In this example, the script automates the generation of various design documents, including the schematic PDF, BOM, and assembly instructions. This ensures that all documentation is generated quickly and consistently without the need for manual intervention.</p>
+<h2 id="best-practices-for-design-automation">Best Practices for Design Automation</h2>
+<h3 id="1-focus-on-repetitive-and-time-consuming-tasks">1. Focus on Repetitive and Time-Consuming Tasks</h3>
+<p>When automating tasks, prioritize those that are repetitive, time-consuming, or prone to human error. Automating these tasks will save the most time and help maintain consistency across designs.</p>
+<h3 id="2-ensure-flexibility-in-scripts">2. Ensure Flexibility in Scripts</h3>
+<p>Design automation scripts should be flexible enough to accommodate changes in the design. For example, if you add a new component or change the board dimensions, the script should handle these adjustments without requiring significant modification.</p>
+<h3 id="3-validate-automated-results">3. Validate Automated Results</h3>
+<p>Always validate the results produced by automated scripts, especially when dealing with critical design parameters like trace widths, component placement, or routing. Automated processes can introduce errors if not thoroughly tested and validated.</p>
+<h3 id="4-use-iterative-automation-for-optimization">4. Use Iterative Automation for Optimization</h3>
+<p>For tasks like design optimization, automation is most effective when used iteratively. Automate the process of adjusting design parameters, running validation checks, and analyzing the results to explore the best possible configuration.</p>
+<h3 id="5-leverage-design-templates">5. Leverage Design Templates</h3>
+<p>If you frequently work on similar projects, consider creating design templates that can be automated through Python scripts. This reduces the need to start from scratch for each new project and ensures that key design standards are always followed.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Design automation in KiCad, powered by Python scripting, offers a transformative approach to managing the entire PCB design process, from initial schematic capture to final layout and documentation generation. By automating repetitive tasks, batch processing multiple designs, iteratively optimizing performance, and generating documentation, designers can save significant time, increase efficiency, and reduce the risk of errors. Whether you’re working on large-scale projects or optimizing complex designs, automation provides the flexibility and control needed to consistently produce high-quality PCB designs.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

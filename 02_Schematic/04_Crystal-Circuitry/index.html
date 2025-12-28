@@ -1,0 +1,3152 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/02_Schematic/04_Crystal-Circuitry/">
+      
+      
+        <link rel="prev" href="../03_Pin-Out_STM32CubeIDE/">
+      
+      
+        <link rel="next" href="../05_USB/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Crystal Circuitry - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#connecting-the-crystal-oscillator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Crystal Circuitry
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔌 Schematic Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_STM32_uC_Decoupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_STM32_Configuration_Pins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Pin-Out_STM32CubeIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pin-Out & CubeIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-role-of-the-crystal-oscillator-in-stm32-microcontrollers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Role of the Crystal Oscillator in STM32 Microcontrollers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Role of the Crystal Oscillator in STM32 Microcontrollers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importance-of-a-precise-clock-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importance of a Precise Clock Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-vs-external-oscillators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal vs. External Oscillators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-crystal-oscillator-circuit-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Crystal Oscillator Circuit Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crystal-package-types-and-symbol-selection-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crystal Package Types and Symbol Selection in KiCad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Crystal Package Types and Symbol Selection in KiCad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-oscillator-package-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Oscillator Package Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-the-crystal-symbol-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting the Crystal Symbol in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-configuration-for-a-four-pin-crystal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin Configuration for a Four-Pin Crystal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-crystal-circuit-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Crystal Circuit Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding the Crystal Circuit Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-microcontroller-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Microcontroller Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-components-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Components Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-crystal-oscillator-circuit-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Crystal Oscillator Circuit Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-components-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Components: Load Capacitors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-application-note-an2867-oscillator-design-for-stm32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Application Note AN2867: Oscillator Design for STM32
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Application Note AN2867: Oscillator Design for STM32">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-guidelines-from-an2867" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Guidelines from AN2867
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-calculating-the-load-capacitor-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Calculating the Load Capacitor Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Calculating the Load Capacitor Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-capacitor-calculation-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Capacitor Calculation Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-in-kicad-to-add-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps in KiCad to Add Load Capacitors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crystal-circuit-without-feedback-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Circuit Without Feedback Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-connecting-the-crystal-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Connecting the Crystal in KiCad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Connecting the Crystal in KiCad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-connect-the-crystal-to-the-stm32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to Connect the Crystal to the STM32
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-and-naming-the-net-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing and Naming the Net Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reviewing-the-schematic-for-the-crystal-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Reviewing the Schematic for the Crystal Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Reviewing the Schematic for the Crystal Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schematic-components-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schematic Components Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validating-the-crystal-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validating the Crystal Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validating the Crystal Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_USB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_ERC-Annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_Footprint-Assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footpoint Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Final-Schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Schematic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/01_power_decoupling_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/02_power_boot_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boot Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/03_pinout-stm32cube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout Cube
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/04_external_clock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/05_usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/06_power_supply_connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/07_erc_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC Annotation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/08_footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprint Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-role-of-the-crystal-oscillator-in-stm32-microcontrollers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Role of the Crystal Oscillator in STM32 Microcontrollers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Role of the Crystal Oscillator in STM32 Microcontrollers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importance-of-a-precise-clock-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importance of a Precise Clock Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-vs-external-oscillators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal vs. External Oscillators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-crystal-oscillator-circuit-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Crystal Oscillator Circuit Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crystal-package-types-and-symbol-selection-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crystal Package Types and Symbol Selection in KiCad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Crystal Package Types and Symbol Selection in KiCad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-oscillator-package-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Oscillator Package Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-the-crystal-symbol-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting the Crystal Symbol in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pin-configuration-for-a-four-pin-crystal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pin Configuration for a Four-Pin Crystal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-crystal-circuit-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Crystal Circuit Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding the Crystal Circuit Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-microcontroller-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built-in Microcontroller Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-components-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Components Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-crystal-oscillator-circuit-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Crystal Oscillator Circuit Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-components-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Components: Load Capacitors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-application-note-an2867-oscillator-design-for-stm32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Application Note AN2867: Oscillator Design for STM32
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Application Note AN2867: Oscillator Design for STM32">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-guidelines-from-an2867" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Guidelines from AN2867
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-calculating-the-load-capacitor-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Calculating the Load Capacitor Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Calculating the Load Capacitor Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-capacitor-calculation-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Capacitor Calculation Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-in-kicad-to-add-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps in KiCad to Add Load Capacitors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crystal-circuit-without-feedback-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Circuit Without Feedback Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-connecting-the-crystal-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Connecting the Crystal in KiCad
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Connecting the Crystal in KiCad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-connect-the-crystal-to-the-stm32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to Connect the Crystal to the STM32
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-and-naming-the-net-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing and Naming the Net Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reviewing-the-schematic-for-the-crystal-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Reviewing the Schematic for the Crystal Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Reviewing the Schematic for the Crystal Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schematic-components-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schematic Components Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-validating-the-crystal-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Validating the Crystal Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Validating the Crystal Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_STM32_uC_Decoupling/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🔌 Schematic Design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="connecting-the-crystal-oscillator">Connecting the Crystal Oscillator</h1>
+<p>Integrating a <code>crystal oscillator</code>  into your STM32 microcontroller circuit is a pivotal step in ensuring accurate timing, especially for high-speed communication protocols such as USB, CAN, and UART.</p>
+<p>A <code>crystal oscillator</code> is a tiny electronic part that keeps time for a circuit. Inside it is a piece of quartz. Quartz has a useful property called the piezoelectric effect, which means it vibrates when you apply electricity. These vibrations happen at a very precise frequency, so the crystal can act like a super-accurate clock.</p>
+<blockquote>
+<p>In microcontrollers such as STM32, the crystal and two load capacitors form part of the external high speed oscillator (HSE). The internal amplifier in the MCU drives the crystal. This configuration yields a precise reference clock used for peripherals that need tight timing tolerance, such as USB (48 MHz domain), CAN, high baud UART, and accurate system time.</p>
+</blockquote>
+<p>A schematic typically includes the crystal between <code>OSC_IN</code> and <code>OSC_OUT</code> pins, two capacitors referenced to ground sized to match the crystal load capacitance specification, a short symmetric layout, and a protective series resistor if needed for drive-level control. The board layout must minimize stray capacitance and loop area to maintain frequency accuracy and startup robustness.</p>
+<p>This following part provides a guide on designing and implementing a <code>crystal oscillator</code> circuit using KiCad, covering fundamental principles, component selection, schematic design, and best practices.</p>
+<h2 id="the-role-of-the-crystal-oscillator-in-stm32-microcontrollers">The Role of the Crystal Oscillator in STM32 Microcontrollers</h2>
+<h3 id="importance-of-a-precise-clock-source">Importance of a Precise Clock Source</h3>
+<ul>
+<li><strong>Accurate Timing</strong>: Critical for the reliable operation of microcontrollers, especially in applications involving high-speed data transmission.</li>
+<li><strong>Stable Communication Protocols</strong>: Ensures consistency and reduces errors in protocols like USB, CAN, and UART.</li>
+</ul>
+<h3 id="internal-vs-external-oscillators">Internal vs. External Oscillators</h3>
+<ul>
+<li><strong>Internal Oscillator</strong>:</li>
+<li>Advantages: Simplifies the design by reducing external components.</li>
+<li>Disadvantages: Generally less accurate and stable, unsuitable for timing-critical applications.</li>
+<li><strong>High-Speed External (HSE) Clock</strong>:</li>
+<li>Advantages: Provides higher accuracy and stability.</li>
+<li>Implementation: Utilizes a <code>crystal oscillator</code>  connected to the HSE pins (OSC_IN and OSC_OUT) on the STM32 microcontroller.</li>
+</ul>
+<h3 id="typical-crystal-oscillator-circuit-components">Typical Crystal Oscillator Circuit Components</h3>
+<ul>
+<li><strong>Crystal</strong>: Typically a 16 MHz component connected between OSC_IN and OSC_OUT.</li>
+<li><strong>Load Capacitors</strong>: Stabilize the oscillation frequency, ensuring accurate timing.</li>
+<li><strong>Optional Feedback Resistors</strong>: May be used for controlling signal distortion.</li>
+</ul>
+<h2 id="2-crystal-package-types-and-symbol-selection-in-kicad">2. Crystal Package Types and Symbol Selection in KiCad</h2>
+<h3 id="crystal-oscillator-package-configurations">Crystal Oscillator Package Configurations</h3>
+<ul>
+<li><strong>Two-Pin Configuration</strong>:</li>
+<li><strong>Common Usage</strong>: Widely used due to simplicity.</li>
+<li><strong>Applications</strong>: Suitable for most standard <code>crystal oscillator</code>  requirements.</li>
+<li><strong>Four-Pin Configuration</strong>:</li>
+<li><strong>Enhanced Stability</strong>: Grounding additional pins can improve signal stability and reduce electromagnetic interference (EMI).</li>
+<li><strong>Use Case</strong>: Preferred in environments where noise reduction is critical.</li>
+</ul>
+<h3 id="selecting-the-crystal-symbol-in-kicad">Selecting the Crystal Symbol in KiCad</h3>
+<ol>
+<li><strong>Accessing Symbols</strong>:</li>
+<li>Navigate to the Add Symbol tool within KiCad’s schematic editor.</li>
+<li><strong>Searching for Crystal Symbols</strong>:</li>
+<li>Enter "Crystal" in the symbol library search bar.</li>
+<li><strong>Choosing the Appropriate Symbol</strong>:</li>
+<li><strong>Two-Pin Crystal</strong>: Select for simpler designs.</li>
+<li><strong>Four-Pin Crystal</strong>: Opt for enhanced stability and noise reduction.</li>
+<li><strong>Placing the Symbol</strong>:</li>
+<li>Position the crystal symbol near the <code>HSE_IN</code> and <code>HSE_OUT</code> pins of the STM32 microcontroller on the schematic for logical layout and ease of routing.</li>
+</ol>
+<h3 id="pin-configuration-for-a-four-pin-crystal">Pin Configuration for a Four-Pin Crystal</h3>
+<ul>
+<li><strong>Pins 1 and 3:</strong></li>
+<li>Function: Connect to <code>HSE_IN</code> (OSC_IN) and <code>HSE_OUT</code> (OSC_OUT) on the STM32.</li>
+<li><strong>Pins 2 and 4:</strong></li>
+<li>Function: Grounded to enhance stability and minimize electromagnetic interference.</li>
+</ul>
+<h2 id="understanding-the-crystal-circuit-design">Understanding the Crystal Circuit Design</h2>
+<h3 id="built-in-microcontroller-features">Built-in Microcontroller Features</h3>
+<ul>
+<li><strong>Inverters and Feedback Resistors</strong>:</li>
+<li>Integrated into the STM32, these components assist in forming a stable oscillation circuit.</li>
+</ul>
+<h3 id="external-components-required">External Components Required</h3>
+<ul>
+<li><strong>Load Capacitors</strong>:</li>
+<li>Purpose: Stabilize the oscillation frequency.</li>
+<li>Selection Criteria: Based on crystal load capacitance and PCB stray capacitance.</li>
+<li><strong>Optional Feedback Resistors</strong>:</li>
+<li>Function: Limit signal distortion.</li>
+<li>Consideration: Often omitted unless specific distortion control is required.</li>
+</ul>
+<h3 id="typical-crystal-oscillator-circuit-layout">Typical Crystal Oscillator Circuit Layout</h3>
+<ul>
+<li><strong>Crystal Connection</strong>:</li>
+<li>Between <code>HSE_IN</code> (PD0) and <code>HSE_OUT</code> (PD1) pins of the STM32.</li>
+<li><strong>Load Capacitors</strong>:</li>
+<li>Two identical capacitors connected from each crystal pin to ground.</li>
+<li><strong>Feedback Resistor</strong>:</li>
+<li>Optional series resistor connected to manage signal integrity.</li>
+</ul>
+<h3 id="external-components-load-capacitors">External Components: Load Capacitors</h3>
+<ul>
+<li><strong>Role in Oscillation</strong>:</li>
+<li>Ensure the crystal oscillates at its designated frequency by providing necessary capacitive loading.</li>
+<li><strong>Determining Capacitor Values</strong>:</li>
+<li>Based on the crystal’s specified load capacitance and the PCB’s stray capacitance.</li>
+</ul>
+<h2 id="4-application-note-an2867-oscillator-design-for-stm32">4. Application Note AN2867: Oscillator Design for STM32</h2>
+<p>STMicroelectronics' Application Note AN2867 serves as an essential reference for designing reliable <code>crystal oscillator</code>  circuits for STM32 microcontrollers.</p>
+<h3 id="key-guidelines-from-an2867">Key Guidelines from AN2867</h3>
+<ol>
+<li>Crystal Load Capacitors:</li>
+<li>Critical for stabilizing oscillation.</li>
+<li>Work in conjunction with the STM32's internal oscillator circuitry to generate a stable clock signal.</li>
+<li>Stray Capacitance Considerations:</li>
+<li>Arises from PCB traces and nearby components.</li>
+<li>Typically ranges between 3-5 pF.</li>
+<li>Must be accounted for when calculating load capacitor values.</li>
+<li>Feedback Resistor Usage:</li>
+<li>Generally optional.</li>
+<li>May be included to prevent overdriving the crystal and reduce distortion.</li>
+<li>Many designs operate effectively without it, simplifying the circuit.</li>
+</ol>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li><strong>Adherence to Guidelines</strong>:</li>
+<li>Following AN2867 ensures reliable oscillator performance and minimizes design errors.</li>
+<li><strong>Component Selection</strong>:</li>
+<li>Carefully choose capacitors and resistors based on the application requirements and guidelines provided.</li>
+</ul>
+<h2 id="5-calculating-the-load-capacitor-values">5. Calculating the Load Capacitor Values</h2>
+<p>Accurate calculation of load capacitors is essential for ensuring the crystal oscillates at the desired frequency.</p>
+<h3 id="load-capacitor-calculation-formula">Load Capacitor Calculation Formula</h3>
+<p>$$
+C_{load} = \frac{C_{crystal} - C_{stray}}{2}
+$$</p>
+<ul>
+<li>C_crystal: Load capacitance specified in the crystal's datasheet (typically 10-20 pF).</li>
+<li>C_stray: Estimated stray capacitance from the PCB (typically 3-5 pF).</li>
+</ul>
+<h3 id="example-calculation">Example Calculation</h3>
+<p>Given:</p>
+<ul>
+<li>Crystal Load Capacitance (C_crystal): 10 pF</li>
+<li>Stray Capacitance (C_stray): 5 pF</li>
+</ul>
+<p>Calculation:</p>
+<p>$$
+C_{load} = \frac{10 \, \text{pF} - 5 \, \text{pF}}{2} = 2.5 \, \text{pF}
+$$</p>
+<p>Implementation:</p>
+<ul>
+<li>Use two 2.5 pF capacitors connected from each crystal pin to ground.</li>
+<li>Alternatively, if 2.5 pF capacitors are not readily available, use the nearest standard value (e.g., 3 pF) and adjust as necessary.</li>
+</ul>
+<h3 id="steps-in-kicad-to-add-load-capacitors">Steps in KiCad to Add Load Capacitors</h3>
+<ol>
+<li>Add Capacitors:</li>
+<li>
+<p>Select Add Symbol and search for "capacitor".</p>
+</li>
+<li>
+<p>Choose Appropriate Capacitors:</p>
+</li>
+<li>
+<p>Select capacitors with the calculated value (e.g., 2.5 pF or 3 pF).</p>
+</li>
+<li>
+<p>Place Capacitors on the Schematic:</p>
+</li>
+<li>Position one capacitor connected to HSE_IN.</li>
+<li>
+<p>Position the second capacitor connected to HSE_OUT.</p>
+</li>
+<li>
+<p>Connect to Ground:</p>
+</li>
+<li>Ensure the other ends of both capacitors are connected to GND.</li>
+</ol>
+<h3 id="crystal-circuit-without-feedback-resistor">Crystal Circuit Without Feedback Resistor</h3>
+<ul>
+<li>Simplified Design:</li>
+<li>
+<p>Omit the feedback resistor unless specific conditions necessitate its inclusion.</p>
+</li>
+<li>
+<p>Advantages:</p>
+</li>
+<li>Reduced component count.</li>
+<li>
+<p>Simplified routing and potentially lower cost.</p>
+</li>
+<li>
+<p>Verification:</p>
+</li>
+<li>Consult AN2867 to confirm that omitting the feedback resistor is suitable for your specific application.</li>
+</ul>
+<h2 id="6-connecting-the-crystal-in-kicad">6. Connecting the Crystal in KiCad</h2>
+<h3 id="steps-to-connect-the-crystal-to-the-stm32">Steps to Connect the Crystal to the STM32</h3>
+<ol>
+<li>Connect Pin 1 of the Crystal:</li>
+<li>
+<p>Link to the HSE_IN pin (PD0) on the STM32 microcontroller.</p>
+</li>
+<li>
+<p>Connect Pin 3 of the Crystal:</p>
+</li>
+<li>
+<p>Link to the HSE_OUT pin (PD1) on the STM32 microcontroller.</p>
+</li>
+<li>
+<p>Ground Pins 2 and 4 (Four-Pin Package):</p>
+</li>
+<li>Connect to GND to minimize noise interference and enhance stability.</li>
+</ol>
+<h3 id="routing-and-naming-the-net-labels">Routing and Naming the Net Labels</h3>
+<ul>
+<li>Net Labeling:</li>
+<li>
+<p>Assign clear and consistent net labels to facilitate PCB layout and troubleshooting.</p>
+</li>
+<li>
+<p>Recommended Labels:</p>
+</li>
+<li>HSE_IN: For connections to the HSE_IN (OSC_IN) pin.</li>
+<li>
+<p>HSE_OUT: For connections to the HSE_OUT (OSC_OUT) pin.</p>
+</li>
+<li>
+<p>Schematic Clarity:</p>
+</li>
+<li>Ensure that all connections are logically organized and labeled to prevent confusion during the PCB design phase.</li>
+</ul>
+<h3 id="best-practices-for-routing">Best Practices for Routing</h3>
+<ul>
+<li>Minimize Trace Lengths:</li>
+<li>
+<p>Keep traces between the crystal and STM32 pins as short as possible to reduce inductance and potential signal integrity issues.</p>
+</li>
+<li>
+<p>Avoid Routing Near High-Frequency Signals:</p>
+</li>
+<li>
+<p>Prevent interference by keeping the crystal circuit away from other high-speed or high-frequency signals on the PCB.</p>
+</li>
+<li>
+<p>Use Ground Planes:</p>
+</li>
+<li>Implement ground planes to provide a low-impedance path for return currents, enhancing signal stability.</li>
+</ul>
+<h2 id="7-reviewing-the-schematic-for-the-crystal-circuit">7. Reviewing the Schematic for the Crystal Circuit</h2>
+<p>After integrating all components, it is crucial to thoroughly review the schematic to ensure correctness and reliability.</p>
+<h3 id="schematic-components-overview">Schematic Components Overview</h3>
+<ul>
+<li><code>crystal oscillator</code> :</li>
+<li>
+<p>Connected between PD0 (HSE_IN) and PD1 (HSE_OUT) of the STM32.</p>
+</li>
+<li>
+<p>Load Capacitors:</p>
+</li>
+<li>
+<p>Two 10 pF capacitors connected from each crystal pin to GND.</p>
+</li>
+<li>
+<p>Grounded Pins (Two and Four):</p>
+</li>
+<li>Grounded to reduce noise and enhance signal stability.</li>
+</ul>
+<h3 id="verification-checklist">Verification Checklist</h3>
+<ol>
+<li>Component Placement:</li>
+<li>
+<p>Ensure all components (crystal, capacitors, resistors) are correctly placed and oriented.</p>
+</li>
+<li>
+<p>Net Connections:</p>
+</li>
+<li>
+<p>Confirm that all connections align with the intended net labels (e.g., HSE_IN, HSE_OUT).</p>
+</li>
+<li>
+<p>Value Accuracy:</p>
+</li>
+<li>
+<p>Verify that all component values, especially load capacitors, match the calculated requirements.</p>
+</li>
+<li>
+<p>Ground Connections:</p>
+</li>
+<li>
+<p>Check that all ground connections are properly routed and connected to the common ground plane.</p>
+</li>
+<li>
+<p>Symbol Accuracy:</p>
+</li>
+<li>Ensure that the correct symbols (two-pin or four-pin crystal) are used based on the selected crystal package.</li>
+</ol>
+<h2 id="8-validating-the-crystal-circuit">8. Validating the Crystal Circuit</h2>
+<p>Prior to proceeding to PCB layout and manufacturing, validate the <code>crystal oscillator</code>  circuit to prevent potential issues during operation.</p>
+<h3 id="validation-steps">Validation Steps</h3>
+<ol>
+<li>Check Net Names:</li>
+<li>
+<p>Ensure all nets are labeled correctly and consistently (e.g., HSE_IN, HSE_OUT).</p>
+</li>
+<li>
+<p>Load Capacitor Verification:</p>
+</li>
+<li>
+<p>Cross-reference the calculated load capacitors with the crystal's datasheet to ensure compliance.</p>
+</li>
+<li>
+<p>Ground Connections:</p>
+</li>
+<li>
+<p>Confirm that all ground connections for the crystal and capacitors are correctly routed and connected to the ground plane.</p>
+</li>
+<li>
+<p>Component Footprints:</p>
+</li>
+<li>
+<p>Verify that all components have the correct footprints assigned for PCB layout.</p>
+</li>
+<li>
+<p>Electrical Rules Check (ERC):</p>
+</li>
+<li>
+<p>Run ERC in KiCad to identify and rectify any schematic errors or connectivity issues.</p>
+</li>
+<li>
+<p>Peer Review:</p>
+</li>
+<li>Have another engineer or team member review the schematic for additional verification.</li>
+</ol>
+<h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3>
+<ul>
+<li>Oscillation Failure:</li>
+<li>Re-examine load capacitor values and connections.</li>
+<li>
+<p>Ensure that the crystal is compatible with the microcontroller.</p>
+</li>
+<li>
+<p>Noise and Interference:</p>
+</li>
+<li>Improve grounding and shielding.</li>
+<li>
+<p>Adjust component placement to minimize electromagnetic interference.</p>
+</li>
+<li>
+<p>Incorrect Frequency:</p>
+</li>
+<li>Double-check crystal specifications and load capacitor calculations.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Integrating a <code>crystal oscillator</code>  into your STM32 microcontroller design is fundamental for achieving precise and stable timing, which is essential for high-speed communication protocols and other time-critical applications. By meticulously selecting and placing the <code>crystal oscillator</code>  and its associated components in KiCad, and adhering to the guidelines outlined in Application Note AN2867, you ensure a reliable and optimized design.</p>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ul>
+<li>Symbol Selection: Choose the appropriate crystal symbol in KiCad based on the package type.</li>
+<li>Load Capacitors: Accurately calculate and implement load capacitors to stabilize oscillation.</li>
+<li>Schematic Integrity: Maintain clear and consistent net labeling and grounding practices.</li>
+<li>Validation: Thoroughly review and validate the schematic to prevent design flaws.</li>
+</ul>
+<p>With a well-designed <code>crystal oscillator</code>  circuit, your STM32 microcontroller will operate with a stable and accurate clock source, enabling robust performance in high-speed and timing-sensitive applications.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph MCU["STM32 Microcontroller"]
+        PD0["PD0 / HSE_IN (OSC_IN)"]
+        PD1["PD1 / HSE_OUT (OSC_OUT)"]
+    end
+
+    subgraph XTAL["16 MHz Crystal (4-pin)"]
+        X1["Pin 1"]
+        X3["Pin 3"]
+        X2["Pin 2 (GND)"]
+        X4["Pin 4 (GND)"]
+    end
+
+    C1["C1: Load capacitor - (e.g. 8 pF) - HSE_IN to GND"]
+    C2["C2: Load capacitor - (e.g. 8 pF) - HSE_OUT to GND"]
+
+    GND((GND))
+
+    %% Signal connections
+    PD0 --- X1
+    PD1 --- X3
+
+    %% Load capacitors to ground
+    X1 --- C1
+    X3 --- C2
+    C1 --- GND
+    C2 --- GND
+
+    %% Crystal grounded pins
+    X2 --- GND
+    X4 --- GND
+
+    %% Optional series / feedback resistor (if used)
+    Rseries["Optional series resistor - for drive/control"]
+    PD1 -.-&gt; Rseries -.-&gt; X3</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/02_Schematic/05_USB/">
+      
+      
+        <link rel="prev" href="../04_Crystal-Circuitry/">
+      
+      
+        <link rel="next" href="../06_Power-Supply-Connectors/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>USB - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#connecting-usb-circuitry" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              USB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔌 Schematic Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_STM32_uC_Decoupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_STM32_Configuration_Pins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Pin-Out_STM32CubeIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pin-Out & CubeIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Crystal-Circuitry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-a-usb-connector-to-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding a USB Connector to the Schematic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding a USB Connector to the Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-selecting-the-appropriate-usb-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Selecting the Appropriate USB Connector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-step-by-step-guide-to-adding-the-usb-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Step-by-Step Guide to Adding the USB Connector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Step-by-Step Guide to Adding the USB Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-select-the-usb-connector-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Select the USB Connector Symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-understanding-usb-pinouts-for-device-only-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Understanding USB Pinouts for Device-Only Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-connecting-the-usb-differential-pair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Connecting the USB Differential Pair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-connecting-power-and-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Connecting Power and Ground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-handling-the-shield-and-id-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Handling the Shield and ID Pins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-the-power-circuit-vbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adding the Power Circuit (VBUS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adding the Power Circuit (VBUS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-labeling-the-vbus-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Labeling the VBUS Pin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-implementing-voltage-regulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Implementing Voltage Regulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-power-regulation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Power Regulation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ensuring-proper-usb-detection-15k-resistor-on-d-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ensuring Proper USB Detection (1.5K Resistor on D+ Line)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ensuring Proper USB Detection (1.5K Resistor on D+ Line)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-step-by-step-guide-to-placing-the-15k-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Step-by-Step Guide to Placing the 1.5KΩ Resistor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Step-by-Step Guide to Placing the 1.5KΩ Resistor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-adding-the-resistor-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Adding the Resistor Symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-connecting-the-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Connecting the Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-importance-of-the-15k-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Importance of the 1.5KΩ Pull-Up Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-recap-of-the-pull-up-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Recap of the Pull-Up Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-electrical-rule-check-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Electrical Rule Check (ERC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Electrical Rule Check (ERC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adding-do-not-connect-dnc-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Adding Do Not Connect (DNC) Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-running-the-electrical-rule-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Running the Electrical Rule Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-application-notes-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Application Notes and Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Application Notes and Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-reference-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Reference Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-termination-and-resistor-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Termination and Resistor Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-pcb-routing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 PCB Routing Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-finalizing-the-usb-circuit-in-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Finalizing the USB Circuit in the Schematic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Finalizing the USB Circuit in the Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-summary-of-usb-circuit-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Summary of USB Circuit Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-verification-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Verification Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_ERC-Annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_Footprint-Assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footpoint Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Final-Schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Schematic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/01_power_decoupling_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/02_power_boot_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boot Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/03_pinout-stm32cube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout Cube
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/04_external_clock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/05_usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/06_power_supply_connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/07_erc_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC Annotation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/08_footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprint Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-a-usb-connector-to-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding a USB Connector to the Schematic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding a USB Connector to the Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-selecting-the-appropriate-usb-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Selecting the Appropriate USB Connector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-step-by-step-guide-to-adding-the-usb-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Step-by-Step Guide to Adding the USB Connector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Step-by-Step Guide to Adding the USB Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-select-the-usb-connector-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Select the USB Connector Symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-understanding-usb-pinouts-for-device-only-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Understanding USB Pinouts for Device-Only Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-connecting-the-usb-differential-pair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Connecting the USB Differential Pair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-connecting-power-and-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Connecting Power and Ground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-handling-the-shield-and-id-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Handling the Shield and ID Pins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-the-power-circuit-vbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adding the Power Circuit (VBUS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adding the Power Circuit (VBUS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-labeling-the-vbus-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Labeling the VBUS Pin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-implementing-voltage-regulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Implementing Voltage Regulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-power-regulation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Power Regulation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ensuring-proper-usb-detection-15k-resistor-on-d-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ensuring Proper USB Detection (1.5K Resistor on D+ Line)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ensuring Proper USB Detection (1.5K Resistor on D+ Line)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-step-by-step-guide-to-placing-the-15k-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Step-by-Step Guide to Placing the 1.5KΩ Resistor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Step-by-Step Guide to Placing the 1.5KΩ Resistor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-adding-the-resistor-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Adding the Resistor Symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-connecting-the-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Connecting the Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-importance-of-the-15k-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Importance of the 1.5KΩ Pull-Up Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-recap-of-the-pull-up-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Recap of the Pull-Up Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-electrical-rule-check-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Electrical Rule Check (ERC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Electrical Rule Check (ERC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adding-do-not-connect-dnc-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Adding Do Not Connect (DNC) Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-running-the-electrical-rule-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Running the Electrical Rule Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-application-notes-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Application Notes and Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Application Notes and Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-reference-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Reference Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-termination-and-resistor-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Termination and Resistor Considerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-pcb-routing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 PCB Routing Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-finalizing-the-usb-circuit-in-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Finalizing the USB Circuit in the Schematic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Finalizing the USB Circuit in the Schematic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-summary-of-usb-circuit-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Summary of USB Circuit Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-verification-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Verification Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_STM32_uC_Decoupling/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🔌 Schematic Design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="connecting-usb-circuitry">Connecting USB Circuitry</h1>
+<p>Integrating USB circuitry into an STM32 microcontroller design using KiCad is a critical step for enabling reliable USB communication in your projects. This documentation provides a comprehensive guide covering the addition of a USB connector, configuration of differential pairs, power management, USB detection mechanisms, and adherence to best practices. By following these detailed instructions, you will ensure that your design complies with USB standards and functions effectively in real-world applications.</p>
+<h2 id="1-adding-a-usb-connector-to-the-schematic">1. Adding a USB Connector to the Schematic</h2>
+<p>Integrating a USB connector is the foundational step in enabling USB communication. This section details the process of selecting and placing a USB connector in your schematic, connecting it to the STM32 microcontroller, and handling specific USB pins appropriately.</p>
+<h3 id="11-selecting-the-appropriate-usb-connector">1.1 Selecting the Appropriate USB Connector</h3>
+<ul>
+<li>USB Connector Types:</li>
+<li>USB Micro: Commonly used for device-only applications due to its compact size.</li>
+<li>
+<p>USB-C: Offers reversible plug orientation and higher power delivery, suitable for more versatile applications.</p>
+</li>
+<li>
+<p>Example Choice: For this guide, a USB Micro connector is used, but the steps are analogous for USB-C connectors.</p>
+</li>
+</ul>
+<h3 id="12-step-by-step-guide-to-adding-the-usb-connector">1.2 Step-by-Step Guide to Adding the USB Connector</h3>
+<h4 id="step-1-select-the-usb-connector-symbol">Step 1: Select the USB Connector Symbol</h4>
+<ol>
+<li>Accessing Symbols:</li>
+<li>Open KiCad and navigate to the schematic editor.</li>
+<li>
+<p>Click on the Add Symbol tool (typically represented by an op-amp icon or accessible via the toolbar).</p>
+</li>
+<li>
+<p>Searching for the USB Symbol:</p>
+</li>
+<li>In the Symbol Library dialog, enter "USB" in the search bar.</li>
+<li>
+<p>Locate the USB Micro connector symbol suitable for device-only applications.</p>
+</li>
+<li>
+<p>Placing the Connector:</p>
+</li>
+<li>Select the USB Micro symbol and place it adjacent to the USB pins of the STM32 microcontroller within your schematic workspace.</li>
+</ol>
+<h4 id="step-2-understanding-usb-pinouts-for-device-only-operation">Step 2: Understanding USB Pinouts for Device-Only Operation</h4>
+<ul>
+<li>USB Pin Descriptions:</li>
+<li>V_BUS: Supplies 5V power from the USB host to the device.</li>
+<li>GND: Common ground reference shared between the USB and the microcontroller.</li>
+<li>D+ (USB_DP): Positive differential data line.</li>
+<li>D- (USB_DM): Negative differential data line.</li>
+<li>ID: Identification pin used for USB On-The-Go (OTG); typically ignored in device-only configurations.</li>
+<li>Shield: Connected to the physical shield of the USB connector; often left unconnected in device-only designs to prevent ground loops.</li>
+</ul>
+<h3 id="13-connecting-the-usb-differential-pair">1.3 Connecting the USB Differential Pair</h3>
+<p>Properly routing the differential pair (D+ and D-) is crucial for maintaining signal integrity and complying with USB standards.</p>
+<ol>
+<li>Using the Wiring Tool (W):</li>
+<li>Activate the Wiring Tool by pressing W or selecting it from the toolbar.</li>
+<li>Connect the D+ (USB_DP) pin of the STM32 to the D+ pin of the USB connector.</li>
+<li>
+<p>Similarly, connect the D- (USB_DM) pin of the STM32 to the D- pin of the USB connector.</p>
+</li>
+<li>
+<p>Naming the Differential Pair:</p>
+</li>
+<li>Assign net labels such as USB_DP and USB_DM to the respective differential lines. This practice aids in organized routing and clarity during PCB layout.</li>
+</ol>
+<h3 id="14-connecting-power-and-ground">1.4 Connecting Power and Ground</h3>
+<p>Ensuring proper power distribution and grounding is essential for stable USB operation.</p>
+<ol>
+<li>Connecting V_BUS:</li>
+<li>Link the V_BUS pin of the USB connector to the VBUS net in your schematic.</li>
+<li>
+<p>This connection will later feed into a voltage regulator to supply the appropriate voltage to the STM32.</p>
+</li>
+<li>
+<p>Connecting GND:</p>
+</li>
+<li>Connect the GND pin of the USB connector directly to the main ground (GND) plane of your circuit.</li>
+<li>A solid ground connection helps in minimizing noise and ensuring reliable communication.</li>
+</ol>
+<h3 id="15-handling-the-shield-and-id-pins">1.5 Handling the Shield and ID Pins</h3>
+<p>Properly managing unused pins prevents unintended issues during PCB design and operation.</p>
+<ul>
+<li>Shield Pin:</li>
+<li>In device-only designs, the Shield pin is typically left unconnected to avoid creating ground loops.</li>
+<li>
+<p>To indicate that the pin is intentionally unused, apply a Do Not Connect (DNC) flag:</p>
+<ul>
+<li>Select the Shield pin.</li>
+<li>Press Q to assign the DNC property.</li>
+</ul>
+</li>
+<li>
+<p>ID Pin:</p>
+</li>
+<li>The ID pin is utilized in USB OTG configurations to switch roles between host and device.</li>
+<li>In a device-only setup, this pin is irrelevant and should also be marked as DNC:<ul>
+<li>Select the ID pin.</li>
+<li>Press Q to assign the DNC property.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-adding-the-power-circuit-vbus">2. Adding the Power Circuit (VBUS)</h2>
+<p>The USB VBUS provides the necessary power to the device, but since the STM32 operates at 3.3V, a voltage regulation mechanism is required to step down the voltage from 5V to 3.3V.</p>
+<h3 id="21-labeling-the-vbus-pin">2.1 Labeling the VBUS Pin</h3>
+<ul>
+<li>Using the Power Port Tool:</li>
+<li>Activate the Power Port Tool from the schematic editor toolbar.</li>
+<li>Place a power port symbol and label it as VBUS.</li>
+<li>
+<p>Connect this port to the V_BUS pin of the USB connector.</p>
+</li>
+<li>
+<p>Purpose:</p>
+</li>
+<li>The VBUS net will supply power to both the voltage regulator and any other 5V-powered components in the design.</li>
+</ul>
+<h3 id="22-implementing-voltage-regulation">2.2 Implementing Voltage Regulation</h3>
+<p>A voltage regulator is essential to provide a stable 3.3V supply to the STM32 microcontroller from the 5V VBUS.</p>
+<ol>
+<li>Selecting the Voltage Regulator:</li>
+<li>
+<p>A common choice is the AMS1117-3.3V, which efficiently steps down 5V to 3.3V.</p>
+</li>
+<li>
+<p>Placing the Regulator in the Schematic:</p>
+</li>
+<li>Click on Add Symbol and search for AMS1117 or your chosen regulator.</li>
+<li>
+<p>Place the regulator near the USB connector symbol for logical proximity.</p>
+</li>
+<li>
+<p>Connecting the Regulator:</p>
+</li>
+<li>Input Pin: Connect to the VBUS net (5V).</li>
+<li>Ground Pin: Connect to the main ground (GND).</li>
+<li>
+<p>Output Pin: Connect to the 3.3V power rail that supplies the STM32 microcontroller.</p>
+</li>
+<li>
+<p>Adding Decoupling Capacitors (Best Practice):</p>
+</li>
+<li>Place capacitors close to the input and output of the voltage regulator to stabilize voltage and filter out noise.</li>
+<li>Recommended Values:<ul>
+<li>Input Capacitor: 10µF electrolytic.</li>
+<li>Output Capacitor: 10µF electrolytic.</li>
+</ul>
+</li>
+<li>Connect these capacitors between the respective regulator pins and GND.</li>
+</ol>
+<h3 id="23-power-regulation-summary">2.3 Power Regulation Summary</h3>
+<ul>
+<li>Flow of Power:</li>
+<li>VBUS (5V) → Voltage Regulator (AMS1117-3.3V) → 3.3V supply for the STM32 microcontroller.</li>
+</ul>
+<h2 id="3-ensuring-proper-usb-detection-15k-resistor-on-d-line">3. Ensuring Proper USB Detection (1.5K Resistor on D+ Line)</h2>
+<p>For a USB 2.0 full-speed device, it is imperative to signal to the host that the device is ready for communication. This is achieved by pulling up the D+ (USB_DP) line with a 1.5KΩ resistor.</p>
+<h3 id="31-step-by-step-guide-to-placing-the-15k-resistor">3.1 Step-by-Step Guide to Placing the 1.5KΩ Resistor</h3>
+<h4 id="step-1-adding-the-resistor-symbol">Step 1: Adding the Resistor Symbol</h4>
+<ol>
+<li>Accessing the Resistor Symbol:</li>
+<li>Click on Add Symbol in the schematic editor.</li>
+<li>
+<p>Search for "resistor" in the symbol library.</p>
+</li>
+<li>
+<p>Placing the Resistor:</p>
+</li>
+<li>
+<p>Place the resistor between the D+ (USB_DP) line and the 3.3V power rail in your schematic workspace.</p>
+</li>
+<li>
+<p>Labeling the Resistor:</p>
+</li>
+<li>Assign a value label of 1K5 to represent 1.5KΩ.</li>
+<li>This labeling follows standard resistor value notation conventions.</li>
+</ol>
+<h4 id="step-2-connecting-the-resistor">Step 2: Connecting the Resistor</h4>
+<ol>
+<li>Connection Points:</li>
+<li>One Terminal: Connect to the USB_DP line.</li>
+<li>
+<p>Other Terminal: Connect to the 3.3V power rail.</p>
+</li>
+<li>
+<p>Net Labeling:</p>
+</li>
+<li>Ensure that the resistor is properly connected within the USB_DP net to maintain signal integrity.</li>
+</ol>
+<h3 id="32-importance-of-the-15k-pull-up-resistor">3.2 Importance of the 1.5KΩ Pull-Up Resistor</h3>
+<ul>
+<li>Function:</li>
+<li>
+<p>The resistor pulls the D+ line to a high voltage (between 3.0V and 3.6V), signaling to the USB host that the device is a full-speed USB 2.0 device.</p>
+</li>
+<li>
+<p>Consequences of Omission:</p>
+</li>
+<li>Without this resistor, the host may not recognize the device, leading to communication failures.</li>
+</ul>
+<h3 id="33-recap-of-the-pull-up-configuration">3.3 Recap of the Pull-Up Configuration</h3>
+<ul>
+<li>Configuration:</li>
+<li>
+<p>1.5KΩ Resistor between D+ (USB_DP) and 3.3V.</p>
+</li>
+<li>
+<p>Result:</p>
+</li>
+<li>Ensures compliance with USB 2.0 full-speed device detection protocols.</li>
+</ul>
+<h2 id="4-electrical-rule-check-erc">4. Electrical Rule Check (ERC)</h2>
+<p>Performing an Electrical Rule Check is essential to validate your schematic for potential errors before proceeding to PCB layout. ERC helps identify issues such as unconnected pins, incorrect net connections, and other schematic inconsistencies.</p>
+<h3 id="41-adding-do-not-connect-dnc-flags">4.1 Adding Do Not Connect (DNC) Flags</h3>
+<p>Properly flagging unused pins prevents ERC from raising unnecessary warnings, ensuring a smooth verification process.</p>
+<ol>
+<li>Shield and ID Pins:</li>
+<li>
+<p>Both the Shield and ID pins on the USB connector are unused in device-only configurations.</p>
+</li>
+<li>
+<p>Applying DNC Flags:</p>
+</li>
+<li>Select the Pin: Click on the Shield or ID pin in the schematic.</li>
+<li>
+<p>Assign DNC: Press Q to toggle the Do Not Connect property, effectively flagging the pin as intentionally unconnected.</p>
+</li>
+<li>
+<p>Verification:</p>
+</li>
+<li>Confirm that the DNC flags are visibly present on the schematic symbols of the respective pins.</li>
+</ol>
+<h3 id="42-running-the-electrical-rule-check">4.2 Running the Electrical Rule Check</h3>
+<ol>
+<li>Accessing ERC:</li>
+<li>
+<p>Navigate to Tools &gt; Electrical Rules Checker in the KiCad schematic editor.</p>
+</li>
+<li>
+<p>Executing ERC:</p>
+</li>
+<li>
+<p>Click on Run to initiate the check.</p>
+</li>
+<li>
+<p>Reviewing ERC Results:</p>
+</li>
+<li>No Errors: Ensure that no errors are reported, particularly those related to the USB connections.</li>
+<li>
+<p>Warnings: Address any warnings that may arise, ensuring they do not pertain to critical connections or configurations.</p>
+</li>
+<li>
+<p>Special Consideration:</p>
+</li>
+<li>The presence of the 1.5KΩ pull-up resistor on the D+ line is vital for meeting USB 2.0 specifications. ERC should verify this connection without issues.</li>
+</ol>
+<h2 id="5-application-notes-and-best-practices">5. Application Notes and Best Practices</h2>
+<p>Adhering to established guidelines and best practices ensures the reliability and performance of your USB-integrated STM32 design. This section references key documents and outlines essential considerations for termination and resistor configurations.</p>
+<h3 id="51-reference-documents">5.1 Reference Documents</h3>
+<ol>
+<li>AN4879: USB Hardware and PCB Guidelines for STM32 Microcontrollers:</li>
+<li>Content: Detailed instructions on USB circuitry integration, including pull-up resistor requirements and PCB routing strategies.</li>
+<li>
+<p>Usage: Essential for understanding the hardware nuances specific to STM32 USB implementations.</p>
+</li>
+<li>
+<p>AN2867: Oscillator Design for STM32:</p>
+</li>
+<li>Content: Guidance on designing external clock sources, particularly relevant if incorporating a crystal oscillator alongside USB.</li>
+<li>Usage: Provides insights into maintaining accurate timing for USB communication.</li>
+</ol>
+<h3 id="52-termination-and-resistor-considerations">5.2 Termination and Resistor Considerations</h3>
+<ul>
+<li>Pull-Up Resistors:</li>
+<li>Necessity: Critical for signaling to the USB host the device's operational speed.</li>
+<li>
+<p>Specifics:</p>
+<ul>
+<li>STM32 F1 and F3 Series: Require an external 1.5KΩ pull-up resistor on the D+ line.</li>
+<li>Higher-End STM32 Series: May feature internal pull-ups, potentially eliminating the need for external resistors.</li>
+</ul>
+</li>
+<li>
+<p>Design Strategy:</p>
+</li>
+<li>Refer to Datasheets: Always consult the specific STM32 microcontroller's datasheet and relevant application notes to determine the exact resistor requirements.</li>
+<li>Consistency: Ensure that resistor values and placements align with manufacturer recommendations to avoid communication issues.</li>
+</ul>
+<h3 id="53-pcb-routing-best-practices">5.3 PCB Routing Best Practices</h3>
+<ul>
+<li>Differential Pair Routing:</li>
+<li>Maintain equal trace lengths for D+ and D- lines to preserve signal integrity.</li>
+<li>
+<p>Avoid sharp bends and ensure that the differential pair is routed with controlled impedance.</p>
+</li>
+<li>
+<p>Ground Planes:</p>
+</li>
+<li>
+<p>Utilize solid ground planes to minimize electromagnetic interference (EMI) and provide a stable reference for USB signals.</p>
+</li>
+<li>
+<p>Decoupling Capacitors:</p>
+</li>
+<li>Place decoupling capacitors close to the microcontroller's power pins to filter out noise and stabilize voltage levels.</li>
+</ul>
+<h2 id="6-finalizing-the-usb-circuit-in-the-schematic">6. Finalizing the USB Circuit in the Schematic</h2>
+<p>At this juncture, your USB circuitry should be fully integrated into the schematic, encompassing the USB connector, power management, differential pair configuration, and necessary pull-up resistors. This section recaps the essential components and connections to ensure completeness.</p>
+<h3 id="61-summary-of-usb-circuit-components">6.1 Summary of USB Circuit Components</h3>
+<ol>
+<li>USB Connector:</li>
+<li>Type: USB Micro or USB-C.</li>
+<li>
+<p>Connections: D+, D-, V_BUS, GND, with Shield and ID marked as DNC.</p>
+</li>
+<li>
+<p>VBUS Power Supply:</p>
+</li>
+<li>Source: V_BUS (5V) from USB.</li>
+<li>
+<p>Regulation: Voltage Regulator (AMS1117-3.3V) steps down to 3.3V for STM32.</p>
+</li>
+<li>
+<p>Differential Pair:</p>
+</li>
+<li>D+ (USB_DP) and D- (USB_DM) connected to STM32.</li>
+<li>
+<p>Properly routed with equal lengths and labeled nets.</p>
+</li>
+<li>
+<p>1.5KΩ Pull-Up Resistor:</p>
+</li>
+<li>Placed between D+ (USB_DP) and 3.3V.</li>
+<li>
+<p>Ensures detection as a USB 2.0 full-speed device.</p>
+</li>
+<li>
+<p>Grounding:</p>
+</li>
+<li>GND connected to USB and microcontroller ground planes.</li>
+<li>Shield and ID pins marked as DNC to prevent unintended connections.</li>
+</ol>
+<h3 id="62-verification-steps">6.2 Verification Steps</h3>
+<ol>
+<li>Electrical Rule Check (ERC):</li>
+<li>Confirm that no errors are present, particularly regarding USB connections.</li>
+<li>
+<p>Ensure that DNC flags are correctly applied to unused pins.</p>
+</li>
+<li>
+<p>Component Placement Review:</p>
+</li>
+<li>
+<p>Verify that all components, especially the voltage regulator and pull-up resistor, are appropriately placed and connected.</p>
+</li>
+<li>
+<p>Net Integrity:</p>
+</li>
+<li>
+<p>Ensure that all nets (e.g., USB_DP, USB_DM, VBUS) are correctly labeled and interconnected without conflicts.</p>
+</li>
+<li>
+<p>Compliance with Standards:</p>
+</li>
+<li>Double-check that the schematic adheres to USB 2.0 specifications, particularly regarding signal levels and resistor values.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>By meticulously following this guide, you have successfully integrated USB circuitry into your STM32 microcontroller design using KiCad. The schematic now includes a properly connected USB connector, regulated power supply, correctly routed differential pairs, and the necessary pull-up resistor for USB detection. Adhering to best practices and referencing key application notes ensures that your design is both reliable and compliant with USB standards. Before advancing to PCB layout, always perform thorough verification through an Electrical Rule Check to catch and rectify any potential issues. With this setup, your STM32-based device is well-equipped for robust USB communication, facilitating programming, data transfer, and a wide array of USB-dependent functionalities.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2371 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/04_PCB_Routing/03_Power-Routing/">
+      
+      
+        <link rel="prev" href="../02_Signal-Routing/">
+      
+      
+        <link rel="next" href="../04_Finishing-Touches-DRC/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Power Routing - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#finalizing-power-and-ground-routing-on-a-two-layer-pcb" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Power Routing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛣️ PCB Routing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling & Crystal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Signal-Routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signal Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Routing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ground-connections-efficient-routing-with-ground-plane-and-vias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ground Connections: Efficient Routing with Ground Plane and Vias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Ground Connections: Efficient Routing with Ground Plane and Vias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-using-the-ground-plane-on-the-bottom-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Using the Ground Plane on the Bottom Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-pre-planning-ground-via-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Pre-Planning Ground Via Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-checking-the-ground-plane-in-the-3d-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Checking the Ground Plane in the 3D Viewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-power-routing-33v-and-vbus-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Power Routing: 3.3V and VBUS Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Power Routing: 3.3V and VBUS Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-large-copper-fills-power-puddles-for-33v-and-vbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-minimizing-trace-jumps-with-vias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Minimizing Trace Jumps with Vias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-completing-the-power-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Completing the Power Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-final-touches-ensuring-good-layout-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Final Touches: Ensuring Good Layout Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Final Touches: Ensuring Good Layout Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-keeping-clearance-between-power-ground-and-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Keeping Clearance Between Power, Ground, and Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fine-tuning-the-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Fine-Tuning the Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-final-drc-and-3d-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Final DRC and 3D View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wrapping-up-preparing-for-manufacturing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wrapping Up: Preparing for Manufacturing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Wrapping Up: Preparing for Manufacturing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-finalize-the-silkscreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Finalize the Silkscreen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-generate-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Generate Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-power-and-ground-optimization-for-two-layer-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion: Power and Ground Optimization for Two-Layer PCB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-practical-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Practical Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Practical Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Finishing-Touches-DRC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DRC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ground-connections-efficient-routing-with-ground-plane-and-vias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ground Connections: Efficient Routing with Ground Plane and Vias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Ground Connections: Efficient Routing with Ground Plane and Vias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-using-the-ground-plane-on-the-bottom-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Using the Ground Plane on the Bottom Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-pre-planning-ground-via-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Pre-Planning Ground Via Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-checking-the-ground-plane-in-the-3d-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Checking the Ground Plane in the 3D Viewer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-power-routing-33v-and-vbus-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Power Routing: 3.3V and VBUS Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Power Routing: 3.3V and VBUS Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-large-copper-fills-power-puddles-for-33v-and-vbus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-minimizing-trace-jumps-with-vias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Minimizing Trace Jumps with Vias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-completing-the-power-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Completing the Power Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-final-touches-ensuring-good-layout-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Final Touches: Ensuring Good Layout Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Final Touches: Ensuring Good Layout Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-keeping-clearance-between-power-ground-and-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Keeping Clearance Between Power, Ground, and Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fine-tuning-the-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Fine-Tuning the Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-final-drc-and-3d-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Final DRC and 3D View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wrapping-up-preparing-for-manufacturing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wrapping Up: Preparing for Manufacturing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Wrapping Up: Preparing for Manufacturing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-finalize-the-silkscreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Finalize the Silkscreen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-generate-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Generate Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-power-and-ground-optimization-for-two-layer-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion: Power and Ground Optimization for Two-Layer PCB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-practical-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Practical Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Practical Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps Applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🛣️ PCB Routing
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="finalizing-power-and-ground-routing-on-a-two-layer-pcb">Finalizing Power and Ground Routing on a Two-Layer PCB</h1>
+<p>In this section, we delve into the critical aspects of finalizing power and ground routing for a two-layer PCB design using KiCad. Properly managing power and ground is essential for ensuring robust electrical performance, minimizing noise, and preventing issues such as ground loops. This guide provides clear explanations, practical examples, and best practices to help you achieve an optimized layout. We will cover the management of vias and copper fills to efficiently route the 3.3V and ground connections across the board.</p>
+<h2 id="1-ground-connections-efficient-routing-with-ground-plane-and-vias">1. Ground Connections: Efficient Routing with Ground Plane and Vias</h2>
+<p>Establishing a solid ground network is foundational for any PCB design. Utilizing a ground plane combined with strategic via placement ensures low-impedance paths, minimizes noise, and simplifies the grounding of top-layer components.</p>
+<h3 id="step-1-using-the-ground-plane-on-the-bottom-layer">Step 1: Using the Ground Plane on the Bottom Layer</h3>
+<p>Leveraging a dedicated ground plane on the bottom layer simplifies grounding for top-layer components. Follow these steps to effectively utilize the ground plane:</p>
+<ol>
+<li>Identifying Ground Pads</li>
+<li>Locate Ground Pads: Identify all ground pads on the top layer, including those for decoupling capacitors, integrated circuits (ICs), and connectors.</li>
+<li>
+<p>Component Grounding: Ensure that each component requiring a ground connection is clearly marked and accessible for routing.</p>
+</li>
+<li>
+<p>Via Placement for Grounding</p>
+</li>
+<li>Proximity to Ground Pads: Place vias near each ground pad, maintaining a distance of approximately 0.5mm from the pad edge to facilitate easy soldering and prevent bridging.</li>
+<li>
+<p>Via Size Selection:</p>
+<ul>
+<li>Standard Ground Connections: Use 0.4mm diameter vias for typical ground connections.</li>
+<li>High-Current Components: For components that draw higher currents, such as voltage regulators or power modules, opt for larger vias (e.g., 0.5mm diameter) to handle increased current without excessive heating.</li>
+</ul>
+</li>
+<li>
+<p>Routing the Ground Trace</p>
+</li>
+<li>Short Trace Segments: From each ground pad, route a short 0.5mm trace to the nearest via. This minimizes the trace length and reduces inductance.</li>
+<li>Single Via per Component: Avoid placing multiple ground vias in close proximity for the same component. This practice prevents ground loops and reduces complexity in the ground network.</li>
+</ol>
+<h3 id="step-2-pre-planning-ground-via-placement">Step 2: Pre-Planning Ground Via Placement</h3>
+<p>Strategic planning of via placement enhances ground connectivity and prevents potential issues such as ground loops or excessive via usage.</p>
+<ol>
+<li>Grouping Ground Connections</li>
+<li>Local Ground Loops: For components like decoupling capacitors associated with a microcontroller, route their ground pads to a single via. This approach maintains a localized ground loop, reducing the risk of noise coupling.</li>
+<li>
+<p>Example: When multiple decoupling capacitors are placed around a microcontroller, connect all their ground pads to one via near the microcontroller's ground pin.</p>
+</li>
+<li>
+<p>Component-Specific Via Planning</p>
+</li>
+<li>Critical Components: Pre-plan via locations for essential components like USB connectors, voltage regulators, and power filtering capacitors. This ensures consistent connectivity and prevents unnecessary interruptions in the ground plane.</li>
+<li>Avoiding Ground Plane Cuts: Proper via placement minimizes the need to cut the ground plane, maintaining its integrity and effectiveness in shielding and noise reduction.</li>
+</ol>
+<h3 id="step-3-checking-the-ground-plane-in-the-3d-viewer">Step 3: Checking the Ground Plane in the 3D Viewer</h3>
+<p>Verification is crucial to ensure that the ground plane is correctly implemented and free from defects.</p>
+<ol>
+<li>Ground Plane Connectivity</li>
+<li>3D Viewer Inspection: Utilize KiCad’s 3D viewer (<code>ALT + 3</code>) to visually inspect the ground plane connections.</li>
+<li>
+<p>Verify Via Connections: Ensure that each ground via connects seamlessly to the bottom ground plane without gaps or disconnections that could form ground islands.</p>
+</li>
+<li>
+<p>Thermal Relief Patterns</p>
+</li>
+<li>Ease of Soldering: Confirm that all ground vias incorporate thermal relief patterns. These patterns facilitate soldering by reducing heat dissipation from the pad to the ground plane, preventing cold joints.</li>
+<li>Visual Confirmation: In the 3D viewer, check that thermal reliefs appear as spokes or links connecting the via to the ground plane, rather than solid fills.</li>
+</ol>
+<h2 id="2-power-routing-33v-and-vbus-connections">2. Power Routing: 3.3V and VBUS Connections</h2>
+<p>Efficient power routing is essential for reliable operation of the PCB. This section outlines strategies for distributing 3.3V and VBUS power using large copper fills and optimized trace routing.</p>
+<h3 id="step-1-large-copper-fills-power-puddles-for-33v-and-vbus">Step 1: Large Copper Fills (Power Puddles) for 3.3V and VBUS</h3>
+<p>Utilizing large copper areas, referred to as power puddles, ensures robust power distribution with low impedance paths, essential for stable voltage supply to all components.</p>
+<ol>
+<li>3.3V Power Distribution</li>
+<li>Starting Point: Begin from the voltage regulator’s output.</li>
+<li>Wide Traces: Route wide traces (e.g., 0.5mm or larger) to critical components like the microcontroller and other ICs to handle the current demand without significant voltage drops.</li>
+<li>Adding Power Puddles:<ul>
+<li>Tool Usage: Use the Add Filled Zone tool in KiCad to create a 3.3V power puddle near components requiring stable power.</li>
+<li>Low Impedance Paths: These puddles provide low impedance connections, ensuring consistent voltage levels across the board.</li>
+</ul>
+</li>
+<li>
+<p>Clearance Considerations: Maintain sufficient clearance between power puddles and other signal lines or ground planes to prevent short circuits and minimize noise coupling.</p>
+</li>
+<li>
+<p>VBUS Power Routing</p>
+</li>
+<li>USB Connector Integration: The VBUS line from the USB connector must be routed to the input pin of the voltage regulator.</li>
+<li>Trace Width: Use 0.5mm to 0.8mm wide traces for the VBUS line to accommodate the required current without excessive heating or voltage drops.</li>
+<li>Power Puddle Creation:<ul>
+<li>Consistent Connectivity: Similar to the 3.3V distribution, create a VBUS power puddle to ensure stable and low-impedance connections from the USB connector to the voltage regulator.</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-2-minimizing-trace-jumps-with-vias">Step 2: Minimizing Trace Jumps with Vias</h3>
+<p>Reducing the number of via transitions between layers enhances signal integrity and power distribution efficiency.</p>
+<ol>
+<li>Selective Via Usage</li>
+<li>Necessity-Based Vias: Employ vias only when crossing signal paths or when a trace must transition between layers. This minimizes potential interference and maintains the integrity of the ground and power planes.</li>
+<li>
+<p>Example: Use vias to route power around densely packed signal traces, rather than indiscriminately adding vias throughout the power network.</p>
+</li>
+<li>
+<p>Short Via Paths</p>
+</li>
+<li>Impedance Control: Keep via transitions short to avoid cutting through large sections of the ground plane or power puddles, which can introduce impedance discontinuities or signal noise.</li>
+<li>Path Optimization: Design via paths to follow the most direct route between layers, minimizing the length and number of vias required.</li>
+</ol>
+<h3 id="step-3-completing-the-power-layout">Step 3: Completing the Power Layout</h3>
+<p>Finalizing the power layout ensures that all components receive adequate power with minimal interference.</p>
+<ol>
+<li>Routing the 3.3V Power Traces</li>
+<li>Starting Point: Begin routing from the regulator’s output capacitor.</li>
+<li>Branching Out: Distribute power to necessary components using 0.5mm or larger traces to handle the current requirements effectively.</li>
+<li>
+<p>Example: From the voltage regulator, a wide trace can branch to the microcontroller, while another branch powers peripheral ICs.</p>
+</li>
+<li>
+<p>Using Power Puddles for Connectivity</p>
+</li>
+<li>Consistent Power Distribution: Similar to the ground plane, employ copper fills for both 3.3V and VBUS. These power puddles ensure robust connectivity and reduce the need for excessive trace routing.</li>
+<li>Placement Strategy: Position power puddles strategically near clusters of components to facilitate easy and direct power connections.</li>
+</ol>
+<h2 id="3-final-touches-ensuring-good-layout-practices">3. Final Touches: Ensuring Good Layout Practices</h2>
+<p>Attention to detail in the final layout stages can prevent potential issues and enhance the overall performance and manufacturability of the PCB.</p>
+<h3 id="step-1-keeping-clearance-between-power-ground-and-signals">Step 1: Keeping Clearance Between Power, Ground, and Signals</h3>
+<p>Maintaining appropriate spacing between different electrical domains is crucial for preventing interference and ensuring signal integrity.</p>
+<ol>
+<li>Spacing Guidelines</li>
+<li>Typical Clearance: A clearance of 0.3mm is generally sufficient for low-speed designs to prevent unintended electrical connections and reduce noise coupling.</li>
+<li>
+<p>Adjustments for High-Speed Designs: For higher-speed or sensitive signal environments, consider increasing clearance to further minimize potential interference.</p>
+</li>
+<li>
+<p>Reviewing Via Placement</p>
+</li>
+<li>Logical Positioning: Ensure that vias are placed in logical locations, providing easy access for routing without crowding adjacent traces or components.</li>
+<li>Clearance from Other Elements: Verify that vias maintain adequate distance from other signal traces and component pads to prevent accidental shorts or soldering issues.</li>
+</ol>
+<h3 id="step-2-fine-tuning-the-layout">Step 2: Fine-Tuning the Layout</h3>
+<p>Fine-tuning involves meticulous adjustments to optimize trace routing and ensure compliance with design standards.</p>
+<ol>
+<li>Managing Trace Crossings</li>
+<li>Appropriate Via Usage: When trace crossings are unavoidable, use vias judiciously to transition between layers. Ensure that these vias are placed where they minimally impact the surrounding ground and power planes.</li>
+<li>
+<p>Minimizing Ground Plane Disruptions: Avoid placing vias in ways that disrupt the continuity of the ground plane or power puddles, as this can lead to impedance mismatches and signal integrity issues.</p>
+</li>
+<li>
+<p>Verifying Critical Signal Traces</p>
+</li>
+<li>High-Priority Signals: Pay special attention to routing critical signals such as USB differential pairs and clock signals. Ensure they are well-spaced from noisy power lines and have controlled impedance if necessary.</li>
+<li>Shielding Sensitive Signals: Consider shielding sensitive traces with ground traces or maintaining a consistent ground reference to enhance signal integrity.</li>
+</ol>
+<h3 id="step-3-final-drc-and-3d-view">Step 3: Final DRC and 3D View</h3>
+<p>Final checks are essential to ensure the PCB design meets all specified requirements and is free from errors.</p>
+<ol>
+<li>Design Rule Check (DRC)</li>
+<li>Running DRC: Utilize KiCad’s Design Rule Check (DRC) to identify and rectify any clearance issues, unconnected nets, or other potential design violations.</li>
+<li>
+<p>Addressing DRC Errors: Carefully review and correct any errors or warnings reported by the DRC to ensure a manufacturable and reliable PCB design.</p>
+</li>
+<li>
+<p>3D Viewer Inspection</p>
+</li>
+<li>Visual Inspection: Use the 3D Viewer to visually inspect the PCB layout for any anomalies such as overlapping components, misaligned silkscreens, or obstructive vias.</li>
+<li>Component Placement Verification: Confirm that all components are correctly placed, with silkscreen markings clear of pads and mounting holes unobstructed.</li>
+</ol>
+<h2 id="4-wrapping-up-preparing-for-manufacturing">4. Wrapping Up: Preparing for Manufacturing</h2>
+<p>With the power and ground routing finalized, the design is now ready for the final preparation steps before manufacturing.</p>
+<h3 id="step-1-finalize-the-silkscreen">Step 1: Finalize the Silkscreen</h3>
+<p>The silkscreen layer provides essential information for assembly and testing.</p>
+<ol>
+<li>Adding Labels and Markings</li>
+<li>Connector Labels: Clearly label all connectors (e.g., USB, power) to guide assembly and usage.</li>
+<li>Test Points: Mark test points for critical signals and power lines to facilitate debugging and testing.</li>
+<li>
+<p>Component Identifiers: Ensure all components are labeled accurately to assist in the assembly process.</p>
+</li>
+<li>
+<p>Ensuring Clarity and Readability</p>
+</li>
+<li>Font Size and Style: Use legible fonts with adequate size to ensure that markings are easily readable.</li>
+<li>Avoiding Overlaps: Verify that silkscreen elements do not overlap with pads, vias, or other critical areas to prevent manufacturing issues.</li>
+</ol>
+<h3 id="step-2-generate-gerber-files">Step 2: Generate Gerber Files</h3>
+<p>Gerber files are the standard format for PCB manufacturing, containing all the necessary information for fabrication.</p>
+<ol>
+<li>Using KiCad’s Gerber Export Tool</li>
+<li>Export All Layers: Ensure that all relevant layers are exported, including:<ul>
+<li>Top and Bottom Copper Layers</li>
+<li>Silkscreen Layers</li>
+<li>Solder Mask Layers</li>
+<li>Mechanical Layers (if applicable)</li>
+</ul>
+</li>
+<li>
+<p>DRC Compliance: Confirm that the design is free from DRC errors before exporting to avoid manufacturing delays.</p>
+</li>
+<li>
+<p>Double-Checking with a Gerber Viewer</p>
+</li>
+<li>Gerber File Verification: Use a Gerber viewer to inspect each exported file, ensuring that all elements are correctly represented and aligned.</li>
+<li>Final Validation: Check for any discrepancies or omissions that could impact the manufacturing process, such as missing layers or incorrect dimensions.</li>
+</ol>
+<h2 id="conclusion-power-and-ground-optimization-for-two-layer-pcb">Conclusion: Power and Ground Optimization for Two-Layer PCB</h2>
+<p>By meticulously utilizing the bottom layer as a ground plane and employing large copper fills for 3.3V and VBUS power distribution on the top layer, we have achieved a design that prioritizes electrical performance and manufacturability. The strategic use of power puddles, careful via placement, and minimized trace jumps collectively contribute to a design that is both robust and efficient.</p>
+<p>The final routing steps, coupled with rigorous verification through DRC checks and 3D inspections, ensure that the PCB layout is ready for manufacturing. The next steps involve performing a final DRC check, reviewing the overall layout for any last-minute adjustments, and generating the necessary Gerber files for fabrication. Following these best practices in power and ground routing lays a solid foundation for a reliable and high-performing PCB design.</p>
+<h2 id="best-practices-summary">Best Practices Summary</h2>
+<ul>
+<li>Use Dedicated Ground Plane: Employ a solid ground plane on one layer to simplify grounding and reduce noise.</li>
+<li>Strategic Via Placement: Place vias close to ground pads but with sufficient spacing to avoid soldering issues and ground loops.</li>
+<li>Wide Power Traces and Puddles: Utilize wide traces and large copper fills for power distribution to ensure low impedance and reliable power delivery.</li>
+<li>Minimize Via Usage: Limit the number of vias to essential transitions to maintain signal integrity and reduce complexity.</li>
+<li>Clearance Maintenance: Maintain appropriate clearances between power, ground, and signal traces to prevent shorts and minimize interference.</li>
+<li>Thorough Verification: Use DRC and 3D viewer tools to validate the design and catch potential issues before manufacturing.</li>
+</ul>
+<p>Implementing these practices will enhance the quality and reliability of your PCB design, ensuring that power and ground routing contribute positively to the overall performance of the final product.</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li>KiCad Official Documentation: <a href="https://kicad.org/documentation/">KiCad EDA</a></li>
+<li>PCB Design Guidelines: <a href="https://www.eeweb.com/category/pcb-design/">EEWeb PCB Design Articles</a></li>
+<li>Grounding Techniques: <a href="https://www.allaboutcircuits.com/technical-articles/grounding-principles-in-pcb-design/">Grounding in PCB Design</a></li>
+<li>Signal Integrity: <a href="https://www.eetimes.com/understanding-signal-integrity-basics/">Understanding Signal Integrity</a></li>
+</ul>
+<p>These resources provide further insights and detailed information to enhance your PCB design skills and knowledge.</p>
+<h2 id="appendix-practical-example">Appendix: Practical Example</h2>
+<p>To illustrate the concepts discussed, consider the following practical example of routing ground and power on a two-layer PCB.</p>
+<h3 id="example-scenario">Example Scenario</h3>
+<p>You are designing a two-layer PCB for a microcontroller-based project that includes USB connectivity and several peripheral components requiring 3.3V power.</p>
+<h3 id="steps-applied">Steps Applied</h3>
+<ol>
+<li>Ground Plane Setup</li>
+<li>Assign the bottom layer as a solid ground plane.</li>
+<li>
+<p>Identify all ground pads on the top layer, including those for the microcontroller, USB connector, and decoupling capacitors.</p>
+</li>
+<li>
+<p>Via Placement</p>
+</li>
+<li>Place 0.4mm vias near each ground pad, maintaining a 0.5mm distance from the pad edges.</li>
+<li>
+<p>For the voltage regulator, use 0.5mm vias to handle higher currents.</p>
+</li>
+<li>
+<p>Ground Trace Routing</p>
+</li>
+<li>Route short 0.5mm traces from each ground pad to their respective vias.</li>
+<li>
+<p>Group decoupling capacitors around the microcontroller and connect them to a single via to maintain a localized ground loop.</p>
+</li>
+<li>
+<p>Power Distribution</p>
+</li>
+<li>From the voltage regulator’s output, route 0.5mm wide traces to the microcontroller and other ICs.</li>
+<li>Create a 3.3V power puddle near the microcontroller using the Add Filled Zone tool.</li>
+<li>
+<p>Route the VBUS from the USB connector using a 0.8mm wide trace to the input of the voltage regulator.</p>
+</li>
+<li>
+<p>Final Layout Verification</p>
+</li>
+<li>Run a DRC to ensure all clearances are met and there are no unconnected nets.</li>
+<li>
+<p>Use the 3D viewer to inspect the placement of vias, power puddles, and ensure no ground plane gaps exist.</p>
+</li>
+<li>
+<p>Preparation for Manufacturing</p>
+</li>
+<li>Finalize the silkscreen with clear labels for the USB connector and test points.</li>
+<li>Generate and verify the Gerber files using a Gerber viewer.</li>
+</ol>
+<h3 id="outcome">Outcome</h3>
+<p>By following these steps, the resulting PCB design features a robust ground plane, efficient power distribution, minimal via usage, and clear silkscreen markings, ensuring both high electrical performance and ease of manufacturing.</p>
+<h2 id="troubleshooting-tips">Troubleshooting Tips</h2>
+<ul>
+<li>Ground Loops Detection</li>
+<li>Symptom: Unexpected noise or interference in the circuit.</li>
+<li>
+<p>Solution: Review via placement and ensure that each ground connection does not create multiple paths that can form loops. Consolidate ground vias where possible.</p>
+</li>
+<li>
+<p>Insufficient Power Delivery</p>
+</li>
+<li>Symptom: Components not receiving adequate voltage or inconsistent performance.</li>
+<li>
+<p>Solution: Check the width of power traces and the size of copper fills. Increase trace widths or add additional power vias to handle higher current demands.</p>
+</li>
+<li>
+<p>Thermal Issues</p>
+</li>
+<li>Symptom: Overheating components or vias during operation.</li>
+<li>
+<p>Solution: Ensure that high-current paths use appropriately sized vias and wide traces. Consider adding thermal relief patterns and using larger copper areas to dissipate heat effectively.</p>
+</li>
+<li>
+<p>DRC Errors Post-Via Addition</p>
+</li>
+<li>Symptom: DRC reports clearance violations after adding vias.</li>
+<li>Solution: Re-evaluate via placement to maintain adequate spacing from other traces and components. Adjust via sizes if necessary to comply with design rules.</li>
+</ul>
+<p>By proactively addressing these common issues, you can enhance the reliability and performance of your PCB design.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Finalizing power and ground routing is a pivotal step in PCB design that significantly impacts the functionality and reliability of the final product. By employing a solid ground plane, strategic via placement, and robust power distribution techniques, you can create a two-layer PCB that not only meets but exceeds performance expectations. Adhering to best practices and thorough verification processes ensures that your design is ready for successful manufacturing and deployment.</p>
+<p>Embrace these guidelines to elevate your PCB design workflow, ensuring that power and ground considerations are seamlessly integrated into your projects for optimal results.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

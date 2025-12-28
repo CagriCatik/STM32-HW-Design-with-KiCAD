@@ -1,0 +1,3079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/02_Schematic/02_STM32_Configuration_Pins/">
+      
+      
+        <link rel="prev" href="../01_STM32_uC_Decoupling/">
+      
+      
+        <link rel="next" href="../03_Pin-Out_STM32CubeIDE/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuration Pins - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#boot-configuration-reset-circuit-and-power-source-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration Pins
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔌 Schematic Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_STM32_uC_Decoupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reset-pin-configuration-nrst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reset Pin Configuration (NRST)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reset Pin Configuration (NRST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavior-of-the-nrst-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior of the NRST Pin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior of the NRST Pin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inverted-reset-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inverted Reset Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Pull-Up Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-for-debug-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility for Debug Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-reset-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Reset Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a Reset Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-manual-reset-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Manual Reset Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-protection-against-unwanted-resets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Protection Against Unwanted Resets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-instructions-in-kicad-nrst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Instructions in KiCad - NRST
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Instructions in KiCad - NRST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-the-100-nf-decoupling-capacitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add the 100 nF Decoupling Capacitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-optional-add-a-reset-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: (Optional) Add a Reset Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-the-nrst-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming the NRST Net
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming the NRST Net">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boot-pin-configuration-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Pin Configuration (BOOT0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boot Pin Configuration (BOOT0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose-of-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose of BOOT0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Purpose of BOOT0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-boot-modes-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Boot Modes Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-boot0-configuration-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a BOOT0 Configuration Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-instructions-in-kicad-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Instructions in KiCad - BOOT0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Instructions in KiCad - BOOT0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-an-spdt-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add an SPDT Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-add-the-pull-down-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Add the Pull-Down Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-wire-power-and-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Wire Power and Ground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-label-the-nets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Label the Nets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-the-pull-down-resistor-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the Pull-Down Resistor Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-circuit-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Circuit Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-power-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding the Power Source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding the Power Source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voltage-regulator-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voltage Regulator Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finalizing-the-circuit-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finalizing the Circuit and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finalizing the Circuit and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-for-proper-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checklist for Proper Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps-enhancing-the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps: Enhancing the Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Pin-Out_STM32CubeIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pin-Out & CubeIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Crystal-Circuitry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_USB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_ERC-Annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_Footprint-Assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footpoint Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Final-Schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Schematic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/01_power_decoupling_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/02_power_boot_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boot Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/03_pinout-stm32cube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout Cube
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/04_external_clock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/05_usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/06_power_supply_connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/07_erc_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC Annotation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/08_footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprint Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reset-pin-configuration-nrst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reset Pin Configuration (NRST)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reset Pin Configuration (NRST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavior-of-the-nrst-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior of the NRST Pin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Behavior of the NRST Pin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inverted-reset-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inverted Reset Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Pull-Up Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-for-debug-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility for Debug Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-reset-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Reset Circuit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a Reset Circuit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-manual-reset-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Manual Reset Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-protection-against-unwanted-resets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Protection Against Unwanted Resets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-instructions-in-kicad-nrst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Instructions in KiCad - NRST
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Instructions in KiCad - NRST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-the-100-nf-decoupling-capacitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add the 100 nF Decoupling Capacitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-optional-add-a-reset-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: (Optional) Add a Reset Button
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-the-nrst-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming the NRST Net
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming the NRST Net">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boot-pin-configuration-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Pin Configuration (BOOT0)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boot Pin Configuration (BOOT0)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose-of-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose of BOOT0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Purpose of BOOT0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-boot-modes-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Boot Modes Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-boot0-configuration-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a BOOT0 Configuration Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-instructions-in-kicad-boot0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Instructions in KiCad - BOOT0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Instructions in KiCad - BOOT0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-an-spdt-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add an SPDT Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-add-the-pull-down-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Add the Pull-Down Resistor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-wire-power-and-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Wire Power and Ground
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-label-the-nets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Label the Nets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-the-pull-down-resistor-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the Pull-Down Resistor Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-circuit-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Circuit Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-the-power-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding the Power Source
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding the Power Source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voltage-regulator-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voltage Regulator Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finalizing-the-circuit-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finalizing the Circuit and Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Finalizing the Circuit and Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-for-proper-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checklist for Proper Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps-enhancing-the-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps: Enhancing the Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_STM32_uC_Decoupling/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🔌 Schematic Design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="boot-configuration-reset-circuit-and-power-source-setup">Boot Configuration, Reset Circuit, and Power Source Setup</h1>
+<ul>
+<li>This section explores the critical components of STM32 PCB design, focusing on configuring the reset pin (NRST), boot configuration pin (BOOT0), and ensuring reliable microcontroller booting.</li>
+<li>Additionally, it covers connecting a power source and integrating basic external components such as resistors and capacitors to stabilize the circuit.</li>
+<li>Practical examples and best practices are provided to guide you through each step using KiCad.</li>
+</ul>
+<h2 id="reset-pin-configuration-nrst">Reset Pin Configuration (NRST)</h2>
+<p>The NRST pin is the dedicated hardware reset input on STM32 microcontrollers. When activated, it forces the microcontroller back to its initial startup state. For beginners, think of NRST as a safety switch that brings the chip back to a known-good condition whenever things go wrong. A correct NRST configuration is important for reliable operation, stable debugging, and preventing hard-to-diagnose lockups during development.</p>
+<h3 id="behavior-of-the-nrst-pin">Behavior of the NRST Pin</h3>
+<h4 id="inverted-reset-logic">Inverted Reset Logic</h4>
+<p>The NRST pin uses inverted logic. This means the pin normally sits at a logical high level, and pulling it low resets the MCU. In practice:</p>
+<ul>
+<li>NRST high → microcontroller runs normally</li>
+<li>NRST low → microcontroller resets</li>
+</ul>
+<p>This behavior is common in microcontroller families and helps ensure resets are clean and well-defined.</p>
+<h4 id="internal-pull-up-resistor">Internal Pull-Up Resistor</h4>
+<ul>
+<li>STM32 devices include an internal pull-up resistor connected to NRST.</li>
+<li>This pull-up keeps the pin high by default, preventing accidental resets from floating signals.</li>
+<li>Because of this, most designs do not require an external pull-up resistor.</li>
+<li>However, the internal resistor is relatively weak.</li>
+<li>For noisy environments or long traces, adding external conditioning (such as a capacitor) helps maintain stability.</li>
+</ul>
+<h4 id="accessibility-for-debug-tools">Accessibility for Debug Tools</h4>
+<ul>
+<li>Even with an internal pull-up, always bring the NRST pin out to a test point, header, or debug connector.</li>
+<li>Tools like ST-Link, J-Link, or DAPLink use NRST during programming and debugging.</li>
+<li>Without access to NRST, recovering a locked device becomes difficult.</li>
+</ul>
+<h3 id="adding-a-reset-circuit">Adding a Reset Circuit</h3>
+<p>A simple reset circuit improves reliability and allows manual resets during debugging.
+The circuit typically includes two optional parts:</p>
+<ol>
+<li>A decoupling capacitor</li>
+<li>A tactile reset button</li>
+</ol>
+<p>Both components connect directly to the NRST pin.</p>
+<h4 id="1-manual-reset-button">1. Manual Reset Button</h4>
+<p>A manual reset button lets you force a hardware reset without power-cycling the whole board.</p>
+<ul>
+<li>Component: Tactile (momentary) push button</li>
+<li>How it works: Pressing the button momentarily connects NRST to ground, pulling it low and triggering a reset.</li>
+<li>Placement: Put the button in an accessible spot on the schematic and, later, on the PCB.</li>
+</ul>
+<h4 id="2-protection-against-unwanted-resets">2. Protection Against Unwanted Resets</h4>
+<p>Electrical noise, switching power supplies, and long traces can cause NRST to dip briefly.
+Even a tiny voltage drop can trigger a reset. To prevent that:</p>
+<ul>
+<li>Component: 100 nF capacitor</li>
+<li>Function: The capacitor filters sudden voltage drops, making the NRST line more resistant to glitches.</li>
+<li>Typical value: 100 nF (0.1 uF) ceramic capacitor, placed as close to the NRST pin as possible on the PCB.</li>
+</ul>
+<h3 id="step-by-step-instructions-in-kicad-nrst">Step-by-Step Instructions in KiCad - NRST</h3>
+<p>These instructions assume you already have your STM32 symbol placed in your schematic.</p>
+<h4 id="step-1-add-the-100-nf-decoupling-capacitor">Step 1: Add the 100 nF Decoupling Capacitor</h4>
+<ol>
+<li>Open the symbol library (Add Symbol tool).</li>
+<li>Search for a "C" or generic capacitor symbol.</li>
+<li>Place a capacitor component and set its value to 100 nF.</li>
+<li>Connect one terminal of the capacitor to the NRST pin.</li>
+<li>Connect the other terminal to ground (GND).</li>
+</ol>
+<p>This forms the noise filter that stabilizes the reset line.</p>
+<h4 id="step-2-optional-add-a-reset-button">Step 2: (Optional) Add a Reset Button</h4>
+<ol>
+<li>Add another symbol from the library. Search for "SW" or "Button".</li>
+<li>Choose a tactile momentary switch.</li>
+<li>Connect one side of the switch to NRST.</li>
+<li>Connect the other side to GND.</li>
+</ol>
+<p>Pressing the button will now pull NRST low and trigger a reset.</p>
+<h3 id="naming-the-nrst-net">Naming the NRST Net</h3>
+<p>KiCad works more smoothly when nets are clearly labeled. Labeling the NRST net ensures consistent connections and makes routing easier.</p>
+<h4 id="procedure">Procedure</h4>
+<ol>
+<li>Select the Net Label tool from the toolbar.</li>
+<li>Click on the wire connected to the NRST pin.</li>
+<li>Enter the label name <code>NRST</code>.</li>
+</ol>
+<p>A labeled net ensures KiCad treats all wires named NRST as the same electrical connection, even if they are drawn in different parts of the schematic.</p>
+<h4 id="benefits">Benefits</h4>
+<ul>
+<li>Easier debugging</li>
+<li>Clear schematic organization</li>
+<li>Correct net connectivity during PCB layout</li>
+<li>Better compatibility with debug headers and programming connectors</li>
+</ul>
+<h2 id="boot-pin-configuration-boot0">Boot Pin Configuration (BOOT0)</h2>
+<p>The BOOT0 pin controls how an STM32 selects its startup source.
+At reset, the microcontroller reads the BOOT0 level and decides whether to run your stored application or enter its built-in system bootloader.
+Understanding and wiring BOOT0 correctly is essential for both normal operation and reliable firmware loading.</p>
+<h3 id="purpose-of-boot0">Purpose of BOOT0</h3>
+<h4 id="how-boot-modes-work">How Boot Modes Work</h4>
+<p>STM32 devices support multiple boot modes. BOOT0 determines which one is selected:</p>
+<ul>
+<li>Booting from Flash memory: The microcontroller loads your compiled firmware from internal flash. This is the standard mode for normal operation.</li>
+<li>Booting from System Memory: The device enters its factory bootloader. The bootloader supports programming methods such as UART, USB DFU (on supported models), SPI, or CAN. This is useful for firmware updates, recovery, or initial programming when no debugger is available.</li>
+</ul>
+<h4 id="practical-scenarios">Practical Scenarios</h4>
+<ul>
+<li>Day-to-day operation: BOOT0 remains low so the device starts the user application.</li>
+<li>Firmware loading and recovery: BOOT0 is pulled high to enable the system bootloader.</li>
+</ul>
+<h3 id="building-a-boot0-configuration-switch">Building a BOOT0 Configuration Switch</h3>
+<p>For development boards or prototypes, adding a simple hardware switch makes it easy to toggle between normal operation and bootloader mode.
+An SPDT (Single-Pole, Dual-Throw) switch works well because it gives you a clean and direct way to connect BOOT0 either to ground or to 3.3 V.</p>
+<p>The circuit consists of:</p>
+<ul>
+<li>An SPDT switch</li>
+<li>A 10 kΩ pull-down resistor</li>
+<li>Wires to 3.3 V, GND, and the BOOT0 pin</li>
+</ul>
+<h3 id="step-by-step-instructions-in-kicad-boot0">Step-by-Step Instructions in KiCad - BOOT0</h3>
+<h4 id="step-1-add-an-spdt-switch">Step 1: Add an SPDT Switch</h4>
+<ol>
+<li>Use the Add Symbol tool and search for an SPDT switch.</li>
+<li>Place it in your schematic.</li>
+<li>Rotate or flip it using the X and Y keys to fit your layout.</li>
+</ol>
+<p>The switch has three terminals: one common terminal (center) and two selectable positions.</p>
+<h4 id="step-2-add-the-pull-down-resistor">Step 2: Add the Pull-Down Resistor</h4>
+<ol>
+<li>Add a resistor symbol and set its value to 10 kΩ.</li>
+<li>Connect one side of the resistor to the BOOT0 pin.</li>
+<li>Connect the other side to GND.</li>
+</ol>
+<p>The resistor ensures BOOT0 defaults to a low state when the switch is not selecting 3.3 V.</p>
+<h4 id="step-3-wire-power-and-ground">Step 3: Wire Power and Ground</h4>
+<ol>
+<li>Connect one side of the switch to 3.3 V (the high position).</li>
+<li>Connect the opposite side to GND (the low position).</li>
+<li>Connect the common middle terminal of the switch to the BOOT0 pin.</li>
+</ol>
+<p>Using the wiring tool (W) creates the necessary connections between symbols and nets.</p>
+<h4 id="step-4-label-the-nets">Step 4: Label the Nets</h4>
+<p>Clear labeling improves readability and prevents wiring mistakes.</p>
+<p>Recommended labels:</p>
+<ul>
+<li>The wire going to the BOOT0 pin: <code>BOOT0</code></li>
+<li>The switch terminal tied to 3.3 V: <code>BOOT HIGH</code></li>
+<li>The terminal tied to GND: <code>BOOT LOW</code></li>
+</ul>
+<p>These labels help both during design and while debugging or configuring boot mode on the physical board.</p>
+<h3 id="why-the-pull-down-resistor-matters">Why the Pull-Down Resistor Matters</h3>
+<p>The pull-down resistor keeps BOOT0 at a stable logic low when the switch is not selecting 3.3 V.
+Without it, BOOT0 could float, meaning the voltage could drift unpredictably.
+A floating BOOT0 pin may cause accidental entry into the wrong boot mode, especially during power-up.</p>
+<p>A 10 kΩ value provides a strong enough pull-down to keep BOOT0 low, but not so strong that it interferes with intentionally pulling it high through the switch.</p>
+<h3 id="final-circuit-behavior">Final Circuit Behavior</h3>
+<ul>
+<li>Default operation: With the switch set to GND, BOOT0 is low and the microcontroller boots from its internal Flash memory.</li>
+<li>Bootloader mode: Moving the switch to 3.3 V raises BOOT0 high. After resetting or power cycling, the STM32 enters its system bootloader, ready for firmware loading or recovery.</li>
+</ul>
+<p>This circuit gives you a robust and beginner-friendly way to choose boot modes during development while maintaining stable behavior during normal operation.</p>
+<h2 id="adding-the-power-source">Adding the Power Source</h2>
+<p>A stable 3.3V power supply is crucial for the reliable operation of the STM32 microcontroller.
+This section outlines the selection and integration of a voltage regulator to achieve the required voltage level.</p>
+<h3 id="voltage-regulator-selection">Voltage Regulator Selection</h3>
+<p>Choosing an appropriate voltage regulator ensures efficient and stable power delivery to the microcontroller.</p>
+<ul>
+<li>Common Choice: AMS1117-3.3 voltage regulator</li>
+<li>Function: Steps down input voltages (e.g., 5V from USB) to a stable 3.3V output.</li>
+<li>
+<p>Advantages: Widely available, easy to implement, and provides sufficient current for STM32 applications.</p>
+</li>
+<li>
+<p>Add a Voltage Regulator:</p>
+</li>
+<li>Action: Search for and place the AMS1117-3.3 symbol from the KiCad library. If unavailable, select a compatible 3.3V linear regulator.</li>
+<li>
+<p>Placement: Position the regulator symbol in the schematic where the power input is managed.</p>
+</li>
+<li>
+<p>Connect Input and Output:</p>
+</li>
+<li>Input Connection: Connect the input pin of the regulator to the 5V power source, such as USB or an external supply.</li>
+<li>
+<p>Output Connection: Connect the output pin to the 3.3V rail that powers the STM32 microcontroller.</p>
+</li>
+<li>
+<p>Add Decoupling Capacitors:</p>
+</li>
+<li>Components: Two 10µF capacitors<ul>
+<li>Placement: One capacitor should be placed on the input side and the other on the output side of the regulator.</li>
+<li>Proximity: Position the capacitors as close to the regulator pins as possible to maximize effectiveness.</li>
+</ul>
+</li>
+<li>
+<p>Function: These capacitors filter out electrical noise and stabilize the voltage during fluctuations, ensuring a steady power supply to the microcontroller.</p>
+</li>
+<li>
+<p>Ground Connections:</p>
+</li>
+<li>Action: Connect the ground pin of the regulator to the main ground (GND) of the circuit.</li>
+<li>Verification: Ensure all ground connections are secure to prevent potential ground loops or noise issues.</li>
+</ul>
+<h2 id="finalizing-the-circuit-and-testing">Finalizing the Circuit and Testing</h2>
+<p>After configuring the reset and boot pins and setting up the power supply, it is essential to verify that all connections are correct and that the microcontroller is ready to operate reliably.</p>
+<h3 id="checklist-for-proper-operation">Checklist for Proper Operation</h3>
+<ol>
+<li>Power Supply:</li>
+<li>
+<p>Verification:</p>
+<ul>
+<li>Confirm that the 3.3V power supply is correctly connected to both the VDD and VBAT pins of the STM32 microcontroller.</li>
+<li>Ensure that decoupling capacitors are placed on all power pins to filter out noise and stabilize voltage levels.</li>
+</ul>
+</li>
+<li>
+<p>Ground Connections:</p>
+</li>
+<li>
+<p>Verification:</p>
+<ul>
+<li>Ensure all ground pins (e.g., VSS, VSSA) are connected to the main ground (GND) of the circuit.</li>
+<li>Check for a solid ground plane in the PCB layout to minimize noise and ensure signal integrity.</li>
+</ul>
+</li>
+<li>
+<p>Reset Circuit:</p>
+</li>
+<li>
+<p>Verification:</p>
+<ul>
+<li>Confirm that the NRST pin is connected to ground via the decoupling capacitor.</li>
+<li>If a manual reset switch is included, ensure it is properly connected between NRST and GND.</li>
+<li>Verify that the NRST net is labeled <code>NRST</code> for clarity in the PCB layout.</li>
+</ul>
+</li>
+<li>
+<p>Boot Configuration:</p>
+</li>
+<li>
+<p>Verification:</p>
+<ul>
+<li>Ensure the BOOT0 pin is connected to the SPDT switch that toggles between 3.3V and GND.</li>
+<li>Confirm the presence of the 10kΩ pull-down resistor connecting BOOT0 to ground.</li>
+<li>Check that the switch labels (<code>BOOT0</code>, <code>BOOT HIGH</code>, <code>BOOT LOW</code>) are correctly placed for easy identification.</li>
+</ul>
+</li>
+<li>
+<p>Voltage Regulation:</p>
+</li>
+<li>Verification:<ul>
+<li>Confirm that the voltage regulator (e.g., AMS1117-3.3) is correctly connected with input to 5V and output to the 3.3V rail.</li>
+<li>Ensure that 10µF decoupling capacitors are placed on both the input and output sides of the regulator.</li>
+<li>Verify that all ground connections related to the regulator are secure.</li>
+</ul>
+</li>
+</ol>
+<h2 id="next-steps-enhancing-the-design">Next Steps: Enhancing the Design</h2>
+<p>While the foundational circuitry for the STM32 microcontroller is established, further enhancements can be made to tailor the design to specific application requirements.
+Consider integrating the following components and peripherals to expand functionality and improve performance:</p>
+<ul>
+<li><strong>Crystal Oscillator:</strong></li>
+<li>Purpose: Enhances clock accuracy, which is critical for timing-sensitive applications.</li>
+<li>
+<p>Implementation: Add a crystal oscillator circuit connected to the microcontroller’s clock pins, typically accompanied by load capacitors.</p>
+</li>
+<li>
+<p><strong>Communication Interfaces:</strong></p>
+</li>
+<li>Options:<ul>
+<li>UART: For serial communication.</li>
+<li>SPI: For high-speed data transfer with peripherals.</li>
+<li>I²C: For interfacing with sensors and other devices.</li>
+<li>USB: For direct connectivity to computers or other USB-enabled devices.</li>
+</ul>
+</li>
+<li>
+<p>Considerations: Ensure proper termination and shielding for high-speed signals to maintain signal integrity.</p>
+</li>
+<li>
+<p><strong>Programming Headers:</strong></p>
+</li>
+<li>Types:<ul>
+<li>SWD (Serial Wire Debug): For programming and debugging the microcontroller.</li>
+<li>JTAG: For more advanced debugging capabilities.</li>
+</ul>
+</li>
+<li>
+<p>Placement: Position programming headers in an accessible area of the PCB to facilitate easy connection with debugging tools.</p>
+</li>
+<li>
+<p><strong>Power Management Features:</strong></p>
+</li>
+<li>Options:<ul>
+<li>Power Switches: To control power distribution to different parts of the circuit.</li>
+<li>Battery Charging Circuits: If the design includes battery operation.</li>
+</ul>
+</li>
+<li>
+<p>Purpose: Enhances the versatility and efficiency of the power system.</p>
+</li>
+<li>
+<p><strong>Peripheral Integration:</strong></p>
+</li>
+<li>Examples:<ul>
+<li>LED Indicators: For status indication.</li>
+<li>Buttons: For user input.</li>
+<li>Sensors: To add environmental or operational sensing capabilities.</li>
+</ul>
+</li>
+<li>Best Practices: Follow standard guidelines for component placement and signal routing to ensure reliable operation.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This guide has provided a comprehensive overview of setting up the reset pin (NRST), boot configuration pin (BOOT0), and power source for the STM32 microcontroller using KiCad.
+By following the detailed steps and best practices outlined, you can design a robust and reliable PCB that ensures the microcontroller boots correctly and operates efficiently.</p>
+<p>Key Takeaways:</p>
+<ul>
+<li>Reset Configuration: Properly configuring the NRST pin with a decoupling capacitor and optional manual reset switch enhances system stability.</li>
+<li>Boot Configuration: Implementing a BOOT0 switch with a pull-down resistor allows flexible boot mode selection between Flash memory and the bootloader.</li>
+<li>Power Supply: Utilizing a voltage regulator with appropriate decoupling capacitors ensures a stable 3.3V power supply essential for the microcontroller’s operation.</li>
+<li>Final Verification: A thorough checklist ensures that all critical connections are correctly established, paving the way for successful circuit operation.</li>
+</ul>
+<p>Moving forward, consider expanding the design with additional components and peripherals tailored to your specific project needs.
+Continuous testing and iteration will further refine the PCB, leading to a high-quality and functional STM32-based system.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2635 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/02_Schematic/Summary/04_external_clock/">
+      
+      
+        <link rel="prev" href="../03_pinout-stm32cube/">
+      
+      
+        <link rel="next" href="../05_usb/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>External Clock - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#external-high-speed-crystal-oscillator-usbswd-routing-and-pin-out-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              External Clock
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔌 Schematic Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_STM32_uC_Decoupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_STM32_Configuration_Pins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_Pin-Out_STM32CubeIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pin-Out & CubeIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Crystal-Circuitry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_USB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_Power-Supply-Connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_ERC-Annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_Footprint-Assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footpoint Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09_Final-Schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Schematic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_power_decoupling_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_power_boot_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boot Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_pinout-stm32cube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout Cube
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#external-high-speed-crystal-hse-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External High-Speed Crystal (HSE) Subsystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External High-Speed Crystal (HSE) Subsystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-symbol-and-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Symbol and Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microcontroller-oscillator-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microcontroller Oscillator Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schematic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schematic Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-load-capacitor-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting Load Capacitor Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting Load Capacitor Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-load-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Load Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stray-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stray Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-capacitor-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Capacitor Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-on-optional-series-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes on Optional Series Resistor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-differential-pair-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Differential Pair Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swd-debug-interface-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWD Debug Interface Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-added-crystal-and-pin-out-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Added Crystal and Pin-Out Subsystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-16-mhz-crystal-oscillator-hse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External 16 MHz Crystal Oscillator (HSE)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External 16 MHz Crystal Oscillator (HSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y1-16-mhz-crystal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Y1 (16 MHz Crystal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c10-and-c11-10-pf-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C10 and C11 (10 pF Load Capacitors)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crystal-ground-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Ground Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-differential-pair-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Differential Pair Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swd-debug-interface-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWD Debug Interface Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_power_supply_connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_erc_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC Annotation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprint Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#external-high-speed-crystal-hse-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External High-Speed Crystal (HSE) Subsystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External High-Speed Crystal (HSE) Subsystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-symbol-and-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Symbol and Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microcontroller-oscillator-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microcontroller Oscillator Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schematic-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schematic Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-load-capacitor-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting Load Capacitor Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting Load Capacitor Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crystal-load-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Load Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stray-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stray Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-capacitor-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Capacitor Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-on-optional-series-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes on Optional Series Resistor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-differential-pair-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Differential Pair Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swd-debug-interface-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWD Debug Interface Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-added-crystal-and-pin-out-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Added Crystal and Pin-Out Subsystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-16-mhz-crystal-oscillator-hse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External 16 MHz Crystal Oscillator (HSE)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External 16 MHz Crystal Oscillator (HSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y1-16-mhz-crystal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Y1 (16 MHz Crystal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c10-and-c11-10-pf-load-capacitors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C10 and C11 (10 pF Load Capacitors)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crystal-ground-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crystal Ground Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-differential-pair-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USB Differential Pair Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swd-debug-interface-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWD Debug Interface Labeling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../01_STM32_uC_Decoupling/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🔌 Schematic Design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_power_decoupling_network/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Summary
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="external-high-speed-crystal-oscillator-usbswd-routing-and-pin-out-integration">External High-Speed Crystal Oscillator, USB/SWD Routing, and Pin-Out Integration</h1>
+<p>This documentation provides a complete explanation of the external crystal oscillator subsystem, its load capacitors, grounding strategy, and supporting references. It also integrates the previously defined USB differential pair and SWD debug signals. Together, these additions finalize the electrical infrastructure required for accurate MCU timing, USB full-speed operation, and reliable firmware development with STM32CubeIDE.</p>
+<div style=" textAlign: 'center' ">
+  ![external_clock](../../assets/pcb/external_clock.png)
+</div>
+
+<hr />
+<h2 id="external-high-speed-crystal-hse-subsystem">External High-Speed Crystal (HSE) Subsystem</h2>
+<h3 id="crystal-symbol-and-package">Crystal Symbol and Package</h3>
+<p>The added crystal (Y1) uses a <strong>four-pin HC49/US or SMD 4-pad package</strong>, commonly used for through-hole or low-profile surface-mount crystals.</p>
+<p>The pin functions are:</p>
+<ul>
+<li>Pins <strong>1</strong> and <strong>3</strong>: Crystal terminals (oscillator input/output).</li>
+<li>Pins <strong>2</strong> and <strong>4</strong>: Grounded case pads, connected to GND for shielding and noise reduction.</li>
+</ul>
+<p>Only pins 1 and 3 participate in the oscillation; pins 2 and 4 mechanically stabilize the package and provide EMI shielding.</p>
+<h3 id="microcontroller-oscillator-architecture">Microcontroller Oscillator Architecture</h3>
+<p>STM32 microcontrollers include the active components internally:</p>
+<ul>
+<li>An <strong>inverter amplifier</strong> between HSE_IN and HSE_OUT</li>
+<li>A <strong>feedback resistor</strong> inside the chip</li>
+<li>Bias and drive-strength control logic</li>
+</ul>
+<p>External components only need to provide:</p>
+<ul>
+<li>The crystal resonator</li>
+<li>Two matched load capacitors</li>
+</ul>
+<p>This matches ST’s recommended design documented in:
+<strong>Application Note AN2867 – “Oscillator design guide for STM32 microcontrollers.”</strong></p>
+<h3 id="schematic-implementation">Schematic Implementation</h3>
+<p>The schematic correctly mirrors the recommended topology:</p>
+<ul>
+<li><strong>Y1</strong> is connected between <strong>PD0 (HSE_IN)</strong> and <strong>PD1 (HSE_OUT)</strong>.</li>
+<li><strong>C10</strong> and <strong>C11</strong> (10 pF each) connect from each crystal pin to ground.</li>
+<li>Pins <strong>2</strong> and <strong>4</strong> of the crystal footprint are tied to GND for shielding.</li>
+<li>No external series resistor is used (optional; rarely required).</li>
+</ul>
+<p>This is the canonical STM32 HSE configuration.</p>
+<hr />
+<h2 id="selecting-load-capacitor-values">Selecting Load Capacitor Values</h2>
+<h3 id="crystal-load-capacitance">Crystal Load Capacitance</h3>
+<p>The selected crystal specifies:</p>
+<ul>
+<li>Load capacitance (<strong>CL</strong>) = <strong>10 pF</strong></li>
+<li>Frequency = 16 MHz</li>
+<li>Package = 4-pin SMD with grounded shell</li>
+</ul>
+<h3 id="stray-capacitance">Stray Capacitance</h3>
+<p>PCB traces and MCU input pins introduce unavoidable stray capacitance, typically:</p>
+<p><strong>3–5 pF total</strong> from both sides combined.</p>
+<h3 id="load-capacitor-formula">Load Capacitor Formula</h3>
+<p>For symmetrical load capacitors:</p>
+<p>$$
+[
+C_{\text{load}} = \frac{C_L - C_{stray}}{2}
+]
+$$</p>
+<p>Using values from the transcript:</p>
+<ul>
+<li>$(C_L = 10) pF$</li>
+<li>$(C_{stray} = 5) pF$ (worst-case assumption)</li>
+</ul>
+<p>$$
+[
+C_{\text{load}} = \frac{10 - 5}{2} = 2.5 \text{ pF}
+]
+$$</p>
+<p>However, manufacturers assume individual stray capacitance per side, so practical selection doubles that effective value. Designers generally choose <strong>8–12 pF</strong> per capacitor.</p>
+<h3 id="final-selection">Final Selection</h3>
+<p>The schematic uses:</p>
+<ul>
+<li><strong>C10 = 10 pF</strong></li>
+<li><strong>C11 = 10 pF</strong></li>
+</ul>
+<p>These values match:</p>
+<ul>
+<li>The crystal’s load capacitance</li>
+<li>The expected PCB parasitics</li>
+<li>ST’s recommended values for 8–16 MHz crystals</li>
+</ul>
+<p>This achieves accurate oscillation frequency and reliable startup.</p>
+<hr />
+<h2 id="notes-on-optional-series-resistor">Notes on Optional Series Resistor</h2>
+<p>Some designs use a series resistor between the crystal and HSE_OUT to limit drive strength.
+This is only required if:</p>
+<ul>
+<li>The crystal manufacturer specifies a maximum drive level, or</li>
+<li>The MCU overdrives the crystal at high temperatures.</li>
+</ul>
+<p>STM32F103 rarely requires this resistor, so leaving it out is correct.</p>
+<hr />
+<h2 id="usb-differential-pair-integration">USB Differential Pair Integration</h2>
+<p>The added labels:</p>
+<ul>
+<li><strong>USB_DM → PA11</strong></li>
+<li><strong>USB_DP → PA12</strong></li>
+</ul>
+<p>define the USB full-speed (12 Mbps) differential signals.</p>
+<p>KiCad recognizes differential pairs based on naming, enabling:</p>
+<ul>
+<li>Controlled impedance routing (≈ 90 Ω differential)</li>
+<li>Matched trace lengths</li>
+<li>Automated USB pair routing tools</li>
+</ul>
+<p>This is essential for USB-C or USB-micro connectors used later in the design.</p>
+<hr />
+<h2 id="swd-debug-interface-integration">SWD Debug Interface Integration</h2>
+<p>The added SWD pins:</p>
+<ul>
+<li><strong>SWDIO → PA13</strong></li>
+<li><strong>SWCLK → PA14</strong></li>
+</ul>
+<p>provide the required interface for:</p>
+<ul>
+<li>ST-Link V2</li>
+<li>J-Link</li>
+<li>PyOCD</li>
+<li>OpenOCD</li>
+</ul>
+<p>These pins must remain free of pull-ups, pull-downs, or alternate assignments.</p>
+<p>Clear labeling ensures correct wiring to the SWD header during layout.</p>
+<hr />
+<h2 id="summary-of-the-added-crystal-and-pin-out-subsystem">Summary of the Added Crystal and Pin-Out Subsystem</h2>
+<p>The schematic additions include:</p>
+<ul>
+<li>A <strong>16 MHz external crystal</strong> connected to PD0/PD1</li>
+<li>Two <strong>10 pF load capacitors</strong> that match the crystal’s required load</li>
+<li>Grounded shielding pads for the crystal package</li>
+<li>USB differential pair labels for impedance-controlled routing</li>
+<li>SWD labels for programming and debugging</li>
+<li>A topology consistent with ST’s AN2867 oscillator design guide</li>
+</ul>
+<p>Together, these components complete the clock generation, USB signaling, and debug infrastructure for the STM32F103C8Tx design.</p>
+<h2 id="external-16-mhz-crystal-oscillator-hse">External 16 MHz Crystal Oscillator (HSE)</h2>
+<p>The new crystal subsystem is built around a <strong>16 MHz parallel-resonant crystal</strong> connected to the MCU's high-speed external oscillator pins:</p>
+<ul>
+<li><strong>PD0 → HSE_IN</strong></li>
+<li><strong>PD1 → HSE_OUT</strong></li>
+</ul>
+<p>These pins are assigned automatically in STM32CubeIDE when the high-speed external clock is enabled.</p>
+<h3 id="y1-16-mhz-crystal">Y1 (16 MHz Crystal)</h3>
+<p>The crystal (Y1) forms the core of the MCU’s primary timing source. At 16 MHz, it provides sufficiently accurate timing for:</p>
+<ul>
+<li>USB full-speed operation</li>
+<li>UART/SPI baud-rate precision</li>
+<li>Deterministic MCU clocking</li>
+<li>Reliable PLL multiplication to system frequencies up to 72 MHz</li>
+</ul>
+<p>The crystal is connected directly between HSE_IN and HSE_OUT.</p>
+<h3 id="c10-and-c11-10-pf-load-capacitors">C10 and C11 (10 pF Load Capacitors)</h3>
+<p>Two load capacitors (C10 and C11) are connected from each crystal pin to ground.</p>
+<p>Their values are tuned to match the crystal's specified load capacitance. Typical values range from <strong>10–22 pF</strong>, depending on PCB trace parasitics and crystal specifications. Here, <strong>10 pF</strong> provides appropriate loading for most 16 MHz crystals.</p>
+<p>These capacitors ensure:</p>
+<ul>
+<li>Stable oscillation</li>
+<li>Correct frequency accuracy</li>
+<li>Consistent startup characteristics</li>
+</ul>
+<h3 id="crystal-ground-reference">Crystal Ground Reference</h3>
+<p>The capacitors share a tight, local ground reference near the MCU. Proper placement minimizes loop area and reduces susceptibility to EMI. This matches STMicroelectronics’ recommended oscillator layout guidelines.</p>
+<hr />
+<h2 id="usb-differential-pair-labeling">USB Differential Pair Labeling</h2>
+<p>Two USB signals have now been properly named:</p>
+<ul>
+<li><strong>PA11 → USB_DM</strong></li>
+<li><strong>PA12 → USB_DP</strong></li>
+</ul>
+<p>These labels ensure that KiCad recognizes the signals as a matched differential pair when routing to a USB-C connector.</p>
+<p>Differential naming allows:</p>
+<ul>
+<li>Impedance-controlled routing (typically 90 Ω differential)</li>
+<li>Pair-length matching</li>
+<li>Scribble-free automatic D+/D- pairing during layout</li>
+</ul>
+<p>This is mandatory for reliable USB 2.0 full-speed signaling.</p>
+<hr />
+<h2 id="swd-debug-interface-labeling">SWD Debug Interface Labeling</h2>
+<p>Two critical debug pins have been labeled:</p>
+<ul>
+<li><strong>PA13 → SWDIO</strong></li>
+<li><strong>PA14 → SWCLK</strong></li>
+</ul>
+<p>These signals allow programming and debugging via an ST-Link V2 or similar SWD debugger. Net labels establish a one-to-one correspondence with STM32CubeIDE configuration and prevent accidental reuse of these pins for other functions.</p>
+<p>Labeling ensures:</p>
+<ul>
+<li>Easy routing to a 4-pin SWD header</li>
+<li>Guaranteed compatibility with ST-Link tools</li>
+<li>Clean separation from general-purpose I/O</li>
+</ul>
+<p>SWD is preferred over JTAG because it uses fewer pins and is directly supported by the STM32F1 series.</p>
+<hr />
+<h2 id="integration-summary">Integration Summary</h2>
+<p>The newly added circuitry and labels achieve the following:</p>
+<ul>
+<li>Provide a stable 16 MHz clock source with proper load capacitors</li>
+<li>Enable USB full-speed operation through correctly named differential signals</li>
+<li>Reserve SWDIO/SWCLK for programming and debugging</li>
+<li>Maintain exact alignment with STM32CubeIDE pin assignments</li>
+<li>Prepare the design for correct routing in KiCad, including differential pairs and oscillator placement</li>
+</ul>
+<p>These upgrades complete the microcontroller’s foundational hardware, ensuring precise timing, full USB capability, and robust debugging support.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

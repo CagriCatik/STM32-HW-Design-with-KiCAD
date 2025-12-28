@@ -1,0 +1,2193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/04_PCB_Routing/04_Finishing-Touches-DRC/">
+      
+      
+        <link rel="prev" href="../03_Power-Routing/">
+      
+      
+        <link rel="next" href="../../05_Manufacturing/01_Generating-BOM/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>DRC - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#silkscreen-logos-and-design-rule-checks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DRC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛣️ PCB Routing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling & Crystal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Signal-Routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signal Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Power-Routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DRC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DRC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-silkscreen-text-and-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding Silkscreen Text and Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding Silkscreen Text and Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-adding-silkscreen-text-for-connectors-and-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Adding Silkscreen Text for Connectors and Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-labeling-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Labeling Key Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-adding-silkscreen-to-the-bottom-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Adding Silkscreen to the Bottom Side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-running-a-design-rule-check-drc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Running a Design Rule Check (DRC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Running a Design Rule Check (DRC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-executing-the-drc-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Executing the DRC in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-addressing-drc-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Addressing DRC Warnings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-a-custom-logo-to-the-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adding a Custom Logo to the PCB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adding a Custom Logo to the PCB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-using-kicads-bitmap-image-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Using KiCad’s Bitmap Image Converter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-positioning-the-logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Positioning the Logo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-finalizing-the-board-naming-and-revisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Finalizing the Board: Naming and Revisioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-preparing-manufacturing-files-gerbers-and-drill-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Preparing Manufacturing Files: Gerbers and Drill Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Preparing Manufacturing Files: Gerbers and Drill Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-generating-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Generating Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-generating-drill-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Generating Drill Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-reviewing-the-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Reviewing the Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-final-touches-for-a-professional-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion: Final Touches for a Professional PCB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-silkscreen-text-and-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding Silkscreen Text and Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding Silkscreen Text and Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-adding-silkscreen-text-for-connectors-and-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Adding Silkscreen Text for Connectors and Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-labeling-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Labeling Key Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-adding-silkscreen-to-the-bottom-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Adding Silkscreen to the Bottom Side
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-running-a-design-rule-check-drc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Running a Design Rule Check (DRC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Running a Design Rule Check (DRC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-executing-the-drc-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Executing the DRC in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-addressing-drc-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Addressing DRC Warnings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-a-custom-logo-to-the-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adding a Custom Logo to the PCB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adding a Custom Logo to the PCB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-using-kicads-bitmap-image-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Using KiCad’s Bitmap Image Converter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-positioning-the-logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Positioning the Logo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-finalizing-the-board-naming-and-revisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Finalizing the Board: Naming and Revisioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-preparing-manufacturing-files-gerbers-and-drill-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Preparing Manufacturing Files: Gerbers and Drill Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Preparing Manufacturing Files: Gerbers and Drill Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-generating-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Generating Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-generating-drill-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Generating Drill Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-reviewing-the-gerber-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Reviewing the Gerber Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-final-touches-for-a-professional-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion: Final Touches for a Professional PCB
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🛣️ PCB Routing
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="silkscreen-logos-and-design-rule-checks">Silkscreen, Logos, and Design Rule Checks</h1>
+<p>As you approach the final stages of your PCB design in KiCad, ensuring that your board is well-labeled, professional, and manufacturable is paramount. This comprehensive guide covers the essential steps for adding silkscreen annotations, performing Design Rule Checks (DRC), incorporating custom logos, and preparing manufacturing files. By following these best practices, you'll enhance the readability, functionality, and aesthetic appeal of your PCB, making it ready for production.</p>
+<h2 id="1-adding-silkscreen-text-and-labels">1. Adding Silkscreen Text and Labels</h2>
+<p>The silkscreen layer is crucial for providing essential information on the PCB's surface. Proper labeling facilitates easier assembly, debugging, and future maintenance. Here's how to effectively add silkscreen annotations in KiCad.</p>
+<h3 id="step-1-adding-silkscreen-text-for-connectors-and-components">Step 1: Adding Silkscreen Text for Connectors and Components</h3>
+<ol>
+<li>Select the Silkscreen Layer:</li>
+<li>Open your PCB layout in KiCad's PCB Layout Editor.</li>
+<li>
+<p>In the Layer Manager, select the Top Silkscreen (F.SilkS) layer.</p>
+</li>
+<li>
+<p>Insert Text Annotations:</p>
+</li>
+<li>Choose the Add Text tool from the toolbar.</li>
+<li>Enter the desired text, such as SW1 Boot Select or UART.</li>
+<li>
+<p>Position the text adjacent to the corresponding connector or switch, ensuring clarity and avoiding overlap with other elements.</p>
+</li>
+<li>
+<p>Adjust Font Size and Style:</p>
+</li>
+<li>Font Height: Maintain a minimum height of 1mm for readability.</li>
+<li>
+<p>Recommended Settings: Use a font height of 1.25mm with a stroke width of 0.2mm. This balance ensures visibility without making the text appear bulky.</p>
+</li>
+<li>
+<p>Prevent Overlaps with Pads and Vias:</p>
+</li>
+<li>Carefully inspect that silkscreen annotations do not overlap with any pads or vias.</li>
+<li>Overlapping can cause soldering issues. Adjust the text position by double-clicking the text and moving it as necessary.</li>
+</ol>
+<h3 id="step-2-labeling-key-components">Step 2: Labeling Key Components</h3>
+<ul>
+<li>Connectors:</li>
+<li>
+<p>Label major connectors such as UART, SWD (Serial Wire Debug), Power, and USB to clearly indicate their functions.</p>
+</li>
+<li>
+<p>Switches:</p>
+</li>
+<li>
+<p>Annotate switches with their respective positions, for example, Bootloader Mode or Normal Operation for a boot select switch.</p>
+</li>
+<li>
+<p>Revision and Board Information:</p>
+</li>
+<li>Include revision numbers like Rev 1.0 or Version 1 to track design iterations.</li>
+<li>Adding the board name helps in identifying different versions or variants.</li>
+</ul>
+<h3 id="step-3-adding-silkscreen-to-the-bottom-side">Step 3: Adding Silkscreen to the Bottom Side</h3>
+<ul>
+<li>Utilize Available Space:</li>
+<li>
+<p>If the bottom layer has sufficient space, add additional information such as Board Revision, Project Name, or the Manufacturer's Name.</p>
+</li>
+<li>
+<p>Mounting Information:</p>
+</li>
+<li>
+<p>Indicate mounting hole locations and reference designators (e.g., R1, C2) to assist during assembly.</p>
+</li>
+<li>
+<p>Best Practices:</p>
+</li>
+<li>Ensure that the bottom silkscreen does not clutter the PCB. Prioritize essential information to maintain a clean appearance.</li>
+</ul>
+<h2 id="2-running-a-design-rule-check-drc">2. Running a Design Rule Check (DRC)</h2>
+<p>Before finalizing your PCB design, conducting a Design Rule Check (DRC) is essential to identify and rectify potential layout issues, ensuring compliance with manufacturing standards.</p>
+<h3 id="step-1-executing-the-drc-in-kicad">Step 1: Executing the DRC in KiCad</h3>
+<ol>
+<li>Access the DRC Tool:</li>
+<li>
+<p>In the PCB Layout Editor, navigate to Tools &gt; Design Rules Checker from the top menu.</p>
+</li>
+<li>
+<p>Initiate the DRC:</p>
+</li>
+<li>Click on Run DRC.</li>
+<li>
+<p>The tool will evaluate your PCB layout for various violations, including:</p>
+<ul>
+<li>Clearance Issues: Traces or components too close to each other.</li>
+<li>Unrouted Nets: Electrical connections that haven't been fully routed.</li>
+<li>Overlapping Objects: Elements that interfere with each other.</li>
+<li>Manufacturer Specifications: Compliance with minimum track widths, via sizes, and other fabrication constraints.</li>
+</ul>
+</li>
+<li>
+<p>Analyze the Results:</p>
+</li>
+<li>Errors Detected:<ul>
+<li>Highlighted in red on the PCB layout.</li>
+<li>Click on each error to navigate directly to its location for correction.</li>
+</ul>
+</li>
+<li>No Errors:<ul>
+<li>A message indicating '0 Errors, 0 Warnings' confirms readiness for production.</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-2-addressing-drc-warnings">Step 2: Addressing DRC Warnings</h3>
+<ul>
+<li>Unrouted Nets:</li>
+<li>Ensure all electrical signals are fully routed.</li>
+<li>
+<p>For any intentionally unconnected pins, mark them with No-Connect (NC) flags to inform manufacturers.</p>
+</li>
+<li>
+<p>Clearance Violations:</p>
+</li>
+<li>Adjust trace routing to increase the distance between closely placed traces or components.</li>
+<li>
+<p>Reposition components to alleviate crowded areas, maintaining adherence to design specifications.</p>
+</li>
+<li>
+<p>Best Practices:</p>
+</li>
+<li>Regularly run DRC during the design process to catch issues early.</li>
+<li>Customize DRC rules based on the specific requirements of your PCB and manufacturing capabilities.</li>
+</ul>
+<h2 id="3-adding-a-custom-logo-to-the-pcb">3. Adding a Custom Logo to the PCB</h2>
+<p>Incorporating a custom logo enhances the professional appearance of your PCB and serves as a branding element. Follow these steps to add a logo effectively.</p>
+<h3 id="step-1-using-kicads-bitmap-image-converter">Step 1: Using KiCad’s Bitmap Image Converter</h3>
+<ol>
+<li>Open the Bitmap2Component Tool:</li>
+<li>In KiCad, navigate to Tools &gt; Bitmap2Component.</li>
+<li>
+<p>This utility converts bitmap images into PCB footprints suitable for the silkscreen layer.</p>
+</li>
+<li>
+<p>Load and Configure Your Logo:</p>
+</li>
+<li>Select Image File: Use a monochrome bitmap for optimal results.</li>
+<li>
+<p>Adjust Size: Scale the logo to fit within the available space, typically around 6mm to maintain clarity without overwhelming the PCB.</p>
+</li>
+<li>
+<p>Generate the Logo Footprint:</p>
+</li>
+<li>Target Layer: Choose Front Silkscreen to place the logo on the top layer.</li>
+<li>
+<p>Export: Save the generated footprint for use in your PCB layout.</p>
+</li>
+<li>
+<p>Place the Logo in the PCB Layout Editor:</p>
+</li>
+<li>Open the PCB Layout Editor and import the newly created logo footprint.</li>
+<li>Position the logo in an appropriate location, ensuring it does not interfere with critical components or routing.</li>
+</ol>
+<h3 id="step-2-positioning-the-logo">Step 2: Positioning the Logo</h3>
+<ul>
+<li>Select Free Space:</li>
+<li>
+<p>Identify an area on the PCB with ample space, away from connectors, mounting holes, and dense component clusters.</p>
+</li>
+<li>
+<p>Utilize the 3D Viewer:</p>
+</li>
+<li>Press <code>ALT + 3</code> to open the 3D Viewer.</li>
+<li>
+<p>Inspect the placement of the logo to ensure it does not overlap with any vital features and maintains aesthetic balance.</p>
+</li>
+<li>
+<p>Final Adjustments:</p>
+</li>
+<li>
+<p>Fine-tune the logo's position and size as needed, ensuring it enhances the board's appearance without compromising functionality.</p>
+</li>
+<li>
+<p>Best Practices:</p>
+</li>
+<li>Keep logos simple and high-contrast to ensure they are easily visible.</li>
+<li>Avoid overly intricate designs that may complicate the silkscreen process.</li>
+</ul>
+<h2 id="4-finalizing-the-board-naming-and-revisioning">4. Finalizing the Board: Naming and Revisioning</h2>
+<p>Before generating the final manufacturing files, it's essential to document the board's identity and revision status accurately.</p>
+<ul>
+<li>Add Board Name and Revision:</li>
+<li>
+<p>Use the silkscreen layer to include the board's name and its revision number (e.g., Rev 1.0).</p>
+</li>
+<li>
+<p>Include Additional Information:</p>
+</li>
+<li>Date of Revision: Helps in tracking changes over time.</li>
+<li>
+<p>Project Documentation URL: Provide a short URL linking to detailed project documentation or version control repositories.</p>
+</li>
+<li>
+<p>Best Practices:</p>
+</li>
+<li>Maintain consistency in naming conventions across different revisions.</li>
+<li>Ensure that revision indicators are clearly visible and do not interfere with other PCB elements.</li>
+</ul>
+<h2 id="5-preparing-manufacturing-files-gerbers-and-drill-files">5. Preparing Manufacturing Files: Gerbers and Drill Files</h2>
+<p>Generating accurate manufacturing files is the final step to transition your PCB design from the digital realm to physical production.</p>
+<h3 id="step-1-generating-gerber-files">Step 1: Generating Gerber Files</h3>
+<ol>
+<li>Access the Plot Tool:</li>
+<li>
+<p>In the PCB Layout Editor, go to File &gt; Plot.</p>
+</li>
+<li>
+<p>Select Layers to Export:</p>
+</li>
+<li>
+<p>Choose all necessary layers for manufacturing, typically including:</p>
+<ul>
+<li>F.Cu (Front Copper)</li>
+<li>B.Cu (Back Copper)</li>
+<li>F.SilkS (Front Silkscreen)</li>
+<li>B.SilkS (Back Silkscreen)</li>
+<li>F.Mask (Front Solder Mask)</li>
+<li>B.Mask (Back Solder Mask)</li>
+<li>Edge.Cuts (Board Outline)</li>
+</ul>
+</li>
+<li>
+<p>Configure Plot Settings:</p>
+</li>
+<li>Ensure that Gerber format is selected.</li>
+<li>
+<p>Set appropriate precision and units based on manufacturer requirements.</p>
+</li>
+<li>
+<p>Export Gerber Files:</p>
+</li>
+<li>Click Plot to generate the Gerber files for each selected layer.</li>
+</ol>
+<h3 id="step-2-generating-drill-files">Step 2: Generating Drill Files</h3>
+<ol>
+<li>Initiate Drill File Generation:</li>
+<li>
+<p>In the Plot window, click on Generate Drill Files.</p>
+</li>
+<li>
+<p>Configure Drill Settings:</p>
+</li>
+<li>Select the correct drill format as per manufacturer specifications (commonly Excellon format).</li>
+<li>
+<p>Verify hole sizes and types (e.g., plated vs. non-plated vias).</p>
+</li>
+<li>
+<p>Export Drill Files:</p>
+</li>
+<li>Click Generate Drill File to create the necessary files for drilling component and via holes.</li>
+</ol>
+<h3 id="step-3-reviewing-the-gerber-files">Step 3: Reviewing the Gerber Files</h3>
+<ul>
+<li>Use a Gerber Viewer:</li>
+<li>
+<p>Employ a Gerber viewer tool (such as KiCad's built-in viewer or an external application) to inspect the generated files.</p>
+</li>
+<li>
+<p>Verification Steps:</p>
+</li>
+<li>Layer Alignment: Ensure all layers align correctly and match the intended design.</li>
+<li>Trace Integrity: Check for complete and accurate trace routing.</li>
+<li>Silkscreen Clarity: Confirm that all text and logos are legible and properly positioned.</li>
+<li>
+<p>Drill Accuracy: Verify that all holes are correctly placed and sized.</p>
+</li>
+<li>
+<p>Best Practices:</p>
+</li>
+<li>Perform a thorough review to catch any discrepancies before submitting files to the manufacturer.</li>
+<li>Compare the Gerber files with the original design to ensure consistency.</li>
+</ul>
+<h2 id="conclusion-final-touches-for-a-professional-pcb">Conclusion: Final Touches for a Professional PCB</h2>
+<p>Completing your PCB design with well-executed silkscreen labels, thorough Design Rule Checks, and personalized branding elements like logos ensures a professional and manufacturable board. By meticulously preparing your Gerber and drill files, you pave the way for a smooth transition to production. These final touches not only enhance the functionality and appearance of your PCB but also streamline the manufacturing process, resulting in a high-quality product ready for deployment.</p>
+<p>With your design now complete and all final steps addressed, you're ready to submit your Gerber and drill files to your chosen PCB manufacturer and move forward to fabrication.</p>
+<h2 id="best-practices-summary">Best Practices Summary</h2>
+<ul>
+<li>Silkscreen Clarity: Use readable fonts and avoid overlapping with critical PCB features.</li>
+<li>Regular DRC: Conduct Design Rule Checks frequently to identify and resolve issues early.</li>
+<li>Efficient Logo Integration: Keep logos simple and appropriately sized to maintain PCB functionality.</li>
+<li>Accurate Documentation: Clearly label board revisions and maintain consistent naming conventions.</li>
+<li>Thorough File Review: Always inspect Gerber and drill files to ensure they accurately represent your design.</li>
+</ul>
+<p>By adhering to these best practices, your PCB designs will not only meet technical standards but also exhibit professionalism and attention to detail, crucial for successful manufacturing and deployment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

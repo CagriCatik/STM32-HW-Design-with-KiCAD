@@ -1,0 +1,2497 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/03_PCB_Layout/07_Mounting-Holes-Board-Outline/">
+      
+      
+        <link rel="prev" href="../06_Power-Supply-Layout/">
+      
+      
+        <link rel="next" href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Board Outline - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adding-mounting-holes-defining-board-outline-and-preparing-for-routing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Board Outline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📐 PCB Layout
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_KiCad_PCB-Setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_MCU-Decoupling_Capacitors_Crystal-Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling & Crystal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_USB_SWD_Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB & SWD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Changing-Footprints-Adding-3D-Models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprints & 3D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_Switch-Connector-Placement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Board Outline
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Board Outline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-mounting-holes-to-the-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding Mounting Holes to the PCB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding Mounting Holes to the PCB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-mounting-holes-to-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add Mounting Holes to the Schematic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-select-and-assign-footprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Select and Assign Footprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-import-mounting-holes-to-the-pcb-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Import Mounting Holes to the PCB Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-positioning-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Positioning Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-aligning-and-adjusting-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Aligning and Adjusting Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-removing-unnecessary-silkscreen-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Removing Unnecessary Silkscreen Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Removing Unnecessary Silkscreen Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-remove-silkscreen-from-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Remove Silkscreen from Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-adjust-connector-silkscreens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Adjust Connector Silkscreens
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-defining-the-pcb-board-outline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Defining the PCB Board Outline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Defining the PCB Board Outline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-switch-to-edgecuts-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Switch to Edge.Cuts Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-determine-board-outline-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Determine Board Outline Spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-adding-rounded-corners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Adding Rounded Corners
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-fine-tuning-connector-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Fine-Tuning Connector Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-adjusting-component-silkscreens-and-finalizing-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Adjusting Component Silkscreens and Finalizing Placement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Adjusting Component Silkscreens and Finalizing Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-remove-overlapping-silkscreens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Remove Overlapping Silkscreens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-final-3d-view-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Final 3D View Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-move-connectors-and-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Move Connectors and Switches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conclusion-and-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Conclusion and Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Conclusion and Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-steps-routing-the-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps: Routing the Traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-adding-mounting-holes-to-the-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Adding Mounting Holes to the PCB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Adding Mounting Holes to the PCB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-mounting-holes-to-the-schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add Mounting Holes to the Schematic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-select-and-assign-footprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Select and Assign Footprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-import-mounting-holes-to-the-pcb-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Import Mounting Holes to the PCB Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-positioning-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Positioning Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-aligning-and-adjusting-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Aligning and Adjusting Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-removing-unnecessary-silkscreen-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Removing Unnecessary Silkscreen Labels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Removing Unnecessary Silkscreen Labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-remove-silkscreen-from-mounting-holes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Remove Silkscreen from Mounting Holes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-adjust-connector-silkscreens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Adjust Connector Silkscreens
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-defining-the-pcb-board-outline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Defining the PCB Board Outline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Defining the PCB Board Outline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-switch-to-edgecuts-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Switch to Edge.Cuts Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-determine-board-outline-spacing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Determine Board Outline Spacing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-adding-rounded-corners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Adding Rounded Corners
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-fine-tuning-connector-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Fine-Tuning Connector Placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-adjusting-component-silkscreens-and-finalizing-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Adjusting Component Silkscreens and Finalizing Placement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Adjusting Component Silkscreens and Finalizing Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-remove-overlapping-silkscreens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Remove Overlapping Silkscreens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-final-3d-view-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Final 3D View Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-move-connectors-and-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Move Connectors and Switches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conclusion-and-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Conclusion and Next Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Conclusion and Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-steps-routing-the-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps: Routing the Traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_KiCad_PCB-Setup/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    📐 PCB Layout
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adding-mounting-holes-defining-board-outline-and-preparing-for-routing">Adding Mounting Holes, Defining Board Outline, and Preparing for Routing</h1>
+<p>In this section, we delve into the essential steps of adding mounting holes, defining the board outline, and adjusting the layout to prepare for PCB routing using KiCad. These procedures are critical for ensuring that your PCB is securely mounted, properly enclosed, and optimized for manufacturing. The following guide provides detailed instructions, practical examples, and best practices to help you achieve a professional and reliable PCB design.</p>
+<h2 id="1-adding-mounting-holes-to-the-pcb">1. Adding Mounting Holes to the PCB</h2>
+<p>Mounting holes play a pivotal role in attaching the PCB to an enclosure or mechanical structure, providing mechanical stability. They are especially crucial in projects that require mounting within cases or during assembly handling.</p>
+<h3 id="step-1-add-mounting-holes-to-the-schematic">Step 1: Add Mounting Holes to the Schematic</h3>
+<ol>
+<li>Open the Schematic Editor:</li>
+<li>Launch KiCad and open your project.</li>
+<li>
+<p>Navigate to the Schematic Editor by clicking on the corresponding icon.</p>
+</li>
+<li>
+<p>Access the Symbol Library:</p>
+</li>
+<li>Click on the Add Symbol tool (usually represented by an op-amp icon or a symbol with a plus sign).</li>
+<li>
+<p>In the Symbol Library dialog, use the search bar to locate "Mounting Hole" symbols.</p>
+</li>
+<li>
+<p>Select the Appropriate Mounting Hole Symbol:</p>
+</li>
+<li>Simple Mounting Hole: A non-electrically connected hole, ideal for mechanical stability without affecting the electrical design.</li>
+<li>Mounting Hole with Pad: Includes a pad that can be tied to ground, beneficial for grounding purposes, such as grounding oscilloscope probes.</li>
+<li>
+<p>For this design, select the simple mounting hole to avoid unintended electrical connections.</p>
+</li>
+<li>
+<p>Place Mounting Holes on the Schematic:</p>
+</li>
+<li>Position four mounting holes strategically on the schematic to correspond with the PCB's corners.</li>
+<li>Ensure that their locations do not interfere with critical components or signal paths.</li>
+</ol>
+<h3 id="step-2-select-and-assign-footprint">Step 2: Select and Assign Footprint</h3>
+<ol>
+<li>Access Mounting Hole Properties:</li>
+<li>
+<p>Double-click each mounting hole symbol to open the Symbol Properties dialog.</p>
+</li>
+<li>
+<p>Assign Footprint:</p>
+</li>
+<li>Click the Footprint button to open the Footprint Library Browser.</li>
+<li>Search for a suitable mounting hole footprint. Common footprints include:<ul>
+<li>Mounting Hole M2: Suitable for small boards requiring minimal space.</li>
+<li>Mounting Hole M3: Provides a larger diameter for increased mechanical strength.</li>
+</ul>
+</li>
+<li>
+<p>Select the appropriate footprint based on your board size and mechanical requirements.</p>
+</li>
+<li>
+<p>Uniform Footprint Assignment:</p>
+</li>
+<li>Assign the same footprint to all four mounting holes to maintain consistency.</li>
+<li>
+<p>Utilize the copy and paste functions to replicate the footprint assignment efficiently.</p>
+</li>
+<li>
+<p>Confirm Footprint Assignment:</p>
+</li>
+<li>Verify that each mounting hole has the correct footprint by reviewing the properties.</li>
+</ol>
+<h3 id="step-3-import-mounting-holes-to-the-pcb-layout">Step 3: Import Mounting Holes to the PCB Layout</h3>
+<ol>
+<li>Save the Schematic:</li>
+<li>
+<p>After placing and assigning footprints to all mounting holes, save your schematic changes.</p>
+</li>
+<li>
+<p>Open the PCB Editor:</p>
+</li>
+<li>
+<p>Navigate to the PCB Editor by clicking its icon within KiCad.</p>
+</li>
+<li>
+<p>Update PCB from Schematic:</p>
+</li>
+<li>Click on Update PCB from Schematic (often represented by an arrow or synchronization icon).</li>
+<li>In the Update PCB dialog, ensure that the Mounting Holes are selected for import.</li>
+<li>Confirm to import the mounting holes into the PCB layout.</li>
+</ol>
+<h3 id="step-4-positioning-mounting-holes">Step 4: Positioning Mounting Holes</h3>
+<ol>
+<li>Strategic Placement:</li>
+<li>Position the mounting holes near the four corners of the PCB to provide balanced support.</li>
+<li>
+<p>Balanced mounting prevents stress concentration and enhances mechanical stability.</p>
+</li>
+<li>
+<p>Spacing Considerations:</p>
+</li>
+<li>Ensure even spacing to maintain structural integrity.</li>
+<li>Example Placement:<ul>
+<li>X-Axis Spacing: 35mm apart.</li>
+<li>Y-Axis Spacing: 25mm apart.</li>
+</ul>
+</li>
+<li>
+<p>Adjust spacing based on board size and enclosure dimensions.</p>
+</li>
+<li>
+<p>Avoiding Interference:</p>
+</li>
+<li>Ensure mounting holes do not interfere with component placement or signal paths.</li>
+<li>Leave adequate clearance around the holes for screw heads and mounting hardware.</li>
+</ol>
+<h3 id="step-5-aligning-and-adjusting-mounting-holes">Step 5: Aligning and Adjusting Mounting Holes</h3>
+<ol>
+<li>Utilize Alignment Tools:</li>
+<li>Use KiCad's Align Tools to ensure precise alignment of mounting holes.</li>
+<li>
+<p>Access these tools via the Tools menu or relevant keyboard shortcuts.</p>
+</li>
+<li>
+<p>Grid Adjustment:</p>
+</li>
+<li>Modify the grid size if necessary to achieve finer placement accuracy.</li>
+<li>
+<p>Access grid settings through the View or Grid menu.</p>
+</li>
+<li>
+<p>Clearance from Critical Components:</p>
+</li>
+<li>Position mounting holes away from sensitive or critical components to prevent mechanical stress from affecting their functionality.</li>
+<li>Best Practice: Maintain a minimum clearance distance (e.g., 5mm) from high-speed or heat-sensitive components.</li>
+</ol>
+<h2 id="2-removing-unnecessary-silkscreen-labels">2. Removing Unnecessary Silkscreen Labels</h2>
+<p>Silkscreen layers provide labels and markings on the PCB, aiding in assembly and troubleshooting. However, unnecessary labels, especially around mounting holes and connectors, can clutter the design and interfere with manufacturing.</p>
+<h3 id="step-1-remove-silkscreen-from-mounting-holes">Step 1: Remove Silkscreen from Mounting Holes</h3>
+<ol>
+<li>Edit Mounting Hole Properties:</li>
+<li>
+<p>Double-click each mounting hole in the PCB layout to open its Footprint Properties.</p>
+</li>
+<li>
+<p>Modify Silkscreen Layer:</p>
+</li>
+<li>Navigate to the Silkscreen Layer settings within the footprint.</li>
+<li>Option 1: Move silkscreen labels to the Fabrication Layer if they serve a reference purpose.</li>
+<li>
+<p>Option 2: Remove silkscreen labels entirely to declutter the PCB.</p>
+</li>
+<li>
+<p>Confirm Changes:</p>
+</li>
+<li>Save the changes to each mounting hole footprint.</li>
+<li>Verify that silkscreen labels around mounting holes are no longer present or have been relocated appropriately.</li>
+</ol>
+<h3 id="step-2-adjust-connector-silkscreens">Step 2: Adjust Connector Silkscreens</h3>
+<ol>
+<li>Identify Connectors with Generic Labels:</li>
+<li>
+<p>Locate connectors such as UART, SWD, and USB that may have generic labels like J1, J2, etc.</p>
+</li>
+<li>
+<p>Edit Connector Labels:</p>
+</li>
+<li>Double-click each connector to open its Footprint Properties.</li>
+<li>
+<p>Access the Silkscreen layer.</p>
+</li>
+<li>
+<p>Replace Generic Labels:</p>
+</li>
+<li>Substitute generic labels with descriptive names to enhance clarity.<ul>
+<li>Example Replacements:</li>
+<li>J1 → USB Connector</li>
+<li>J2 → UART Interface</li>
+<li>J3 → SWD Debug Port</li>
+</ul>
+</li>
+<li>
+<p>This practice facilitates easier assembly, testing, and troubleshooting by clearly identifying each connector's function.</p>
+</li>
+<li>
+<p>Maintain Consistency:</p>
+</li>
+<li>Ensure that all connectors are uniformly labeled across the PCB to avoid confusion.</li>
+</ol>
+<h2 id="3-defining-the-pcb-board-outline">3. Defining the PCB Board Outline</h2>
+<p>A well-defined board outline is crucial for ensuring that the PCB fits within its intended enclosure and meets manufacturing specifications. The Edge.Cuts layer in KiCad is used to define the physical boundaries and shape of the PCB, including any rounded corners or specific contours.</p>
+<h3 id="step-1-switch-to-edgecuts-layer">Step 1: Switch to Edge.Cuts Layer</h3>
+<ol>
+<li>Access Edge.Cuts Layer:</li>
+<li>In the PCB Editor, locate the Layer Selection Panel typically found on the right side.</li>
+<li>
+<p>Select the Edge.Cuts layer to begin drawing the board outline.</p>
+</li>
+<li>
+<p>Initiate Board Outline Drawing:</p>
+</li>
+<li>Use the Draw Line tool (usually represented by a line icon) to start defining the PCB's edges.</li>
+<li>Begin by drawing two horizontal lines and two vertical lines that outline the primary dimensions of the PCB.</li>
+</ol>
+<h3 id="step-2-determine-board-outline-spacing">Step 2: Determine Board Outline Spacing</h3>
+<ol>
+<li>Maintain Clearance from Mounting Holes:</li>
+<li>Ensure that the board outline is at least 3mm away from all mounting holes.</li>
+<li>
+<p>This clearance prevents mechanical interference from screw heads and mounting hardware.</p>
+</li>
+<li>
+<p>Align Outline with Mounting Pattern:</p>
+</li>
+<li>Position the outline to align with the mounting hole pattern, ensuring sufficient clearance around each hole.</li>
+<li>
+<p>Example Alignment:</p>
+<ul>
+<li>If mounting holes are placed at (0,0), (35,0), (35,25), and (0,25) mm, adjust the board edges accordingly to maintain the 3mm clearance.</li>
+</ul>
+</li>
+<li>
+<p>Consider Enclosure Dimensions:</p>
+</li>
+<li>Verify that the board outline accommodates the internal dimensions of the intended enclosure.</li>
+<li>Allow additional space if necessary for cable management or additional components.</li>
+</ol>
+<h3 id="step-3-adding-rounded-corners">Step 3: Adding Rounded Corners</h3>
+<ol>
+<li>Use the Arc Tool for Rounded Corners:</li>
+<li>Select the Arc Tool from the drawing tools palette.</li>
+<li>
+<p>Click to place the center point of the arc at the corner intersection of the horizontal and vertical lines.</p>
+</li>
+<li>
+<p>Create Smooth Transitions:</p>
+</li>
+<li>Draw an arc that smoothly connects the two perpendicular edges, replacing the sharp corner with a rounded one.</li>
+<li>
+<p>Radius Consideration: Choose a radius that maintains structural integrity without excessively reducing the PCB area (e.g., 5mm radius).</p>
+</li>
+<li>
+<p>Repeat for All Corners:</p>
+</li>
+<li>Apply the same method to all four corners to achieve a uniform rounded appearance.</li>
+<li>
+<p>Ensure that all arcs are symmetrical and consistent in size.</p>
+</li>
+<li>
+<p>Review the Board Outline:</p>
+</li>
+<li>Inspect the rounded corners for accuracy and smoothness.</li>
+<li>Make adjustments as necessary to ensure that the outline meets design specifications.</li>
+</ol>
+<h3 id="step-4-fine-tuning-connector-placement">Step 4: Fine-Tuning Connector Placement</h3>
+<ol>
+<li>Align Connectors with Board Edge:</li>
+<li>Position connectors like USB and SWD so that they are slightly offset from the board edge.</li>
+<li>
+<p>Example: Place a USB-C connector with part of it extending beyond the edge to ensure accessibility when housed in an enclosure.</p>
+</li>
+<li>
+<p>Ensure Sufficient Access:</p>
+</li>
+<li>Verify that connectors protrude adequately for user interaction without hindering enclosure closure.</li>
+<li>
+<p>Best Practice: Maintain a minimum clearance (e.g., 2mm) between the connector and the board edge to prevent interference.</p>
+</li>
+<li>
+<p>Adjust Component Placement:</p>
+</li>
+<li>Relocate other components, such as switches or LEDs, to fit within the newly defined board outline.</li>
+<li>
+<p>Ensure that all components are accessible and do not overlap with the board's edges or other critical features.</p>
+</li>
+<li>
+<p>Validate Clearance:</p>
+</li>
+<li>Use KiCad's Design Rule Checker (DRC) to ensure that all components and connectors have adequate clearance from the board edges and each other.</li>
+</ol>
+<h2 id="4-adjusting-component-silkscreens-and-finalizing-placement">4. Adjusting Component Silkscreens and Finalizing Placement</h2>
+<p>A clean and professional PCB layout requires meticulous adjustment of silkscreen elements and final placement refinements before routing. This ensures that the PCB is not only functional but also aesthetically pleasing and manufacturable.</p>
+<h3 id="step-1-remove-overlapping-silkscreens">Step 1: Remove Overlapping Silkscreens</h3>
+<ol>
+<li>Identify Overlapping Silkscreens:</li>
+<li>Inspect the PCB layout for any silkscreen elements that overlap with the board outline or other components.</li>
+<li>
+<p>Common culprits include labels on connectors like the USB-C connector.</p>
+</li>
+<li>
+<p>Edit Component Footprints:</p>
+</li>
+<li>Double-click on the affected component to open its Footprint Properties.</li>
+<li>
+<p>Navigate to the Silkscreen Layer settings.</p>
+</li>
+<li>
+<p>Modify or Remove Silkscreen Elements:</p>
+</li>
+<li>Option 1: Relocate silkscreen labels to a less congested area within the PCB.</li>
+<li>
+<p>Option 2: Remove unnecessary silkscreen elements entirely to declutter the layout.</p>
+</li>
+<li>
+<p>Ensure Compliance with Design Rules:</p>
+</li>
+<li>Verify that the removal or relocation of silkscreen elements does not violate any design rules or obscure critical information.</li>
+</ol>
+<h3 id="step-2-final-3d-view-check">Step 2: Final 3D View Check</h3>
+<ol>
+<li>Access 3D Viewer:</li>
+<li>
+<p>Press ALT + 3 or navigate to the View menu and select 3D Viewer to open the 3D visualization of your PCB.</p>
+</li>
+<li>
+<p>Inspect Silkscreen and Component Placement:</p>
+</li>
+<li>Rotate and zoom into different areas to ensure that silkscreens do not overlap with the board edges or interfere with component placements.</li>
+<li>
+<p>Look for any components positioned too close to the PCB edges that might affect manufacturability or assembly.</p>
+</li>
+<li>
+<p>Verify Board Outline and Mounting Holes:</p>
+</li>
+<li>Ensure that the board outline is accurately represented and that mounting holes are correctly placed and sized.</li>
+<li>
+<p>Confirm that mounting holes do not interfere with any components or traces.</p>
+</li>
+<li>
+<p>Make Necessary Adjustments:</p>
+</li>
+<li>Return to the PCB Editor to adjust any components or silkscreen elements that do not meet the desired criteria.</li>
+<li>Repeat the 3D view check until the layout meets all visual and functional requirements.</li>
+</ol>
+<h3 id="step-3-move-connectors-and-switches">Step 3: Move Connectors and Switches</h3>
+<ol>
+<li>Adjust Connector Positions:</li>
+<li>Reposition connectors such as USB, UART, and SWD to align properly with the board edges.</li>
+<li>
+<p>Ensure that connectors are easily accessible and do not obstruct other components.</p>
+</li>
+<li>
+<p>Optimize Switch Placement:</p>
+</li>
+<li>Position switches so that they protrude slightly from the board edge, facilitating easy access.</li>
+<li>
+<p>Verify that switches are not obstructed by the enclosure or other mechanical structures.</p>
+</li>
+<li>
+<p>Ensure Even Spacing:</p>
+</li>
+<li>Distribute components evenly across the PCB to balance the layout and reduce potential signal interference.</li>
+<li>
+<p>Maintain consistent spacing between connectors and other peripherals to enhance the PCB's usability.</p>
+</li>
+<li>
+<p>Confirm Alignment with Board Outline:</p>
+</li>
+<li>Ensure that all moved connectors and switches are within the defined board outline and do not extend beyond permissible boundaries.</li>
+<li>
+<p>Use alignment tools to maintain precision in component placement.</p>
+</li>
+<li>
+<p>Final Component Check:</p>
+</li>
+<li>Review all components to ensure they are correctly oriented and positioned for optimal performance and manufacturability.</li>
+<li>Ensure that connectors align with their respective headers or external interfaces.</li>
+</ol>
+<h2 id="5-conclusion-and-next-steps">5. Conclusion and Next Steps</h2>
+<p>Congratulations! You have successfully completed the critical steps of:</p>
+<ul>
+<li>Adding Mounting Holes: Implemented four strategically placed mounting holes to ensure mechanical stability and secure attachment within enclosures.</li>
+<li>Removing Unnecessary Silkscreen Labels: Cleared clutter from the silkscreen layer, enhancing the PCB's readability and manufacturability.</li>
+<li>Defining the Board Outline: Crafted a precise board outline with rounded corners, ensuring compatibility with enclosures and maintaining structural integrity.</li>
+<li>Adjusting Component Placement: Fine-tuned the placement of connectors and switches, ensuring accessibility and optimal layout before routing.</li>
+</ul>
+<p>The PCB is now well-structured and visually clean, setting a solid foundation for the next phase: Routing the Traces. In this upcoming stage, you will connect all the components electrically, ensuring proper signal integrity and power distribution across the PCB.</p>
+<h3 id="next-steps-routing-the-traces">Next Steps: Routing the Traces</h3>
+<ol>
+<li>Plan the Routing Path:</li>
+<li>
+<p>Identify critical signal paths and prioritize routing based on signal integrity and minimal interference.</p>
+</li>
+<li>
+<p>Utilize Routing Tools:</p>
+</li>
+<li>
+<p>Leverage KiCad’s automatic and manual routing tools to create efficient and clean trace layouts.</p>
+</li>
+<li>
+<p>Implement Best Practices:</p>
+</li>
+<li>
+<p>Follow routing best practices such as maintaining adequate trace widths, minimizing via usage, and ensuring proper grounding.</p>
+</li>
+<li>
+<p>Perform Design Rule Checks (DRC):</p>
+</li>
+<li>Continuously run DRCs to identify and rectify any routing issues or violations before finalizing the design.</li>
+</ol>
+<p>With the mechanical design elements finalized, you are now poised to transition into fine-tuning the layout and meticulously routing the PCB traces to complete your professional PCB design.</p>
+<h2 id="best-practices-summary">Best Practices Summary</h2>
+<ul>
+<li>Consistent Footprint Assignment: Use uniform footprints for mounting holes to maintain consistency and simplify the manufacturing process.</li>
+<li>Clear Silkscreen Labels: Use descriptive labels for connectors and critical components to facilitate easier assembly and troubleshooting.</li>
+<li>Adequate Clearance: Ensure sufficient spacing between mounting holes, components, and the board outline to prevent mechanical and electrical interference.</li>
+<li>Precision in Alignment: Utilize KiCad’s alignment and grid tools to achieve precise component placement and board outline definition.</li>
+<li>Visual Verification: Regularly use the 3D Viewer to inspect the PCB layout for any visual inconsistencies or placement issues.</li>
+<li>Iterative Review: Continuously review and adjust the layout throughout the design process to ensure adherence to design specifications and best practices.</li>
+</ul>
+<p>By adhering to these best practices, you ensure that your PCB design is not only functionally robust but also manufacturable and aesthetically pleasing.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

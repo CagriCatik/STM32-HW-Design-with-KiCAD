@@ -1,0 +1,2688 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/02_Schematic/07_ERC-Annotation/">
+      
+      
+        <link rel="prev" href="../06_Power-Supply-Connectors/">
+      
+      
+        <link rel="next" href="../08_Footprint-Assignment/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>ERC & Annotation - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sectioning-and-annotating" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ERC & Annotation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔌 Schematic Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_STM32_uC_Decoupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_STM32_Configuration_Pins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Pins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Pin-Out_STM32CubeIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pin-Out & CubeIDE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Crystal-Circuitry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crystal Circuitry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_USB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC & Annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sectioning-the-schematic-into-readable-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Sectioning the Schematic into Readable Parts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Sectioning the Schematic into Readable Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-draw-bounding-boxes-around-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Draw Bounding Boxes Around Sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-add-text-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Add Text Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-a-title-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adding a Title Block
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adding a Title Block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-editing-the-title-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Editing the Title Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-comments-and-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adding Comments and Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adding Comments and Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-design-explanations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add Design Explanations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-highlight-critical-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Highlight Critical Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-annotating-designators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Annotating Designators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Annotating Designators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-automatic-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Automatic Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-manual-annotation-if-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Manual Annotation (If Needed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-electrical-rules-check-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Running Electrical Rules Check (ERC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Running Electrical Rules Check (ERC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-run-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Run ERC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fix-errors-and-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Fix Errors and Warnings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-assigning-footprints-to-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Assigning Footprints to Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Assigning Footprints to Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-assign-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Assign Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-footprint-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Verify Footprint Assignments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_Footprint-Assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footpoint Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Final-Schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Schematic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summary
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/01_power_decoupling_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Decoupling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/02_power_boot_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Boot Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/03_pinout-stm32cube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinout Cube
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/04_external_clock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Clock
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/05_usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/06_power_supply_connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Connectors Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/07_erc_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERC Annotation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/08_footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprint Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sectioning-the-schematic-into-readable-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Sectioning the Schematic into Readable Parts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Sectioning the Schematic into Readable Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-draw-bounding-boxes-around-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Draw Bounding Boxes Around Sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-add-text-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Add Text Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-a-title-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Adding a Title Block
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Adding a Title Block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-editing-the-title-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Editing the Title Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-comments-and-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Adding Comments and Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Adding Comments and Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-design-explanations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Add Design Explanations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-highlight-critical-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Highlight Critical Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-annotating-designators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Annotating Designators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Annotating Designators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-automatic-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Automatic Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-manual-annotation-if-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Manual Annotation (If Needed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-running-electrical-rules-check-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Running Electrical Rules Check (ERC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Running Electrical Rules Check (ERC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-run-erc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Run ERC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fix-errors-and-warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Fix Errors and Warnings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-assigning-footprints-to-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Assigning Footprints to Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Assigning Footprints to Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-assign-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Assign Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-footprint-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Verify Footprint Assignments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_STM32_uC_Decoupling/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    🔌 Schematic Design
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="sectioning-and-annotating">Sectioning and Annotating</h1>
+<p>Creating a well-organized, annotated, and finalized schematic is crucial for ensuring readability, facilitating future modifications, and streamlining the transition to PCB layout. This documentation provides a comprehensive guide on how to effectively section, annotate, and finalize your schematic in KiCad, incorporating best practices and practical examples to enhance your PCB design process.</p>
+<h2 id="1-sectioning-the-schematic-into-readable-parts">1. Sectioning the Schematic into Readable Parts</h2>
+<p>A structured schematic enhances comprehension, especially for complex designs. Dividing the schematic into distinct functional blocks not only aids in readability but also simplifies debugging and future revisions.</p>
+<h3 id="step-1-draw-bounding-boxes-around-sections">Step 1: Draw Bounding Boxes Around Sections</h3>
+<p>Objective: Visually separate different functional areas of the schematic to enhance clarity.</p>
+<p>Procedure:</p>
+<ol>
+<li>Access the Connected Graphic Lines Tool:</li>
+<li>Locate the "Connected Graphic Lines Tool" in the right-hand toolbar of KiCad.</li>
+<li>Create Bounding Boxes:</li>
+<li>Draw bounding boxes around each functional section of your schematic. Common sections include:<ul>
+<li>Power Supply Section:</li>
+<li>Components: Voltage regulators (e.g., AMS1117), input/output capacitors, and related circuitry.</li>
+<li>Microcontroller Section:</li>
+<li>Components: STM32 microcontroller, decoupling capacitors, crystal oscillator, USB circuitry.</li>
+<li>Communication Interfaces:</li>
+<li>Components: UART, I²C, SWD debug connectors.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Consistent Styling: Use uniform line styles and colors for bounding boxes to maintain a cohesive look.</li>
+<li>Adequate Spacing: Ensure there is sufficient space between bounding boxes to prevent overlapping and maintain readability.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+-+     +--+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>| Power Supply      |     | Microcontroller    |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>| - AMS1117         |     | - STM32            |
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>| - Capacitors      |     | - Decoupling Caps  |
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>+-+     +--+
+</span></code></pre></div>
+<h3 id="step-2-add-text-annotations">Step 2: Add Text Annotations</h3>
+<p>Objective: Label each section clearly to facilitate quick identification and navigation.</p>
+<p>Procedure:</p>
+<ol>
+<li>Select the Add Text Tool:</li>
+<li>Click on the "Add Text" tool in the toolbar.</li>
+<li>Insert Section Titles:</li>
+<li>Add descriptive titles to each bounded section, such as "Power Supply", "Microcontroller", and "USB Circuitry".</li>
+<li>Utilize larger, bold fonts to make titles prominent.</li>
+<li>Adjust Text Size:</li>
+<li>Double-click the inserted text to open the properties dialog.</li>
+<li>Increase the font size to enhance visibility.</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Descriptive Labels: Use clear and specific titles that accurately describe the section's purpose.</li>
+<li>Consistent Formatting: Maintain uniform font styles and sizes across all section titles.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>+-+     +--+
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>| Power Supply  |     | Microcontroller|
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>| - AMS1117         |     | - STM32            |
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>| - Capacitors      |     | - Decoupling Caps  |
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>+-+     +--+
+</span></code></pre></div>
+<h2 id="2-adding-a-title-block">2. Adding a Title Block</h2>
+<p>A title block standardizes your schematic by providing essential project information, enhancing professionalism, and aiding in project management.</p>
+<h3 id="step-1-editing-the-title-block">Step 1: Editing the Title Block</h3>
+<p>Objective: Populate the title block with relevant metadata to document your schematic effectively.</p>
+<p>Procedure:</p>
+<ol>
+<li>Access Page Settings:</li>
+<li>Click the Page Settings button, represented by a sheet of paper icon, located on the toolbar.</li>
+<li>Fill in the Title Block Fields:</li>
+<li>Title: Enter the project name (e.g., "STM32 Demo PCB").</li>
+<li>Revision: Assign a meaningful revision number (e.g., "v0.1") to track changes.</li>
+<li>Company Name: Input your company or project name, if applicable.</li>
+<li>Date: The field auto-fills with the current date, but it can be edited manually if needed.</li>
+<li>Apply Changes:</li>
+<li>Click OK to update the title block on your schematic.</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Accurate Information: Ensure all fields are correctly filled to avoid confusion during project handovers or reviews.</li>
+<li>Version Control: Use a systematic revision numbering scheme to track schematic iterations effectively.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>-
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>| Title      : STM32 Demo PCB                   |
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>| Revision   : v0.1                             |
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>| Company    : Your Company Name                |
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>| Date       : 2024-04-27                       |
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>-
+</span></code></pre></div>
+<h2 id="3-adding-comments-and-notes">3. Adding Comments and Notes</h2>
+<p>Annotations provide context and explanations within your schematic, aiding in understanding design decisions and facilitating future modifications.</p>
+<h3 id="step-1-add-design-explanations">Step 1: Add Design Explanations</h3>
+<p>Objective: Document the rationale behind component selections and design choices.</p>
+<p><strong>Procedure:</strong></p>
+<ol>
+<li>Select the Add Text Tool:</li>
+<li>Use the "Add Text" tool to insert explanatory notes near relevant components.</li>
+<li>Insert Explanations:</li>
+<li>Example 1: Near a crystal oscillator, add:<ul>
+<li><em>"Calculated based on crystal load capacitance of 10 pF and stray capacitance of 5 pF."</em></li>
+</ul>
+</li>
+<li>Example 2: Near a USB D+ line resistor, add:<ul>
+<li><em>"Pull-up resistor for USB detection as per STM32 application note AN4879."</em></li>
+</ul>
+</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Clarity: Ensure comments are concise and directly related to the component or section they describe.</li>
+<li>Relevance: Include only necessary explanations to avoid cluttering the schematic.</li>
+</ul>
+<h3 id="step-2-highlight-critical-areas">Step 2: Highlight Critical Areas</h3>
+<p>Objective: Emphasize vital connections and components to guide reviewers and future developers.</p>
+<p>Procedure:</p>
+<ul>
+<li>Add Short Comments:</li>
+<li>
+<p>For critical connections like VBUS power input or SWD connections, insert brief explanations detailing their purpose and behavior.</p>
+</li>
+<li>
+<p>Label Important Pins:</p>
+</li>
+<li>Clearly label significant pins such as VCC, GND, UART_TX, I2C_SCL, etc., to streamline the PCB layout phase.</li>
+</ul>
+<p>Best Practices:</p>
+<ul>
+<li>Consistent Labeling: Use a uniform style for all labels to maintain readability.</li>
+<li>Avoid Overcrowding: Distribute comments evenly to prevent overlapping and maintain a clean schematic.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>+-+
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>| VBUS Power Input  | &lt;-- &quot;Defines the main power source for the PCB.&quot;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>+-+
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>+-+
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>| SWD Connections   | &lt;-- &quot;Used for programming and debugging the microcontroller.&quot;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>+-+
+</span></code></pre></div>
+<h2 id="4-annotating-designators">4. Annotating Designators</h2>
+<p>Designators uniquely identify each component in the schematic, ensuring accurate component placement and assembly during PCB manufacturing.</p>
+<h3 id="step-1-automatic-annotation">Step 1: Automatic Annotation</h3>
+<p>Objective: Efficiently assign unique designators to all components in the schematic.</p>
+<p>Procedure:</p>
+<ol>
+<li>Initiate Annotation:</li>
+<li>Click the Annotate Schematic Symbols button, identifiable by an "A" icon, in the toolbar.</li>
+<li>Configure Annotation Settings:</li>
+<li>In the Annotate Schematic dialog, select the schematic sheets to annotate.</li>
+<li>Choose the annotation order, such as by X/Y position, to maintain logical sequencing (e.g., top-to-bottom, left-to-right).</li>
+<li>Execute Annotation:</li>
+<li>Click Annotate to allow KiCad to automatically assign designators (e.g., C1, R2, U1) based on the selected settings.</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Logical Sequencing: Opt for annotation by position to reflect the physical layout, aiding in intuitive PCB placement.</li>
+<li>Review Assignments: After annotation, review designators to ensure consistency and logical grouping.</li>
+</ul>
+<h3 id="step-2-manual-annotation-if-needed">Step 2: Manual Annotation (If Needed)</h3>
+<p>Objective: Gain granular control over designator assignments for specific organizational needs.</p>
+<p><strong>Procedure:</strong></p>
+<ul>
+<li>Manual Assignment:</li>
+<li>Double-click on a component's designator (e.g., "C?") to edit.</li>
+<li>Input the desired designator manually (e.g., "C1", "R1").</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Consistency: Maintain a consistent naming convention to facilitate easy identification and troubleshooting.</li>
+<li>Grouping: Assign designators in a manner that groups related components logically (e.g., all decoupling capacitors as C1, C2, etc.).</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>C1: 10 µF Decoupling Capacitor
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>R1: 1kΩ Pull-up Resistor
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>U1: STM32 Microcontroller
+</span></code></pre></div>
+<h2 id="5-running-electrical-rules-check-erc">5. Running Electrical Rules Check (ERC)</h2>
+<p>Conducting an Electrical Rules Check ensures the schematic is free from electrical errors, enhancing the reliability of the design before proceeding to PCB layout.</p>
+<h3 id="step-1-run-erc">Step 1: Run ERC</h3>
+<p>Objective: Identify and rectify electrical issues within the schematic.</p>
+<p><strong>Procedure:</strong></p>
+<ol>
+<li>Access ERC Tool:</li>
+<li>Click the Electrical Rules Check (ERC) button, represented by a checkmark icon, in the toolbar.</li>
+<li>Execute ERC:</li>
+<li>Initiate the ERC process to scan the schematic for potential electrical issues, such as:<ul>
+<li>Unconnected Pins: Pins that are not connected to any other component.</li>
+<li>Power Inputs Without Sources: Power lines that lack defined power sources.</li>
+<li>Incorrect Connections: Inappropriate connections between pins of differing types (e.g., output to output).</li>
+</ul>
+</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Regular Checks: Perform ERC frequently during schematic development to catch errors early.</li>
+<li>Detailed Review: Carefully examine ERC reports to understand and address each identified issue.</li>
+</ul>
+<h3 id="step-2-fix-errors-and-warnings">Step 2: Fix Errors and Warnings</h3>
+<p>Objective: Resolve identified electrical issues to ensure schematic integrity.</p>
+<p>Procedure:</p>
+<ul>
+<li>Addressing Errors:</li>
+<li>
+<p>Power Flags: If power flags are missing, add a Power Flag symbol from the Power Ports section to define power sources like VBUS.</p>
+</li>
+<li>
+<p>Handling Warnings:</p>
+</li>
+<li>Floating Pins: For intentional floating pins, add No-Connect (DNC) flags to suppress warnings.</li>
+</ul>
+<p>Best Practices:</p>
+<ul>
+<li>Understand Warnings: Distinguish between critical errors and non-critical warnings to prioritize fixes.</li>
+<li>Iterative Checking: After making corrections, rerun ERC to confirm that all issues have been resolved.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Error: Unconnected pin on U1 (VCC)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Solution: Add Power Flag to VCC line.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Warning: Floating pin on connector J1 (USB D-)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Solution: Add DNC flag to indicate intentional disconnection.
+</span></code></pre></div>
+<h2 id="6-assigning-footprints-to-components">6. Assigning Footprints to Components</h2>
+<p>Footprints define the physical representation of components on the PCB, including dimensions and pin configurations. Assigning accurate footprints is essential for correct component placement and PCB fabrication.</p>
+<h3 id="step-1-assign-footprints">Step 1: Assign Footprints</h3>
+<p>Objective: Link each schematic symbol to its corresponding PCB footprint.</p>
+<p>Procedure:</p>
+<ol>
+<li>Access Footprint Assignment Tool:</li>
+<li>Click the Assign Footprints to Symbols button, depicted by a footprint icon, in the toolbar.</li>
+<li>Assign Appropriate Footprints:</li>
+<li>In the Footprint Assignment window, select and assign footprints based on each component's physical characteristics. Examples include:<ul>
+<li>AMS1117-3.3 Regulator: Choose a SOT-223 footprint suitable for surface-mount applications.</li>
+<li>Decoupling Capacitors: Select 0805 or 0603 package footprints based on design specifications.</li>
+<li>Microcontroller: Assign a TQFP or DIP package footprint, depending on the specific STM32 variant used.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Manufacturer Datasheets: Refer to component datasheets to ensure correct footprint selection.</li>
+<li>Standard Packages: Utilize standard footprint libraries to maintain consistency and ease of sourcing.</li>
+<li>Footprint Libraries: Keep footprint libraries up-to-date to include the latest component packages.</li>
+</ul>
+<h3 id="step-2-verify-footprint-assignments">Step 2: Verify Footprint Assignments</h3>
+<p>Objective: Ensure all components have been assigned correct and compatible footprints.</p>
+<p>Procedure:</p>
+<ul>
+<li>Review Assignments:</li>
+<li>
+<p>Confirm that each component has an assigned footprint, paying special attention to critical components like the microcontroller, connectors, and voltage regulators.</p>
+</li>
+<li>
+<p>Check Package Sizes:</p>
+</li>
+<li>
+<p>Ensure the selected package sizes align with the available PCB space and meet design requirements.</p>
+</li>
+<li>
+<p>Adjust if Necessary:</p>
+</li>
+<li>Modify footprint assignments if discrepancies are found, ensuring optimal fit and functionality on the PCB.</li>
+</ul>
+<p>Best Practices:</p>
+<ul>
+<li>Double-Check Critical Components: Prioritize verification for components that are sensitive to footprint inaccuracies.</li>
+<li>Utilize KiCad’s Preview Feature: Use the footprint preview to visualize component placement and identify potential issues.</li>
+</ul>
+<p>Example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Component: AMS1117-3.3
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Assigned Footprint: SOT-223-3
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Component: STM32F103C8
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Assigned Footprint: TQFP-48
+</span></code></pre></div>
+<h2 id="7-conclusion">7. Conclusion</h2>
+<p>Organizing, annotating, and finalizing your schematic in KiCad are pivotal steps in creating a clear, professional, and error-free PCB design. By meticulously sectioning the schematic, adding meaningful annotations, assigning unique designators and appropriate footprints, and conducting thorough electrical checks, you lay a solid foundation for the subsequent PCB layout phase.</p>
+<p>Key Takeaways:</p>
+<ul>
+<li>Sectioning: Enhances readability and facilitates maintenance by logically grouping related components.</li>
+<li>Annotations: Provide essential context and explanations, aiding in understanding and future modifications.</li>
+<li>Designators and Footprints: Ensure accurate component identification and physical placement, critical for manufacturing and assembly.</li>
+<li>Electrical Rules Check (ERC): Validates the schematic’s electrical integrity, preventing potential issues in the PCB design.</li>
+</ul>
+<p>With these practices in place, you are well-equipped to transition smoothly from schematic design to PCB layout, ensuring an organized and efficient design process that leads to successful PCB fabrication and assembly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

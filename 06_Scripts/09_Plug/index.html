@@ -1,0 +1,2205 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/06_Scripts/09_Plug/">
+      
+      
+        <link rel="prev" href="../08_Design_Automation/">
+      
+      
+        <link rel="next" href="../../07_Glossary/A/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Plug - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#scripting-plugins" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plug
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../03_PCB_Layout/01_KiCad_PCB-Setup/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📜 Scripts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Automated_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Customized_Footprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custome Footprint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_DRC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DRC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Netlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netlist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_BOM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_UI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_Design_Automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plug
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-create-scripting-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Create Scripting Plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases-for-scripting-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases for Scripting Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases for Scripting Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-automating-layout-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Automating Layout Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-with-external-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Integration with External Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-custom-analysis-and-verification-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Custom Analysis and Verification Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-batch-processing-and-iterative-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Batch Processing and Iterative Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide-creating-a-kicad-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Guide: Creating a KiCad Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide: Creating a KiCad Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-setting-up-the-plugin-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Setting Up the Plugin Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-defining-the-plugin-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Defining the Plugin Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-running-the-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Running the Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-testing-and-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Testing and Fine-Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-for-developing-kicad-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Developing KiCad Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices for Developing KiCad Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-modular-and-reusable-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Modular and Reusable Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-comprehensive-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Comprehensive Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-user-interface-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. User Interface Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-maintainability-and-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Maintainability and Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-example-plugin-for-controlled-impedance-trace-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Example: Plugin for Controlled Impedance Trace Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-create-scripting-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Create Scripting Plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases-for-scripting-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases for Scripting Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases for Scripting Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-automating-layout-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Automating Layout Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-with-external-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Integration with External Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-custom-analysis-and-verification-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Custom Analysis and Verification Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-batch-processing-and-iterative-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Batch Processing and Iterative Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide-creating-a-kicad-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Guide: Creating a KiCad Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide: Creating a KiCad Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-setting-up-the-plugin-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Setting Up the Plugin Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-defining-the-plugin-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Defining the Plugin Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-running-the-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Running the Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-testing-and-fine-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Testing and Fine-Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-for-developing-kicad-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices for Developing KiCad Plugins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices for Developing KiCad Plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-modular-and-reusable-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Modular and Reusable Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-comprehensive-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Comprehensive Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-user-interface-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. User Interface Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-maintainability-and-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Maintainability and Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-example-plugin-for-controlled-impedance-trace-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Example: Plugin for Controlled Impedance Trace Routing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_Automated_Design/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    📜 Scripts
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="scripting-plugins">Scripting Plugins</h1>
+<p>KiCad’s Python scripting environment allows users to create custom plugins that can significantly enhance the functionality of the software. These plugins enable users to extend KiCad's native capabilities by adding new tools and automating complex workflows. With Python scripting plugins, PCB designers can implement specific features or integrate external tools into their design environment, providing a high level of customization to match the needs of a particular project or workflow.</p>
+<p>Scripting plugins in KiCad can range from simple automation scripts to fully-fledged tools that automate specific design tasks, integrate with external systems, or analyze and verify designs. This level of customization helps designers create more efficient and reliable workflows, reducing the time spent on repetitive tasks and enhancing the accuracy of the final design.</p>
+<h2 id="why-create-scripting-plugins">Why Create Scripting Plugins?</h2>
+<p>Creating plugins in KiCad allows users to go beyond the standard feature set, creating custom workflows and tools tailored specifically to their design requirements. This provides several key advantages:</p>
+<ul>
+<li>Automation of Specialized Tasks: If you often perform a specific set of tasks, a scripting plugin can automate those, saving time and ensuring consistency across designs.</li>
+<li>Customization for Unique Workflows: Every design project is different, and a one-size-fits-all solution may not always suffice. Scripting plugins allow you to customize the design environment to meet your specific needs, whether that’s in layout, simulation, verification, or integration with other tools.</li>
+<li>Integration with External Tools: KiCad can be extended to communicate with other software tools, including simulation environments, mechanical CAD tools, or version control systems. This integration helps create a seamless workflow between different stages of the design and validation process.</li>
+<li>Adding Advanced Features: Through scripting plugins, you can add features or functionalities not included in the core software, such as custom analysis tools, unique routing optimizations, or even new design validation techniques.</li>
+</ul>
+<h2 id="common-use-cases-for-scripting-plugins">Common Use Cases for Scripting Plugins</h2>
+<h3 id="1-automating-layout-optimizations">1. Automating Layout Optimizations</h3>
+<p>In complex PCB designs, optimizing component placement and routing is crucial to achieving good performance and manufacturability. Writing plugins to automate layout optimizations can significantly reduce manual effort while ensuring better design outcomes.</p>
+<p>Example Use Case:
+- A plugin could automatically arrange decoupling capacitors close to their associated IC pins, ensuring optimal performance by minimizing trace lengths and reducing noise.
+- A custom routing plugin could enforce strict routing rules for high-speed signals, such as controlled impedance traces, ensuring compliance with signal integrity requirements.</p>
+<h3 id="2-integration-with-external-tools">2. Integration with External Tools</h3>
+<p>One of the most powerful aspects of scripting plugins is the ability to integrate KiCad with external tools. This could be useful for several scenarios, such as importing design data from mechanical CAD tools, running simulations on the PCB layout, or integrating with version control systems to track changes in design files.</p>
+<p>Example Use Case:
+- A plugin could connect KiCad with a mechanical CAD tool (e.g., FreeCAD) to ensure that the PCB design fits within the mechanical enclosure. The plugin could automatically generate and import the required 3D model into KiCad.
+- Integration with simulation tools like SPICE or specialized electromagnetic simulation software allows designers to test and validate PCB designs directly from KiCad, avoiding the need for manual file exports and imports.</p>
+<h3 id="3-custom-analysis-and-verification-tools">3. Custom Analysis and Verification Tools</h3>
+<p>In some cases, KiCad’s built-in analysis and verification tools may not cover all the specific checks required by your design process. A custom plugin can fill this gap, providing additional analysis tools tailored to your project’s requirements.</p>
+<p>Example Use Case:
+- A verification plugin could check for custom design rules, such as ensuring that all power traces meet a minimum width for high-current applications.
+- A signal integrity plugin could analyze critical traces, such as differential pairs or high-speed data lines, and flag potential issues based on user-defined rules.</p>
+<h3 id="4-batch-processing-and-iterative-optimization">4. Batch Processing and Iterative Optimization</h3>
+<p>When dealing with multiple design iterations or batch processing of designs, manually performing the same actions on each design can be tedious and error-prone. Plugins can automate this process, allowing for batch design rule checking, netlist validation, or even routing optimization across multiple PCB designs.</p>
+<p>Example Use Case:
+- A plugin could automate the process of exporting Gerber files, generating BOMs, and running design rule checks across multiple designs in a project, saving time and ensuring consistency.
+- For iterative design processes, a plugin could automatically apply certain optimizations, such as re-routing high-speed signal traces, based on previous design performance metrics.</p>
+<h2 id="step-by-step-guide-creating-a-kicad-plugin">Step-by-Step Guide: Creating a KiCad Plugin</h2>
+<p>Let’s walk through an example of creating a simple KiCad plugin that automates layout optimization for placing decoupling capacitors close to IC pins.</p>
+<h3 id="step-1-setting-up-the-plugin-structure">Step 1: Setting Up the Plugin Structure</h3>
+<p>The first step is to set up the basic structure of a KiCad plugin. Plugins in KiCad are typically Python scripts that are placed in the <code>scripting/plugins</code> folder. You can create a folder for your plugin and include a script file inside.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pcbnew</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">DecouplingCapOptimizer</span><span class="p">(</span><span class="n">pcbnew</span><span class="o">.</span><span class="n">ActionPlugin</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Decoupling Capacitor Optimizer&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="s2">&quot;Layout&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Automatically place decoupling capacitors close to ICs&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">Run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="c1"># This is where the core functionality of the plugin goes</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="n">board</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">GetBoard</span><span class="p">()</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">components</span> <span class="o">=</span> <span class="n">board</span><span class="o">.</span><span class="n">GetModules</span><span class="p">()</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            <span class="k">if</span> <span class="s2">&quot;C&quot;</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">GetReference</span><span class="p">():</span>  <span class="c1"># Check for capacitors</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                <span class="n">ic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_associated_ic</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                <span class="k">if</span> <span class="n">ic</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">place_capacitor</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">ic</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">find_associated_ic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacitor</span><span class="p">):</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="c1"># Logic to find the IC associated with this decoupling capacitor</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="c1"># For simplicity, assume ICs have references starting with &quot;U&quot;</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="n">board</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">GetBoard</span><span class="p">()</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">board</span><span class="o">.</span><span class="n">GetModules</span><span class="p">():</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="k">if</span> <span class="s2">&quot;U&quot;</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="n">GetReference</span><span class="p">():</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                <span class="k">return</span> <span class="n">component</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">place_capacitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacitor</span><span class="p">,</span> <span class="n">ic</span><span class="p">):</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="c1"># Logic to place the capacitor close to the IC</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="n">ic_position</span> <span class="o">=</span> <span class="n">ic</span><span class="o">.</span><span class="n">GetPosition</span><span class="p">()</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="n">capacitor</span><span class="o">.</span><span class="n">SetPosition</span><span class="p">(</span><span class="n">ic_position</span> <span class="o">+</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">wxPointMM</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  <span class="c1"># Example placement</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="n">DecouplingCapOptimizer</span><span class="p">()</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="step-2-defining-the-plugin-logic">Step 2: Defining the Plugin Logic</h3>
+<p>In this simple example, the plugin iterates over all components on the board, identifies decoupling capacitors, and places them close to their associated ICs. The core logic includes:</p>
+<ul>
+<li>Identifying Capacitors: The script checks component references to find capacitors (in this case, components with references starting with "C").</li>
+<li>Finding the Associated IC: A simple heuristic is used to find an IC associated with the capacitor (e.g., components with references starting with "U").</li>
+<li>Placing the Capacitor: The capacitor is automatically positioned close to the IC using the <code>SetPosition</code> method.</li>
+</ul>
+<h3 id="step-3-running-the-plugin">Step 3: Running the Plugin</h3>
+<p>Once the plugin is set up, you can run it directly within KiCad. The plugin can be executed from the KiCad interface via the <code>Tools &gt; External Plugins</code> menu, where it will automatically appear after registration.</p>
+<h3 id="step-4-testing-and-fine-tuning">Step 4: Testing and Fine-Tuning</h3>
+<p>After running the plugin, you can review the placement of the capacitors and fine-tune the plugin logic as needed. For instance, you can adjust the placement distances or improve the logic for associating capacitors with ICs.</p>
+<h2 id="best-practices-for-developing-kicad-plugins">Best Practices for Developing KiCad Plugins</h2>
+<h3 id="1-modular-and-reusable-code">1. Modular and Reusable Code</h3>
+<p>When writing plugins, structure your code in a modular way. Break down the functionality into separate functions or classes, so you can reuse or expand them later. This will also make it easier to troubleshoot or extend your plugins in the future.</p>
+<h3 id="2-comprehensive-error-handling">2. Comprehensive Error Handling</h3>
+<p>PCB designs can be complex, with many edge cases. When writing a plugin, ensure you handle potential errors gracefully. For example, if a component is missing or if an operation fails, the plugin should log a message or notify the user rather than crashing or causing unexpected behavior.</p>
+<h3 id="3-user-interface-integration">3. User Interface Integration</h3>
+<p>For more advanced plugins, consider adding a user interface (UI) to allow users to customize plugin behavior. KiCad’s Python scripting environment allows you to create simple dialog boxes or configuration windows, enabling users to interact with your plugin directly.</p>
+<h3 id="4-maintainability-and-documentation">4. Maintainability and Documentation</h3>
+<p>Document your plugins thoroughly, especially if they will be used by other team members or shared with the KiCad community. Provide clear instructions on how to install and use the plugin, as well as how to modify it if needed. Maintain clean, well-commented code to make it easier to update the plugin as KiCad evolves.</p>
+<h3 id="5-performance-optimization">5. Performance Optimization</h3>
+<p>For large PCBs with many components, scripts can become slow if not optimized. When writing plugins, try to minimize the number of times you access or modify the board data. Instead, batch operations when possible and avoid unnecessary iterations over components.</p>
+<h2 id="advanced-example-plugin-for-controlled-impedance-trace-routing">Advanced Example: Plugin for Controlled Impedance Trace Routing</h2>
+<p>For an advanced example, consider a plugin that automates controlled impedance trace routing for high-speed designs. Controlled impedance routing is essential for maintaining signal integrity, especially in designs with high-frequency signals like USB or Ethernet.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ControlledImpedanceRouter</span><span class="p">(</span><span class="n">pcbnew</span><span class="o">.</span><span class="n">ActionPlugin</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Controlled Impedance Router&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="s2">&quot;Routing&quot;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Automatically route controlled impedance traces&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">Run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">board</span> <span class="o">=</span> <span class="n">pcbnew</span><span class="o">.</span><span class="n">GetBoard</span><span class="p">()</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">net_classes</span> <span class="o">=</span> <span class="n">board</span><span class="o">.</span><span class="n">GetNetClasses</span><span class="p">()</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">for</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">board</span><span class="o">.</span><span class="n">GetNetsByName</span><span class="p">():</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            <span class="k">if</span> <span class="s2">&quot;USB&quot;</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">GetNetname</span><span class="p">():</span>  <span class="c1"># Check for high-speed nets</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">route_controlled_impedance_trace</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">net_classes</span><span class="p">[</span><span class="s2">&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">HighSpeed</span><span class="s2">&quot;])</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">route_controlled_impedance_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">net</span><span class="p">,</span> <span class="n">net_class</span><span class="p">):</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="c1"># Logic to route the trace with controlled impedance</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">GetTracks</span><span class="p">():</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>            <span class="n">track</span><span class="o">.</span><span class="n">SetWidth</span><span class="p">(</span><span class="n">net_class</span><span class="o">.</span><span class="n">GetClearance</span><span class="p">())</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">ControlledImpedanceRouter</span><span class="p">()</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+</span></code></pre></div>
+<p>This example automates the process of routing controlled impedance traces for high-speed signals, ensuring that specific nets (e.g., USB signals) adhere to the required design rules.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Scripting plugins in KiCad offers a robust way to extend and customize the PCB design workflow. Whether automating layout tasks, integrating external tools, or adding new analysis capabilities, Python plugins empower designers to tailor KiCad to their specific needs. By following best practices and exploring advanced use cases, you can unlock the full potential of KiCad’s Python scripting environment and create more efficient, optimized, and customized design processes.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

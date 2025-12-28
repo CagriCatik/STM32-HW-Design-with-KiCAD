@@ -1,0 +1,2540 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive guide to designing STM32-based hardware using KiCad.">
+      
+      
+        <meta name="author" content="Cagri Catik">
+      
+      
+        <link rel="canonical" href="https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/03_PCB_Layout/01_KiCad_PCB-Setup/">
+      
+      
+        <link rel="prev" href="../../02_Schematic/Summary/08_footprint/">
+      
+      
+        <link rel="next" href="../02_MCU-Decoupling_Capacitors_Crystal-Layout/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Setup - STM32 Hardware Design with KiCad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pcb-layout-and-routing-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-header__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STM32 Hardware Design with KiCad
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../01_Introduction/01_Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📘 Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 Schematic Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📐 PCB Layout
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛣️ PCB Routing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏭 Manufacturing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../06_Scripts/01_Automated_Design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📜 Scripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../07_Glossary/A/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Glossary
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../08_Recipes/01_simplify-complex-components/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🍳 Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/2025-01-03-welcome/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝 Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="STM32 Hardware Design with KiCad" class="md-nav__button md-logo" aria-label="STM32 Hardware Design with KiCad" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v1h3v2h-3v2h3v2h-3v2h3v2h-3v2h3v2h-3v1H6v-1H3v-2h3v-2H3v-2h3v-2H3V9h3V7H3V5h3zm5 11v3h1v-3zm2 0v3h1v-3zm2 0v3h1v-3z"/></svg>
+
+    </a>
+    STM32 Hardware Design with KiCad
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    CagriCatik/STM32-HW-Design-with-KiCAD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../01_Introduction/01_Introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📘 Introduction
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../02_Schematic/01_STM32_uC_Decoupling/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔌 Schematic Design
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 PCB Layout
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📐 PCB Layout
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-opening-the-pcb-layout-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Opening the PCB Layout Editor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Opening the PCB Layout Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setting-up-the-pcb-board-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setting Up the PCB Board Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Setting Up the PCB Board Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configuring-the-board-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Configuring the Board Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-setting-the-ground-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Setting the Ground Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-reviewing-the-stack-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Reviewing the Stack-Up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-pcb-board-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - PCB Board Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-setting-up-design-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Setting Up Design Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Setting Up Design Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-understanding-manufacturer-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Understanding Manufacturer Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuring-design-rules-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Configuring Design Rules in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-design-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Design Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pre-defining-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pre-Defining Track Sizes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pre-Defining Track Sizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-defining-signal-and-power-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Defining Signal and Power Track Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-defining-via-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Defining Via Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-adding-differential-pair-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Adding Differential Pair Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-pre-defining-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Pre-Defining Track Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-importing-component-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Importing Component Footprints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Importing Component Footprints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-importing-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Importing Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-arranging-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Arranging Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-previewing-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Previewing Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-arranging-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Arranging Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-preparing-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Preparing for Routing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Preparing for Routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-placing-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Placing Key Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-checking-netlist-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Checking Netlist Connections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-final-preparations-before-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Final Preparations Before Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-preparing-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Preparing for Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_MCU-Decoupling_Capacitors_Crystal-Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decoupling & Crystal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_USB_SWD_Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    USB & SWD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Changing-Footprints-Adding-3D-Models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footprints & 3D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_Switch-Connector-Placement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Placement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_Power-Supply-Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_Mounting-Holes-Board-Outline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Board Outline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ PCB Routing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../05_Manufacturing/01_Generating-BOM/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏭 Manufacturing
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../06_Scripts/01_Automated_Design/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📜 Scripts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../07_Glossary/A/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Glossary
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../08_Recipes/01_simplify-complex-components/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🍳 Recipes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../blog/2025-01-03-welcome/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 Blog
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-opening-the-pcb-layout-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Opening the PCB Layout Editor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Opening the PCB Layout Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setting-up-the-pcb-board-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setting Up the PCB Board Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Setting Up the PCB Board Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-configuring-the-board-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Configuring the Board Layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-setting-the-ground-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Setting the Ground Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-reviewing-the-stack-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Reviewing the Stack-Up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-pcb-board-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - PCB Board Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-setting-up-design-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Setting Up Design Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Setting Up Design Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-understanding-manufacturer-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Understanding Manufacturer Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuring-design-rules-in-kicad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Configuring Design Rules in KiCad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-design-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Design Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pre-defining-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pre-Defining Track Sizes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Pre-Defining Track Sizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-defining-signal-and-power-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Defining Signal and Power Track Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-defining-via-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Defining Via Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-adding-differential-pair-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Adding Differential Pair Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-pre-defining-track-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Pre-Defining Track Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-importing-component-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Importing Component Footprints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Importing Component Footprints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-importing-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Importing Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-arranging-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Arranging Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-previewing-footprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Previewing Footprints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-arranging-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Arranging Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-preparing-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Preparing for Routing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Preparing for Routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-placing-key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Placing Key Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-checking-netlist-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Checking Netlist Connections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-final-preparations-before-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Final Preparations Before Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices-preparing-for-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices - Preparing for Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    🏠 Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    📐 PCB Layout
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pcb-layout-and-routing-setup">PCB Layout and Routing Setup</h1>
+<p>Creating a reliable and manufacturable Printed Circuit Board (PCB) is a critical step in bringing your electronic designs to life. This documentation provides a comprehensive guide to setting up PCB layout and routing in KiCad, specifically tailored for an STM32-based design. By following these detailed instructions, you will ensure that your PCB design adheres to best practices, maintains signal integrity, and meets manufacturing requirements.</p>
+<h2 id="1-opening-the-pcb-layout-editor">1. Opening the PCB Layout Editor</h2>
+<p>Transitioning from schematic design to PCB layout is a pivotal phase in the design process. The PCB Layout Editor in KiCad facilitates this transition, allowing you to arrange components and route connections effectively.</p>
+<h3 id="step-by-step-guide">Step-by-Step Guide</h3>
+<ol>
+<li>Complete Your Schematic</li>
+<li>Ensure that your schematic is fully developed and all components have been assigned appropriate footprints.</li>
+<li>
+<p>Verify the netlist for accuracy to prevent connectivity issues during layout.</p>
+</li>
+<li>
+<p>Accessing the PCB Layout Editor</p>
+</li>
+<li>Locate and click the "Open PCB Editor" button in KiCad’s main toolbar.</li>
+<li>A new window titled PCB Layout Editor (also known as the Board Editor) will appear, presenting a blank canvas for your PCB design.</li>
+</ol>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li>Organize Your Schematic First: A well-organized schematic simplifies the layout process, reducing the time spent on troubleshooting connectivity issues.</li>
+<li>Consistent Naming Conventions: Use consistent naming for nets and components to avoid confusion during the layout phase.</li>
+</ul>
+<h2 id="2-setting-up-the-pcb-board-stack">2. Setting Up the PCB Board Stack</h2>
+<p>The board stack defines the physical structure of your PCB, including the number of layers and their respective functions. Proper configuration is essential for signal integrity and manufacturability.</p>
+<h3 id="21-configuring-the-board-layers">2.1 Configuring the Board Layers</h3>
+<ol>
+<li>Access Board Setup</li>
+<li>
+<p>In the PCB Editor, click the "Board Setup" button located in the top-left corner to open the Board Setup window.</p>
+</li>
+<li>
+<p>Define Layers</p>
+</li>
+<li>Navigate to the Layers tab within the Board Setup window.</li>
+<li>Configure the following layers:<ul>
+<li>Top Layer (Front Copper): Utilized primarily for signal routing.</li>
+<li>Bottom Layer (Back Copper): Typically assigned as a solid ground plane to enhance signal integrity and reduce electromagnetic interference (EMI).</li>
+<li>Silkscreen, Solder Mask, and Paste Layers: Retain default settings unless specific customizations are required for your design.</li>
+</ul>
+</li>
+</ol>
+<h3 id="22-setting-the-ground-plane">2.2 Setting the Ground Plane</h3>
+<ol>
+<li>Configure Bottom Copper Layer</li>
+<li>
+<p>Assign the Bottom Copper Layer as a solid ground plane. This serves as a reference for all ground connections and provides a low-impedance path for return currents.</p>
+</li>
+<li>
+<p>Utilize Vias for Connectivity</p>
+</li>
+<li>To connect signal traces to the ground plane, use vias—small plated-through holes that bridge the top and bottom layers.</li>
+<li>Best Practice: Strategically place vias near critical components to minimize loop areas and reduce noise.</li>
+</ol>
+<h3 id="23-reviewing-the-stack-up">2.3 Reviewing the Stack-Up</h3>
+<ol>
+<li>Access Physical Stack-Up View</li>
+<li>
+<p>Switch to the Physical Stack-Up tab to visualize the layer arrangement of your PCB.</p>
+</li>
+<li>
+<p>Verify Layer Details</p>
+</li>
+<li>Ensure the stack-up includes:<ul>
+<li>Top Copper Layer</li>
+<li>Dielectric Layer (Insulating Material)</li>
+<li>Bottom Copper Layer</li>
+<li>Additional Layers: Such as Solder Mask and Silkscreen, if applicable.</li>
+</ul>
+</li>
+<li>Confirm that the total board thickness aligns with standard manufacturing specifications, typically around 1.6mm.</li>
+</ol>
+<h3 id="best-practices-pcb-board-stack">Best Practices - PCB Board Stack</h3>
+<ul>
+<li>Layer Assignment: Assigning a solid ground plane to the bottom layer enhances signal integrity by providing a consistent return path.</li>
+<li>Standard Thickness: Adhering to standard PCB thickness simplifies manufacturing and reduces costs.</li>
+</ul>
+<h2 id="3-setting-up-design-rules">3. Setting Up Design Rules</h2>
+<p>Design rules are critical in ensuring that your PCB can be fabricated reliably. They define parameters such as trace widths, clearances, and via sizes based on the capabilities of your chosen PCB manufacturer.</p>
+<h3 id="31-understanding-manufacturer-capabilities">3.1 Understanding Manufacturer Capabilities</h3>
+<p>Before configuring design rules, consult your PCB manufacturer’s specifications. Common manufacturers like JLCPCB and PCBWay provide detailed guidelines, including:</p>
+<ul>
+<li>Minimum Trace Width: Typically around 0.2mm (8 mils).</li>
+<li>Minimum Clearance: Often 0.2mm between copper features.</li>
+<li>Via Specifications: For example, a 0.6mm pad diameter with a 0.3mm drill hole.</li>
+</ul>
+<h3 id="32-configuring-design-rules-in-kicad">3.2 Configuring Design Rules in KiCad</h3>
+<ol>
+<li>Open Design Rules Tab</li>
+<li>
+<p>In the Board Setup window, navigate to the Design Rules tab.</p>
+</li>
+<li>
+<p>Set Parameters Based on Manufacturer Specifications</p>
+</li>
+<li>Minimum Track Width: Set to 0.3mm (adjust as per manufacturer’s minimum).</li>
+<li>Clearance: Set to 0.3mm for copper-to-copper clearances to prevent shorts and ensure manufacturability.</li>
+<li>Via Drill Diameter: Configure to 0.3mm with a pad diameter of 0.7mm.</li>
+<li>Annular Ring Width: Define the copper ring surrounding vias to ensure reliable connections.</li>
+</ol>
+<h3 id="best-practices-design-rules">Best Practices - Design Rules</h3>
+<ul>
+<li>Margin for Manufacturing Tolerances: Always include a margin beyond the minimum specifications to account for manufacturing variances.</li>
+<li>Consistent Design Rules: Apply consistent design rules across the entire PCB to maintain uniformity and reduce complexity.</li>
+</ul>
+<h2 id="4-pre-defining-track-sizes">4. Pre-Defining Track Sizes</h2>
+<p>Defining track sizes beforehand ensures that your PCB layout accommodates the necessary current and maintains signal integrity. Different types of traces (e.g., power vs. signal) require varying widths.</p>
+<h3 id="41-defining-signal-and-power-track-sizes">4.1 Defining Signal and Power Track Sizes</h3>
+<ol>
+<li>Access Predefined Sizes</li>
+<li>
+<p>Within the Board Setup window, locate the Predefined Sizes section.</p>
+</li>
+<li>
+<p>Set Track Widths</p>
+</li>
+<li>Signal Traces: Assign a width of 0.3mm. This size is adequate for general signal routing and minimizes space usage.</li>
+<li>Power Traces: Assign a wider width of 0.5mm to handle higher current loads without significant voltage drops.</li>
+</ol>
+<h3 id="42-defining-via-sizes">4.2 Defining Via Sizes</h3>
+<ul>
+<li>Standard Via Configuration:</li>
+<li>Pad Diameter: 0.7mm</li>
+<li>Drill Hole Diameter: 0.3mm</li>
+</ul>
+<p>This configuration ensures robust connections between layers while adhering to manufacturing standards.</p>
+<h3 id="43-adding-differential-pair-sizes">4.3 Adding Differential Pair Sizes</h3>
+<p>For designs incorporating high-speed signals such as USB, differential pairs are essential to maintain signal integrity and reduce noise.</p>
+<ol>
+<li>Define Differential Pair Parameters</li>
+<li>Trace Width: 0.3mm</li>
+<li>
+<p>Trace Gap: 0.3mm</p>
+</li>
+<li>
+<p>Routing Differential Pairs</p>
+</li>
+<li>Ensure that differential pairs are routed in parallel with consistent spacing.</li>
+<li>Best Practice: Keep differential pair traces as short and matched in length as possible to maintain timing and reduce signal degradation.</li>
+</ol>
+<h3 id="best-practices-pre-defining-track-sizes">Best Practices - Pre-Defining Track Sizes</h3>
+<ul>
+<li>Current-Carrying Capacity: Ensure that power traces are wide enough to handle the maximum expected current without excessive heating.</li>
+<li>Signal Integrity: Properly sized traces and differential pairs are crucial for maintaining the integrity of high-speed signals.</li>
+</ul>
+<h2 id="5-importing-component-footprints">5. Importing Component Footprints</h2>
+<p>Importing and correctly placing component footprints from your schematic is essential for accurate PCB layout and subsequent manufacturing.</p>
+<h3 id="51-importing-footprints">5.1 Importing Footprints</h3>
+<ol>
+<li>Update PCB from Schematic</li>
+<li>
+<p>In the PCB Editor, click the "Update PCB from Schematic" button (represented by an icon of a wire connecting to a PCB).</p>
+</li>
+<li>
+<p>Footprint Importation</p>
+</li>
+<li>KiCad will automatically import all component footprints defined in your schematic, placing them on the PCB layout canvas outside the designated board area.</li>
+</ol>
+<h3 id="52-arranging-components">5.2 Arranging Components</h3>
+<ol>
+<li>Manual Component Placement</li>
+<li>
+<p>Begin by dragging and dropping components from outside the board area onto the PCB canvas.</p>
+</li>
+<li>
+<p>Organize Components Logically</p>
+</li>
+<li>Grouping: Place related components, such as decoupling capacitors near the microcontroller pins, to minimize trace lengths and enhance performance.</li>
+<li>Edge Placement: Position connectors (e.g., USB, power, SWD) along the board edges to facilitate easy access and interfacing.</li>
+<li>
+<p>Thermal Management: Arrange components that generate heat to allow for adequate heat dissipation.</p>
+</li>
+<li>
+<p>Optimizing Layout</p>
+</li>
+<li>Space Utilization: Efficiently use board space to prevent overcrowding and ensure clear routing paths.</li>
+<li>Accessibility: Ensure that components requiring frequent access are easily reachable.</li>
+</ol>
+<h3 id="53-previewing-footprints">5.3 Previewing Footprints</h3>
+<ol>
+<li>Verify Footprint Orientation and Alignment</li>
+<li>
+<p>For each component, confirm that the footprint has been correctly imported and oriented as per the schematic.</p>
+</li>
+<li>
+<p>Utilize 3D View for Visualization</p>
+</li>
+<li>Right-click on a footprint and select "View Footprint 3D" to visualize the component placement in three dimensions.</li>
+<li>Best Practice: Regularly use the 3D view to identify potential placement issues and ensure components do not interfere with each other.</li>
+</ol>
+<h3 id="best-practices-arranging-components">Best Practices - Arranging Components</h3>
+<ul>
+<li>Logical Grouping: Grouping related components reduces trace lengths and improves signal integrity.</li>
+<li>Clearances: Maintain adequate spacing between components to facilitate routing and prevent potential shorts.</li>
+<li>Orientation Consistency: Align components consistently (e.g., all ICs facing the same direction) to streamline the routing process.</li>
+</ul>
+<h2 id="6-preparing-for-routing">6. Preparing for Routing</h2>
+<p>Routing involves connecting component pads with copper traces based on the netlist derived from your schematic. Proper preparation ensures an efficient and error-free routing process.</p>
+<h3 id="61-placing-key-components">6.1 Placing Key Components</h3>
+<ol>
+<li>Identify Critical Components</li>
+<li>Microcontroller: Central to your design, requiring careful placement to minimize trace lengths to peripherals.</li>
+<li>Power Supply: Ensure that power components are placed to efficiently distribute power across the board.</li>
+<li>
+<p>Connectors: Position connectors strategically for easy access and to minimize trace lengths.</p>
+</li>
+<li>
+<p>Positioning for Optimal Routing</p>
+</li>
+<li>Central Placement: Place frequently connected components near the center of the board to reduce overall trace lengths.</li>
+<li>Edge Placement: Position connectors along the board edges to facilitate interfacing with external devices.</li>
+</ol>
+<h3 id="62-checking-netlist-connections">6.2 Checking Netlist Connections</h3>
+<ol>
+<li>Verify Connectivity</li>
+<li>
+<p>Ensure that all components are correctly connected according to the netlist. Use KiCad’s Electrical Rules Checker (ERC) to identify and resolve connectivity issues.</p>
+</li>
+<li>
+<p>Identify Unconnected Nets</p>
+</li>
+<li>Address any unconnected nets or floating pins to prevent potential functionality issues.</li>
+</ol>
+<h3 id="63-final-preparations-before-routing">6.3 Final Preparations Before Routing</h3>
+<ol>
+<li>Review Component Placement</li>
+<li>
+<p>Double-check that all components are placed logically and do not obstruct each other.</p>
+</li>
+<li>
+<p>Layer Configuration</p>
+</li>
+<li>
+<p>Ensure that the top layer is designated for signal routing and the bottom layer for the ground plane.</p>
+</li>
+<li>
+<p>Net Priority</p>
+</li>
+<li>Identify critical nets (e.g., high-speed signals) and prioritize their routing paths to maintain signal integrity.</li>
+</ol>
+<h3 id="best-practices-preparing-for-routing">Best Practices - Preparing for Routing</h3>
+<ul>
+<li>Plan Routing Paths: Before starting, plan the routing paths for critical signals to minimize crossing and interference.</li>
+<li>Minimize Via Usage: Use vias sparingly to reduce manufacturing complexity and potential signal degradation.</li>
+<li>Maintain Clearances: Adhere to design rules for clearances to prevent shorts and ensure manufacturability.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>You have successfully set up your PCB layout in KiCad by configuring the board stack, establishing design rules, pre-defining track sizes, and importing and arranging component footprints. These foundational steps are crucial for creating a functional and manufacturable PCB design. In the subsequent phase, you will proceed to route the PCB, meticulously connecting components with copper traces while adhering to best practices for signal integrity and manufacturability. By following this structured approach, your PCB design will meet the high standards required for reliable electronic performance.</p>
+<h2 id="best-practices-summary">Best Practices Summary</h2>
+<ul>
+<li>Thorough Planning: Adequate planning during each setup phase prevents errors and facilitates a smoother routing process.</li>
+<li>Consistent Verification: Regularly verify configurations and connections to maintain design integrity.</li>
+<li>Adherence to Standards: Following manufacturer guidelines and industry standards ensures that your PCB is manufacturable and reliable.</li>
+<li>Efficient Component Placement: Logical and strategic component placement simplifies routing and enhances overall PCB performance.</li>
+<li>Continuous Learning: Stay updated with KiCad’s features and PCB design best practices to continually improve your designs.</li>
+</ul>
+<p>By adhering to these best practices and leveraging the detailed steps outlined in this documentation, you are well-equipped to create professional and high-quality PCB layouts using KiCad.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Cagri Catik
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -2,16 +2,10 @@
 
 The schematic defines the STM32F103C8T6 power subsystem with correct isolation between digital and analog domains, proper decoupling topology, and an LC-filtered analog supply. The circuit implements the recommended STM32F1 power architecture in a clean, stable configuration. This document also summarizes the step-by-step process used to build the schematic in KiCad.
 
-import schematic from '@site/static/pcb/schematic_stm32_decoupling.png';
-
 ## Decoupling
 
-<div style={{ textAlign: 'center' }}>
-  <img  
-    src={schematic}
-    alt="decoupling"
-    style={{ width: '500px' }}
-  />
+<div style=" textAlign: 'center' ">
+  ![decoupling](../../assets/pcb/schematic_stm32_decoupling.png)
 </div>
 
 ---

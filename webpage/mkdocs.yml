@@ -1,0 +1,177 @@
+site_name: STM32 Hardware Design with KiCad
+site_description: Comprehensive guide to designing STM32-based hardware using KiCad.
+site_author: Cagri Catik
+site_url: https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/
+
+# Repository
+repo_name: CagriCatik/STM32-HW-Design-with-KiCAD
+repo_url: https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD
+edit_uri: edit/main/webpage/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 Cagri Catik
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.prune
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/img/favicon.ico
+  icon:
+    logo: material/chip
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - abbr
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.smartsymbols
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - 🏠 Home: index.md
+  - 📘 Introduction:
+    - Overview: 01_Introduction/01_Introduction.md
+    - Key Learning Outcomes: 01_Introduction/02_Key-Learning-Outcomes.md
+    - Hardware Overview: 01_Introduction/03_Hardware-Overview.md
+    - Tools: 01_Introduction/04_Tools.md
+    - Key Topics: 01_Introduction/05_Key-Topics.md
+    - Designing STM32: 01_Introduction/06_Designing-STM32.md
+    - Create New Project: 01_Introduction/07_Create-New-Project.md
+    - Drawing Schematic: 01_Introduction/08_Drawing-Schematic.md
+    - Footprint: 01_Introduction/09_Footprint.md
+    - Netlist: 01_Introduction/10_Netlist.md
+    - PCB Layout: 01_Introduction/11_PCB-Layout.md
+    - Finalize: 01_Introduction/12_Finalize.md
+    - Programming: 01_Introduction/13_Programming.md
+  - 🔌 Schematic Design:
+    - Decoupling: 02_Schematic/01_STM32_uC_Decoupling.md
+    - Configuration Pins: 02_Schematic/02_STM32_Configuration_Pins.md
+    - Pin-Out & CubeIDE: 02_Schematic/03_Pin-Out_STM32CubeIDE.md
+    - Crystal Circuitry: 02_Schematic/04_Crystal-Circuitry.md
+    - USB: 02_Schematic/05_USB.md
+    - Power Connectors: 02_Schematic/06_Power-Supply-Connectors.md
+    - ERC & Annotation: 02_Schematic/07_ERC-Annotation.md
+    - Footpoint Assignment: 02_Schematic/08_Footprint-Assignment.md
+    - Final Schematic: 02_Schematic/09_Final-Schematic.md
+    - Summary:
+      - Power Decoupling: 02_Schematic/Summary/01_power_decoupling_network.md
+      - Boot Config: 02_Schematic/Summary/02_power_boot_configuration.md
+      - Pinout Cube: 02_Schematic/Summary/03_pinout-stm32cube.md
+      - External Clock: 02_Schematic/Summary/04_external_clock.md
+      - USB Summary: 02_Schematic/Summary/05_usb.md
+      - Power Connectors Summary: 02_Schematic/Summary/06_power_supply_connectors.md
+      - ERC Annotation Summary: 02_Schematic/Summary/07_erc_annotation.md
+      - Footprint Summary: 02_Schematic/Summary/08_footprint.md
+  - 📐 PCB Layout:
+    - Setup: 03_PCB_Layout/01_KiCad_PCB-Setup.md
+    - Decoupling & Crystal: 03_PCB_Layout/02_MCU-Decoupling_Capacitors_Crystal-Layout.md
+    - USB & SWD: 03_PCB_Layout/03_USB_SWD_Layout.md
+    - Footprints & 3D: 03_PCB_Layout/04_Changing-Footprints-Adding-3D-Models.md
+    - Placement: 03_PCB_Layout/05_Switch-Connector-Placement.md
+    - Power Layout: 03_PCB_Layout/06_Power-Supply-Layout.md
+    - Board Outline: 03_PCB_Layout/07_Mounting-Holes-Board-Outline.md
+  - 🛣️ PCB Routing:
+    - Decoupling & Crystal: 04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing.md
+    - Signal Routing: 04_PCB_Routing/02_Signal-Routing.md
+    - Power Routing: 04_PCB_Routing/03_Power-Routing.md
+    - DRC: 04_PCB_Routing/04_Finishing-Touches-DRC.md
+  - 🏭 Manufacturing:
+    - BOM: 05_Manufacturing/01_Generating-BOM.md
+    - Gerbers: 05_Manufacturing/02_Generating-Gerber.md
+    - Pick & Place: 05_Manufacturing/03_Generating-PP-Files.md
+    - Check Gerbers: 05_Manufacturing/04_Check-Gerber.md
+    - Submitting: 05_Manufacturing/05_Submitting.md
+    - Ordering: 05_Manufacturing/06_Placing-Order.md
+  - 📜 Scripts:
+    - Automated Design: 06_Scripts/01_Automated_Design.md
+    - Custome Footprint: 06_Scripts/02_Customized_Footprint.md
+    - DRC: 06_Scripts/03_DRC.md
+    - Netlist: 06_Scripts/04_Netlist.md
+    - BOM: 06_Scripts/05_BOM.md
+    - Integration: 06_Scripts/06_Integration.md
+    - UI: 06_Scripts/07_UI.md
+    - Design Automation: 06_Scripts/08_Design_Automation.md
+    - Plug: 06_Scripts/09_Plug.md
+  - 📚 Glossary:
+    - A: 07_Glossary/A.md
+    - B: 07_Glossary/B.md
+    - C: 07_Glossary/C.md
+    - D: 07_Glossary/D.md
+    - E: 07_Glossary/E.md
+    - F: 07_Glossary/F.md
+    - G: 07_Glossary/G.md
+    - H: 07_Glossary/H.md
+    - I: 07_Glossary/I.md
+    - K: 07_Glossary/K.md
+    - L: 07_Glossary/L.md
+    - M: 07_Glossary/M.md
+    - N: 07_Glossary/N.md
+    - O: 07_Glossary/O.md
+    - P: 07_Glossary/P.md
+    - R: 07_Glossary/R.md
+    - S: 07_Glossary/S.md
+    - T: 07_Glossary/T.md
+    - U: 07_Glossary/U.md
+    - V: 07_Glossary/V.md
+    - Z: 07_Glossary/Z.md
+  - 🍳 Recipes:
+    - Simplify Components: 08_Recipes/01_simplify-complex-components.md
+  - 📝 Blog: 
+    - Welcome: blog/2025-01-03-welcome/index.md

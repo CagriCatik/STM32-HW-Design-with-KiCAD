@@ -6,14 +6,8 @@ The schematic integrates the complete power, decoupling, reset, and boot-mode ci
 
 ## Decoupling
 
-import schematic from '@site/static/pcb/pin_config.png';
-
-<div style={{ textAlign: 'center' }}>
-  <img  
-    src={schematic}
-    alt="pin_config"
-    style={{ width: '500px' }}
-  />
+<div style=" textAlign: 'center' ">
+  ![pin_config](../../assets/pcb/pin_config.png)
 </div>
 
 The decoupling network provides broadband noise suppression and stabilizes the MCU’s supply pins.

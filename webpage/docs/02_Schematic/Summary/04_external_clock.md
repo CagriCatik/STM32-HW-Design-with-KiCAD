@@ -2,14 +2,8 @@
 
 This documentation provides a complete explanation of the external crystal oscillator subsystem, its load capacitors, grounding strategy, and supporting references. It also integrates the previously defined USB differential pair and SWD debug signals. Together, these additions finalize the electrical infrastructure required for accurate MCU timing, USB full-speed operation, and reliable firmware development with STM32CubeIDE.
 
-import schematic from '@site/static/pcb/external_clock.png';
-
-<div style={{ textAlign: 'center' }}>
-  <img  
-    src={schematic}
-    alt="external_clock"
-    style={{ width: '500px' }}
-  />
+<div style=" textAlign: 'center' ">
+  ![external_clock](../../assets/pcb/external_clock.png)
 </div>
 
 ---

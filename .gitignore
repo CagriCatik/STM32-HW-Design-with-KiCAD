@@ -97,3 +97,19 @@ cache
 # Ignore KiCad autosaves
 *.KiCad_pcb-bak
 *.sch-bak
+
+# MkDocs
+site/
+webpage/site/
+
+# Python
+__pycache__/
+*.pyc
+
+# KiCad Modern (v6+)
+*.kicad_prl
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.lck
+_autosave-*
+*.kicad_pro-bak

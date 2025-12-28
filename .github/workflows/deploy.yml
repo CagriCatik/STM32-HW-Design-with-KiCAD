@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy MkDocs site to GitHub Pages
 
 on:
   push:
@@ -8,28 +8,38 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code with deploy token
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
       - name: Install dependencies
-        working-directory: ./webpage
-        run: npm install
-
-      - name: Build Docusaurus site
-        working-directory: ./webpage
-        run: npm run build
+        run: |
+          pip install -r requirements.txt
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        working-directory: ./webpage
+        env:
+          DEPLOY_TOKEN: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
+        run: mkdocs gh-deploy --force
+
+  cleanup:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+      contents: read
+
+    steps:
+      - name: Delete old GitHub Pages deployments
+        uses: strumwolf/delete-deployment-environment@v2
         with:
-          github_token: ${{ secrets.Docusaurus_TOKEN }}
-          publish_dir: ./webpage/build
-          clean: true
-          force_orphan: true
+          token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
+          environment: github-pages
+          onlyRemoveDeployments: true

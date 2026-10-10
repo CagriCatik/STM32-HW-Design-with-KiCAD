@@ -3,9 +3,9 @@
 <h2>STM32 Hardware Design with KiCad</h2>
 
 [![Hardware check](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/hw-check.yml/badge.svg)](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/hw-check.yml)
-[![Deploy MkDocs](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml)
+[![Deploy docs](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml)
 ![KiCad 10](https://img.shields.io/badge/KiCad-10.0-blue)
-[![Documentation](https://img.shields.io/badge/docs-MkDocs-green)](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)
+[![Documentation](https://img.shields.io/badge/docs-Zensical-green)](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)
 ![Last Commit](https://img.shields.io/github/last-commit/CagriCatik/STM32-HW-Design-with-KiCAD)
 
 <img src="webpage/docs/assets/pcb/revc_top.png" alt="STM32 RC controller, Rev C" width="640">
@@ -68,7 +68,7 @@ stm32_prototype/          KiCad 10 project (schematic sheets, PCB, rules, projec
   production/rev-c/       Gerber ZIP, BOM, CPL, schematic PDF, renders, STEP
 scripts/                  schematic generator, board setup, placement, routing, fabrication export
 firmware/                 STM32CubeMX project (rc_controller) and the bring-up application
-webpage/                  MkDocs documentation site (course + project chapter)
+webpage/                  documentation site, built with Zensical (course + project chapter)
 datasheets/               datasheets used during the design
 .github/workflows/        hw-check.yml (ERC/DRC, fab data on tags), deploy.yml (docs)
 ```
@@ -91,7 +91,7 @@ cd firmware/rc_controller && cmake -S . -B build -G "Unix Makefiles" \
   -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Release && cmake --build build
 
 # documentation
-pip install -r requirements.txt && cd webpage && mkdocs serve      # http://127.0.0.1:8000
+pip install -r requirements.txt && cd webpage && zensical serve   # http://127.0.0.1:8000
 ```
 
 Before ordering, check the part rotations in JLCPCB's assembly preview, then follow the

@@ -99,7 +99,7 @@ cache
 *.KiCad_pcb-bak
 *.sch-bak
 
-# MkDocs
+# Zensical / MkDocs build output
 site/
 webpage/site/
 

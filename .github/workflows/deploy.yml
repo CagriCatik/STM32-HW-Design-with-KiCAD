@@ -1,4 +1,4 @@
-name: Deploy MkDocs site to GitHub Pages
+name: Deploy documentation (Zensical) to GitHub Pages
 
 on:
   push:
@@ -9,25 +9,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code with deploy token
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+      - name: Install Zensical
+        run: pip install -r requirements.txt
 
-      - name: Deploy to GitHub Pages
+      - name: Build site
         working-directory: ./webpage
-        env:
-          DEPLOY_TOKEN: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
-        run: mkdocs gh-deploy --force
+        run: zensical build --clean --strict
+
+      # Publishes webpage/site to the gh-pages branch, the same Pages source the MkDocs workflow used
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
+          publish_dir: ./webpage/site
+          force_orphan: true
 
   cleanup:
     needs: deploy

@@ -1,14 +1,14 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 # Phase 5: JLCPCB fabrication + assembly data for stm32_prototype Rev B, using only kicad-cli (+ python3 for CSV).
 #   scripts/export_fab.sh [output-dir]      default: stm32_prototype/production/rev-b
 # KICAD_CLI may point to another kicad-cli (CI container: plain "kicad-cli").
 set -e
-ROOT=${0:A:h:h}
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
 P=$ROOT/stm32_prototype
 NAME=stm32_prototype
 OUT=${1:-$P/production/rev-b}
 K=${KICAD_CLI:-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli}
-command -v $K >/dev/null || K=kicad-cli
+[ -x "$K" ] || K=kicad-cli
 
 rm -rf $OUT && mkdir -p $OUT/gerber
 PCB=$P/$NAME.kicad_pcb
@@ -20,7 +20,7 @@ $K pcb export gerbers --check-zones --subtract-soldermask \
    -o $OUT/gerber $PCB
 $K pcb export drill --format excellon --excellon-units mm --excellon-separate-th \
    --generate-map --map-format gerberx2 -o $OUT/gerber/ $PCB
-(cd $OUT/gerber && zip -q ../${NAME}_rev-b_gerber.zip *)
+python3 -c "import shutil,sys; shutil.make_archive(sys.argv[1], 'zip', sys.argv[2])" $OUT/${NAME}_rev-b_gerber $OUT/gerber
 
 # BOM in JLC format; DNP parts and solder jumpers (excluded from BOM) are left out
 $K sch export bom --exclude-dnp --ref-range-delimiter "" \

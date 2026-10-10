@@ -1,0 +1,47 @@
+name: Hardware check
+
+on:
+  push:
+    branches: ['**']
+    tags: ['rev-*']
+  pull_request:
+
+jobs:
+  erc-drc:
+    runs-on: ubuntu-latest
+    container: kicad/kicad:10.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ERC
+        working-directory: stm32_prototype
+        run: kicad-cli sch erc --severity-all --exit-code-violations -o erc.rpt stm32_prototype.kicad_sch
+
+      - name: DRC with schematic parity
+        working-directory: stm32_prototype
+        run: kicad-cli pcb drc --severity-all --exit-code-violations --schematic-parity -o drc.rpt stm32_prototype.kicad_pcb
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: erc-drc-reports
+          path: stm32_prototype/*.rpt
+
+  fabrication:
+    needs: erc-drc
+    if: startsWith(github.ref, 'refs/tags/rev-')
+    runs-on: ubuntu-latest
+    container: kicad/kicad:10.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export Gerber, drill, BOM, CPL, PDF, STEP
+        env:
+          KICAD_CLI: kicad-cli
+        run: bash scripts/export_fab.sh "$GITHUB_WORKSPACE/fab"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fabrication-${{ github.ref_name }}
+          path: fab

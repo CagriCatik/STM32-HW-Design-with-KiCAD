@@ -1,0 +1,31 @@
+load STM32F103C8Tx
+set mode RCC HSE-External-Oscillator
+set mode SYS Trace_Asynchronous_SW
+set mode SYS SysTick
+set mode TIM2 Internal
+set mode TIM2 "PWM Generation1 CH1"
+set mode TIM2 "PWM Generation2 CH2"
+set mode TIM2 "PWM Generation3 CH3"
+set mode TIM2 "PWM Generation4 CH4"
+set mode TIM3 Internal
+set mode TIM3 "PWM Generation1 CH1"
+set mode TIM3 "PWM Generation2 CH2"
+set mode TIM3 "PWM Generation3 CH3"
+set mode TIM3 "PWM Generation4 CH4"
+set mode TIM4 Internal
+set mode TIM4 Input_Capture1_from_TI1
+set mode TIM4 Input_Capture2_from_TI2
+set mode TIM4 Input_Capture3_from_TI3
+set pin PA4 ADC1_IN4
+set mode I2C2 I2C
+set mode USART1 Asynchronous
+set mode USB Device
+set mode USB_DEVICE CDC_FS
+set pin PC13 GPIO_Output
+set pin PB12 GPIO_EXTI12
+set pin PB13 GPIO_EXTI13
+project name rc_controller
+project toolchain CMake
+project path __OUT__
+config saveas __OUT__/rc_controller/rc_controller.ioc
+exit

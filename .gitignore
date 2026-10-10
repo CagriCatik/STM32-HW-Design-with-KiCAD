@@ -116,3 +116,6 @@ _autosave-*
 *.kicad_pro-bak
 # KiCad 10 local history
 .history/
+
+# firmware build output
+firmware/*/build/

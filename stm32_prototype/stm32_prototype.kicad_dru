@@ -1,0 +1,33 @@
+(version 1)
+# JLCPCB 2-layer, 1.6 mm, 1 oz standard capabilities (no extra-cost options).
+# Project defaults (net classes) are deliberately more generous: 0.2 mm signal, 0.6/0.3 mm via.
+
+(rule "JLC min track / space"
+  (constraint track_width (min 0.127mm))
+  (constraint clearance (min 0.127mm)))
+
+(rule "JLC min via (0.3 mm drill, 0.5 mm pad)"
+  (condition "A.Type == 'Via'")
+  (constraint hole_size (min 0.3mm))
+  (constraint via_diameter (min 0.5mm))
+  (constraint annular_width (min 0.1mm)))
+
+(rule "JLC PTH annular ring"
+  (condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole'")
+  (constraint annular_width (min 0.15mm)))
+
+(rule "JLC copper to board edge"
+  (constraint edge_clearance (min 0.3mm)))
+
+(rule "JLC hole to hole"
+  (constraint hole_to_hole (min 0.5mm)))
+
+(rule "JLC silkscreen text"
+  (layer "?.Silkscreen")
+  (constraint text_height (min 0.8mm))
+  (constraint text_thickness (min 0.15mm)))
+
+(rule "USB differential pair (12 Mbit/s full speed, keep short and matched)"
+  (condition "A.NetClass == 'USB'")
+  (constraint diff_pair_gap (opt 0.15mm))
+  (constraint skew (max 0.15mm)))

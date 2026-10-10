@@ -277,6 +277,49 @@ HEADER_B = ['VB', 'PC13', 'PC14', 'PC15', 'PA0', 'PA1', 'PA2', 'PA3', 'PA4', 'PA
 
 
 def silk(board):
+    if board.FindFootprintByReference('U5') is not None:   # Rev C RC-car controller
+        return silk_revc(board)
+    return silk_revb(board)
+
+
+def silk_revc(board):
+    """Rev C: top designators hidden; connector functions and pin order on the bottom silkscreen."""
+    for d in [d for d in board.GetDrawings() if d.GetLayer() == pcbnew.B_SilkS]:
+        board.Delete(d)
+    for fp in board.GetFootprints():
+        fp.Reference().SetVisible(False)
+    fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    def text(s, x, y, rot=0, h=0.8):
+        t = pcbnew.PCB_TEXT(board); t.SetText(s); t.SetLayer(pcbnew.B_SilkS); t.SetMirrored(True)
+        t.SetTextSize(pcbnew.VECTOR2I(MM(h), MM(h))); t.SetTextThickness(MM(0.15))
+        t.SetPosition(pcbnew.VECTOR2I(x, y)); t.SetTextAngleDegrees(rot)
+        t.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER); t.SetVertJustify(pcbnew.GR_TEXT_V_ALIGN_CENTER)
+        board.Add(t)
+    def under(ref, s, dy=8.8):   # below a vertical pin header (pin 1 at the top)
+        q = fps[ref].GetPosition(); text(s, q.x, q.y + MM(dy))
+    for i in range(4): under('J%d' % (4 + i), 'S%d' % (i + 1))
+    for i in range(3): under('J%d' % (8 + i), 'R%d' % (i + 1))
+    under('J11', 'L1', 6.3); under('J12', 'L2', 6.3)
+    q = fps['J4'].GetPosition(); text('S', q.x - MM(2.2), q.y); text('+', q.x - MM(2.2), q.y + MM(2.54))
+    text('-', q.x - MM(2.2), q.y + MM(5.08))
+    q = fps['J15'].GetPosition()
+    for i, s in enumerate(('GND', '5V', 'TX', 'RX')):
+        text(s, q.x - MM(3.0), q.y + MM(2.54 * i), 0, 0.8)
+    box = board.GetBoardEdgesBoundingBox()
+    q = fps['J1'].GetPosition(); text('- BATT +', q.x + MM(2.5), q.y - MM(4.2))
+    text('2S-3S LiPo', q.x + MM(2.5), q.y + MM(4.2))
+    q = fps['J3'].GetPosition(); text('MOTOR', q.x + MM(1.75), q.y - MM(5.0))
+    for s, ref in (('SWD', 'J13'), ('QWIIC', 'J14'), ('USB-C', 'J2'), ('BOOT0', 'SW1'), ('RESET', 'SW2'),
+                   ('EXPANSION', 'J16')):
+        q = fps[ref].GetPosition()
+        if ref == 'J16':
+            text(s, q.x + MM(1.27), q.y + MM(12.2))
+        else:
+            text(s, q.x, q.y)
+    text('STM32 RC controller Rev C', box.GetCenter().x - MM(2), box.GetCenter().y, 0, 1.0)
+
+
+def silk_revb(board):
     """Top designators hidden (board too dense); pinout and labels printed on the bottom silkscreen."""
     for d in [d for d in board.GetDrawings() if d.GetLayer() == pcbnew.B_SilkS]:
         board.Delete(d)

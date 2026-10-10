@@ -65,12 +65,20 @@ next to VM. The exposed pad is soldered to GND with thermal vias into the inner 
   from the servo rail through the same header.
 - **Lights:** AO3400A low-side switches with 100 Ω gate resistors and 100 kΩ pull-downs, PWM-dimmable from TIM3.
 
+## RGB lights (WS2812)
+
+Six WS2812 LEDs (2 front, 2 sills, 2 rear) are wired as one chain to a 3-pin connector (5 V, DIN, GND).
+The data comes from PA8 (TIM1 CH1, 800 kHz, written by DMA). WS2812 inputs need 0.7 · V_DD = 3.5 V for a high level,
+more than the STM32's 3.3 V, so a **74AHCT1G125** buffer powered from +5 V shifts the signal to 5 V levels
+(its TTL-compatible input accepts 3.3 V). A 330 Ω series resistor damps reflections on the cable, a 22 µF capacitor at
+the connector buffers the LED current. Six LEDs at full white draw about 6 × 60 mA = 0.36 A from the 5 V servo rail.
+
 ## IO
 
 - **IMU:** LSM6DS3TR-C on I2C2 at 0x6A (SA0 pulled low), INT1/INT2 to PB12/PB13, two 100 nF capacitors.
 - **Qwiic:** shares I2C2; 4.7 kΩ pull-ups behind a solder jumper.
 - **UART:** GND, 5 V, TX, RX for a Bluetooth module or telemetry.
-- **Expansion:** 2×5 header with 3V3, GND and the free GPIOs PA5, PA8, PA15, PB4, PB5, PB9, PB14, PB15.
+- **Expansion:** 2×5 header with 3V3, two GND and the free GPIOs PA5, PA15, PB4, PB5, PB9, PB14, PB15.
 
 ## Checks
 
@@ -78,4 +86,4 @@ next to VM. The exposed pad is soldered to GND with thermal vias into the inner 
 kicad-cli sch erc --severity-all --exit-code-violations stm32_prototype/stm32_prototype.kicad_sch
 ```
 
-Result: 0 errors, 0 warnings. The netlist comparison in `scripts/revc_schematic/check.sh` matches all 74 nets.
+Result: 0 errors, 0 warnings. The netlist comparison in `scripts/revc_schematic/check.sh` matches all 76 nets.

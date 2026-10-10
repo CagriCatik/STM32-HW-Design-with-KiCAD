@@ -23,6 +23,7 @@ schematic.
 | RCC | 8 MHz HSE × 9 = 72 MHz, APB1 36 MHz, USB 48 MHz |
 | TIM2 | 4 × PWM, 1 µs tick, 20 ms period (servos, 1500 µs centre) |
 | TIM3 | 4 × PWM, 20 kHz (motor IN1/IN2, lights) |
+| TIM1 | PWM CH1, 800 kHz, DMA1 channel 2 (WS2812 data) |
 | TIM4 | 3 × input capture, 1 µs tick (receiver pulses) |
 | I2C2 | 400 kHz (IMU, Qwiic) |
 | ADC1 | IN4 (battery) |
@@ -46,7 +47,13 @@ VBAT=7.84V IMU=0x6A RC=1502/1498/0us
 |---|---|
 | `s1 1200` | servo 1–4 pulse in µs (500–2500) |
 | `m 30` | motor duty −100…100 %, sign = direction, 0 = coast |
-| `l1 100` | light 1–2 brightness in % |
+| `l1 100` | switched output 1–2 in % |
+| `c 0 255 0 0` | WS2812 colour (R G B 0–255) for LED 1–6, `0` = all |
+| `ind l` | indicators: `l`, `r`, `h` (hazard), `off`, amber at 1.5 Hz |
+
+**WS2812:** each bit is one 1.25 µs PWM period of TIM1; the DMA writes a duty of 29 ticks (0.4 µs, bit 0) or 58 ticks
+(0.8 µs, bit 1) per period, followed by 50 zero periods as latch. LED order: 1 front left, 2 front right, 3 sill left,
+4 sill right, 5 rear left, 6 rear right. Defaults: white headlights, blue sills, red tail lights.
 
 The motor uses slow decay: one input is held high while the other is PWM'd low. Receiver pulses are measured by
 capturing the rising edge, switching the channel to falling-edge capture and taking the difference (the F1 timers
@@ -62,4 +69,4 @@ cmake --build build
 STM32_Programmer_CLI -c port=SWD -w build/rc_controller.elf -v -rst
 ```
 
-The release build uses 28 KB of the 64 KB flash and 7.4 KB of the 20 KB RAM.
+The release build uses 30 KB of the 64 KB flash and 7.9 KB of the 20 KB RAM.

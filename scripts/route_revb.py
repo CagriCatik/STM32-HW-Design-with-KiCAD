@@ -329,6 +329,10 @@ def silk_revc(board):
     for i in range(4): under('J%d' % (4 + i), 'S%d' % (i + 1))
     for i in range(3): under('J%d' % (8 + i), 'R%d' % (i + 1))
     under('J11', 'L1', 6.3); under('J12', 'L2', 6.3)
+    if 'J17' in fps:   # WS2812 chain: 5V, DIN, GND
+        q = fps['J17'].GetPosition(); text('RGB', q.x + MM(2.4), q.y - MM(1.6))
+        for i, s in enumerate(('5V', 'DI', 'G')):
+            text(s, q.x + MM(2.4), q.y + MM(2.54 * i) + MM(0.9), 0, 0.8)
     q = fps['J4'].GetPosition(); text('S', q.x - MM(2.2), q.y); text('+', q.x - MM(2.2), q.y + MM(2.54))
     text('-', q.x - MM(2.2), q.y + MM(5.08))
     q = fps['J15'].GetPosition()

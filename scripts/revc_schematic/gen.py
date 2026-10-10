@@ -141,7 +141,8 @@ special = {'VDD': '+3V3', 'VSS': 'GND', 'VSSA': 'GND', 'VDDA': 'VDDA', 'VBAT': '
            'PB6': 'RC_IN1', 'PB7': 'RC_IN2', 'PB8': 'RC_IN3',                           # TIM4 CH1-3, 5 V tolerant
            'PA9': 'UART_TX', 'PA10': 'UART_RX',                                         # USART1
            'PB10': 'I2C_SCL', 'PB11': 'I2C_SDA',                                        # I2C2
-           'PB12': 'IMU_INT1', 'PB13': 'IMU_INT2'}
+           'PB12': 'IMU_INT1', 'PB13': 'IMU_INT2',
+           'PA8': 'LED_DATA'}                                                           # TIM1 CH1 + DMA, WS2812
 u1 = {num: special.get(name, name) for name, nums in mcu_pins.items() for num in nums}
 P(S, 'U', 'MCU_ST_STM32F1', 'STM32F103C8Tx', 'STM32F103C8T6', 'Package_QFP:LQFP-48_7x7mm_P0.5mm',
   'C8734', 'STM32F103C8T6', (80, 58), 0, u1)
@@ -288,8 +289,15 @@ R(S, *R4K7, (109, 52), 'I2C_PU', 'I2C_SCL')
 HDR(S, 4, 'UART', (20, 60), ['GND', '+5V', 'UART_TX', 'UART_RX'], 'C2691448', 'PZ254V-11-04P')
 P(S, 'J', 'Connector_Generic', 'Conn_02x05_Odd_Even', 'EXPANSION', 'Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical',
   'C492422', 'PZ254V-12-10P', (60, 62), 0,
-  {'1': '+3V3', '2': 'GND', '3': 'PA5', '4': 'PA8', '5': 'PA15', '6': 'PB4', '7': 'PB5', '8': 'PB9', '9': 'PB14',
+  {'1': '+3V3', '2': 'GND', '3': 'PA5', '4': 'GND', '5': 'PA15', '6': 'PB4', '7': 'PB5', '8': 'PB9', '9': 'PB14',
    '10': 'PB15'}, dnp=True)
+# WS2812 / SK6812 chain (6 LEDs: front, sills, rear): 3.3 V data -> 74AHCT1G125 at 5 V -> 330R -> connector
+P(S, 'U', '74xGxx', '74AHCT1G125', 'SN74AHCT1G125', 'Package_TO_SOT_SMD:SOT-23-5', 'C7484', 'SN74AHCT1G125DBVR',
+  (130, 30), 0, {'1': 'GND', '2': 'LED_DATA', '3': 'GND', '4': 'LED_BUF', '5': '+5V'})
+R(S, '330R', 'C23138', '0603WAF3300T5E', (145, 30), 'LED_BUF', 'LED_DIN', rot=90)
+C(S, *C100N, (130, 45), '+5V')
+C(S, *C22U25L, (160, 45), 'V5_SERVO', fp=FP_C1206)
+HDR(S, 3, 'WS2812', (160, 25), ['V5_SERVO', 'LED_DIN', 'GND'], *HDR3)
 for i in range(4):
     P(S, 'H', 'Mechanical', 'MountingHole', 'M3', 'MountingHole:MountingHole_3.2mm_M3', '', '', (85 + 6 * i, 70), 0, {})
 
@@ -308,9 +316,10 @@ NOTES = {
                        'RC1-3 inputs: receiver PWM/PPM, powered from the servo rail, 1k series protection.')],
  'io': [((10, 75), 'IMU LSM6DS3TR-C on I2C2 at 0x6A (SA0 = GND), INT1 -> PB12, INT2 -> PB13.\n'
                    'Qwiic shares I2C2; 4.7k pull-ups, cut JP to remove. UART: GND 5V TX RX (Bluetooth/telemetry).\n'
-                   'Expansion 2x5 (loose header): 3V3 GND PA5 PA8 PA15 PB4 PB5 PB9 PB14 PB15.')],
+                   'Expansion 2x5 (loose header): 3V3 GND PA5 GND PA15 PB4 PB5 PB9 PB14 PB15.\n'
+                   'WS2812 output: 5V, DIN, GND. PA8 (TIM1 CH1, DMA) -> 74AHCT1G125 (5 V levels) -> 330R. 6 LEDs ~0.36 A.')],
 }
-SHEETS = [('mcu', 'MCU', 'A3', 2), ('power', 'Power', 'A3', 3), ('drive', 'Drive', 'A3', 4), ('io', 'IO', 'A4', 5)]
+SHEETS = [('mcu', 'MCU', 'A3', 2), ('power', 'Power', 'A3', 3), ('drive', 'Drive', 'A3', 4), ('io', 'IO', 'A3', 5)]
 SHEETS_TITLES = [('mcu', 'STM32F103C8T6 core'), ('power', 'Battery, 5 V buck, USB-C, 3.3 V'),
                  ('drive', 'Motor driver, servos, receiver, lights'), ('io', 'Debug, IMU, Qwiic, UART, expansion')]
 SHEET_UUID = {s: U() for s, *_ in SHEETS}

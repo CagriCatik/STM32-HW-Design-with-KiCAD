@@ -12,6 +12,8 @@ set mode TIM3 "PWM Generation1 CH1"
 set mode TIM3 "PWM Generation2 CH2"
 set mode TIM3 "PWM Generation3 CH3"
 set mode TIM3 "PWM Generation4 CH4"
+set mode TIM1 Internal
+set mode TIM1 "PWM Generation1 CH1"
 set mode TIM4 Internal
 set mode TIM4 Input_Capture1_from_TI1
 set mode TIM4 Input_Capture2_from_TI2

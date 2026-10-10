@@ -16,7 +16,8 @@ together in the board that lives in this repository: a complete controller for a
 | Motor | DRV8870 H-bridge for a brushed motor, 3.3 A current limit, screw terminal | PA6 / PA7 (TIM3 CH1/CH2) |
 | Servo / ESC outputs | 4 × 3-pin headers (signal, 5 V, GND) | PA0–PA3 (TIM2 CH1–CH4) |
 | Receiver inputs | 3 × 3-pin headers, 1 kΩ series protection, receiver powered from the servo rail | PB6–PB8 (TIM4 CH1–CH3) |
-| Lights | 2 × AO3400A low-side switches, LED supply = 5 V rail | PB0 / PB1 (TIM3 CH3/CH4) |
+| RGB lights | WS2812 chain (6 LEDs: 2 front, 2 sills, 2 rear) through a 74AHCT1G125 level shifter | PA8 (TIM1 CH1 + DMA) |
+| Switched outputs | 2 × AO3400A low-side switches (horn, extra lights), supply = 5 V rail | PB0 / PB1 (TIM3 CH3/CH4) |
 | IMU | LSM6DS3TR-C accelerometer + gyroscope, I²C address 0x6A, two interrupt lines | PB10 / PB11 (I2C2), PB12 / PB13 |
 | USB | USB-C 2.0 device (virtual COM port), USBLC6-2SC6 ESD protection | PA11 / PA12 |
 | Debug | Cortex-Debug 10-pin (SWD + SWO + reset) | PA13 / PA14 / PB3 |
@@ -39,6 +40,7 @@ flowchart LR
     MCU -- PWM --> SERVO
     SERVO -. receiver pulses .-> MCU
     IMU["LSM6DS3TR-C"] <-- I2C2 --> MCU
+    MCU -- "PA8 → 74AHCT1G125" --> RGB["6 × WS2812"]
     USB <-- "USB FS" --> MCU
     DRV --> MOTOR["Brushed motor"]
 ```
@@ -53,7 +55,7 @@ flowchart LR
 | Battery | 6.5–12.6 V usable (the DRV8870 locks out below 6.5 V, which also protects an empty 2S pack) |
 | Servo rail | 5.07 V, 3 A |
 | Motor | up to 3.3 A (current regulation in the DRV8870) |
-| Parts | 103 footprints, assembled by JLCPCB; every part carries an LCSC number |
+| Parts | 108 footprints, assembled by JLCPCB; every part carries an LCSC number |
 
 ## Revisions
 

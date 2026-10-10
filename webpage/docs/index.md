@@ -25,7 +25,8 @@ different part or value, an **"In this project"** box links to the project chapt
 
 - STM32F103C8T6 at 72 MHz, 8 MHz crystal, USB-C (virtual COM port), Cortex-Debug connector
 - 2S–3S LiPo input with reverse protection, 5 V / 3 A buck converter for servos
-- DRV8870 brushed motor driver, 4 servo/ESC outputs, 3 receiver inputs, 2 light outputs
+- DRV8870 brushed motor driver, 4 servo/ESC outputs, 3 receiver inputs
+- WS2812 RGB lighting for 6 LEDs (front, sills, rear), 2 switched outputs
 - LSM6DS3TR-C IMU, Qwiic, UART, expansion header
 - 70 × 50 mm, 4 layers, assembled by JLCPCB; every step is scripted and reproducible
 

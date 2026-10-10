@@ -23,7 +23,8 @@ layout-aware and production-ready, and to keep every step reproducible with scri
 
 - STM32F103C8T6 at 72 MHz (8 MHz crystal), USB-C virtual COM port, Cortex-Debug connector
 - 2S–3S LiPo input on XT30 with reverse protection, TPS563201 5 V / 3 A servo rail, AP2112K 3.3 V
-- DRV8870 brushed motor driver (3.3 A limit), 4 servo/ESC outputs, 3 receiver inputs, 2 light outputs
+- DRV8870 brushed motor driver (3.3 A limit), 4 servo/ESC outputs, 3 receiver inputs
+- WS2812 RGB lighting output for 6 LEDs (front, sills, rear) with 5 V level shifter, 2 switched outputs
 - LSM6DS3TR-C IMU, Qwiic, UART header, 2×5 expansion header
 - 70 × 50 mm, 4 layers (solid GND plane), four M3 holes, JLCPCB assembly with an LCSC number on every part
 - ERC 0/0, DRC 0 violations / 0 unconnected / 0 schematic-parity issues, checked in CI
@@ -43,7 +44,8 @@ Rev C turns the board into a complete controller for an RC car on one 70 × 50 m
 | Motor | DRV8870 brushed motor driver, 3.3 A current limit (0.1 Ω shunt), screw terminal | PA6/PA7 (TIM3 CH1/2) |
 | Servo / ESC outputs | 4 × 3-pin (S, 5 V, GND) | PA0–PA3 (TIM2 CH1–4) |
 | Receiver inputs | 3 × 3-pin, 1k series, powered from the servo rail | PB6–PB8 (TIM4 CH1–3, 5 V tolerant) |
-| Lights | 2 × AO3400A low-side outputs (LED+ = 5 V) | PB0/PB1 (TIM3 CH3/4) |
+| RGB lights | WS2812 chain, 6 LEDs, 74AHCT1G125 level shifter, 330 Ω | PA8 (TIM1 CH1 + DMA) |
+| Switched outputs | 2 × AO3400A low-side outputs (5 V) | PB0/PB1 (TIM3 CH3/4) |
 | IMU | LSM6DS3TR-C, I²C 0x6A, INT1/INT2 | PB10/PB11 (I2C2), PB12/PB13 |
 | Other | USB-C, Cortex-Debug 10-pin, Qwiic, UART header, 2×5 expansion, user LED PC13 | |
 

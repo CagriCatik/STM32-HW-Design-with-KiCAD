@@ -4879,7 +4879,7 @@
 			)
 		)
 	)
-	(global_label "PA8"
+	(global_label "LED_DATA"
 		(shape bidirectional)
 		(at 226.06 134.62 0)
 		(fields_autoplaced yes)

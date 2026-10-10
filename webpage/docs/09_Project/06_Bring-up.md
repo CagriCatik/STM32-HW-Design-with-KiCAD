@@ -40,5 +40,8 @@ STM32_Programmer_CLI -c port=SWD
 
 ## 6. Lights and clock
 
-- `l1 100` / `l2 50`: LEDs on the light outputs.
-- Optional: output the HSE on MCO (PA8, expansion header) and check 8 MHz with a scope.
+- Connect the WS2812 chain (5V, DI, G on the bottom silkscreen). Headlights white, sills blue, tail lights red;
+  `ind h` makes all six blink amber, `c 0 0 255 0` turns them green.
+- `l1 100` / `l2 50`: loads on the switched outputs.
+- Optional: configure PA8 as MCO for a moment (it is the WS2812 data line) and measure the 8 MHz HSE at the input
+  of the level shifter U7 with a scope.

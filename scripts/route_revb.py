@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Phase 4 routing for stm32_prototype Rev B.
 
-  route_revb.py dsn   <board> <out.dsn>   export Specctra DSN (2 signal layers, GND as B.Cu plane)
-  route_revb.py ses   <board> <in.ses>    import the session, then switch to 4 layers SIG/GND/GND/SIG
+  route_revb.py dsn   <board> <out.dsn>   export Specctra DSN (+ .rules for Rev C), GND as a plane
+  route_revb.py ses   <board> <in.ses>    import the session, final 4-layer stack
   route_revb.py gnd   <board>             final GND pours on F.Cu/B.Cu, fallback vias for any GND pad still
                                           unconnected, stitching vias along the edges
   route_revb.py silk  <board>             hide top designators, pinout + labels on the bottom silkscreen
@@ -22,22 +22,51 @@ GND_TRACK_W = 0.25   # short pad-to-via stubs; must fit next to 0.5 mm pitch LQF
 INNER = (pcbnew.In1_Cu, pcbnew.In2_Cu)
 
 
+def is_revc(board):
+    return board.FindFootprintByReference('U5') is not None
+
+
 def setup_layers(board):
-    """4 layers SIG / GND / GND / SIG (JLC 1.6 mm); inner layers are planes, never routed."""
+    """Rev B: SIG / GND / GND / SIG.  Rev C: SIG / GND / SIG / SIG (In2 routed, then filled with GND)."""
     board.SetCopperLayerCount(4)
-    for L, name in zip(INNER, ('In1.GND', 'In2.GND')):
-        board.SetLayerType(L, pcbnew.LT_POWER)
+    names = ('In1.GND', 'In2.Cu') if is_revc(board) else ('In1.GND', 'In2.GND')
+    for L, name in zip(INNER, names):
+        board.SetLayerType(L, pcbnew.LT_POWER if name.endswith('GND') else pcbnew.LT_SIGNAL)
         board.SetLayerName(L, name)
 
 
+RULES_REVC = """(rules PCB board
+  (snap_angle fortyfive_degree)
+  (autoroute_settings
+    (fanout off) (autoroute on) (postroute on) (vias on) (via_costs 50) (plane_via_costs 5)
+    (start_ripup_costs 100) (start_pass_no 1)
+    (layer_rule F.Cu (active on) (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0) (against_preferred_direction_trace_costs 2.0))
+    (layer_rule In1.GND (active on) (preferred_direction vertical)
+      (preferred_direction_trace_costs 30.0) (against_preferred_direction_trace_costs 40.0))
+    (layer_rule In2.Cu (active on) (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.5) (against_preferred_direction_trace_costs 3.0))
+    (layer_rule B.Cu (active on) (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0) (against_preferred_direction_trace_costs 2.0))
+  )
+)
+"""
+
+
 def export_dsn(board, out):
-    """Route as a 2-layer job with GND as a B.Cu plane: Freerouting then ties every GND pin to a via.
-    (Freerouting cannot route through KiCad's inner power planes; the planes are added after import, where
-    every GND via lands on them.)"""
-    board.SetCopperLayerCount(2)
+    """Rev B: route as 2 layers with GND as a B.Cu plane, inner GND planes are added after import.
+    Rev C: route on 4 layers with GND as an In1 plane; In1 is made 30x more expensive than the other layers,
+    so Freerouting only drops vias into it and leaves the plane solid (rules file written next to the DSN)."""
     for z in list(board.Zones()):
         board.Delete(z)
-    add_zone(board, pcbnew.B_Cu, gnd_net(board), 0)
+    if is_revc(board):
+        setup_layers(board)
+        board.SetLayerType(pcbnew.In1_Cu, pcbnew.LT_SIGNAL)   # Freerouting only uses planes on signal layers
+        add_zone(board, pcbnew.In1_Cu, gnd_net(board), 0)
+        open(re.sub(r'\.dsn$', '.rules', out), 'w').write(RULES_REVC)
+    else:
+        board.SetCopperLayerCount(2)
+        add_zone(board, pcbnew.B_Cu, gnd_net(board), 0)
     fill(board)
     assert pcbnew.ExportSpecctraDSN(board, out)
     t = open(out).read()
@@ -306,7 +335,11 @@ def silk_revc(board):
     for i, s in enumerate(('GND', '5V', 'TX', 'RX')):
         text(s, q.x - MM(3.0), q.y + MM(2.54 * i), 0, 0.8)
     box = board.GetBoardEdgesBoundingBox()
-    q = fps['J1'].GetPosition(); text('- BATT +', q.x + MM(2.5), q.y - MM(4.2))
+    q = fps['J1'].GetPosition()
+    for g in fps['J1'].GraphicalItems():   # footprint polarity marks: move above the pads (off the edge and Q1)
+        if isinstance(g, pcbnew.PCB_TEXT) and g.GetText() in ('+', '-'):
+            g.SetPosition(pcbnew.VECTOR2I(q.x + (MM(5) if g.GetText() == '+' else 0), q.y - MM(4.2)))
+    text('+ BATT -', q.x + MM(2.5), q.y - MM(4.2))   # bottom view is mirrored: pad 2 (+) appears on the left
     text('2S-3S LiPo', q.x + MM(2.5), q.y + MM(4.2))
     q = fps['J3'].GetPosition(); text('MOTOR', q.x + MM(1.75), q.y - MM(5.0))
     for s, ref in (('SWD', 'J13'), ('QWIIC', 'J14'), ('USB-C', 'J2'), ('BOOT0', 'SW1'), ('RESET', 'SW2'),
@@ -374,6 +407,8 @@ if __name__ == '__main__':
     if cmd == 'dsn':
         export_dsn(board, sys.argv[3]); sys.exit(0)
     if cmd == 'ses':
+        if is_revc(board):
+            setup_layers(board)   # layer names must match the session before import
         assert pcbnew.ImportSpecctraSES(board, sys.argv[3])
         setup_layers(board)
         print('widened narrow tracks:', fix_narrow_tracks(board))

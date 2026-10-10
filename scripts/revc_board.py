@@ -114,3 +114,6 @@ if __name__ == '__main__':
     open(os.path.join(bs.PRJ_DIR, bs.NAME + '.kicad_dru'), 'w').write(bs.DRU)
     bs.place_fixed = place
     print('footprints:', bs.build_board())
+    import apply_3d_models   # 3D models KiCad does not ship (stored in stm32_prototype/3dmodels)
+    path = os.path.join(bs.PRJ_DIR, bs.NAME + '.kicad_pcb')
+    b = pcbnew.LoadBoard(path); apply_3d_models.apply(b); b.Save(path)

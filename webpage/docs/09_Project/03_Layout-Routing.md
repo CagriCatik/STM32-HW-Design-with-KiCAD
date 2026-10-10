@@ -63,3 +63,10 @@ kicad-cli pcb drc --severity-all --exit-code-violations --schematic-parity stm32
 ```
 
 Result: 0 violations, 0 unconnected items, 0 schematic-parity issues. The In1 ground plane is a single island.
+
+## 3D models
+
+KiCad 10 ships no 3D models for the HRO USB-C receptacle, the XT30 connector and the TS-1187A buttons, and the
+DRV8870 footprint points to a misnamed file. `scripts/apply_3d_models.py` assigns STEP models from LCSC/EasyEDA
+(downloaded with `easyeda2kicad` by LCSC number, stored in `stm32_prototype/3dmodels/`) and KiCad's HSOP-8 body.
+Parts marked *Do not populate* (optional crystal, expansion header) are hidden in the 3D view on purpose.

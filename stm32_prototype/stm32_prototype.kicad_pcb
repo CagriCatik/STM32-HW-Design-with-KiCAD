@@ -7135,7 +7135,7 @@
 			(uuid "c9c2dc11-2e61-41a3-81df-0102b45ae607")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/HTSOP-8-1EP_3.9x4.9mm_Pitch1.27mm.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10512,7 +10512,7 @@
 			(uuid "de407f43-4acb-4d1a-abd7-ef5e9e3f61c8")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_Push_1P1T_XKB_TS-1187A.step"
+		(model "${KIPRJMOD}/3dmodels/TS-1187A-B-A-B.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -13055,15 +13055,15 @@
 			(uuid "d96c37fe-6c10-4771-b3fc-6a60251b7354")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_HRO_TYPE-C-31-M-12.step"
+		(model "${KIPRJMOD}/3dmodels/USB-C_HRO_TYPE-C-31-M-12.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 1.575 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -15651,7 +15651,7 @@
 			(uuid "8bb7dfe6-c62b-4212-906e-e9f5a3e16372")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_Push_1P1T_XKB_TS-1187A.step"
+		(model "${KIPRJMOD}/3dmodels/TS-1187A-B-A-B.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17423,9 +17423,9 @@
 			(uuid "7251ab81-9d70-441e-b96e-72049ded12b1")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Connector_AMASS.3dshapes/AMASS_XT30UPB-M_1x02_P5.0mm_Vertical.step"
+		(model "${KIPRJMOD}/3dmodels/XT30UPB-M.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 2.5 0 0)
 			)
 			(scale
 				(xyz 1 1 1)

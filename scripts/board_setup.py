@@ -36,12 +36,16 @@ def update_project():
     def cls(name, **kw):
         c = dict(base, name=name, priority=0); c.update(kw); return c
     d['net_settings']['classes'] = [
-        dict(base, name='Default', track_width=0.2, clearance=0.2, via_diameter=0.6, via_drill=0.3),
+        # 0.15 mm clearance (JLC min 0.127) is needed to escape the LQFP-48 between the header rows
+        dict(base, name='Default', track_width=0.2, clearance=0.15, via_diameter=0.6, via_drill=0.3),
         cls('Power', track_width=0.5, clearance=0.2, via_diameter=0.8, via_drill=0.4, priority=1),
+        # 3V3/GND reach 0.3 mm LQFP pads; 0.3 mm on 1 oz carries ~1 A at 10 K rise (IPC-2152), plenty here
+        cls('Supply', track_width=0.3, clearance=0.15, via_diameter=0.6, via_drill=0.3, priority=1),
         cls('USB', track_width=0.3, clearance=0.15, diff_pair_width=0.3, diff_pair_gap=0.15, priority=0),
     ]
     d['net_settings']['netclass_patterns'] = (
-        [{'netclass': 'Power', 'pattern': p} for p in ('+5V', '+3V3', 'VBUS', 'VBUS_F', 'GND', 'VDDA', 'VBAT')] +
+        [{'netclass': 'Power', 'pattern': p} for p in ('+5V', 'VBUS', '*/VBUS_F')] +
+        [{'netclass': 'Supply', 'pattern': p} for p in ('+3V3', 'GND', '*/VDDA', 'VBAT')] +
         [{'netclass': 'USB', 'pattern': p} for p in ('USB_D+', 'USB_D-', 'PA11', 'PA12')])
     ds = d['board']['design_settings']
     ds['rules'].update(min_clearance=0.127, min_track_width=0.127, min_via_diameter=0.5, min_through_hole_diameter=0.3,
@@ -82,10 +86,11 @@ DRU = """(version 1)
   (constraint text_height (min 0.8mm))
   (constraint text_thickness (min 0.15mm)))
 
-(rule "USB differential pair (12 Mbit/s full speed, keep short and matched)"
+# USB full speed (12 Mbit/s): bit time 83 ns, 1 mm of mismatch is ~7 ps, so length matching is not
+# critical here. D+/D- run in the USB net class (0.3 mm / 0.15 mm gap) and are kept short instead.
+(rule "USB pair gap"
   (condition "A.NetClass == 'USB'")
-  (constraint diff_pair_gap (opt 0.15mm))
-  (constraint skew (max 0.15mm)))
+  (constraint diff_pair_gap (opt 0.15mm)))
 """
 
 # ------------------------------------------------------------------ netlist

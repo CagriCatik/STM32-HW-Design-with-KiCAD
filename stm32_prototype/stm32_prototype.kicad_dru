@@ -27,7 +27,8 @@
   (constraint text_height (min 0.8mm))
   (constraint text_thickness (min 0.15mm)))
 
-(rule "USB differential pair (12 Mbit/s full speed, keep short and matched)"
+# USB full speed (12 Mbit/s): bit time 83 ns, 1 mm of mismatch is ~7 ps, so length matching is not
+# critical here. D+/D- run in the USB net class (0.3 mm / 0.15 mm gap) and are kept short instead.
+(rule "USB pair gap"
   (condition "A.NetClass == 'USB'")
-  (constraint diff_pair_gap (opt 0.15mm))
-  (constraint skew (max 0.15mm)))
+  (constraint diff_pair_gap (opt 0.15mm)))

@@ -530,7 +530,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.15,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -569,6 +569,25 @@
       {
         "bus_width": 12,
         "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Supply",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.3,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
         "diff_pair_gap": 0.15,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.3,
@@ -598,26 +617,26 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+3V3"
-      },
-      {
-        "netclass": "Power",
         "pattern": "VBUS"
       },
       {
         "netclass": "Power",
-        "pattern": "VBUS_F"
+        "pattern": "*/VBUS_F"
       },
       {
-        "netclass": "Power",
+        "netclass": "Supply",
+        "pattern": "+3V3"
+      },
+      {
+        "netclass": "Supply",
         "pattern": "GND"
       },
       {
-        "netclass": "Power",
-        "pattern": "VDDA"
+        "netclass": "Supply",
+        "pattern": "*/VDDA"
       },
       {
-        "netclass": "Power",
+        "netclass": "Supply",
         "pattern": "VBAT"
       },
       {

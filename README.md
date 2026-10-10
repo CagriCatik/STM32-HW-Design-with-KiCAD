@@ -108,6 +108,39 @@ python -m mkdocs build
 ---
 
 <details>
+<summary><strong>Rev C – RC-car controller (branch rev-c-rc-car)</strong></summary>
+
+Rev C turns the board into a complete controller for an RC car on one 70 × 50 mm, 4-layer PCB with four M3 holes.
+
+| Block | Parts | MCU pins |
+|---|---|---|
+| Battery | 2S–3S LiPo on XT30, AO4407A reverse protection, SMAJ15A TVS, voltage sense 33k/10k | PA4 (ADC) |
+| Servo rail | TPS563201 buck, 5.07 V / 3 A for servos and receiver | – |
+| Logic supply | servo rail or USB-C (each via B5819W) → AP2112K-3.3 | – |
+| Motor | DRV8870 brushed motor driver, 3.3 A current limit (0.1 Ω shunt), screw terminal | PA6/PA7 (TIM3 CH1/2) |
+| Servo / ESC outputs | 4 × 3-pin (S, 5 V, GND) | PA0–PA3 (TIM2 CH1–4) |
+| Receiver inputs | 3 × 3-pin, 1k series, powered from the servo rail | PB6–PB8 (TIM4 CH1–3, 5 V tolerant) |
+| Lights | 2 × AO3400A low-side outputs (LED+ = 5 V) | PB0/PB1 (TIM3 CH3/4) |
+| IMU | LSM6DS3TR-C, I²C 0x6A, INT1/INT2 | PB10/PB11 (I2C2), PB12/PB13 |
+| Other | USB-C, Cortex-Debug 10-pin, Qwiic, UART header, 2×5 expansion, user LED PC13 | |
+
+Stack-up: F.Cu signals / In1 solid GND / In2 signals + GND fill / B.Cu signals + GND fill.
+DRC: 0 violations, 0 unconnected, 0 schematic parity issues. Fabrication data: `stm32_prototype/production/rev-c/`.
+
+Notes: the DRV8870 needs ≥ 6.5 V (it locks out on an empty 2S pack). When an ESC is plugged into a servo
+output, disconnect its BEC red wire – the board already supplies 5 V.
+
+```bash
+python3 scripts/revc_schematic/gen.py <dir>   # schematic generator (+ check.sh)
+scripts/route_revb.sh                         # autoroute (Freerouting) + GND pours + DRC
+scripts/export_fab.sh                         # Gerber/drill/BOM/CPL/PDF/STEP for rev-c
+```
+
+</details>
+
+---
+
+<details>
 <summary><strong>Rev B – changes compared to Rev A</strong></summary>
 
 The KiCad project in `stm32_prototype/` is Rev B, a modernised Blue Pill (KiCad 10, branch `rev-b-usb-c`).

@@ -5,13 +5,13 @@
 	(uuid "be055fee-c3a5-4e5c-a361-2a24d1729bc4")
 	(paper "A4")
 	(title_block
-		(title "STM32 Prototype (Blue Pill) Rev B")
+		(title "STM32 RC-car controller Rev C")
 		(date "2026-10-10")
-		(rev "B")
+		(rev "C")
 		(company "Cagri Catik")
 	)
 	(lib_symbols)
-	(text "STM32 Prototype Rev B (Blue-Pill compatible)\nD1 STM32F103C8T6 | D2 USB-C 2.0 device | D3 AP2112K-3.3 | D4 USBLC6-2SC6 + 500 mA PTC\nD5 Cortex-Debug 10-pin + SWD 1x4 | D6 Qwiic I2C1 (PB6/PB7) 4.7k | D7 RESET + BOOT0 buttons\nD8 power LED + PC13 user LED | D9 LSE 32.768 kHz (DNP) | D10 Blue-Pill format | D11 2 layers 1.6 mm\nD12 0603, JLC basic parts preferred | D13 JLCPCB assembly, LCSC field on every part"
+	(text "STM32 RC-car controller Rev C\nBattery 2S-3S XT30 -> reverse protection -> 5 V/3 A buck (servos, receiver) + DRV8870 brushed motor driver\n4 servo/ESC outputs, 3 receiver inputs, 2 light outputs, LSM6DS3TR-C IMU, USB-C, Cortex-Debug, Qwiic, UART\nSTM32F103C8T6, 8 MHz HSE, 4 layers, JLCPCB assembly (LCSC field on every part)"
 		(exclude_from_sim no)
 		(at 40 100 0)
 		(effects
@@ -20,10 +20,10 @@
 			)
 			(justify left top)
 		)
-		(uuid "13685375-bc86-4c86-a02c-940582b5bda3")
+		(uuid "87da1a43-313d-5a92-9fd6-25eea93942d7")
 	)
 	(sheet
-		(at 160 50)
+		(at 30 50)
 		(size 40 25)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -37,55 +37,9 @@
 		(fill
 			(color 0 0 0 0)
 		)
-		(uuid "6c280a73-b9b9-43c7-8245-23d788264cf9")
-		(property "Sheetname" "Connectors"
-			(at 160 49.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "connectors.kicad_sch"
-			(at 160 75.6 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "stm32_prototype"
-				(path "/be055fee-c3a5-4e5c-a361-2a24d1729bc4"
-					(page "4")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 40 50)
-		(size 40 25)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "b6fcc2be-a10e-4796-80d8-072a9e6131f0")
+		(uuid "27fab916-fee9-5f35-9a27-2638f0a68fb8")
 		(property "Sheetname" "MCU"
-			(at 40 49.3 0)
+			(at 30 49.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -96,7 +50,7 @@
 			)
 		)
 		(property "Sheetfile" "mcu.kicad_sch"
-			(at 40 75.6 0)
+			(at 30 75.6 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -115,7 +69,7 @@
 		)
 	)
 	(sheet
-		(at 100 50)
+		(at 210 50)
 		(size 40 25)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -129,9 +83,9 @@
 		(fill
 			(color 0 0 0 0)
 		)
-		(uuid "c58cb1b9-95c9-48b4-a6d3-e9aad35fbbd4")
-		(property "Sheetname" "Power_USB"
-			(at 100 49.3 0)
+		(uuid "9e2139f6-01af-5c07-bdfb-4264e305056c")
+		(property "Sheetname" "IO"
+			(at 210 49.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -141,8 +95,100 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "power_usb.kicad_sch"
-			(at 100 75.6 0)
+		(property "Sheetfile" "io.kicad_sch"
+			(at 210 75.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "stm32_prototype"
+				(path "/be055fee-c3a5-4e5c-a361-2a24d1729bc4"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 150 50)
+		(size 40 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "a2bd147b-232a-5a94-8bdf-6fc60c31df3f")
+		(property "Sheetname" "Drive"
+			(at 150 49.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "drive.kicad_sch"
+			(at 150 75.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "stm32_prototype"
+				(path "/be055fee-c3a5-4e5c-a361-2a24d1729bc4"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 90 50)
+		(size 40 25)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "edde5a4c-6a09-5a96-9c00-73b1b25a2968")
+		(property "Sheetname" "Power"
+			(at 90 49.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 90 75.6 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

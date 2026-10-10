@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "rcboard")(type "KiCad")(uri "${KIPRJMOD}/rcboard.kicad_sym")(options "")(descr "RC controller board symbols"))
+)

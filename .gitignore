@@ -51,6 +51,7 @@ KiCadLikeaPro3e.pdf
 fp-info-cache
 fp-lib-table
 sym-lib-table
+!stm32_prototype/sym-lib-table
 sym-lib-table-bak
 cache
 *.net
@@ -113,3 +114,5 @@ __pycache__/
 *.lck
 _autosave-*
 *.kicad_pro-bak
+# KiCad 10 local history
+.history/

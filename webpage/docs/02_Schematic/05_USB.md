@@ -280,3 +280,20 @@ At this juncture, your USB circuitry should be fully integrated into the schemat
 ## Conclusion
 
 By meticulously following this guide, you have successfully integrated USB circuitry into your STM32 microcontroller design using KiCad. The schematic now includes a properly connected USB connector, regulated power supply, correctly routed differential pairs, and the necessary pull-up resistor for USB detection. Adhering to best practices and referencing key application notes ensures that your design is both reliable and compliant with USB standards. Before advancing to PCB layout, always perform thorough verification through an Electrical Rule Check to catch and rectify any potential issues. With this setup, your STM32-based device is well-equipped for robust USB communication, facilitating programming, data transfer, and a wide array of USB-dependent functionalities.
+## Rev B: USB-C in this repository
+
+The board in `stm32_prototype/` (Rev B, sheet `power_usb`) replaces the USB Micro connector with USB-C:
+
+| Part | Value | Why |
+|---|---|---|
+| J1 HRO TYPE-C-31-M-12 | 16-pin USB 2.0 receptacle | A6/B6 → `USB_D+`, A7/B7 → `USB_D-`, so both plug orientations work |
+| R7, R8 | 5.1 kΩ to GND on CC1 and CC2 (separate resistors) | Marks the board as a USB-C sink; without them a C-to-C cable delivers no 5 V |
+| SBU1/SBU2 | no-connect | Not used by USB 2.0 |
+| R9 ∥ C13 | 1 MΩ ∥ 4.7 nF shield to GND | Drains static charge without a hard ground loop |
+| U2 USBLC6-2SC6 | ESD protection on D+, D− and VBUS | Placed directly behind the connector |
+| R4, R5 | 0 Ω in D+/D− (22 Ω optional) | Footprints for series termination if signal quality needs it |
+| R6 | 1.5 kΩ from PA12 (D+) to 3V3 | The STM32F103 has no internal pull-up |
+
+Layout: the connector sits on the left short edge, ESD → series resistors → PA11/PA12 run in a straight line,
+and the board is 4 layers with two solid GND inner planes, so D+/D− always have an unbroken reference.
+At USB full speed (12 Mbit/s) length matching is not critical; the pair is kept short instead.

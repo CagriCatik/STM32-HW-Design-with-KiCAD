@@ -293,3 +293,14 @@ By meticulously following the steps outlined above, you have successfully comple
    - Utilize simulation tools if necessary to validate signal integrity and power distribution.
 
 By progressing systematically through these phases, you will develop a robust and high-performance PCB design ready for fabrication and assembly.
+
+## Rev B placement in this repository
+
+![Rev B placement, top](../assets/pcb/revb_placement_top.png)
+
+- The board keeps the Blue-Pill header pinout and 0.6" row spacing but is 76.2 mm long: the strip between the
+  header rows is only ~12 mm wide, too small for USB-C, two debug connectors, Qwiic and two buttons.
+  USB-C and the power path sit in the left extension, Cortex-Debug, SWD and Qwiic in the right one.
+- The MCU is rotated 180° so PA11/PA12 face the USB connector.
+- Decoupling capacitors sit 2–4 mm from their VDD pins (left and right of the LQFP, the only free sides);
+  the 8 MHz crystal is 3–5 mm from PD0/PD1.

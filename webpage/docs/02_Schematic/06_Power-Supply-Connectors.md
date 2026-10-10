@@ -241,3 +241,26 @@ This schematic serves as a solid foundation for your STM32 project, balancing si
 - Design Rule Checks (DRC): Perform thorough checks to ensure the PCB layout meets all design specifications and manufacturing requirements.
 
 By adhering to these practices, you will create a reliable and efficient PCB design that meets the demands of your STM32-based application.
+## Rev B: power path and connectors in this repository
+
+The Rev B board (`stm32_prototype/`, sheets `power_usb` and `connectors`) modernises this part of the design:
+
+**Power path:** VBUS → F1 500 mA PTC (nSMD050) → D2 B5819W Schottky → `+5V` → U3 AP2112K-3.3 → `+3V3`.
+The Schottky stops a supply on the header's 5V pin from back-feeding the USB host. The AP2112K replaces the
+AMS1117: about 250 mV dropout instead of 1.1 V, 55 µA quiescent current instead of ~5 mA, and it is stable with
+ceramic capacitors (1 µF in, 1 µF + 10 µF out, EN tied to VIN).
+
+**LEDs:** the power LED (D3) and the user LED on PC13 (D1, low-active) use red 0603 LEDs with 1 kΩ (~1.3 mA).
+PC13 may only sink about 3 mA. A green 0603 basic part with 3.3 V forward voltage would not light at 3V3.
+
+**Connectors:**
+
+| Ref | Connector | Pins |
+|---|---|---|
+| J2 | Cortex-Debug 2×5, 1.27 mm | VTref, SWDIO (PA13), SWCLK (PA14), SWO (PB3), nRESET, GND |
+| J3 | SWD 1×4, 2.54 mm | 3V3, SWDIO, SWCLK, GND (for low-cost ST-Link clones) |
+| J4 | Qwiic / STEMMA QT, JST-SH 4-pin | GND, 3V3, SDA (PB7), SCL (PB6) |
+| J5/J6 | 2× 1×20, 2.54 mm, 15.24 mm row spacing | Blue-Pill pinout (printed on the bottom silkscreen) |
+
+The I²C pull-ups are 4.7 kΩ (1.5 kΩ is stronger than needed at 100/400 kHz) and connect to 3V3 through the
+solder jumper JP2, so they can be cut when a sensor board already has pull-ups. UART1 (PA9/PA10) is on the header.

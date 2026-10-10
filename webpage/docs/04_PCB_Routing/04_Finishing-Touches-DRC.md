@@ -207,3 +207,16 @@ With your design now complete and all final steps addressed, you're ready to sub
 - Thorough File Review: Always inspect Gerber and drill files to ensure they accurately represent your design.
 
 By adhering to these best practices, your PCB designs will not only meet technical standards but also exhibit professionalism and attention to detail, crucial for successful manufacturing and deployment.
+
+## Rev B routing in this repository
+
+![Rev B routed, top](../assets/pcb/revb_routed_top.png)
+![Rev B routed, bottom with pinout](../assets/pcb/revb_routed_bottom.png)
+
+- 4 layers SIG / GND / GND / SIG. On two layers the bottom ground pour was cut into nine pieces by signals,
+  including under the crystal and the USB pair; with two solid inner GND planes every signal has an unbroken
+  return path and every GND pad connects through a via next to it.
+- Signals were autorouted with Freerouting (`scripts/route_revb.sh`): 0.2 mm tracks with 0.15 mm clearance
+  (needed to escape the LQFP between the header rows), 0.3 mm for 3V3/GND, 0.5 mm for VBUS/5V.
+  Vias are kept ≥ 0.5 mm hole-to-hole for JLCPCB.
+- Final DRC with schematic parity: 0 violations, 0 unconnected items.

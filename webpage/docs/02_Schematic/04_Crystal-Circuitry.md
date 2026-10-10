@@ -332,3 +332,20 @@ flowchart LR
     Rseries["Optional series resistor - for drive/control"]
     PD1 -.-> Rseries -.-> X3
 ```
+## Rev B: 8 MHz crystal and load capacitors in this repository
+
+Rev B uses an 8 MHz crystal (Y1, YXC X32258MOB4SI, 3225 package, C_L = 12 pF) instead of 16 MHz, which matches
+the CubeMX and Blue-Pill default (HSE 8 MHz × PLL 9 = 72 MHz SYSCLK, USB clock 72 MHz / 1.5 = 48 MHz).
+
+Load capacitors, with C_stray ≈ 4 pF for pins and traces:
+
+```text
+C1 = C2 = 2 × (C_L − C_stray) = 2 × (12 pF − 4 pF) = 16 pF  →  15 pF C0G (C8, C9)
+```
+
+Oscillator margin (AN2867): with ESR 150 Ω and C0 ≈ 3 pF the crystal needs
+g_m,crit = 4 · ESR · (2πf)² · (C0 + C_L)² ≈ 0.34 mA/V; the F103 HSE provides 25 mA/V, a margin of about 70
+(AN2867 asks for at least 5).
+
+The optional 32.768 kHz LSE (Y2, C_L = 6 pF, 4.7 pF load capacitors on PC14/PC15) is placed but not populated (DNP).
+On the PCB the crystal sits 3–5 mm from PD0/PD1 above a solid GND inner plane.

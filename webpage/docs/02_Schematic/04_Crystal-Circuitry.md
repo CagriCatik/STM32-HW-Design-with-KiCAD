@@ -1,5 +1,9 @@
 # Connecting the Crystal Oscillator
 
+!!! info "In this project"
+    The course example uses a 16 MHz crystal. The board in this repository uses **8 MHz** (the CubeMX and Blue-Pill default) with 15 pF load capacitors, see [Crystal Circuitry](../02_Schematic/04_Crystal-Circuitry.md#rev-b-8-mhz-crystal-and-load-capacitors-in-this-repository).
+
+
 Integrating a `crystal oscillator`  into your STM32 microcontroller circuit is a pivotal step in ensuring accurate timing, especially for high-speed communication protocols such as USB, CAN, and UART.
 
 A `crystal oscillator` is a tiny electronic part that keeps time for a circuit. Inside it is a piece of quartz. Quartz has a useful property called the piezoelectric effect, which means it vibrates when you apply electricity. These vibrations happen at a very precise frequency, so the crystal can act like a super-accurate clock.

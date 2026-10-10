@@ -19,3 +19,21 @@ Once your design files are checked and ready, you can upload them to your PCB ma
 
 - If you want the board fully assembled, you can upload the Bill of Materials (BOM) and Pick-and-Place file.
 - Choose the side for assembly (e.g., Top, Bottom, or Both).
+
+## JLCPCB settings for this project
+
+| Option | Value |
+|---|---|
+| Layers | 4 (detected from the Gerbers) |
+| Thickness | 1.6 mm |
+| Outer copper | 1 oz |
+| Stack-up | JLC04161H-7628 (default) |
+| Surface finish | HASL lead-free or ENIG |
+| Assembly | top side, upload BOM + CPL |
+
+After uploading BOM and CPL, JLCPCB matches every line to an LCSC part. Check:
+
+- every line is matched and in stock,
+- through-hole headers: assemble them or deselect them and solder them yourself,
+- the 3D preview: pin-1 markers of ICs, polarity of diodes, LEDs and electrolytic capacitors, connector openings
+  towards the board edge.

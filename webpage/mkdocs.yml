@@ -1,5 +1,5 @@
 site_name: STM32 Hardware Design with KiCad
-site_description: Comprehensive guide to designing STM32-based hardware using KiCad.
+site_description: STM32 hardware design with KiCad 10 – from schematic to a manufactured RC-car controller board.
 site_author: Cagri Catik
 site_url: https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/
 
@@ -9,7 +9,7 @@ repo_url: https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD
 edit_uri: edit/main/webpage/docs/
 
 # Copyright
-copyright: Copyright &copy; 2025 Cagri Catik
+copyright: Copyright &copy; 2025–2026 Cagri Catik
 
 theme:
   name: material
@@ -108,7 +108,7 @@ nav:
     - USB: 02_Schematic/05_USB.md
     - Power Connectors: 02_Schematic/06_Power-Supply-Connectors.md
     - ERC & Annotation: 02_Schematic/07_ERC-Annotation.md
-    - Footpoint Assignment: 02_Schematic/08_Footprint-Assignment.md
+    - Footprint Assignment: 02_Schematic/08_Footprint-Assignment.md
     - Final Schematic: 02_Schematic/09_Final-Schematic.md
     - Summary:
       - Power Decoupling: 02_Schematic/Summary/01_power_decoupling_network.md
@@ -128,7 +128,7 @@ nav:
     - Power Layout: 03_PCB_Layout/06_Power-Supply-Layout.md
     - Board Outline: 03_PCB_Layout/07_Mounting-Holes-Board-Outline.md
   - 🛣️ PCB Routing:
-    - Decoupling & Crystal: 04_PCB_Routing/01_Decoupling-Capacitors-Cyrstal-Routing.md
+    - Decoupling & Crystal: 04_PCB_Routing/01_Decoupling-Capacitors-Crystal-Routing.md
     - Signal Routing: 04_PCB_Routing/02_Signal-Routing.md
     - Power Routing: 04_PCB_Routing/03_Power-Routing.md
     - DRC: 04_PCB_Routing/04_Finishing-Touches-DRC.md
@@ -139,9 +139,16 @@ nav:
     - Check Gerbers: 05_Manufacturing/04_Check-Gerber.md
     - Submitting: 05_Manufacturing/05_Submitting.md
     - Ordering: 05_Manufacturing/06_Placing-Order.md
+  - 🚗 Project – RC Controller:
+    - Overview: 09_Project/01_Overview.md
+    - Schematic: 09_Project/02_Schematic.md
+    - Layout & Routing: 09_Project/03_Layout-Routing.md
+    - Manufacturing: 09_Project/04_Manufacturing.md
+    - Firmware: 09_Project/05_Firmware.md
+    - Bring-up: 09_Project/06_Bring-up.md
   - 📜 Scripts:
     - Automated Design: 06_Scripts/01_Automated_Design.md
-    - Custome Footprint: 06_Scripts/02_Customized_Footprint.md
+    - Custom Footprint: 06_Scripts/02_Customized_Footprint.md
     - DRC: 06_Scripts/03_DRC.md
     - Netlist: 06_Scripts/04_Netlist.md
     - BOM: 06_Scripts/05_BOM.md

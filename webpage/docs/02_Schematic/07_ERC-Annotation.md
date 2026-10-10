@@ -1,5 +1,9 @@
 # Sectioning and Annotating
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+
 Creating a well-organized, annotated, and finalized schematic is crucial for ensuring readability, facilitating future modifications, and streamlining the transition to PCB layout. This documentation provides a comprehensive guide on how to effectively section, annotate, and finalize your schematic in KiCad, incorporating best practices and practical examples to enhance your PCB design process.
 
 ## 1. Sectioning the Schematic into Readable Parts

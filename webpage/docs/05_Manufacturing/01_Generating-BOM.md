@@ -23,3 +23,28 @@ The BOM is a list of all components used in your design. It includes reference d
   
 - Add Manufacturer Part Numbers: Make sure to populate the Manufacturer and Part Number columns for each component. This ensures the assembly house uses the correct parts.
 - Remove Non-Assembled Items: Remove items like mounting holes that don’t need assembly.
+
+## Step 3: BOM in JLCPCB format
+
+JLCPCB's assembly service expects four columns: **Comment** (value), **Designator** (references, comma-separated),
+**Footprint** and **LCSC Part #**. Store the LCSC number as a field (`LCSC`) on every symbol, then the BOM can be
+exported directly:
+
+```bash
+kicad-cli sch export bom --exclude-dnp --ref-range-delimiter "" \
+  --fields 'Value,Reference,Footprint,LCSC' --labels 'Comment,Designator,Footprint,LCSC Part #' \
+  --group-by 'Value,Footprint,LCSC' -o bom.csv stm32_prototype/stm32_prototype.kicad_sch
+```
+
+- `--exclude-dnp` leaves out parts marked *Do not populate* (optional crystal, loose headers).
+- `--ref-range-delimiter ""` writes `C1,C2,C3` instead of `C1-C3`, which JLCPCB cannot parse.
+- Parts with *Exclude from BOM* (solder jumpers, mounting holes) are skipped automatically.
+
+## Tips
+
+- Prefer JLCPCB **basic** parts (no feeder fee); every *extended* part adds a one-time fee per order.
+- Check stock for each LCSC number shortly before ordering.
+- Group identical parts (same value, footprint and LCSC number) into one line.
+
+In this repository `scripts/export_fab.sh` produces the BOM together with all other files, see
+[Project → Manufacturing](../09_Project/04_Manufacturing.md).

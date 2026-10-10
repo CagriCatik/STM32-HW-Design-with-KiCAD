@@ -73,10 +73,10 @@ class DecouplingCapOptimizer(pcbnew.ActionPlugin):
     def Run(self):
         # This is where the core functionality of the plugin goes
         board = pcbnew.GetBoard()
-        components = board.GetModules()
+        components = board.GetFootprints()
 
         for component in components:
-            if "C" in component.GetReference():  # Check for capacitors
+            if component.GetReference().startswith("C"):  # capacitors
                 ic = self.find_associated_ic(component)
                 if ic:
                     self.place_capacitor(component, ic)
@@ -85,15 +85,15 @@ class DecouplingCapOptimizer(pcbnew.ActionPlugin):
         # Logic to find the IC associated with this decoupling capacitor
         # For simplicity, assume ICs have references starting with "U"
         board = pcbnew.GetBoard()
-        for component in board.GetModules():
-            if "U" in component.GetReference():
+        for component in board.GetFootprints():
+            if component.GetReference().startswith("U"):
                 return component
         return None
 
     def place_capacitor(self, capacitor, ic):
         # Logic to place the capacitor close to the IC
         ic_position = ic.GetPosition()
-        capacitor.SetPosition(ic_position + pcbnew.wxPointMM(5, 0))  # Example placement
+        capacitor.SetPosition(ic_position + pcbnew.VECTOR2I(pcbnew.FromMM(5), 0))  # 5 mm to the right
 
 DecouplingCapOptimizer().register()
 ```
@@ -145,29 +145,26 @@ For large PCBs with many components, scripts can become slow if not optimized. W
 For an advanced example, consider a plugin that automates controlled impedance trace routing for high-speed designs. Controlled impedance routing is essential for maintaining signal integrity, especially in designs with high-frequency signals like USB or Ethernet.
 
 ```python
-class ControlledImpedanceRouter(pcbnew.ActionPlugin):
+class ControlledImpedanceWidths(pcbnew.ActionPlugin):
+    """Sets the width of every track on USB nets to the value that gives the target impedance on this stack-up."""
     def defaults(self):
-        self.name = "Controlled Impedance Router"
+        self.name = "Controlled Impedance Widths"
         self.category = "Routing"
-        self.description = "Automatically route controlled impedance traces"
+        self.description = "Apply the impedance-matched width to USB tracks"
 
     def Run(self):
         board = pcbnew.GetBoard()
-        net_classes = board.GetNetClasses()
+        width = pcbnew.FromMM(0.3)       # from KiCad's transmission-line calculator for the chosen stack-up
+        for track in board.GetTracks():
+            if type(track) is pcbnew.PCB_TRACK and "USB" in track.GetNetname():
+                track.SetWidth(width)
+        pcbnew.Refresh()
 
-        for net in board.GetNetsByName():
-            if "USB" in net.GetNetname():  # Check for high-speed nets
-                self.route_controlled_impedance_trace(net, net_classes["
-
-HighSpeed"])
-
-    def route_controlled_impedance_trace(self, net, net_class):
-        # Logic to route the trace with controlled impedance
-        for track in net.GetTracks():
-            track.SetWidth(net_class.GetClearance())
-
-ControlledImpedanceRouter().register()
+ControlledImpedanceWidths().register()
 ```
+
+In practice, assign the width to a net class (*Board Setup → Net Classes*) and let the interactive router use it;
+a plugin like this is useful to fix tracks that were routed before the rule existed.
 
 This example automates the process of routing controlled impedance traces for high-speed signals, ensuring that specific nets (e.g., USB signals) adhere to the required design rules.
 

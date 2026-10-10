@@ -1,5 +1,11 @@
 # Assigning Footprints to Schematic Symbols
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+    The course shows a USB Micro connector. The board in this repository uses **USB-C** (HRO TYPE-C-31-M-12) with 5.1 kΩ resistors on CC1/CC2 and USBLC6-2SC6 ESD protection, see [USB](../02_Schematic/05_USB.md#rev-b-usb-c-in-this-repository).
+
+
 Assigning footprints to schematic symbols is a crucial step in the PCB design process. This ensures that each component in your schematic is accurately represented on the physical board, facilitating seamless manufacturing and assembly. This guide provides a comprehensive walkthrough for assigning footprints in KiCad version 6, incorporating practical examples and best practices to optimize your PCB design workflow.
 
 ## 1. Preparing Your Schematic for Footprint Assignment

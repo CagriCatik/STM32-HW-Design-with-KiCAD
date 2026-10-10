@@ -1,29 +1,48 @@
-# STM32 Hardware Design
+# STM32 Hardware Design with KiCad
 
+A practical course on designing STM32 hardware with KiCad 10, from the first schematic symbol to a manufactured,
+assembled board, and a complete project built along the way: an **STM32 RC-car controller**.
 
-# Introduction to the Course and Goals
+![RC controller Rev C](assets/pcb/revc_top.png)
 
-### Objective
+## How this site is organised
 
-- This course is meticulously designed to equip learners with comprehensive knowledge and practical skills necessary for designing STM32-based hardware.
-- The journey begins with project initiation and extends through schematic design, PCB layout, and culminates in the manufacturing and assembly of the printed circuit board (PCB).
-- A significant emphasis is placed on transitioning from rudimentary Arduino-based designs to more sophisticated and professional hardware solutions leveraging the capabilities of the STM32 microcontroller.
+| Chapter | What you learn |
+|---|---|
+| [Introduction](01_Introduction/01_Introduction.md) | goals, tools, the overall workflow from project setup to programming |
+| [Schematic Design](02_Schematic/01_STM32_uC_Decoupling.md) | decoupling, boot and reset pins, pin-out, crystal, USB, power, ERC, footprints |
+| [PCB Layout](03_PCB_Layout/01_KiCad_PCB-Setup.md) | board setup, placement of decoupling, crystal, USB/SWD, connectors and power |
+| [PCB Routing](04_PCB_Routing/01_Decoupling-Capacitors-Crystal-Routing.md) | routing order, signal and power routing, DRC |
+| [Manufacturing](05_Manufacturing/01_Generating-BOM.md) | BOM, Gerbers, pick-and-place, checks and ordering at JLCPCB |
+| [Project – RC Controller](09_Project/01_Overview.md) | the board in this repository: schematic, layout, manufacturing data, firmware, bring-up |
+| [Scripts](06_Scripts/01_Automated_Design.md) | automating KiCad with Python and `kicad-cli` |
+| [Glossary](07_Glossary/A.md) | short definitions of the terms used |
 
-### Course Overview
+The course chapters explain each building block in general terms. Where the board in this repository uses a
+different part or value, an **"In this project"** box links to the project chapter.
 
-- Learning Path: From foundational concepts to advanced design techniques.
-- Hands-On Projects: Practical assignments that reinforce theoretical knowledge.
-- Industry Best Practices: Ensuring designs meet professional standards for reliability and performance.
-- Modern Tool Utilization: Leveraging KiCad for efficient and effective PCB design workflows.
+## The project at a glance
 
-### Why STM32 Over Arduino?
+- STM32F103C8T6 at 72 MHz, 8 MHz crystal, USB-C (virtual COM port), Cortex-Debug connector
+- 2S–3S LiPo input with reverse protection, 5 V / 3 A buck converter for servos
+- DRV8870 brushed motor driver, 4 servo/ESC outputs, 3 receiver inputs, 2 light outputs
+- LSM6DS3TR-C IMU, Qwiic, UART, expansion header
+- 70 × 50 mm, 4 layers, assembled by JLCPCB; every step is scripted and reproducible
 
-- Performance: STM32 provides significantly faster 32-bit processing, more memory, and advanced peripherals.
-- Flexibility: Offers configurable timers, multiple communication interfaces, and scalability for complex systems.
-- Professional Application: Common in industrial and commercial products, enabling direct transition to production-grade hardware.
-- Real-Time Control: Advanced timers, DMA, and interrupt capabilities support precise motor control and high-speed signal processing.
-- Low Power: Multiple optimized power modes allow efficient battery operation for embedded systems.
-- Connectivity: Built-in CAN, USB, and in some families Ethernet and SDIO, reducing reliance on external modules.
-- Cost Efficiency: Bare-MCU designs reduce BOM cost and board size when moving beyond prototyping.
+## Why STM32 instead of Arduino?
 
-This guidelines offers a thorough and practical approach to STM32 hardware design using KiCad. By delving into project setup, schematic design, PCB layout, and manufacturing processes, learners are empowered to transition from basic Arduino projects to advanced, professional-grade embedded systems. Emphasizing best practices and real-world applications, the material ensures that anyone working through it is well-equipped to design, develop, and produce reliable STM32-based hardware solutions.
+- **Performance:** 32-bit Cortex-M at 72 MHz with more memory and many more peripherals.
+- **Real-time control:** advanced timers, DMA and interrupts, exactly what motor and servo control need.
+- **Connectivity:** USB, CAN, several UART, I²C and SPI interfaces on chip.
+- **Professional relevance:** the same parts and tools are used in industrial products.
+- **Cost:** a bare MCU on your own board is cheaper and smaller than a development board once you move beyond
+  prototyping.
+
+## Prerequisites
+
+- KiCad 10, STM32CubeMX, an ST-Link (V2 clone or V3)
+- Basic electronics: Ohm's law, what a capacitor and a regulator do
+- Optional: Python 3 for the automation chapter
+
+The sources of this site and of the board are on GitHub:
+[CagriCatik/STM32-HW-Design-with-KiCAD](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD).

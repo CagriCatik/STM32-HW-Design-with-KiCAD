@@ -1,5 +1,8 @@
 # Design Rule Checking Customization
 
+!!! tip "Custom rules first, Python second"
+    KiCad 6 and later have a built-in custom-rule language (`.kicad_dru`). It is the right place for extra clearances, widths and net-class constraints; Python is useful to run the DRC in batch or CI and to evaluate the report. The examples below follow that split and were tested with KiCad 10.
+
 Design Rule Checking (DRC) is a critical aspect of PCB design, ensuring that the layout adheres to both electrical and manufacturing constraints. While KiCad provides robust built-in DRC rules, there are times when custom design rules are needed for specific projects or when dealing with particular manufacturing requirements. Python scripting in KiCad allows you to extend and customize these DRC checks, enabling you to enforce unique constraints and enhance the reliability of your design.
 
 Customizing DRC rules ensures that your design complies not only with standard guidelines but also with any specialized requirements that are essential for the performance, safety, or manufacturability of your PCB. For example, you may need custom rules for high-voltage designs, sensitive analog or RF sections, or complex multi-layer designs.
@@ -48,43 +51,34 @@ Let’s walk through an example of how to create a custom DRC rule that enforces
 ### Step 1: Define the Custom Rule
 The first step is to define the custom rule that needs to be enforced. In this case, we’ll create a rule that checks the clearance between high-voltage traces and other parts of the board.
 
+KiCad already has a rule language for exactly this. Put the rule into the board's `.kicad_dru` file
+(*Board Setup → Design Rules → Custom Rules*); the built-in DRC then enforces it everywhere, interactively and
+from the command line:
+
+```lisp
+(version 1)
+(rule "High-voltage clearance"
+  (condition "A.NetClass == 'HV'")
+  (constraint clearance (min 2mm)))
+```
+
+Python is then only needed to run the check and evaluate the result, for example in CI:
+
 ```python
-import pcbnew
+import json, subprocess
 
-def check_high_voltage_clearance(board):
-    # Define the high-voltage nets
-    high_voltage_nets = ["HV_NET1", "HV_NET2"]  # Example high-voltage nets
+def run_drc(pcb, report="drc.json", cli="kicad-cli"):
+    """Run KiCad's DRC (including custom rules) and return the violations as Python objects."""
+    subprocess.run([cli, "pcb", "drc", "--format", "json", "--schematic-parity", "-o", report, pcb], check=True)
+    data = json.load(open(report))
+    return data["violations"], data["unconnected_items"], data["schematic_parity"]
 
-    # Define the required clearance (in mm)
-    min_clearance = 2.0
-
-    # Get all tracks from the board
-    tracks = board.GetTracks()
-
-    # Loop through each track and check clearance
-    for track in tracks:
-        net_name = track.GetNetname()
-
-        # Check if the track belongs to a high-voltage net
-        if net_name in high_voltage_nets:
-            track_clearance = track.GetClearance()
-
-            # Check clearance from other components and traces
-            for other_track in tracks:
-                if other_track != track:
-                    distance = track.GetDistance(other_track)
-
-                    # If distance is less than required clearance, raise a DRC error
-                    if distance < min_clearance * 1000000:  # KiCad stores distances in nanometers
-                        print(f"DRC Error: High-voltage net {net_name} is too close to another net.")
-                        return False
-
-    print("All high-voltage clearance checks passed.")
-    return True
-
-# Example usage
-board = pcbnew.GetBoard()
-check_high_voltage_clearance(board)
+violations, unconnected, parity = run_drc("stm32_prototype/stm32_prototype.kicad_pcb")
+for v in violations:
+    if "High-voltage" in v["description"]:
+        for item in v["items"]:
+            print(v["severity"], item["description"], item["pos"])
+print(len(violations), "violations,", len(unconnected), "unconnected,", len(parity), "parity issues")
 ```
 
 ### Step 2: Running the Script
@@ -125,36 +119,18 @@ In designs involving RF signals, maintaining signal integrity is crucial. Python
 - Ensure that all traces connected to RF nets maintain a minimum clearance from digital nets to avoid noise coupling.
 - Verify that RF traces maintain a controlled impedance, checking the trace width and the dielectric layer thickness between the signal trace and ground plane.
 
-```python
-def check_rf_signal_integrity(board):
-    # Define RF nets
-    rf_nets = ["RF_NET1", "RF_NET2"]
+```lisp
+(rule "RF isolation"
+  (condition "A.NetClass == 'RF' && B.NetClass != 'RF'")
+  (constraint clearance (min 1mm)))
 
-    # Define the minimum clearance required for RF nets
-    rf_min_clearance = 1.0
-
-    # Get all tracks from the board
-    tracks = board.GetTracks()
-
-    # Loop through each track and check RF rules
-    for track in tracks:
-        net_name = track.GetNetname()
-
-        if net_name in rf_nets:
-            track_clearance = track.GetClearance()
-
-            # Check that clearance meets the RF requirements
-            for other_track in tracks:
-                if other_track != track:
-                    distance = track.GetDistance(other_track)
-
-                    if distance < rf_min_clearance * 1000000:
-                        print(f"DRC Error: RF net {net_name} is too close to another net.")
-                        return False
-
-    print("All RF signal integrity checks passed.")
-    return True
+(rule "RF track width (controlled impedance)"
+  (condition "A.NetClass == 'RF'")
+  (constraint track_width (min 0.35mm) (opt 0.36mm) (max 0.37mm)))
 ```
+
+The track width that gives the target impedance depends on the stack-up; calculate it with KiCad's *Calculator
+Tools → Transmission Lines* or the manufacturer's impedance calculator.
 
 This script ensures that RF traces are properly isolated from other nets and maintain the required clearance. You can easily extend this script to check for other critical parameters, such as trace length matching or via avoidance in sensitive sections.
 

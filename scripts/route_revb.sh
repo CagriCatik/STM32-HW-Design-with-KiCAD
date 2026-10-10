@@ -10,8 +10,8 @@ K=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
 T=$(mktemp -d)
 $PY $ROOT/scripts/route_revb.py dsn $B $T/board.dsn
 RULES=(); [ -f $T/board.rules ] && RULES=(-dr $T/board.rules)
-$FR/jre/Contents/Home/bin/java -Djava.awt.headless=true -jar $FR/freerouting-2.5.0.jar \
-    --gui.enabled=false -de $T/board.dsn $RULES -do $T/board.ses -mp 150 -l en > $T/freerouting.log 2>&1
+(cd $T && $FR/jre/Contents/Home/bin/java -Djava.awt.headless=true -jar $FR/freerouting-2.5.0.jar \
+    --gui.enabled=false -de $T/board.dsn $RULES -do $T/board.ses -mp 150 -l en > $T/freerouting.log 2>&1)   # Freerouting writes its log folder into the cwd
 grep -E 'could not be routed|unrouted connection' $T/freerouting.log || true
 $PY $ROOT/scripts/route_revb.py ses $B $T/board.ses
 $PY $ROOT/scripts/route_revb.py gnd $B

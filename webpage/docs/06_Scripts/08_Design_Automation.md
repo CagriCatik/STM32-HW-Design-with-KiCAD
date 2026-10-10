@@ -79,7 +79,7 @@ def adjust_trace_widths(pcb, iteration):
     # Example logic to adjust trace widths based on iteration
     new_width = 0.3 + (iteration * 0.05)  # Increment width with each iteration
     for track in pcb.GetTracks():
-        if isinstance(track, pcbnew.TRACK):
+        if type(track) is pcbnew.PCB_TRACK:          # tracks only, not vias or arcs
             track.SetWidth(int(new_width * 1e6))  # Set width in nm
 
 def evaluate_results(pcb):

@@ -1,114 +1,37 @@
 <div align="center">
 
-<h2>KiCad and STM32 Hardware Design</h2>
+<h2>STM32 Hardware Design with KiCad</h2>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/KiCad-Logo.svg" alt="KiCad Logo" width="180">
-
-[![Deploy Docusaurus](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/PCB-Design-with-KiCad/actions/workflows/deploy.yml)
+[![Hardware check](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/hw-check.yml/badge.svg)](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/hw-check.yml)
+[![Deploy MkDocs](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml/badge.svg)](https://github.com/CagriCatik/STM32-HW-Design-with-KiCAD/actions/workflows/deploy.yml)
 ![KiCad 10](https://img.shields.io/badge/KiCad-10.0-blue)
-[![Documentation](https://img.shields.io/badge/MkDocs-Available-green)](webpage/docs/index.md)
-![Last Commit](https://img.shields.io/github/last-commit/CagriCatik/PCB-Design-with-KiCad)
+[![Documentation](https://img.shields.io/badge/docs-MkDocs-green)](https://cagricatik.github.io/STM32-HW-Design-with-KiCAD/)
+![Last Commit](https://img.shields.io/github/last-commit/CagriCatik/STM32-HW-Design-with-KiCAD)
+
+<img src="webpage/docs/assets/pcb/revc_top.png" alt="STM32 RC controller, Rev C" width="640">
 
 </div>
 
-<div align="center">
-This project documents my first complete PCB design journey using KiCad and an STM32 microcontroller. It represents a hands-on, end-to-end dive into schematic design, PCB layout, routing, manufacturing files, and the practical considerations required to make a real, manufacturable embedded board.
+A hands-on, end-to-end STM32 hardware project in KiCad 10: schematic, PCB layout, routing, manufacturing data,
+firmware and documentation. It started as a course exercise (a minimal STM32F103 board) and grew into a complete,
+manufacturable **controller for an RC car**.
 
-The goal was not only to learn KiCad as a professional tool, but to understand what makes a microcontroller board electrically reliable, layout-aware, and production-ready. Every stage reflects actual engineering constraints encountered during the design of a small STM32-based board.
+The goal is not only to learn KiCad, but to understand what makes a microcontroller board electrically reliable,
+layout-aware and production-ready, and to keep every step reproducible with scripts.
 
-</div>
+## The board (Rev C)
 
-<details>
-<summary><strong>1. Schematic Design</strong></summary>
+- STM32F103C8T6 at 72 MHz (8 MHz crystal), USB-C virtual COM port, Cortex-Debug connector
+- 2S–3S LiPo input on XT30 with reverse protection, TPS563201 5 V / 3 A servo rail, AP2112K 3.3 V
+- DRV8870 brushed motor driver (3.3 A limit), 4 servo/ESC outputs, 3 receiver inputs, 2 light outputs
+- LSM6DS3TR-C IMU, Qwiic, UART header, 2×5 expansion header
+- 70 × 50 mm, 4 layers (solid GND plane), four M3 holes, JLCPCB assembly with an LCSC number on every part
+- ERC 0/0, DRC 0 violations / 0 unconnected / 0 schematic-parity issues, checked in CI
 
-- [X] STM32 microcontroller fundamentals and decoupling guidance.
-- [X] STM32 configuration pin requirements and best practices.
-- [ ] Pin-out management using STM32CubeIDE.
-- [X] Crystal oscillator circuit design.
-- [X] USB interface design for STM32 systems.
-- [X] Power supply design and connector selection.
-- [X] Electrical Rules Check (ERC), annotation workflow, and validation.
-- [X] Component footprint assignment.
-
-</details>
-
----
+Full description: [Project chapter of the documentation](webpage/docs/09_Project/01_Overview.md).
 
 <details>
-<summary><strong>2. PCB Layout</strong></summary>
-
-- [X] KiCad PCB project setup and configuration.
-- [X] Placement strategy for MCU, decoupling capacitors, and crystal components.
-- [X] USB and SWD interface layout considerations.
-- [X] Updating footprints and integrating 3D models.
-- [X] Connector and switch placement.
-- [X] Power distribution layout and grounding practices.
-- [X] Defining board outline and mechanical mounting features.
-
-</details>
-
----
-
-<details>
-<summary><strong>3. PCB Routing</strong></summary>
-
-- [X] Routing guidelines for decoupling and crystal signals.
-- [X] Digital and analog signal routing strategies.
-- [X] Power trace routing and current handling considerations.
-- [X] Refinement procedures and thorough DRC validation.
-
-</details>
-
----
-
-<details>
-<summary><strong>4. Manufacturing</strong></summary>
-
-- [X] Generating BOM files
-- [X] Generating Gerber and Pick/Place files
-- [X] Generating Drill files
-
-</details>
-
----
-<details>
-<summary><strong>5. Documentation</strong></summary>
-
-This project uses **MkDocs** with **Material Theme** for documentation.
-
-**Prerequisites**
-
-- Python 3.x
-- pip
-
-**Install the required packages**
-
-```bash
-pip install mkdocs mkdocs-material
-```
-
-**To serve the documentation locally**:
-
-```bash
-cd webpage
-python -m mkdocs serve
-```
-
-The site will be available at http://127.0.0.1:8000/.
-
-
-**To build the static site**:
-
-```bash
-cd webpage
-python -m mkdocs build
-```
-</details>
-
----
-
-<details>
-<summary><strong>Rev C – RC-car controller (branch rev-c-rc-car)</strong></summary>
+<summary><strong>Rev C – blocks and pin map</strong></summary>
 
 Rev C turns the board into a complete controller for an RC car on one 70 × 50 mm, 4-layer PCB with four M3 holes.
 
@@ -138,12 +61,54 @@ scripts/export_fab.sh                         # Gerber/drill/BOM/CPL/PDF/STEP fo
 
 </details>
 
----
+## Repository layout
+
+```text
+stm32_prototype/          KiCad 10 project (schematic sheets, PCB, rules, project symbol library)
+  production/rev-c/       Gerber ZIP, BOM, CPL, schematic PDF, renders, STEP
+scripts/                  schematic generator, board setup, placement, routing, fabrication export
+firmware/                 STM32CubeMX project (rc_controller) and the bring-up application
+webpage/                  MkDocs documentation site (course + project chapter)
+datasheets/               datasheets used during the design
+.github/workflows/        hw-check.yml (ERC/DRC, fab data on tags), deploy.yml (docs)
+```
+
+## Quick start
+
+```bash
+# open the design
+open stm32_prototype/stm32_prototype.kicad_pro            # KiCad 10
+
+# checks (the same ones CI runs)
+kicad-cli sch erc --severity-all --exit-code-violations stm32_prototype/stm32_prototype.kicad_sch
+kicad-cli pcb drc --severity-all --exit-code-violations --schematic-parity stm32_prototype/stm32_prototype.kicad_pcb
+
+# fabrication data for JLCPCB
+scripts/export_fab.sh
+
+# firmware (Arm GNU toolchain on PATH)
+cd firmware/rc_controller && cmake -S . -B build -G "Unix Makefiles" \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/gcc-arm-none-eabi.cmake -DCMAKE_BUILD_TYPE=Release && cmake --build build
+
+# documentation
+pip install -r requirements.txt && cd webpage && mkdocs serve      # http://127.0.0.1:8000
+```
+
+Before ordering, check the part rotations in JLCPCB's assembly preview, then follow the
+[bring-up checklist](webpage/docs/09_Project/06_Bring-up.md).
+
+## Revisions
+
+| Rev | Content | Where |
+|---|---|---|
+| A | Course schematic: STM32F103, crystal, decoupling; no layout | `main` history |
+| B | Blue-Pill-compatible board: USB-C, ESD, AP2112K, Cortex-Debug, Qwiic, 76.2 × 22.86 mm | branch `rev-b-usb-c` |
+| C | RC-car controller (this README) | branch `rev-c-rc-car` |
 
 <details>
 <summary><strong>Rev B – changes compared to Rev A</strong></summary>
 
-The KiCad project in `stm32_prototype/` is Rev B, a modernised Blue Pill (KiCad 10, branch `rev-b-usb-c`).
+Rev B is a modernised, Blue-Pill-compatible board (branch `rev-b-usb-c`); Rev C builds on it.
 
 | Area | Rev A | Rev B |
 |---|---|---|
@@ -166,14 +131,56 @@ scripts/route_revb.sh                 # re-route with Freerouting (needs Java 25
 
 </details>
 
----
+## Course progress
 
-**Additional Resources**
+<details>
+<summary><strong>Checklist</strong></summary>
 
-- This content is aligned with [Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/)
-- STM32CubeIDE Documentation: [STMicroelectronics Documentation](https://www.st.com/en/development-tools/stm32cubeide.html)
-- KiCad Official Documentation: [KiCad Documentation](https://docs.kicad.org/)
-- STM32 Community Forums: [ST Community](https://community.st.com/s/)
-- USB Design Guidelines: [USB.org Guidelines](https://www.usb.org/documents)
+**1. Schematic design**
 
+- [X] STM32 microcontroller fundamentals and decoupling guidance
+- [X] STM32 configuration pin requirements and best practices
+- [X] Pin-out management with STM32CubeMX (`firmware/rc_controller/rc_controller.ioc`)
+- [X] Crystal oscillator circuit design
+- [X] USB interface design for STM32 systems
+- [X] Power supply design and connector selection
+- [X] ERC, annotation workflow and validation
+- [X] Component footprint assignment
 
+**2. PCB layout**
+
+- [X] KiCad PCB project setup and configuration
+- [X] Placement of MCU, decoupling capacitors and crystal
+- [X] USB and SWD interface layout
+- [X] Footprints and 3D models
+- [X] Connector and switch placement
+- [X] Power distribution and grounding
+- [X] Board outline and mounting holes
+
+**3. PCB routing**
+
+- [X] Decoupling and crystal routing
+- [X] Signal routing
+- [X] Power routing and current handling
+- [X] Refinement and DRC
+
+**4. Manufacturing**
+
+- [X] BOM, Gerber, drill and pick-and-place files
+- [ ] JLCPCB assembly preview checked
+- [ ] Boards ordered and brought up
+
+**5. Firmware**
+
+- [X] CubeMX configuration and bring-up application (builds)
+- [ ] Tested on hardware
+
+</details>
+
+## Resources
+
+- Course this project started from: [Learn KiCad V6 and STM32 Hardware Design](https://www.udemy.com/course/learn-kicad-v6-and-stm32-hardware-design/) (KiCad 6; this repository uses KiCad 10)
+- [KiCad documentation](https://docs.kicad.org/) and [kicad-cli reference](https://docs.kicad.org/master/en/cli/cli.html)
+- [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html), [STM32F103C8 datasheet](datasheets/datasheet_stm32f103c8.pdf)
+- ST application notes: AN2867 (oscillator design), AN4879 (USB hardware and PCB guidelines)
+- [JLCPCB capabilities](https://jlcpcb.com/capabilities/pcb-capabilities) and [parts library](https://jlcpcb.com/parts)

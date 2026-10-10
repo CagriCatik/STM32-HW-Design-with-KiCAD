@@ -66,43 +66,39 @@ Best Practices:
 Here’s an example of how to create a custom footprint for a 4-pin component using Python scripting in KiCad:
 
 ```python
+import os
 import pcbnew
 
-def generate_custom_footprint(component_name):
-    # Create a new footprint object
-    footprint = pcbnew.Footprint()
-
-    # Set footprint properties
-    footprint.SetReference(component_name)
-    footprint.SetDescription("Custom footprint for " + component_name)
-
-    # Define pad layout and dimensions
-    pad_count = 4
-    pad_width = 1.0  # in mm
-    pad_height = 1.0  # in mm
-    pad_spacing = 1.5  # in mm
-
-    # Add pads to the footprint
+def generate_custom_footprint(name, lib_path="my.pretty", pad_count=4, pitch_mm=1.5, pad_mm=(1.0, 1.0)):
+    board = pcbnew.BOARD()                      # footprints need a parent board while they are built
+    fp = pcbnew.FOOTPRINT(board)
+    fp.SetFPID(pcbnew.LIB_ID("my", name))
+    fp.SetReference("U**")
+    fp.SetValue(name)
+    fp.SetLibDescription("Custom footprint for " + name)
     for i in range(pad_count):
-        pad = pcbnew.D_PAD(footprint)
-        pad.SetSize(pcbnew.wxSizeMM(pad_width, pad_height))
-        pad.SetPosition(pcbnew.wxPointMM(i * pad_spacing, 0))  # Adjust position for each pad
-        footprint.Add(pad)
+        pad = pcbnew.PAD(fp)
+        pad.SetNumber(str(i + 1))
+        pad.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+        pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+        pad.SetLayerSet(pad.SMDMask())
+        pad.SetSize(pcbnew.VECTOR2I(pcbnew.FromMM(pad_mm[0]), pcbnew.FromMM(pad_mm[1])))
+        pad.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(i * pitch_mm), 0))
+        fp.Add(pad)
+    io = pcbnew.PCB_IO_MGR.FindPlugin(pcbnew.PCB_IO_MGR.KICAD_SEXP)
+    io.FootprintSave(os.path.abspath(lib_path), fp)   # writes <lib>.pretty/<name>.kicad_mod
+    print("footprint written:", name)
 
-    # Save the footprint to a file
-    footprint_file_path = component_name + ".kicad_mod"
-    pcbnew.PCB_IO().FootprintSave(footprint, footprint_file_path)
-
-    print("Custom footprint generated for", component_name)
-
-# Example usage
 generate_custom_footprint("CustomComponent")
 ```
 
 Explanation:
 - Footprint Creation: We begin by creating a new footprint object and setting the reference (the name of the component) and the description.
-- Pad Layout: The pad layout is defined based on the number of pads, their dimensions, and the spacing between them. The `pcbnew.wxSizeMM` function is used to set the pad size, and `pcbnew.wxPointMM` is used to position each pad.
-- File Output: Once the footprint is created, it is saved to a `.kicad_mod` file, which can then be imported and used in the PCB design.
+- Pad Layout: The pad layout is defined based on the number of pads, their dimensions, and the spacing between them. Sizes and positions are `pcbnew.VECTOR2I` values in internal units (nanometres); `pcbnew.FromMM()` converts from millimetres.
+- File Output: The KiCad S-expression plugin writes the footprint into a `.pretty` library folder as `<name>.kicad_mod`. Add the folder to the footprint library table to use it.
+
+!!! note "Tested with KiCad 10"
+    Run the script with KiCad's bundled Python (on macOS: `/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`). Older examples on the web use `D_PAD`, `MODULE`, `wxPoint` and `wxSize`; these names were removed in KiCad 6–8.
 
 
 

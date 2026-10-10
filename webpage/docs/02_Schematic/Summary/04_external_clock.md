@@ -1,5 +1,11 @@
 # External High-Speed Crystal Oscillator, USB/SWD Routing, and Pin-Out Integration
 
+!!! info "In this project"
+    The course example uses a 16 MHz crystal. The board in this repository uses **8 MHz** (the CubeMX and Blue-Pill default) with 15 pF load capacitors, see [Crystal Circuitry](../../02_Schematic/04_Crystal-Circuitry.md#rev-b-8-mhz-crystal-and-load-capacitors-in-this-repository).
+
+    In this repository the pin assignment is checked with **STM32CubeMX** in script mode; the resulting `.ioc` lives in `firmware/rc_controller/`, see [Firmware](../../09_Project/05_Firmware.md).
+
+
 This documentation provides a complete explanation of the external crystal oscillator subsystem, its load capacitors, grounding strategy, and supporting references. It also integrates the previously defined USB differential pair and SWD debug signals. Together, these additions finalize the electrical infrastructure required for accurate MCU timing, USB full-speed operation, and reliable firmware development with STM32CubeIDE.
 
 <div style=" textAlign: 'center' ">

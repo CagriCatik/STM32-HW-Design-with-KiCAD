@@ -1,5 +1,14 @@
 # Key Applications of Python Scripting in KiCad
 
+!!! info "KiCad 10 and this chapter"
+    The examples use KiCad's Python module `pcbnew` (SWIG bindings). They run inside the PCB editor
+    (*Tools → Scripting Console*, action plugins) or standalone with KiCad's bundled Python. KiCad 9 introduced the
+    IPC API (`kicad-python`) as the long-term replacement; the SWIG bindings are deprecated but still available in
+    KiCad 10. Many tasks need no Python at all: `kicad-cli` runs ERC, DRC and every export from the command line.
+    The scripts that built the board in this repository (`scripts/`) are real-world examples of both approaches, see
+    [Project → Layout and Routing](../09_Project/03_Layout-Routing.md).
+
+
 Python scripting in KiCad provides designers with a powerful toolset for automating complex and repetitive tasks, increasing both productivity and accuracy. These scripting capabilities offer flexibility and efficiency, especially in designs that involve intricate rules, batch processing, or highly customized workflows. Below are the key applications of Python scripting in KiCad:
 
 ## 1. Automated PCB Design Tasks

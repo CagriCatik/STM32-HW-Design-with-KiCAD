@@ -1,5 +1,9 @@
 # Serial Debug Connectors, Power Supply
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+
 This section provides a comprehensive guide to enhancing your STM32-based PCB design in KiCad. It covers the addition of Serial Debug Connectors, the setup of a power supply using a linear regulator, the integration of a status LED, and the finalization of the schematic. The objective is to develop a simple, functional, and robust design that incorporates UART and I²C connections, proper decoupling, and clean power regulation.
 
 ## 1. Adding Serial Debug (SWD) and Communication Headers
@@ -243,7 +247,7 @@ This schematic serves as a solid foundation for your STM32 project, balancing si
 By adhering to these practices, you will create a reliable and efficient PCB design that meets the demands of your STM32-based application.
 ## Rev B: power path and connectors in this repository
 
-The Rev B board (`stm32_prototype/`, sheets `power_usb` and `connectors`) modernises this part of the design:
+The Rev B board (branch `rev-b-usb-c`, sheets `power_usb` and `connectors`) modernised this part of the design as shown below. Rev C keeps the USB-C path and LDO and adds a battery input with reverse protection and a 5 V / 3 A buck converter for servos, see [Project → Schematic](../09_Project/02_Schematic.md#power).
 
 **Power path:** VBUS → F1 500 mA PTC (nSMD050) → D2 B5819W Schottky → `+5V` → U3 AP2112K-3.3 → `+3V3`.
 The Schottky stops a supply on the header's 5V pin from back-feeding the USB host. The AP2112K replaces the

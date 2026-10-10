@@ -1,5 +1,9 @@
 # Pinout Configuration and Peripheral Setup
 
+!!! info "In this project"
+    In this repository the pin assignment is checked with **STM32CubeMX** in script mode; the resulting `.ioc` lives in `firmware/rc_controller/`, see [Firmware](../09_Project/05_Firmware.md).
+
+
 This section explains how to configure the STM32 pinout and peripherals within STM32CubeIDE. The pinout defines the electrical role of each physical pin, including power, ground, GPIO, analog inputs, and communication interfaces. Peripherals are the internal hardware modules such as timers, ADC, DAC, USART, SPI, I2C, DMA, USB, and watchdogs. STM32CubeIDE links these elements through its configuration system, assigning functions and generating initialization code. The material provides clear guidance and practical methods to prepare a reliable STM32 hardware setup and ensure smooth integration with KiCad for PCB design.
 
 ## Getting Started with STM32CubeIDE

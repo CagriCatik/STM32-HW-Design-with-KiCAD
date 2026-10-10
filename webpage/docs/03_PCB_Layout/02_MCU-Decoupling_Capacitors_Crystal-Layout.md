@@ -1,5 +1,9 @@
 # Initial Component Placement and Layout
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+
 Effective PCB design begins with meticulous component placement and layout. This foundational step ensures optimal performance, manufacturability, and reliability of the final product. This documentation provides a comprehensive guide to importing component footprints from the schematic into the PCB layout editor in KiCad, executing an initial rough placement of components, and adhering to best practices for signal integrity and component grouping.
 
 ## 1. Importing Components into PCB Layout

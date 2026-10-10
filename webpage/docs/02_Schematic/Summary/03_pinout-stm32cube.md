@@ -1,5 +1,9 @@
 # Pin-Out and STM32CubeIDE
 
+!!! info "In this project"
+    In this repository the pin assignment is checked with **STM32CubeMX** in script mode; the resulting `.ioc` lives in `firmware/rc_controller/`, see [Firmware](../../09_Project/05_Firmware.md).
+
+
 This section explains how to define the functional pin-out of the STM32F103C8Tx using STM32CubeIDE and how to transfer that pin configuration back into the KiCad schematic. The goal is to establish a clean, predictable mapping between firmware configuration and PCB layout, ensuring that the final board supports USB, SWD debugging, an external crystal, and general-purpose headers.
 
 STM32CubeIDE provides an Eclipse-based development environment with integrated graphical pin configuration. This makes it easier to select peripherals, assign functions to pins, and validate pin conflicts without manually cross-referencing the datasheet.

@@ -52,38 +52,53 @@ Let’s explore an example where we merge multiple netlists and analyze the merg
 
 To start manipulating netlists, you first need to load them into Python. This can be done using the `pcbnew` library, which provides access to the PCB layout and its associated netlist.
 
+The netlist is exported with `kicad-cli` and read as a plain S-expression file; no GUI is needed:
+
 ```python
-import pcbnew
+import re, subprocess, sys
+from collections import defaultdict
 
-# Load the first netlist
-netlist1_path = "/path/to/netlist1.net"
-netlist1 = pcbnew.LoadNetlist(netlist1_path)
+def export_netlist(sch, out="netlist.net", cli="kicad-cli"):
+    subprocess.run([cli, "sch", "export", "netlist", "--format", "kicadsexpr", "-o", out, sch], check=True)
+    return out
 
-# Load the second netlist
-netlist2_path = "/path/to/netlist2.net"
-netlist2 = pcbnew.LoadNetlist(netlist2_path)
+def read_nets(path):
+    """Return {net name: [(ref, pin), ...]} from a KiCad S-expression netlist."""
+    text = open(path).read()
+    nets = defaultdict(list)
+    for block in re.findall(r'\(net\s+\(code "\d+"\)\s+\(name "([^"]*)"\)(.*?)\)\s*(?=\(net\s|\)\s*\)\s*$)', text, re.S):
+        name, body = block
+        nets[name] = re.findall(r'\(ref "([^"]+)"\)\s*\(pin "([^"]+)"\)', body)
+    return dict(nets)
+
+def single_node_nets(nets):
+    """Nets with only one pin are usually a missing wire (or an intentionally unused pin)."""
+    return [n for n, nodes in nets.items() if len(nodes) == 1 and not n.startswith("unconnected-")]
+
+def diff(old, new):
+    """Compare two revisions: which nets were added, removed or changed."""
+    added = sorted(set(new) - set(old)); removed = sorted(set(old) - set(new))
+    changed = sorted(n for n in set(old) & set(new) if sorted(old[n]) != sorted(new[n]))
+    return added, removed, changed
+
+nets = read_nets(export_netlist("stm32_prototype/stm32_prototype.kicad_sch"))
+print(len(nets), "nets")
 ```
 
 ### Step 2: Merge the Netlists
 
 Once the netlists are loaded, you can merge them into a single netlist. This is useful when combining designs from different subsystems or merging hierarchical blocks.
 
+Merging netlists is not a supported workflow: combine designs as hierarchical sheets in the schematic instead.
+A useful operation on two netlists is the **comparison of two revisions**:
+
 ```python
-def merge_netlists(netlist1, netlist2):
-    # Loop through all components in the second netlist
-    for component in netlist2.GetComponents():
-        # Add component to the first netlist
-        netlist1.AddComponent(component)
-
-    # Loop through all nets in the second netlist
-    for net in netlist2.GetNets():
-        # Add nets to the first netlist
-        netlist1.AddNet(net)
-
-    print("Netlists merged successfully.")
-
-# Example usage
-merge_netlists(netlist1, netlist2)
+old = read_nets("rev-b.net")
+new = read_nets("rev-c.net")
+added, removed, changed = diff(old, new)
+print("added:", added)
+print("removed:", removed)
+print("changed:", changed)
 ```
 
 ### Step 3: Analyze the Merged Netlist
@@ -91,26 +106,13 @@ merge_netlists(netlist1, netlist2)
 After merging the netlists, it’s important to analyze them to ensure that the merged design is correct. You can use Python to check for connectivity issues, such as shorts, open circuits, or redundant connections.
 
 ```python
-def analyze_netlist(netlist):
-    nets = netlist.GetNets()
-    
-    # Loop through each net and check for issues
-    for net in nets:
-        connections = net.GetConnections()
-
-        # Check for shorts (multiple nets connected to the same pin)
-        if len(set(connections)) != len(connections):
-            print(f"Short detected in net {net.GetName()}.")
-
-        # Check for open circuits (nets with too few connections)
-        if len(connections) < 2:
-            print(f"Open circuit detected in net {net.GetName()}.")
-
-    print("Netlist analysis complete.")
-
-# Example usage
-analyze_netlist(netlist1)
+for net in single_node_nets(nets):
+    print("only one pin on net", net, "->", nets[net])
 ```
+
+Nets with a single pin usually mean a missing wire or a label typo (`USB_DP` vs. `USB_D+`). Shorts cannot be seen in
+the netlist, because two nets that touch become one net; check for unexpectedly large nets instead (for example a
+signal net that suddenly contains a GND pin).
 
 This simple analysis checks for shorts and open circuits in the merged netlist. If any issues are found, they are printed out, allowing the designer to address them before proceeding with the design.
 
@@ -118,25 +120,8 @@ This simple analysis checks for shorts and open circuits in the merged netlist. 
 
 In some cases, it may be beneficial to reassign component pins to optimize routing. Python allows you to do this programmatically, reducing the manual effort required to fine-tune the layout.
 
-```python
-def reassign_pins(netlist, component_name, pin_assignments):
-    component = netlist.GetComponentByName(component_name)
-    
-    # Reassign pins based on the new pin assignments
-    for pin_number, new_net in pin_assignments.items():
-        pin = component.GetPinByNumber(pin_number)
-        pin.SetNet(new_net)
-    
-    print(f"Pins reassigned for component {component_name}.")
-
-# Example usage
-pin_assignments = {
-    "1": "NET1",
-    "2": "NET2",
-    "3": "NET3"
-}
-reassign_pins(netlist1, "U1", pin_assignments)
-```
+Pin swaps belong in the schematic: change the labels there and update the PCB (*Tools → Update PCB from
+Schematic*, F8). Editing the netlist file directly is overwritten by the next export.
 
 This example script allows you to specify a component and reassign its pins to different nets, optimizing the connectivity for easier routing.
 
@@ -166,31 +151,18 @@ When manipulating netlists, ensure that consistent naming conventions are follow
 In designs with multiple PCBs that need to communicate, merging netlists from different boards is essential to ensure proper interconnectivity. The following example demonstrates how to merge netlists from two different PCBs in a multi-board system and check for consistency between the interconnects.
 
 ```python
-def merge_multi_board_netlists(board1_netlist, board2_netlist, interconnects):
-    # Merge netlists as before
-    merge_netlists(board1_netlist, board2_netlist)
-    
-    # Check the interconnects for consistency
-    for interconnect in interconnects:
-        board1_net = board1_netlist.GetNetByName
-
-(interconnect['board1_net'])
-        board2_net = board2_netlist.GetNetByName(interconnect['board2_net'])
-
-        if board1_net != board2_net:
-            print(f"Interconnect mismatch: {interconnect['board1_net']} on Board 1 does not match {interconnect['board2_net']} on Board 2.")
+def check_interconnects(board1, board2, interconnects):
+    """board1/board2: {net: [(ref, pin)]} from read_nets(); interconnects: pairs of net names that must exist on both."""
+    for a, b in interconnects:
+        if a not in board1 or b not in board2:
+            print(f"Interconnect missing: {a} on board 1 / {b} on board 2")
         else:
-            print(f"Interconnect verified: {interconnect['board1_net']} matches {interconnect['board2_net']}.")
+            print(f"Interconnect present: {a} ({len(board1[a])} pins) <-> {b} ({len(board2[b])} pins)")
 
-# Example usage
-interconnects = [
-    {'board1_net': 'SPI_CLK', 'board2_net': 'SPI_CLK'},
-    {'board1_net': 'GND', 'board2_net': 'GND'}
-]
-merge_multi_board_netlists(board1_netlist, board2_netlist, interconnects)
+check_interconnects(read_nets("main.net"), read_nets("sensor.net"), [("SPI_CLK", "SPI_CLK"), ("GND", "GND")])
 ```
 
-This script merges the netlists for two different boards in a multi-board system and checks that interconnects (such as SPI and GND) match between the boards. Any discrepancies are flagged for review.
+This script checks that the nets which connect two boards (such as SPI and GND) exist on both sides. Any missing net is flagged for review.
 
 
 

@@ -1,5 +1,9 @@
 # Finalizing Power Supply Layout and Preparing for PCB Routing
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+
 In the final stage of component placement, we will complete the layout of the power supply section, ensuring the proper positioning of the voltage regulator, capacitors, and LED indicators. Additionally, we will prepare the design for PCB routing by adjusting connector positions, reviewing the layout for neatness, and adding mounting holes. This documentation provides a comprehensive guide to achieving an optimized power supply layout and a well-prepared PCB design ready for routing using KiCad.
 
 ## 1. Laying Out the Power Supply Section

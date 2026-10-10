@@ -1,5 +1,9 @@
 # Boot Configuration, Reset Circuit, and Power Source Setup
 
+!!! info "In this project"
+    The course uses the AMS1117-3.3 as the example regulator. The board in this repository uses the **AP2112K-3.3** instead (250 mV instead of 1.1 V dropout, 55 µA instead of ~5 mA quiescent current, stable with ceramic capacitors) and, in Rev C, a **TPS563201** buck converter for the 5 V servo rail.
+
+
 - This section explores the critical components of STM32 PCB design, focusing on configuring the reset pin (NRST), boot configuration pin (BOOT0), and ensuring reliable microcontroller booting.
 - Additionally, it covers connecting a power source and integrating basic external components such as resistors and capacitors to stabilize the circuit.
 - Practical examples and best practices are provided to guide you through each step using KiCad.

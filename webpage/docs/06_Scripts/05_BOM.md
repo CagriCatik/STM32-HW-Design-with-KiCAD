@@ -68,25 +68,20 @@ The first step in generating a BOM is to extract the relevant information from t
 ```python
 import pcbnew
 
-def extract_components():
-    board = pcbnew.GetBoard()
-    components = board.GetModules()
-
+def extract_components(pcb_path=None):
+    """Footprints of a board as BOM rows. Inside the PCB editor use pcbnew.GetBoard(), standalone LoadBoard()."""
+    board = pcbnew.LoadBoard(pcb_path) if pcb_path else pcbnew.GetBoard()
     bom_data = []
-
-    for component in components:
-        ref = component.GetReference()
-        value = component.GetValue()
-        footprint = component.GetFPID().GetLibItemName()
-        quantity = 1  # Default to 1 for each component
-
+    for fp in board.GetFootprints():
+        if fp.IsDNP() or fp.IsExcludedFromBOM():
+            continue
         bom_data.append({
-            'Reference': ref,
-            'Value': value,
-            'Footprint': footprint,
-            'Quantity': quantity
+            'Reference': fp.GetReference(),
+            'Value': fp.GetValue(),
+            'Footprint': str(fp.GetFPID().GetLibItemName()),
+            'LCSC': fp.GetFieldText('LCSC') if fp.HasField('LCSC') else '',
+            'Quantity': 1,
         })
-
     return bom_data
 ```
 
@@ -167,30 +162,24 @@ Treat your BOM as a key project document and place it under version control alon
 In projects with multiple PCBs, generating a single, unified BOM can streamline the procurement process. The following script demonstrates how to combine BOMs from multiple boards and generate a consolidated BOM.
 
 ```python
+from collections import defaultdict
+
 def merge_boms(boms):
-    merged_bom = {}
-    
-    for bom in boms:
-        for component in bom:
-            ref = component['Reference']
-            if ref in merged_bom:
-                merged_bom[ref]['Quantity'] += component['Quantity']
-            else:
-                merged_bom[ref] = component
-    
-    return list(merged_bom.values())
+    """Combine several boards into one purchasing list: one line per (value, footprint, LCSC part)."""
+    lines = defaultdict(lambda: {'References': [], 'Quantity': 0})
+    for board_name, bom in boms.items():
+        for row in bom:
+            key = (row['Value'], row['Footprint'], row['LCSC'])
+            lines[key]['References'].append('%s:%s' % (board_name, row['Reference']))
+            lines[key]['Quantity'] += row['Quantity']
+    return [dict(Value=k[0], Footprint=k[1], LCSC=k[2], **v) for k, v in sorted(lines.items())]
 
 # Example usage
-board1_bom = extract_components_from_board('board1.kicad_pcb')
-board2_bom = extract_components_from_board('
-
-board2.kicad_pcb')
-
-merged_bom = merge_boms([board1_bom, board2_bom])
-export_bom_to_csv(merged_bom, 'merged_bom.csv')
+merged = merge_boms({'main': extract_components('main.kicad_pcb'), 'sensor': extract_components('sensor.kicad_pcb')})
+export_bom_to_csv(merged, 'merged_bom.csv')
 ```
 
-This script consolidates components from two different PCBs, merging them into a single BOM. The `merge_boms` function ensures that quantities are updated correctly, and the resulting BOM can be exported in the desired format.
+This script consolidates components from two different PCBs, merging them into a single BOM. The `merge_boms` function groups identical parts across boards (same value, footprint and LCSC number), so quantities add up per part instead of per reference designator, and the resulting BOM can be exported in the desired format.
 
 
 
